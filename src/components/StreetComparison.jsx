@@ -83,7 +83,8 @@ export default function StreetComparison({ niche }) {
             <h3>¿Por qué hacer tu web con Primera Cuadra y no con una agencia tradicional?</h3>
           </div>
 
-          <div className="vs-table-wrapper">
+          {/* Desktop Table View */}
+          <div className="vs-table-wrapper vs-desktop-table">
             <table className="vs-table">
               <thead>
                 <tr>
@@ -112,6 +113,40 @@ export default function StreetComparison({ niche }) {
                 ))}
               </tbody>
             </table>
+          </div>
+
+          {/* Mobile Stacked Cards View (Clean & Native for phones) */}
+          <div className="vs-mobile-cards-list">
+            {AGENCY_COMPARISON.map((row, idx) => (
+              <div key={idx} className="vs-mobile-card-item">
+                <div className="vs-card-aspect-header">
+                  <span className="aspect-bullet"></span>
+                  <h4>{row.aspect}</h4>
+                </div>
+                
+                <div className="vs-card-comparison-body">
+                  {/* Agencia Tradicional */}
+                  <div className="vs-card-row trad-row">
+                    <div className="vs-card-badge trad-badge">
+                      <XCircle size={14} />
+                      <span>Agencia Tradicional</span>
+                    </div>
+                    <p className="vs-card-desc trad-desc">{row.traditional}</p>
+                  </div>
+
+                  {/* Primera Cuadra */}
+                  <div className="vs-card-row primera-row">
+                    <div className="vs-card-badge primera-badge">
+                      <CheckCircle2 size={14} />
+                      <span>Primera Cuadra (Nosotros)</span>
+                    </div>
+                    <p className="vs-card-desc primera-desc">
+                      <strong>{row.primeraCuadra}</strong>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

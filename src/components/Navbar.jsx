@@ -110,7 +110,7 @@ export default function Navbar({ onSelectNiche }) {
             <span>Entrega 4 Días</span>
           </div>
 
-          <div className="pill-country-tag">
+          <div className="pill-country-tag hidden-mobile-tag">
             <span>🇦🇷 AR</span>
           </div>
 
@@ -119,10 +119,11 @@ export default function Navbar({ onSelectNiche }) {
             target="_blank" 
             rel="noopener noreferrer" 
             className="btn-nav-cta"
+            aria-label="Consultar por WhatsApp"
           >
             <MessageSquare size={16} />
-            <span>Consultar WhatsApp</span>
-            <ArrowUpRight size={14} />
+            <span className="btn-nav-cta-text">WhatsApp</span>
+            <ArrowUpRight size={14} className="nav-arrow-icon" />
           </a>
 
           {/* Mobile Menu Toggle */}

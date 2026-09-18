@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+*.wav
+*.mp3
+*.vtt
+*.srt
+*.ps1
+.venv
+temp_*

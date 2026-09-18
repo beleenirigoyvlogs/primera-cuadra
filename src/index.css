@@ -1221,6 +1221,104 @@ button {
 .td-trad { color: var(--text-muted); }
 .td-primera { color: var(--text-title); background: rgba(103, 61, 230, 0.03); }
 
+/* Mobile Cards View for Comparison */
+.vs-mobile-cards-list {
+  display: none;
+}
+
+.vs-mobile-card-item {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 18px 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.vs-card-aspect-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.aspect-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--brand-purple);
+  flex-shrink: 0;
+}
+
+.vs-card-aspect-header h4 {
+  font-family: var(--font-heading);
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: var(--text-title);
+  margin: 0;
+}
+
+.vs-card-comparison-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.vs-card-row {
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+}
+
+.vs-card-row.trad-row {
+  background: #fff5f5;
+  border: 1px solid #fed7d7;
+}
+
+.vs-card-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+
+.trad-badge {
+  color: #e53e3e;
+}
+
+.trad-desc {
+  color: #64748b;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.vs-card-row.primera-row {
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.08);
+}
+
+.primera-badge {
+  color: #16a34a;
+}
+
+.primera-desc {
+  color: #0f172a;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.primera-desc strong {
+  color: #15803d;
+  font-weight: 700;
+}
+
 /* ==========================================================================
    Tripod Mockup Section (Clean Light Simulators)
    ========================================================================== */
@@ -2929,6 +3027,110 @@ button {
 }
 
 @media (max-width: 768px) {
+  /* Prevent horizontal overflow */
+  html, body, #root, .app-root {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* Navbar Mobile Overhaul */
+  .navbar-content {
+    padding: 0 12px;
+  }
+  
+  .hidden-mobile-tag {
+    display: none !important;
+  }
+
+  .nav-arrow-icon {
+    display: none !important;
+  }
+
+  .pill-country-tag {
+    display: none !important;
+  }
+
+  .navbar-right-box {
+    gap: 8px;
+  }
+
+  .btn-nav-cta {
+    padding: 7px 12px;
+    font-size: 0.8rem;
+    gap: 6px;
+  }
+
+  .brand-logo-img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .brand-title-main {
+    font-size: 1.12rem;
+  }
+
+  .brand-title-tag {
+    display: none !important;
+  }
+
+  .mobile-nav-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+  }
+
+  /* Comparison Section: Switch Table to Cards */
+  .vs-desktop-table {
+    display: none !important;
+  }
+
+  .vs-mobile-cards-list {
+    display: flex !important;
+  }
+
+  .agency-vs-traditional-box {
+    border-radius: var(--radius-md);
+  }
+
+  .vs-header {
+    padding: 16px;
+  }
+
+  .vs-header h3 {
+    font-size: 1.05rem;
+    line-height: 1.35;
+  }
+
+  /* Pillars on Mobile */
+  .street-comp-section {
+    padding: 48px 0;
+  }
+
+  .three-pillars-strip-agency {
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+
+  .pillar-agency-card {
+    padding: 22px 18px;
+  }
+
+  .pillar-agency-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .pillar-agency-card p {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+
   .hero-trust-bar { grid-template-columns: 1fr; }
   .hero-actions-row { flex-direction: column; width: 100%; }
   .btn-hostinger-primary, .btn-hostinger-outline { width: 100%; justify-content: center; }
@@ -2945,3 +3147,15 @@ button {
   .calc-results-col { padding: 24px 16px; }
   .res-big-number { font-size: 2.1rem; }
 }
+
+@media (max-width: 480px) {
+  .btn-nav-cta {
+    padding: 6px 10px;
+    font-size: 0.78rem;
+  }
+  
+  .section-main-title, .section-title {
+    font-size: 1.55rem !important;
+  }
+}
+
