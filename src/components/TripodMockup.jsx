@@ -402,7 +402,7 @@ export default function TripodMockup({ niche }) {
       </div>
 
       {/* 3 Screens Tabs Selector */}
-      <div className="tripod-tabs-row" role="tablist" style={{ marginTop: '28px' }}>
+      <div className="tripod-tabs-row" role="tablist">
         <button
           type="button"
           role="tab"
@@ -414,8 +414,8 @@ export default function TripodMockup({ niche }) {
             <Globe size={20} />
           </div>
           <div className="tab-text">
-            <strong>1. Tu Página Web Propia</strong>
-            <span>https://www.{domain}</span>
+            <strong>1. <span className="tab-label-hide-mobile">Tu Página </span>Web<span className="tab-label-hide-mobile"> Propia</span></strong>
+            <span className="tab-sub-url">https://www.{domain}</span>
           </div>
         </button>
 
@@ -430,8 +430,8 @@ export default function TripodMockup({ niche }) {
             <MapPin size={20} />
           </div>
           <div className="tab-text">
-            <strong>2. Ficha de Google Maps</strong>
-            <span>Puesto #1 para "{rubroTag} en {city}"</span>
+            <strong>2. <span className="tab-label-hide-mobile">Ficha de </span>Google Maps</strong>
+            <span className="tab-sub-url">Puesto #1 para "{rubroTag} en {city}"</span>
           </div>
         </button>
 
@@ -446,14 +446,14 @@ export default function TripodMockup({ niche }) {
             <MessageSquare size={20} />
           </div>
           <div className="tab-text">
-            <strong>3. WhatsApp Business</strong>
-            <span>Catálogo oficial con el nombre de tu marca</span>
+            <strong>3. WhatsApp<span className="tab-label-hide-mobile"> Business</span></strong>
+            <span className="tab-sub-url">Catálogo oficial con el nombre de tu marca</span>
           </div>
         </button>
       </div>
 
       {/* Viewport Frame */}
-      <div className="mockup-viewport-container" style={{ marginTop: '20px' }}>
+      <div className="mockup-viewport-container">
         {/* TAB 1: WEBPAGE WITH DOMAIN (FLAGSHIP) */}
         {activeTab === 'web' && (
           <div className="web-mockup-wrapper">
@@ -466,7 +466,7 @@ export default function TripodMockup({ niche }) {
               </div>
               <div className="browser-url-bar">
                 <span style={{ fontSize: '0.82rem' }}>🔒</span>
-                <span style={{ color: '#673de6', fontWeight: 700 }}>https://www.{domain}</span>
+                <span className="browser-url-text" style={{ color: '#673de6', fontWeight: 700 }}>https://www.{domain}</span>
               </div>
               <div className="browser-ssl-badge">
                 <ShieldCheck size={14} />
@@ -489,7 +489,7 @@ export default function TripodMockup({ niche }) {
                 </div>
                 <button type="button" className="btn-inner-wa">
                   <MessageSquare size={13} />
-                  <span>Consultar WhatsApp</span>
+                  <span><span className="tab-label-hide-mobile">Consultar </span>WhatsApp</span>
                 </button>
               </div>
 

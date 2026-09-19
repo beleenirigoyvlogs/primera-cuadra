@@ -3020,7 +3020,7 @@ button {
   .footer-top-grid { grid-template-columns: 1fr 1fr; }
   .mega-menu-overlay-panel { display: none; }
   .three-pillars-strip-agency { grid-template-columns: 1fr; }
-  .tripod-tabs-row { grid-template-columns: 1fr; }
+  .tripod-tabs-row { grid-template-columns: repeat(3, 1fr); }
   .sim-inputs-grid { grid-template-columns: 1fr; }
   .simulator-cta-banner { flex-direction: column; text-align: center; }
   .sim-cta-left { flex-direction: column; text-align: center; }
@@ -3085,13 +3085,20 @@ button {
     padding: 6px;
   }
 
-  /* Comparison Section: Switch Table to Cards */
+  /* Comparison Section: Switch Table to Vertical Cards (Fixes Photo 3) */
   .vs-desktop-table {
     display: none !important;
   }
 
   .vs-mobile-cards-list {
     display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    width: 100% !important;
+  }
+
+  .vs-mobile-card-item {
+    width: 100% !important;
   }
 
   .agency-vs-traditional-box {
@@ -3113,6 +3120,7 @@ button {
   }
 
   .three-pillars-strip-agency {
+    grid-template-columns: 1fr !important;
     gap: 16px;
     margin-bottom: 36px;
   }
@@ -3131,13 +3139,281 @@ button {
     margin-bottom: 14px;
   }
 
+  /* Simulator Mobile Responsiveness (Fixes Photo 1 & 2) */
+  .simulator-controls-card {
+    padding: 20px 16px !important;
+    border-radius: var(--radius-lg) !important;
+  }
+
+  .sim-controls-top-row {
+    margin-bottom: 16px !important;
+    padding-bottom: 14px !important;
+  }
+
+  .sim-presets-cloud {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+
+  .sim-preset-btn {
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+    padding: 8px 6px !important;
+    font-size: 0.76rem !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  /* Compact Segmented Tabs for 3 Screens */
+  .tripod-tabs-row {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 6px !important;
+    margin-top: 18px !important;
+    margin-bottom: 18px !important;
+  }
+
+  .tripod-tab-btn {
+    flex-direction: column !important;
+    padding: 10px 4px !important;
+    gap: 6px !important;
+    text-align: center !important;
+    justify-content: center !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  .tab-icon-wrap {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .tab-icon-wrap svg {
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  .tab-label-hide-mobile {
+    display: none !important;
+  }
+
+  .tab-sub-url {
+    display: none !important;
+  }
+
+  .tab-text strong {
+    font-size: 0.74rem !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+  }
+
+  /* Browser Chrome Bar on Mobile (Fixes Photo 1 right-side overflow) */
+  .browser-bar {
+    padding: 10px 12px !important;
+    gap: 8px !important;
+  }
+
+  .browser-dots {
+    gap: 4px !important;
+  }
+
+  .browser-dots span {
+    width: 8px !important;
+    height: 8px !important;
+  }
+
+  .browser-url-bar {
+    max-width: 100% !important;
+    flex: 1 !important;
+    padding: 5px 10px !important;
+    font-size: 0.74rem !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .browser-url-text {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    display: inline-block !important;
+    max-width: 100% !important;
+  }
+
+  .browser-ssl-badge {
+    display: none !important;
+  }
+
+  /* Web Preview Body & Hero Banner */
+  .web-preview-body {
+    padding: 14px 12px !important;
+  }
+
+  .web-inner-navbar {
+    padding-bottom: 12px !important;
+    margin-bottom: 14px !important;
+  }
+
+  .web-inner-brand {
+    font-size: 0.88rem !important;
+    max-width: 60% !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  .btn-inner-wa {
+    padding: 6px 10px !important;
+    font-size: 0.74rem !important;
+    gap: 4px !important;
+  }
+
+  .web-hero-banner {
+    height: auto !important;
+    min-height: 290px !important;
+    margin-bottom: 14px !important;
+  }
+
+  .web-hero-overlay {
+    padding: 14px 12px !important;
+    justify-content: flex-end !important;
+  }
+
+  .web-pill-tag {
+    font-size: 0.62rem !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    line-height: 1.25 !important;
+    margin-bottom: 6px !important;
+    padding: 3px 8px !important;
+  }
+
+  .web-hero-overlay h4 {
+    font-size: 1.15rem !important;
+    line-height: 1.25 !important;
+    margin-bottom: 6px !important;
+  }
+
+  .web-hero-overlay p {
+    font-size: 0.78rem !important;
+    line-height: 1.35 !important;
+    margin-bottom: 12px !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+
+  .web-cta-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+
+  .btn-web-cta {
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+    padding: 9px 12px !important;
+    font-size: 0.78rem !important;
+    white-space: normal !important;
+  }
+
+  .web-free-badge {
+    text-align: center !important;
+    font-size: 0.74rem !important;
+    display: block !important;
+  }
+
+  .web-highlights-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+
+  .web-highlight-card {
+    padding: 10px 12px !important;
+    font-size: 0.8rem !important;
+    gap: 8px !important;
+  }
+
+  /* Google Maps Mockup on Mobile */
+  .google-mockup-wrapper {
+    padding: 14px 10px !important;
+  }
+
+  .google-search-bar {
+    padding: 8px 12px !important;
+    gap: 8px !important;
+    margin-bottom: 14px !important;
+    flex-wrap: wrap !important;
+  }
+
+  .search-query {
+    font-size: 0.82rem !important;
+  }
+
+  .search-geo {
+    font-size: 0.7rem !important;
+  }
+
+  .search-badge-rank {
+    font-size: 0.68rem !important;
+    padding: 3px 8px !important;
+  }
+
+  .listing-actions-row {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  .btn-g-action {
+    justify-content: center !important;
+    font-size: 0.78rem !important;
+    padding: 7px 10px !important;
+  }
+
+  /* WhatsApp Mockup on Mobile */
+  .wa-phone-frame {
+    max-width: 100% !important;
+    border-width: 6px !important;
+    border-radius: 26px !important;
+  }
+
+  .wa-msg {
+    max-width: 92% !important;
+    font-size: 0.82rem !important;
+  }
+
+  .wa-catalog-bubble {
+    max-width: 96% !important;
+  }
+
+  /* Floating WhatsApp Button: Hide Speech Tooltip on Mobile so it never blocks content */
+  .whatsapp-floating-tooltip {
+    display: none !important;
+  }
+
+  .whatsapp-floating-container {
+    bottom: 16px !important;
+    right: 16px !important;
+  }
+
+  .whatsapp-floating-button {
+    width: 52px !important;
+    height: 52px !important;
+  }
+
   .hero-trust-bar { grid-template-columns: 1fr; }
   .hero-actions-row { flex-direction: column; width: 100%; }
   .btn-hostinger-primary, .btn-hostinger-outline { width: 100%; justify-content: center; }
   .google-listing-card { grid-template-columns: 1fr; }
   .listing-hero-photo-wrap { height: 200px; }
   .web-inner-links { display: none; }
-  .web-highlights-grid { grid-template-columns: 1fr; }
   .footer-top-grid { grid-template-columns: 1fr; }
   .footer-bottom-bar { flex-direction: column; gap: 12px; text-align: center; }
   .process-guarantee-banner { flex-direction: column; text-align: center; }
