@@ -10,7 +10,6 @@ import {
   Globe,
   Monitor
 } from 'lucide-react';
-import NicheSwitcher from './NicheSwitcher';
 
 export default function Hero({ niche, onSelectNiche }) {
   const defaultWhatsappNumber = '5491128779641';
@@ -38,11 +37,8 @@ export default function Hero({ niche, onSelectNiche }) {
           Probá Primera Cuadra sin riesgos: 50% al iniciar y 50% contra entrega conforme en 4 días hábiles. Tu página web propia con dominio a tu nombre, Google Maps y WhatsApp Business listos para vender.
         </p>
 
-        {/* Segmented Pill Bar (Hostinger sub-nav) */}
-        <NicheSwitcher currentNiche={niche.id} onSelectNiche={onSelectNiche} />
-
         {/* CTAs Row */}
-        <div className="hero-actions-row" style={{ marginTop: '32px' }}>
+        <div className="hero-actions-row" style={{ marginTop: '36px' }}>
           <a href="#packs-precios" className="btn-hostinger-primary">
             <span>Elegí tu Plan ($120k / $150k / $250k)</span>
             <ArrowRight size={18} />
