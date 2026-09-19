@@ -10,7 +10,8 @@ import {
   Check, 
   Sparkles, 
   Flame,
-  CheckCircle2
+  CheckCircle2,
+  ShieldCheck
 } from 'lucide-react';
 import { RUBROS } from '../data/nicheData';
 
@@ -112,7 +113,7 @@ export default function CategoryCardsGrid({ currentNiche, onSelectNiche }) {
             <span className="highlight-purple">tu presencia web tampoco</span>
           </h2>
           <p className="section-subtitle">
-            Diseñamos cada web resolviendo las necesidades reales del rubro. Hacé clic en tu categoría para probar el simulador en vivo con tus servicios:
+            Diseñamos cada web resolviendo las necesidades reales de tu actividad. Mirá algunos ejemplos frecuentes o probá tu propio negocio en el simulador interactivo:
           </p>
         </div>
 
@@ -185,6 +186,26 @@ export default function CategoryCardsGrid({ currentNiche, onSelectNiche }) {
               </div>
             );
           })}
+        </div>
+
+        {/* Universal Rubro Guarantee Callout Banner */}
+        <div className="category-universal-guarantee">
+          <div className="guarantee-icon-wrap">
+            <ShieldCheck size={28} />
+          </div>
+          <div className="guarantee-content">
+            <div className="guarantee-kicker">PROMESA 100% CUBIERTA PARA CUALQUIER ACTIVIDAD</div>
+            <h4 className="guarantee-title">¿Tu rubro o comercio no figura en estos ejemplos?</h4>
+            <p className="guarantee-desc">
+              Estos 6 son solo casos de muestra. <strong>Creamos páginas web y posicionamiento en Google Maps y WhatsApp para absolutamente cualquier tipo de negocio, oficio o servicio:</strong> veterinarias, inmobiliarias, ferreterías, gimnasios, colegios, contadores, concesionarias, construcción y más. Si ofrecés un producto o servicio, lo adaptamos a medida.
+            </p>
+          </div>
+          <div className="guarantee-action">
+            <a href="#demostracion-en-vivo" className="guarantee-sim-btn">
+              <span>Probar en el simulador</span>
+              <ArrowRight size={16} />
+            </a>
+          </div>
         </div>
       </div>
     </section>

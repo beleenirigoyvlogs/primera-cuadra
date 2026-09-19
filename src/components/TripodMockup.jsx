@@ -302,35 +302,46 @@ export default function TripodMockup({ niche }) {
         </p>
       </div>
 
-      {/* Simulator Control Card (Hostinger Clean Style) */}
+      {/* Simulator Control Card (Universal Customizer) */}
       <div className="simulator-controls-card">
         <div className="sim-controls-top-row">
           <div className="sim-title-group">
             <div className="sim-icon-badge">
-              <Edit3 size={18} />
+              <Sparkles size={18} />
             </div>
             <div>
-              <strong>Simulador Interactivo de Marca:</strong>
-              <span>Escribí tu negocio o tocá un rubro para ver su foto y catálogo real</span>
+              <strong>Simulador en Vivo para Cualquier Rubro</strong>
+              <span>Escribí tu negocio para previsualizar tu Web, Google Maps y WhatsApp oficial</span>
             </div>
           </div>
 
-          {/* Quick Presets Cloud */}
-          <div className="sim-presets-cloud">
-            {Object.keys(RUBRO_TEMPLATES).map((key) => {
-              const tmpl = RUBRO_TEMPLATES[key];
-              const isSelected = currentTemplate.id === tmpl.id;
-              return (
-                <button
-                  key={key}
-                  type="button"
-                  className={`sim-preset-btn ${isSelected ? 'active' : ''}`}
-                  onClick={() => handleApplyPreset(key)}
-                >
-                  {tmpl.label}
-                </button>
-              );
-            })}
+          {/* Discreet reference template selector */}
+          <div className="sim-example-selector-wrap">
+            <label htmlFor="sim-template-select" className="sim-example-label">
+              <span>Plantilla de referencia:</span>
+            </label>
+            <select
+              id="sim-template-select"
+              className="sim-example-select"
+              value={manualTemplateId || ''}
+              onChange={(e) => {
+                if (e.target.value) {
+                  handleApplyPreset(e.target.value);
+                } else {
+                  setManualTemplateId(null);
+                }
+              }}
+            >
+              <option value="">-- Cargar ejemplo de prueba --</option>
+              {Object.keys(RUBRO_TEMPLATES).map((key) => {
+                const tmpl = RUBRO_TEMPLATES[key];
+                return (
+                  <option key={key} value={key}>
+                    {tmpl.label}
+                  </option>
+                );
+              })}
+            </select>
           </div>
         </div>
 
@@ -351,14 +362,14 @@ export default function TripodMockup({ niche }) {
                 setHasUserCustomized(true);
                 setManualTemplateId(null); // allow auto-detection
               }}
-              placeholder="Ej: Juanita Peluquería, Guardería Delta, etc."
+              placeholder="Ej: Veterinaria Huellas, Taller San Martín, Estudio Rossi..."
             />
           </div>
 
           <div className="sim-input-group">
             <label htmlFor="sim-rubro-input">
               <Sparkles size={14} />
-              <span>Rubro o Especialidad</span>
+              <span>Tu rubro o actividad</span>
             </label>
             <input 
               id="sim-rubro-input"
@@ -369,7 +380,7 @@ export default function TripodMockup({ niche }) {
                 setRubroTag(e.target.value);
                 setManualTemplateId(null); // allow auto-detection
               }}
-              placeholder="Ej: Peluquería, Náutica, Abogados, Taller..."
+              placeholder="Ej: Veterinaria, Inmobiliaria, Carpintería, Estudio..."
             />
           </div>
 
@@ -384,20 +395,21 @@ export default function TripodMockup({ niche }) {
               className="sim-input-field"
               value={city}
               onChange={(e) => setCity(e.target.value)}
-              placeholder="Ej: Palermo, Tigre, San Isidro, Rosario, CABA..."
+              placeholder="Ej: Nordelta, Tigre, San Isidro, CABA, Pilar..."
             />
           </div>
         </div>
 
-        {/* Active Rubro Badge & Photo Status */}
-        <div style={{ marginTop: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '10px', fontSize: '0.82rem', color: '#6b7280' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <ImageIcon size={15} color="#673de6" />
-            <span>Foto temática activa: <strong style={{ color: '#18181b' }}>{currentTemplate.label}</strong> (se actualiza sola según lo que escribas)</span>
+        {/* Universal Promise Strip & Domain Indicator */}
+        <div className="sim-reassurance-strip">
+          <div className="sim-reassurance-left">
+            <CheckCircle2 size={16} className="text-emerald" />
+            <span><strong>Sin límites de rubro:</strong> Diseñamos y adaptamos la web al 100% de lo que vos ofrecés.</span>
           </div>
-          <span style={{ color: '#00b074', fontWeight: 700 }}>
-            ✓ Fotos, servicios y catálogo 100% sincronizados
-          </span>
+          <div className="sim-reassurance-right">
+            <Globe size={14} className="text-purple" />
+            <span>Dominio sugerido: <strong>{domain}</strong></span>
+          </div>
         </div>
       </div>
 
