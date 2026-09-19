@@ -21,13 +21,13 @@ export default function StreetComparison({ niche }) {
         <div className="section-header-center">
           <div className="section-kicker-pill">
             <Compass size={14} />
-            <span>EL CONCEPTO COMERCIAL DETRÁS DE PRIMERA CUADRA</span>
+            <span>EL CONCEPTO COMERCIAL</span>
           </div>
           <h2 className="section-main-title">
-            ¿Por qué tu negocio necesita estar en la <span className="text-gradient-ocean">Primera Cuadra</span>?
+            ¿Por qué estar en la <span className="text-gradient-ocean">Primera Cuadra</span>?
           </h2>
           <p className="section-main-desc">
-            En cualquier centro comercial o ribera náutica, los locales de la primera cuadra concentran el 80% de las ventas porque la gente pasa por ahí. En internet, la Primera Cuadra es tener <strong>tu propia Página Web + Google Maps + WhatsApp Business</strong> perfectamente sincronizados.
+            En cualquier centro comercial, los locales de la primera cuadra concentran el 80% de las ventas. En internet, la Primera Cuadra es tener <strong>Web + Google Maps + WhatsApp</strong> listos para convertir.
           </p>
         </div>
 
@@ -40,9 +40,9 @@ export default function StreetComparison({ niche }) {
                 <Globe size={24} />
               </div>
             </div>
-            <h3>Tu Página Web Propia</h3>
+            <h3>Página Web Propia</h3>
             <p>
-              La base de tu reputación digital. Con dominio a tu nombre (.com o .com.ar), diseño responsive a medida de tu rubro, catálogo de servicios, tarifas y botón directo de consulta a WhatsApp.
+              Dominio a tu nombre (.com o .com.ar), diseño mobile-first, servicios claros y botón directo a WhatsApp.
             </p>
             <span className="pillar-benefit-tag">✓ Otorga respaldo formal y confianza</span>
           </div>
@@ -56,7 +56,7 @@ export default function StreetComparison({ niche }) {
             </div>
             <h3>Ficha de Google Maps</h3>
             <p>
-              La vidriera donde te descubren las personas que buscan tu servicio en tu zona con el celular. Ajustamos categorías de tu rubro, servicios, novedades SEO y respondemos todas las reseñas.
+              Optimizada para búsquedas locales de cercanía. Categoría exacta, fotos reales y reseñas atendidas.
             </p>
             <span className="pillar-benefit-tag">✓ Captura clientes con intención de compra hoy</span>
           </div>
@@ -70,7 +70,7 @@ export default function StreetComparison({ niche }) {
             </div>
             <h3>WhatsApp Business</h3>
             <p>
-              El mostrador donde cerrás las ventas. Catálogo oficial con fotos y precios cargados, respuestas predeterminadas y botón directo de consulta para responder en segundos sin perder ventas.
+              Catálogo oficial de servicios y precios pre-cargado con respuestas rápidas para no perder ventas.
             </p>
             <span className="pillar-benefit-tag">✓ Convierte consultas frías en clientes pagos</span>
           </div>

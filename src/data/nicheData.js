@@ -165,6 +165,39 @@ export const RUBROS = {
     ],
     sampleCoverImage: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200&auto=format&fit=crop&q=80',
     sampleAvatar: 'https://images.unsplash.com/photo-1594824813575-b8a7c6f092fb?w=400&auto=format&fit=crop&q=80'
+  },
+
+  gastronomia: {
+    id: 'gastronomia',
+    badge: '☕ GASTRONOMÍA, RESTAURANTES & CAFETERÍAS',
+    rubroName: 'Gastronomía & Cafeterías',
+    heroKicker: 'DISEÑO WEB PARA RESTAURANTES Y CAFÉS',
+    title: 'Páginas Web para Cafeterías de Especialidad, Restaurantes y Bares',
+    subtitle: 'Menú digital ultra rápido con fotos reales de tus platos, sin PDF pesados que tardan en cargar. Ubicación en Google Maps, reservas de mesa y pedidos directos por WhatsApp.',
+    demoBusinessName: 'Origami Café de Especialidad & Bistro',
+    categoryTag: 'Cafetería de Especialidad & Brunch',
+    domainPreview: 'origamicafe.com.ar',
+    typicalMonthlySearches: 8500,
+    averageTicket: 18000,
+    webFeatures: [
+      'Menú digital visual con fotos en alta definición y precios actualizados',
+      'Botón de "Reservar Mesa" o "Hacer Pedido" directo a WhatsApp',
+      'Horarios en vivo, cómo llegar en Google Maps y fotos del ambiente',
+      'Sección de opciones sin TACC, vegetarianas y promociones del día'
+    ],
+    googleServices: [
+      'Café de especialidad, filtrados y pastelería artesanal',
+      'Brunch completo para dos personas y opciones veganas',
+      'Almuerzos ejecutivos, ensaladas de estación y sándwiches gourmet',
+      'Eventos privados, degustaciones y catering corporativo'
+    ],
+    whatsappCatalog: [
+      { name: 'Brunch Signature para Dos Personas', price: '$26.000', desc: 'Incluye 2 cafés de especialidad, tostón de palta, huevos revueltos y croissant.' },
+      { name: 'Combo Degustación Café + Pastelería', price: '$9.500', desc: 'Flat White o Cold Brew con porción de torta a elección o cinnamon roll.' },
+      { name: 'Reserva de Mesa Salón Principal / Terraza', price: 'Sin cargo', desc: 'Confirmación inmediata de lugar para 2 a 10 comensales.' }
+    ],
+    sampleCoverImage: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1200&auto=format&fit=crop&q=80',
+    sampleAvatar: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400&auto=format&fit=crop&q=80'
   }
 };
 

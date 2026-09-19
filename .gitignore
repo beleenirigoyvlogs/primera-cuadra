@@ -29,3 +29,5 @@ dist-ssr
 *.ps1
 .venv
 temp_*
+__pycache__/
+*.pyc

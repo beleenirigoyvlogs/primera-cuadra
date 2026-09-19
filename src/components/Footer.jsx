@@ -42,9 +42,10 @@ export default function Footer({ niche, onSelectNiche }) {
             <h4 className="footer-col-title">Navegación</h4>
             <ul className="footer-col-links">
               <li><a href="#demostracion-en-vivo">Demostración en Vivo</a></li>
+              <li><a href="#rubros-cards">Rubros & Negocios</a></li>
               <li><a href="#packs-precios">Packs & Tarifas</a></li>
+              <li><a href="#comunidad-facebook">Facebook en Vivo</a></li>
               <li><a href="#calculadora-oportunidad">Calculadora de Retorno</a></li>
-              <li><a href="#como-funciona">Cómo Trabajamos</a></li>
               <li><a href="#preguntas-frecuentes">Preguntas Frecuentes</a></li>
             </ul>
           </div>
@@ -70,8 +71,8 @@ export default function Footer({ niche, onSelectNiche }) {
 
           {/* Contact Col */}
           <div>
-            <h4 className="footer-col-title">Contacto</h4>
-            <p style={{ fontSize: '0.88rem', color: '#6b7280', marginBottom: '16px' }}>
+            <h4 className="footer-col-title">Contacto & Redes</h4>
+            <p style={{ fontSize: '0.88rem', color: '#6b7280', marginBottom: '14px' }}>
               ¿Listo para llevar tu negocio a la Primera Cuadra?
             </p>
             
@@ -80,13 +81,36 @@ export default function Footer({ niche, onSelectNiche }) {
               target="_blank"
               rel="noopener noreferrer"
               className="btn-hostinger-primary"
-              style={{ padding: '10px 18px', fontSize: '0.88rem', width: '100%', justifyContent: 'center' }}
+              style={{ padding: '10px 18px', fontSize: '0.88rem', width: '100%', justifyContent: 'center', marginBottom: '10px' }}
             >
               <MessageCircle size={16} />
               <span>Chatear por WhatsApp</span>
             </a>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '16px', fontSize: '0.8rem', color: '#6b7280' }}>
+            <a 
+              href="https://www.facebook.com/profile.php?id=61594410424409"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ 
+                display: 'inline-flex', 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                gap: '8px', 
+                width: '100%', 
+                padding: '9px 16px', 
+                borderRadius: '8px', 
+                background: '#eff6ff', 
+                color: '#1877f2', 
+                fontWeight: 700, 
+                fontSize: '0.84rem', 
+                textDecoration: 'none',
+                border: '1px solid #dbeafe'
+              }}
+            >
+              <span>Seguinos en Facebook</span>
+            </a>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '14px', fontSize: '0.8rem', color: '#6b7280' }}>
               <ShieldCheck size={16} color="#00b074" />
               <span>Garantía 50% inicio / 50% entrega</span>
             </div>

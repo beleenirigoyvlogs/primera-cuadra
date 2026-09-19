@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import StreetComparison from './components/StreetComparison';
+import VisualJourneyFlow from './components/VisualJourneyFlow';
+import CategoryCardsGrid from './components/CategoryCardsGrid';
 import TripodMockup from './components/TripodMockup';
+import StreetComparison from './components/StreetComparison';
 import ProcessSteps from './components/ProcessSteps';
 import PricingPacks from './components/PricingPacks';
 import OpportunityCalculator from './components/OpportunityCalculator';
+import FacebookFeedSection from './components/FacebookFeedSection';
 import FAQSection from './components/FAQSection';
 import Footer from './components/Footer';
 import WhatsAppFloatingBtn from './components/WhatsAppFloatingBtn';
@@ -18,27 +21,36 @@ export default function App() {
 
   return (
     <div className="app-root">
-      {/* Top Navigation with Hostinger Mega-Menu and niche selection */}
+      {/* Top Navigation with Mega-Menu and niche selection */}
       <Navbar onSelectNiche={setCurrentNiche} />
 
       <main>
         {/* Hero with interactive Niche Switcher */}
         <Hero niche={niche} onSelectNiche={setCurrentNiche} />
 
-        {/* The Primera Cuadra Philosophy: Before vs After */}
-        <StreetComparison niche={niche} />
+        {/* Visual Journey Roadmap: Google Maps -> Web Propia -> WhatsApp */}
+        <VisualJourneyFlow />
+
+        {/* Business Category Showcase Cards: Náutica, Barbería, Taller, Salud, Profesional, Gastronomía */}
+        <CategoryCardsGrid currentNiche={currentNiche} onSelectNiche={setCurrentNiche} />
 
         {/* Live Simulation: Google Maps, WhatsApp Business, Web Propia */}
         <TripodMockup niche={niche} />
 
+        {/* The Primera Cuadra Philosophy: Before vs After & Agency Comparison */}
+        <StreetComparison niche={niche} />
+
         {/* 3 Simple Steps Process */}
         <ProcessSteps />
 
-        {/* Pack Express $120.000 vs Pack Completo $250.000 */}
+        {/* Pack Express $120.000 vs Solo Web $150.000 vs Pack Completo $250.000 */}
         <PricingPacks niche={niche} />
 
         {/* Interactive ROI & Lost Searches Calculator */}
         <OpportunityCalculator niche={niche} />
+
+        {/* Live Facebook Community & Real-time Works */}
+        <FacebookFeedSection />
 
         {/* Frequently Asked Questions Accordion */}
         <FAQSection niche={niche} />
