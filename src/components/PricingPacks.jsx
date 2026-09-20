@@ -8,7 +8,10 @@ import {
   ChevronDown,
   ArrowRight,
   HelpCircle,
-  Zap
+  Zap,
+  Boxes,
+  Store,
+  Users
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { PACKS } from '../data/nicheData';
@@ -32,6 +35,7 @@ export default function PricingPacks({ niche }) {
   const packExpress = PACKS.find(p => p.id === 'pack-express') || PACKS[0];
   const packSoloWeb = PACKS.find(p => p.id === 'pack-solo-web') || PACKS[1];
   const packCompleto = PACKS.find(p => p.id === 'pack-completo') || PACKS[2];
+  const packComercioPOS = PACKS.find(p => p.id === 'pack-comercio-pos') || PACKS[3];
 
   return (
     <section className="pricing-section-wrapper" id="packs-precios">
@@ -274,6 +278,109 @@ export default function PricingPacks({ niche }) {
                 <span>100% de tu propiedad (cero mensualidades de alquiler)</span>
               </li>
             </ul>
+          </div>
+
+          {/* Card 4: Pack Comercio & POS Total (Special High-Value Tier) */}
+          <div className="pricing-card-hostinger standard pos-pack-card">
+            <div className="card-top-badge pos-badge">
+              ⚡ POS + Stock + Web • 7 días
+            </div>
+
+            <h3 className="plan-name">
+              <span>🏪</span> Comercio & POS Total
+            </h3>
+            <p className="plan-desc">
+              Presencia digital completa más tu Sistema de Punto de Venta (POS) con control de stock, empleados y clientes.
+            </p>
+
+            <div className="price-tag-wrapper">
+              <span className="price-strikethrough">ARS 580.000</span>
+              <div className="price-main-row">
+                <span className="currency-code">ARS</span>
+                <span className="price-amount-bold">390.000</span>
+                <span className="price-unit">/pago único</span>
+              </div>
+            </div>
+
+            <button 
+              type="button" 
+              className="btn-plan-hostinger btn-plan-pos"
+              onClick={() => handleSelectPack(packComercioPOS)}
+            >
+              Elegir plan
+            </button>
+
+            <div className="plan-sub-guarantee">
+              Iniciás con {packComercioPOS.initialPayment} y el saldo de {packComercioPOS.finalPayment} recién contra entrega y capacitación.
+            </div>
+
+            <ul className="plan-features-list">
+              <li className="plan-feature-item">
+                <Check size={18} className="feature-check-icon text-emerald" />
+                <span><strong>Sistema POS de Punto de Venta</strong> táctil para PC / Tablet</span>
+              </li>
+              <li className="plan-feature-item">
+                <Check size={18} className="feature-check-icon text-emerald" />
+                <span><strong>Control de Stock e Inventario</strong> en tiempo real</span>
+              </li>
+              <li className="plan-feature-item">
+                <Check size={18} className="feature-check-icon text-emerald" />
+                <span><strong>Gestión de Empleados</strong> con roles y permisos</span>
+              </li>
+              <li className="plan-feature-item">
+                <Check size={18} className="feature-check-icon text-emerald" />
+                <span><strong>Base de Clientes & CRM</strong> e historial de compras</span>
+              </li>
+              <li className="plan-feature-item">
+                <Check size={18} className="feature-check-icon text-emerald" />
+                <span>Arqueo de caja diaria, cierres y balance de ventas</span>
+              </li>
+              <li className="plan-feature-item">
+                <Check size={18} className="feature-check-icon" />
+                <span><strong>Tu Página Web Propia</strong> con dominio incluido</span>
+              </li>
+              <li className="plan-feature-item">
+                <Check size={18} className="feature-check-icon" />
+                <span>Ficha de Google Maps Top 3 optimizada</span>
+              </li>
+              <li className="plan-feature-item">
+                <Check size={18} className="feature-check-icon" />
+                <span>WhatsApp Business con catálogo cargado</span>
+              </li>
+              <li className="plan-feature-item">
+                <Check size={18} className="feature-check-icon" />
+                <span><strong>Capacitación inicial incluida</strong> para tu equipo</span>
+              </li>
+              <li className="plan-feature-item">
+                <Check size={18} className="feature-check-icon" />
+                <span>100% de tu propiedad (cero alquileres mensuales)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* POS Standalone Callout Banner */}
+        <div className="pos-standalone-banner">
+          <div className="pos-banner-left">
+            <div className="pos-badge-pill">
+              <Boxes size={15} />
+              <span>SISTEMA DE GESTIÓN A MEDIDA</span>
+            </div>
+            <h4 className="pos-banner-title">¿Buscás únicamente el Software de Punto de Venta (POS) y Stock para tu local?</h4>
+            <p className="pos-banner-desc">
+              Desarrollamos el sistema a la medida exacta de tu negocio: facturación express, control de stock con alertas de reposición, gestión de empleados por turno y cuenta corriente de clientes. Sin pagar abonos mensuales abusivos.
+            </p>
+          </div>
+          <div className="pos-banner-right">
+            <a 
+              href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent('¡Hola Primera Cuadra! Me interesa consultar por el desarrollo de un Sistema de Punto de Venta (POS) y control de stock para mi comercio. ¿Podemos coordinar?')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-pos-cta"
+            >
+              <span>Consultar por Sistema POS a medida</span>
+              <ArrowRight size={16} />
+            </a>
           </div>
         </div>
       </div>

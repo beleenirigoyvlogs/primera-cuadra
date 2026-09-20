@@ -294,6 +294,38 @@ export const PACKS = [
     ctaText: 'Quiero Solo la Página Web ($150.000)',
     whatsappMessage: () => 
       encodeURIComponent('¡Hola Primera Cuadra! Me interesa contratar el PACK SOLO WEB ($150.000 - 4 días) para hacer la página web de mi negocio con dominio a mi nombre. ¿Cómo arrancamos?')
+  },
+  {
+    id: 'pack-comercio-pos',
+    name: 'COMERCIO & POS TOTAL',
+    badge: 'WEB + SISTEMA POS & STOCK • GESTIÓN TOTAL',
+    tagline: 'Tu web propia + Software de Punto de Venta para tu local',
+    price: 390000,
+    currency: '$',
+    formattedPrice: '$390.000',
+    strikePrice: 'ARS 580.000',
+    initialPayment: '$195.000',
+    finalPayment: '$195.000',
+    deliveryTime: 'Entrega en 7 días hábiles',
+    deliveryHours: '7 días',
+    isFeatured: false,
+    isPos: true,
+    description: 'La solución definitiva para comercios, talleres, salones y locales: Tu propia Página Web mobile-first con dominio propio + Ficha de Google Maps + WhatsApp Business + Sistema de Punto de Venta (POS) con control de stock, gestión de empleados y clientes.',
+    features: [
+      { text: 'Sistema de Punto de Venta (POS) táctil para PC, tablet o celular', highlight: true },
+      { text: 'Control de stock e inventario en tiempo real con alertas de reposición', highlight: true },
+      { text: 'Gestión de empleados con roles y permisos (cajeros, admin, vendedores)', highlight: true },
+      { text: 'Base de datos de clientes, historial de compras y cuenta corriente', highlight: true },
+      { text: 'Arqueo de caja diaria, balance y reportes de ventas descargables', highlight: true },
+      { text: 'Página Web propia mobile-first diseñada a medida con dominio incluido', highlight: false },
+      { text: 'Ficha de Google Maps 100% optimizada para tu zona', highlight: false },
+      { text: 'WhatsApp Business oficial con catálogo completo de productos', highlight: false },
+      { text: 'Capacitación inicial incluida para vos y tu equipo de trabajo', highlight: true },
+      { text: '100% de tu propiedad: Sin mensualidades obligatorias de alquiler', highlight: true }
+    ],
+    ctaText: 'Quiero Web + Sistema POS ($390.000)',
+    whatsappMessage: () => 
+      encodeURIComponent('¡Hola Primera Cuadra! Me interesa contratar el PACK COMERCIO & POS TOTAL ($390.000) con Sistema de Punto de Venta, control de stock, empleados y página web para mi negocio. ¿Podemos coordinar una demo?')
   }
 ];
 
@@ -301,53 +333,53 @@ export const AGENCY_COMPARISON = [
   {
     aspect: 'Tiempo de Entrega',
     traditional: 'Entre 45 y 90 días con demoras eternas',
-    primeraCuadra: '4 días hábiles garantizados (Pack Completo y Solo Web) o 48hs (Express)'
+    primeraCuadra: '4 días hábiles garantizados (Pack Completo y Solo Web), 48hs (Express) o 7 días (Comercio & POS)'
   },
   {
-    aspect: 'Propiedad del Dominio y la Web',
-    traditional: 'Te atan con "alquiler" mensual. Si te vas, perdés tu web',
-    primeraCuadra: '100% tuya. El dominio (.com o .com.ar) queda a tu nombre'
+    aspect: 'Propiedad del Dominio y Software',
+    traditional: 'Te atan con "alquiler" mensual. Si dejás de pagar, perdés tu web y tu sistema',
+    primeraCuadra: '100% tuya. El dominio (.com o .com.ar) queda a tu nombre y el software es de tu propiedad'
   },
   {
-    aspect: 'Ecosistema de Ventas',
+    aspect: 'Ecosistema de Ventas y Gestión',
     traditional: 'Solo te hacen una web aislada que nadie visita',
-    primeraCuadra: 'Trípode completo: Web + Ficha de Google Maps + WhatsApp Business'
+    primeraCuadra: 'Ecosistema integral: Web + Google Maps + WhatsApp Business + Sistema POS & Stock'
   },
   {
     aspect: 'Precios y Condiciones',
-    traditional: 'Presupuestos inflados de $800.000+ con costos ocultos',
-    primeraCuadra: 'Tarifa fija y transparente: $250.000, $150.000 o $120.000. 50% inicio / 50% entrega'
+    traditional: 'Presupuestos inflados de $800.000+ con costos ocultos y abonos mensuales',
+    primeraCuadra: 'Tarifas fijas y transparentes: $120.000, $150.000, $250.000 o $390.000. 50% inicio / 50% entrega'
   },
   {
     aspect: 'Adaptación al Rubro',
     traditional: 'Plantillas genéricas iguales para todos',
-    primeraCuadra: 'Diseño enfocado a tu rubro específico (náutica, peluquería, clínica, taller, etc.)'
+    primeraCuadra: 'Diseño y lógica enfocados a tu rubro específico (comercio, náutica, peluquería, clínica, taller, etc.)'
   }
 ];
 
 export const FAQS = [
   {
-    q: '¿Para qué rubros hacen páginas web?',
-    a: '¡Hacemos páginas web para cualquier rubro comercial o empresa! Hemos desarrollado webs para náuticas, guarderías de lanchas, peluquerías, barberías, talleres mecánicos, estudios jurídicos, contadores, clínicas médicas, odontología, ferreterías, inmobiliarias y comercios locales. La estructura y los textos se adaptan 100% a lo que vendés.'
+    q: '¿Para qué rubros hacen páginas web y sistemas?',
+    a: '¡Trabajamos con cualquier rubro comercial o empresa! Hemos desarrollado webs y sistemas para náuticas, guarderías de lanchas, peluquerías, barberías, talleres mecánicos, estudios jurídicos, contadores, clínicas médicas, odontología, ferreterías, inmobiliarias y comercios minoristas o mayoristas. La estructura y los textos se adaptan 100% a lo que ofrecés.'
   },
   {
     q: '¿Por qué el servicio se llama "Primera Cuadra"?',
     a: 'En cualquier centro comercial o ribera náutica, los locales de la primera cuadra concentran el 80% de las ventas porque la gente pasa por ahí. En internet, la Primera Cuadra es tener una página web rápida que dé confianza, aparecer en los primeros 3 lugares de Google Maps y tener un WhatsApp Business con catálogo listo para responder al instante.'
   },
   {
-    q: '¿Qué diferencia hay entre los 3 planes de Primera Cuadra?',
-    a: 'El Pack Completo ($250.000) incluye todo el trípode: Página Web propia con dominio a tu nombre (.com o .com.ar), Ficha de Google Maps y WhatsApp Business oficial en 4 días. El Pack Solo Web ($150.000) es únicamente tu página web con dominio incluido (sin Google Maps ni WhatsApp Business). Y el Pack Express ($120.000) es para quienes solo necesitan Google Maps y WhatsApp Business sin página web, entregado en 48 horas.'
+    q: '¿Qué diferencia hay entre los planes de Primera Cuadra?',
+    a: 'Ofrecemos 4 soluciones transparentes: 1) Pack Completo ($250.000): Tu Página Web con dominio propio + Google Maps + WhatsApp Business en 4 días. 2) Pack Comercio & POS Total ($390.000): Suma un Sistema de Punto de Venta táctil con control de stock, gestión de empleados y clientes para tu local. 3) Pack Solo Web ($150.000): Únicamente tu web con dominio propio a tu nombre. 4) Pack Express ($120.000): Google Maps y WhatsApp Business en 48 horas sin página web.'
   },
   {
-    q: '¿El dominio y la página web son míos?',
-    a: 'Sí, absolutamente. El dominio queda registrado a tu nombre o el de tu empresa. La página web es 100% tuya, sin contratos de permanencia, sin alquileres forzados ni sorpresas.'
+    q: '¿El dominio, la web y el sistema POS son míos?',
+    a: 'Sí, absolutamente. El dominio queda registrado a tu nombre o el de tu empresa. La web y el sistema son 100% de tu propiedad, sin contratos de permanencia, sin alquileres forzados ni sorpresas.'
   },
   {
-    q: '¿Qué necesitan de mí para crear la página web?',
-    a: 'Cero complicaciones técnicas para vos. Te enviamos un cuestionario express de 4 preguntas por WhatsApp para que nos pases: las fotos que tengas de tu local o trabajos, tu lista de servicios con tarifas de referencia y tus datos de contacto. Nosotros nos ocupamos de la redacción comercial, el diseño, la programación y la configuración.'
+    q: '¿Qué necesitan de mí para comenzar?',
+    a: 'Cero complicaciones técnicas para vos. Te enviamos un cuestionario express de 4 preguntas por WhatsApp para que nos pases: las fotos que tengas de tu local o trabajos, tu lista de servicios/productos con tarifas y tus datos de contacto. Nosotros nos ocupamos de la redacción comercial, el diseño, la programación y la configuración.'
   },
   {
     q: '¿Cuáles son los medios y condiciones de pago?',
-    a: 'Aceptamos transferencia bancaria, Mercado Pago o efectivo. Trabajamos con un esquema seguro 50/50: se abona el 50% al iniciar ($125.000 para Pack Completo, $75.000 para Solo Web o $60.000 para Express) y el 50% restante recién contra entrega una vez que revisás que todo funcione a la perfección.'
+    a: 'Aceptamos transferencia bancaria, Mercado Pago o efectivo. Trabajamos con un esquema seguro 50/50: se abona el 50% al iniciar y el 50% restante recién contra entrega una vez que revisás que todo funcione a la perfección.'
   }
 ];
