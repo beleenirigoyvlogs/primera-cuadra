@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import VisualJourneyFlow from './components/VisualJourneyFlow';
-import CategoryCardsGrid from './components/CategoryCardsGrid';
 import TripodMockup from './components/TripodMockup';
 import StreetComparison from './components/StreetComparison';
 import ProcessSteps from './components/ProcessSteps';
@@ -30,9 +29,6 @@ export default function App() {
 
         {/* Visual Journey Roadmap: Google Maps -> Web Propia -> WhatsApp */}
         <VisualJourneyFlow />
-
-        {/* Business Category Showcase Cards: Náutica, Barbería, Taller, Salud, Profesional, Gastronomía */}
-        <CategoryCardsGrid currentNiche={currentNiche} onSelectNiche={setCurrentNiche} />
 
         {/* Live Simulation: Google Maps, WhatsApp Business, Web Propia */}
         <TripodMockup niche={niche} />

@@ -135,8 +135,8 @@ export default function VisualJourneyFlow() {
             <Users size={20} className="journey-summary-icon" />
             <span>¿Querés ver cómo se adapta esto a tu rubro en tiempo real?</span>
           </div>
-          <a href="#rubros-cards" className="btn-hostinger-secondary-pill">
-            <span>Explorar Rubros & Negocios</span>
+          <a href="#demostracion-en-vivo" className="btn-hostinger-secondary-pill">
+            <span>Ver Simulador Interactivo</span>
             <ArrowRight size={15} />
           </a>
         </div>
