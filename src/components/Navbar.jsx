@@ -17,13 +17,10 @@ import {
   ShieldCheck,
   Zap,
   Flame,
-  ArrowRight,
-  Search,
-  Terminal,
-  FileCode2
+  ArrowRight
 } from 'lucide-react';
 
-export default function Navbar({ onSelectNiche, onOpenCommandMenu }) {
+export default function Navbar({ onSelectNiche }) {
   const [megaMenuOpen, setMegaMenuOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState('web');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -85,41 +82,30 @@ export default function Navbar({ onSelectNiche, onOpenCommandMenu }) {
             <ChevronDown size={15} style={{ transform: megaMenuOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />
           </button>
 
-          <a href="#pos-sandbox" className="nav-link-item" onClick={() => setMegaMenuOpen(false)}>
-            Sandbox POS
-          </a>
-
-          <a href="#spec-builder" className="nav-link-item" onClick={() => setMegaMenuOpen(false)}>
-            Spec RFC
-          </a>
-
-          <a href="#tech-stack" className="nav-link-item" onClick={() => setMegaMenuOpen(false)}>
-            Arquitectura
+          <a href="#como-funciona" className="nav-link-item" onClick={() => setMegaMenuOpen(false)}>
+            Cómo Funciona
           </a>
 
           <a href="#demostracion-en-vivo" className="nav-link-item" onClick={() => setMegaMenuOpen(false)}>
-            Simulador
+            Demostración
           </a>
 
           <a href="#packs-precios" className="nav-link-item nav-link-pill-tag" onClick={() => setMegaMenuOpen(false)}>
             Packs & Precios
           </a>
+
+          <a href="#calculadora-oportunidad" className="nav-link-item" onClick={() => setMegaMenuOpen(false)}>
+            Calculadora
+          </a>
+
+          <a href="#preguntas-frecuentes" className="nav-link-item" onClick={() => setMegaMenuOpen(false)}>
+            Preguntas
+          </a>
         </nav>
 
-        {/* Right Controls: Command Palette Trigger & WhatsApp CTA */}
+        {/* Right Controls: Pill Agent, Country & WhatsApp CTA */}
         <div className="navbar-right-box">
-          <button 
-            type="button" 
-            className="btn-cmd-trigger"
-            onClick={onOpenCommandMenu}
-            title="Abrir Command Menu (Ctrl+K o /)"
-          >
-            <Search size={14} />
-            <span className="hidden-mobile">Buscar</span>
-            <span className="kbd-shortcut font-mono">⌘K</span>
-          </button>
-
-          <div className="pill-agent-badge hidden-mobile">
+          <div className="pill-agent-badge">
             <Zap size={13} className="text-purple" />
             <span>Entrega 4 Días</span>
           </div>
