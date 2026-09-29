@@ -6,7 +6,8 @@ import {
   Search,
   Send,
   MapPin,
-  ArrowRight
+  ArrowRight,
+  ArrowDown
 } from 'lucide-react';
 
 export default function VisualJourneyFlow() {
@@ -81,42 +82,52 @@ export default function VisualJourneyFlow() {
             {steps.map((step, idx) => {
               const IconComp = step.icon;
               return (
-                <div key={idx} className={`journey-step-card card-${step.accent}`}>
-                  {/* Top Phase & Step Indicator */}
-                  <div className="journey-card-top">
-                    <span className="journey-step-num">{step.num}</span>
-                    <span className={`journey-phase-badge badge-${step.accent}`}>
-                      {step.channel}
-                    </span>
+                <React.Fragment key={idx}>
+                  <div className={`journey-step-card card-${step.accent}`}>
+                    {/* Top Phase & Step Indicator */}
+                    <div className="journey-card-top">
+                      <span className="journey-step-num">{step.num}</span>
+                      <span className={`journey-phase-badge badge-${step.accent}`}>
+                        {step.channel}
+                      </span>
+                    </div>
+
+                    {/* Icon Box */}
+                    <div className={`journey-icon-box icon-${step.accent}`}>
+                      <IconComp size={24} />
+                    </div>
+
+                    {/* Step Title & Channel Subtitle */}
+                    <div className="journey-text-group">
+                      <h3 className="journey-step-title">{step.title}</h3>
+                      <div className="journey-channel-badge">{step.channel}</div>
+                      <p className="journey-step-desc">{step.description}</p>
+                    </div>
+
+                    {/* Bullet Points */}
+                    <div className="journey-bullets-box">
+                      {step.bullets.map((bullet, bIdx) => (
+                        <div key={bIdx} className="journey-bullet-item">
+                          <CheckCircle2 size={16} className={`bullet-check check-${step.accent}`} />
+                          <span>{bullet}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Card Bottom Tag */}
+                    <div className="journey-card-footer">
+                      <span className="journey-footer-tag">{step.tag}</span>
+                    </div>
                   </div>
 
-                  {/* Icon Box */}
-                  <div className={`journey-icon-box icon-${step.accent}`}>
-                    <IconComp size={24} />
-                  </div>
-
-                  {/* Step Title & Channel Subtitle */}
-                  <div className="journey-text-group">
-                    <h3 className="journey-step-title">{step.title}</h3>
-                    <div className="journey-channel-badge">{step.channel}</div>
-                    <p className="journey-step-desc">{step.description}</p>
-                  </div>
-
-                  {/* Bullet Points */}
-                  <div className="journey-bullets-box">
-                    {step.bullets.map((bullet, bIdx) => (
-                      <div key={bIdx} className="journey-bullet-item">
-                        <CheckCircle2 size={16} className={`bullet-check check-${step.accent}`} />
-                        <span>{bullet}</span>
+                  {idx < steps.length - 1 && (
+                    <div className="journey-step-flow-arrow" aria-hidden="true">
+                      <div className="arrow-circle">
+                        <ArrowDown size={15} />
                       </div>
-                    ))}
-                  </div>
-
-                  {/* Card Bottom Tag */}
-                  <div className="journey-card-footer">
-                    <span className="journey-footer-tag">{step.tag}</span>
-                  </div>
-                </div>
+                    </div>
+                  )}
+                </React.Fragment>
               );
             })}
           </div>

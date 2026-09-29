@@ -5240,6 +5240,10 @@ button {
   letter-spacing: 0.04em;
 }
 
+.journey-step-flow-arrow {
+  display: none;
+}
+
 /* ==========================================================================
    CAMBIO 5: SECCIÓN "UNA PRESENCIA DIGITAL COMPLETA"
    ========================================================================== */
@@ -5853,6 +5857,38 @@ button {
     justify-content: center;
   }
 
+  .journey-connector-line {
+    display: none;
+  }
+
+  .journey-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    max-width: 520px;
+    margin: 32px auto 0;
+  }
+
+  .journey-step-flow-arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: -8px 0;
+    z-index: 2;
+  }
+
+  .journey-step-flow-arrow .arrow-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #ffffff;
+    color: var(--brand-purple);
+    border: 1.5px solid var(--brand-purple);
+    box-shadow: 0 2px 8px rgba(103, 61, 230, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .presence-cards-grid {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -5879,6 +5915,46 @@ button {
 }
 
 @media (max-width: 640px) {
+  .journey-roadmap-wrapper {
+    margin-top: 24px;
+  }
+
+  .journey-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 100%;
+  }
+
+  .journey-step-card {
+    padding: 24px 20px;
+    border-radius: var(--radius-lg);
+  }
+
+  .journey-step-title {
+    font-size: 1.32rem;
+  }
+
+  .journey-step-desc {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .journey-bullets-box {
+    gap: 10px;
+    padding-top: 14px;
+  }
+
+  .journey-bullet-item {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  .demos-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
   .situations-cards-grid {
     grid-template-columns: 1fr;
   }
