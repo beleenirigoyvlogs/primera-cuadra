@@ -50,10 +50,10 @@ export default function OpportunityCalculator({ niche }) {
             <span>CALCULADORA DE RETORNO Y OPORTUNIDAD</span>
           </div>
           <h2 className="section-main-title">
-            ¿Cuánta plata estás regalando por <span className="text-gradient-ocean">no estar en la primera cuadra</span>?
+            ¿Cuántos clientes potenciales podrías captar con una <span className="text-gradient-ocean">presencia digital completa</span>?
           </h2>
           <p className="section-main-desc">
-            Cuando alguien busca en Google Maps "{niche.categoryTag || niche.rubroName}" cerca de su ubicación, tiene la intención de contratar ya. Mirá los números en tu zona:
+            Cuando una persona busca "{niche.categoryTag || niche.rubroName}" en su zona, elige entre los negocios que transmiten confianza y tienen información clara. Mirá una estimación referencial para tu negocio:
           </p>
         </div>
 

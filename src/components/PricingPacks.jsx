@@ -38,7 +38,7 @@ export default function PricingPacks({ niche }) {
   const packComercioPOS = PACKS.find(p => p.id === 'pack-comercio-pos') || PACKS[3];
 
   return (
-    <section className="pricing-section-wrapper" id="packs-precios">
+    <section className="pricing-section-wrapper" id="precios">
       <div className="container">
         {/* Hostinger Section Header */}
         <div className="section-header-center">

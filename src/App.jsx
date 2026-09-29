@@ -2,60 +2,73 @@ import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import VisualJourneyFlow from './components/VisualJourneyFlow';
+import DigitalPresenceSection from './components/DigitalPresenceSection';
+import BusinessSituationsSection from './components/BusinessSituationsSection';
 import TripodMockup from './components/TripodMockup';
-import StreetComparison from './components/StreetComparison';
+import DemosSection from './components/DemosSection';
 import ProcessSteps from './components/ProcessSteps';
 import PricingPacks from './components/PricingPacks';
 import OpportunityCalculator from './components/OpportunityCalculator';
-import FacebookFeedSection from './components/FacebookFeedSection';
 import FAQSection from './components/FAQSection';
+import FinalCtaSection from './components/FinalCtaSection';
 import Footer from './components/Footer';
 import WhatsAppFloatingBtn from './components/WhatsAppFloatingBtn';
 import { NICHES } from './data/nicheData';
 
 export default function App() {
-  // Default niche is 'nautica'
-  const [currentNiche, setCurrentNiche] = useState('nautica');
-  const niche = NICHES[currentNiche] || NICHES.nautica;
+  const [currentNiche, setCurrentNiche] = useState('peluqueria');
+  const niche = NICHES[currentNiche] || NICHES.peluqueria;
+
+  const handleSelectPreset = (nicheKey) => {
+    if (NICHES[nicheKey]) {
+      setCurrentNiche(nicheKey);
+    }
+  };
 
   return (
     <div className="app-root">
-      {/* Top Navigation with Mega-Menu and niche selection */}
-      <Navbar onSelectNiche={setCurrentNiche} />
+      {/* 1. Top Navigation with reduced 6 items */}
+      <Navbar />
 
       <main>
-        {/* Hero with interactive Niche Switcher */}
-        <Hero niche={niche} onSelectNiche={setCurrentNiche} />
+        {/* 2. Hero with Action-Oriented Headline, CTAs, Trust Badges & 3-in-1 Mockup */}
+        <Hero />
 
-        {/* Visual Journey Roadmap: Google Maps -> Web Propia -> WhatsApp */}
+        {/* 3. Customer Journey: Así te encuentra un nuevo cliente (Te busca -> Te conoce -> Te contacta) */}
         <VisualJourneyFlow />
 
-        {/* Live Simulation: Google Maps, WhatsApp Business, Web Propia */}
+        {/* 4. Complete Digital Presence: Una presencia digital completa (01 Web -> 02 Google -> 03 WhatsApp) */}
+        <DigitalPresenceSection />
+
+        {/* 5. Business Situations: ¿Tu negocio está en alguna de estas situaciones? */}
+        <BusinessSituationsSection />
+
+        {/* 6. Live Interactive Simulator: ¿Querés ver cómo podría quedar tu negocio? */}
         <TripodMockup niche={niche} />
 
-        {/* The Primera Cuadra Philosophy: Before vs After & Agency Comparison */}
-        <StreetComparison niche={niche} />
+        {/* 7. Industry Demos: Así podría verse tu negocio (Gastronomía, Barbería, Taller, Comercio) */}
+        <DemosSection onSelectPreset={handleSelectPreset} />
 
-        {/* 3 Simple Steps Process */}
+        {/* 8. Process Methodology: ¿Cómo trabajamos? 3 simples pasos */}
         <ProcessSteps />
 
-        {/* Pack Express $120.000 vs Solo Web $150.000 vs Pack Completo $250.000 */}
-        <PricingPacks niche={niche} />
-
-        {/* Interactive ROI & Lost Searches Calculator */}
+        {/* 9. Interactive Opportunity Calculator */}
         <OpportunityCalculator niche={niche} />
 
-        {/* Live Facebook Community & Real-time Works */}
-        <FacebookFeedSection />
+        {/* 10. Pricing Section: Packs & Precios transparentes */}
+        <PricingPacks niche={niche} />
 
-        {/* Frequently Asked Questions Accordion */}
+        {/* 11. Frequently Asked Questions */}
         <FAQSection niche={niche} />
+
+        {/* 12. Final High-Impact CTA: ¿Querés mejorar la presencia digital de tu negocio? */}
+        <FinalCtaSection />
       </main>
 
       {/* Footer */}
       <Footer niche={niche} onSelectNiche={setCurrentNiche} />
 
-      {/* Persistent Floating WhatsApp CTA */}
+      {/* Persistent Floating WhatsApp Action Button */}
       <WhatsAppFloatingBtn niche={niche} />
     </div>
   );

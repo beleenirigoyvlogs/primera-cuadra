@@ -41,12 +41,12 @@ export default function Footer({ niche, onSelectNiche }) {
           <div>
             <h4 className="footer-col-title">Navegación</h4>
             <ul className="footer-col-links">
-              <li><a href="#demostracion-en-vivo">Simulador en Vivo</a></li>
-              <li><a href="#filosofia-comparativa">Comparativa & Metodología</a></li>
-              <li><a href="#packs-precios">Packs & Tarifas</a></li>
-              <li><a href="#comunidad-facebook">Facebook en Vivo</a></li>
-              <li><a href="#calculadora-oportunidad">Calculadora de Retorno</a></li>
-              <li><a href="#preguntas-frecuentes">Preguntas Frecuentes</a></li>
+              <li><a href="#servicios">Servicios Digitales</a></li>
+              <li><a href="#como-funciona">Cómo Funciona</a></li>
+              <li><a href="#demos">Demos & Ejemplos</a></li>
+              <li><a href="#demostracion-en-vivo">Simulador Interactivo</a></li>
+              <li><a href="#precios">Packs & Tarifas</a></li>
+              <li><a href="#preguntas">Preguntas Frecuentes</a></li>
             </ul>
           </div>
 

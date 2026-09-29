@@ -31,11 +31,11 @@ export default function ProcessSteps() {
       title: 'Optimización y Configuración Pro',
       duration: '48hs (Express) / 4 días (Completo)',
       color: 'amber',
-      description: 'Entramos a la cancha a trabajar. Optimizamos al 100% tu Ficha de Google con la categoría exacta, cargamos servicios, redactamos novedades SEO y dejamos tu WhatsApp Business con catálogo listo.',
+      description: 'Configuramos tu presencia en Google con la categoría correspondiente, fotos y servicios, desarrollamos tu página web profesional y dejamos tu WhatsApp Business con catálogo listo para recibir consultas.',
       bulletList: [
-        'Configuración de Google Maps y respuestas a reseñas',
-        'Carga de catálogo con precios y botón de reserva en WhatsApp',
-        'En Pack Completo: programación de tu web y registro de dominio'
+        'Configuración completa de Google Maps y atención de consultas',
+        'Carga de catálogo con precios y botón de contacto en WhatsApp',
+        'En Pack Completo: diseño de tu web y registro de dominio'
       ]
     },
     {

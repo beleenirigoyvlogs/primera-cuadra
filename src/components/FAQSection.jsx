@@ -21,7 +21,7 @@ export default function FAQSection({ niche }) {
   );
 
   return (
-    <section className="faq-section-wrapper" id="preguntas-frecuentes">
+    <section className="faq-section-wrapper" id="preguntas">
       <div className="container">
         <div className="section-header-center">
           <div className="section-kicker-tag">

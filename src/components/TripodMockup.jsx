@@ -288,17 +288,17 @@ export default function TripodMockup({ niche }) {
 
   return (
     <section className="container tripod-section" id="demostracion-en-vivo">
-      {/* Section Header */}
+      {/* Section Header (Cambio 4) */}
       <div className="section-header-center">
         <div className="section-kicker-tag">
           <Sparkles size={14} />
-          <span>SIMULADOR EN VIVO PARA TU MARCA</span>
+          <span>SIMULADOR INTERACTIVO</span>
         </div>
         <h2 className="section-title">
-          Probá cómo se vería tu negocio en la <span className="highlight-purple">Primera Cuadra</span>
+          ¿Querés ver cómo podría <span className="highlight-purple">quedar tu negocio</span>?
         </h2>
         <p className="section-subtitle">
-          Escribí el nombre de tu marca, tu rubro y tu ciudad. La foto, los textos, el dominio y los servicios se adaptan automáticamente en tiempo real.
+          Probá nuestro simulador y descubrí cómo podría verse tu presencia digital.
         </p>
       </div>
 

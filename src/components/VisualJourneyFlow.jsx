@@ -1,78 +1,74 @@
 import React from 'react';
 import { 
-  MapPin, 
   Globe, 
-  MessageSquare, 
-  ArrowRight, 
   Sparkles, 
   CheckCircle2, 
-  TrendingUp, 
-  Users 
+  Search,
+  Send,
+  MapPin,
+  ArrowRight
 } from 'lucide-react';
 
 export default function VisualJourneyFlow() {
   const steps = [
     {
       num: '01',
-      phase: 'FASE 1: DESCUBRIMIENTO',
-      title: 'Te encuentran en Google Maps',
-      subtitle: 'Búsqueda por cercanía en tu zona',
-      icon: MapPin,
-      accent: 'pin',
-      tag: 'Tráfico Calificado',
-      stats: '82% busca desde el celular',
+      title: 'Te busca',
+      channel: 'Google',
+      description: 'Encuentra tu negocio cuando busca un producto o servicio en tu zona.',
+      icon: Search,
+      accent: 'google',
+      tag: 'Búsqueda Local',
       bullets: [
-        'Ficha 100% optimizada con tu categoría exacta',
-        'Fotos reales de tu local y servicios clave',
-        'Reseñas respondidas con palabras clave locales'
+        'Aparece en Google Maps cuando buscan en tu localidad',
+        'Información actualizada de dirección, fotos y horarios',
+        'Perfil verificado y optimizado para generar confianza'
       ]
     },
     {
       num: '02',
-      phase: 'FASE 2: CONFIANZA',
-      title: 'Validan con tu Web Propia',
-      subtitle: 'Tu vidriera digital con dominio propio',
+      title: 'Te conoce',
+      channel: 'Tu página web',
+      description: 'Conoce tus servicios, productos, ubicación e información.',
       icon: Globe,
       accent: 'web',
-      tag: 'Autoridad & Respaldo',
-      stats: 'Entrega en 4 días hábiles',
+      tag: 'Tu Vidriera Digital',
       bullets: [
-        'Dominio .com o .com.ar registrado a tu nombre',
-        'Carga ultra rápida optimizada para celulares',
-        'Lista de servicios, tarifas y fotos sin sorpresas'
+        'Página web propia con dominio a tu nombre (.com o .com.ar)',
+        'Diseño rápido, claro y optimizado para ver desde el celular',
+        'Detalle de tus productos, servicios, precios y propuestas'
       ]
     },
     {
       num: '03',
-      phase: 'FASE 3: CONVERSIÓN',
-      title: 'Te contactan por WhatsApp',
-      subtitle: 'El mostrador donde cerrás la venta',
-      icon: MessageSquare,
-      accent: 'chat',
-      tag: 'Cierre Inmediato',
-      stats: 'Respuestas en segundos',
+      title: 'Te contacta',
+      channel: 'WhatsApp',
+      description: 'Consulta, pide información o solicita un presupuesto.',
+      icon: Send,
+      accent: 'wa',
+      tag: 'Contacto Directo',
       bullets: [
-        'Catálogo de servicios y precios pre-cargado',
-        'Botón directo en la web sin agendar números',
-        'Respuestas predeterminadas listas para usar'
+        'Botón directo a WhatsApp para consultar sin trámites',
+        'Catálogo organizado con fotos, precios y disponibilidad',
+        'Respuestas ágiles para atender a la persona en el momento'
       ]
     }
   ];
 
   return (
-    <section className="visual-journey-section" id="como-funciona-el-tripode">
+    <section className="visual-journey-section" id="como-funciona">
       <div className="container">
-        {/* Section Header with generous spacing & clear hierarchy */}
+        {/* Section Header */}
         <div className="section-header-center">
           <div className="section-kicker-tag">
             <Sparkles size={14} />
-            <span>EL RECORRIDO DEL CLIENTE LOCAL</span>
+            <span>EL RECORRIDO DEL CLIENTE</span>
           </div>
           <h2 className="section-title">
-            De la búsqueda a la venta en <span className="highlight-purple">3 simples pasos</span>
+            Así te encuentra un <span className="highlight-purple">nuevo cliente</span>
           </h2>
           <p className="section-subtitle">
-            Así es exactamente cómo tus futuros clientes pasan de buscar tu rubro en Google a escribirte por WhatsApp listos para comprar.
+            Conectamos los tres canales esenciales para que una persona interesada en tus productos o servicios te encuentre, te conozca y te escriba directamente.
           </p>
         </div>
 
@@ -85,60 +81,45 @@ export default function VisualJourneyFlow() {
             {steps.map((step, idx) => {
               const IconComp = step.icon;
               return (
-                <div key={idx} className={`journey-step-card journey-${step.accent}`}>
+                <div key={idx} className={`journey-step-card card-${step.accent}`}>
                   {/* Top Phase & Step Indicator */}
                   <div className="journey-card-top">
                     <span className="journey-step-num">{step.num}</span>
-                    <span className="journey-phase-badge">{step.phase}</span>
+                    <span className={`journey-phase-badge badge-${step.accent}`}>
+                      {step.channel}
+                    </span>
                   </div>
 
                   {/* Icon Box */}
-                  <div className={`journey-icon-box ${step.accent}`}>
-                    <IconComp size={28} />
+                  <div className={`journey-icon-box icon-${step.accent}`}>
+                    <IconComp size={24} />
                   </div>
 
-                  {/* Headings */}
-                  <h3 className="journey-card-title">{step.title}</h3>
-                  <p className="journey-card-subtitle">{step.subtitle}</p>
-
-                  {/* Metric Pill */}
-                  <div className="journey-metric-pill">
-                    <TrendingUp size={14} />
-                    <span>{step.stats}</span>
+                  {/* Step Title & Channel Subtitle */}
+                  <div className="journey-text-group">
+                    <h3 className="journey-step-title">{step.title}</h3>
+                    <div className="journey-channel-badge">{step.channel}</div>
+                    <p className="journey-step-desc">{step.description}</p>
                   </div>
 
-                  {/* Checkpoints */}
-                  <ul className="journey-checklist">
-                    {step.bullets.map((b, bIdx) => (
-                      <li key={bIdx}>
-                        <CheckCircle2 size={16} className="journey-check-icon" />
-                        <span>{b}</span>
-                      </li>
+                  {/* Bullet Points */}
+                  <div className="journey-bullets-box">
+                    {step.bullets.map((bullet, bIdx) => (
+                      <div key={bIdx} className="journey-bullet-item">
+                        <CheckCircle2 size={16} className={`bullet-check check-${step.accent}`} />
+                        <span>{bullet}</span>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
 
-                  {/* Step Connector Arrow for mobile / visual cue */}
-                  {idx < steps.length - 1 && (
-                    <div className="journey-step-arrow-hint">
-                      <ArrowRight size={18} />
-                    </div>
-                  )}
+                  {/* Card Bottom Tag */}
+                  <div className="journey-card-footer">
+                    <span className="journey-footer-tag">{step.tag}</span>
+                  </div>
                 </div>
               );
             })}
           </div>
-        </div>
-
-        {/* Floating Quick Action */}
-        <div className="journey-bottom-action">
-          <div className="journey-bottom-summary">
-            <Users size={20} className="journey-summary-icon" />
-            <span>¿Querés ver cómo se adapta esto a tu rubro en tiempo real?</span>
-          </div>
-          <a href="#demostracion-en-vivo" className="btn-hostinger-secondary-pill">
-            <span>Ver Simulador Interactivo</span>
-            <ArrowRight size={15} />
-          </a>
         </div>
       </div>
     </section>
