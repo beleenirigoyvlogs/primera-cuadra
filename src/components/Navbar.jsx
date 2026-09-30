@@ -6,13 +6,38 @@ import {
   Globe, 
   MapPin, 
   Sparkles,
-  ArrowRight
+  ArrowRight,
+  Moon,
+  Sun
 } from 'lucide-react';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const navRef = useRef(null);
+
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('theme');
+      if (saved) return saved === 'dark';
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [isDark]);
+
+  const toggleTheme = () => {
+    setIsDark(prev => !prev);
+  };
 
   const defaultWhatsappNumber = '5491128779641';
   const defaultMsg = encodeURIComponent(
@@ -73,6 +98,17 @@ export default function Navbar() {
 
         {/* Header Right Actions */}
         <div className="header-right-actions">
+          {/* Theme Toggle Button (Moon in light mode, Sun in dark mode) */}
+          <button 
+            type="button" 
+            className="theme-toggle-btn"
+            onClick={toggleTheme}
+            aria-label={isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+            title={isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+          >
+            {isDark ? <Sun size={18} className="theme-toggle-icon sun" /> : <Moon size={18} className="theme-toggle-icon moon" />}
+          </button>
+
           {/* Direct WhatsApp CTA Button */}
           <a 
             href={`https://wa.me/${defaultWhatsappNumber}?text=${defaultMsg}`}
@@ -99,6 +135,26 @@ export default function Navbar() {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="mobile-nav-drawer">
+          <div className="mobile-drawer-theme-bar">
+            <span>Tema visual:</span>
+            <button 
+              type="button" 
+              className="theme-toggle-btn-mobile"
+              onClick={toggleTheme}
+            >
+              {isDark ? (
+                <>
+                  <Sun size={16} />
+                  <span>Modo claro</span>
+                </>
+              ) : (
+                <>
+                  <Moon size={16} />
+                  <span>Modo oscuro</span>
+                </>
+              )}
+            </button>
+          </div>
           {navLinks.map((link, idx) => (
             <a 
               key={idx} 

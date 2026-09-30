@@ -4,11 +4,14 @@
    ========================================================================== */
 
 :root {
-  /* Hostinger Color Palette */
-  --bg-page: #fbfbfd;
+  /* Premium Light Mode Background & Base */
+  --bg-base: #F8F7FC;
+  --bg-page: #F8F7FC;
   --bg-white: #ffffff;
-  --bg-alt: #f4f5f8;
-  --bg-alt-subtle: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-card-subtle: #f9fafb;
+  --bg-alt: rgba(248, 247, 252, 0.75);
+  --bg-alt-subtle: rgba(248, 247, 252, 0.5);
   --bg-dark-card: #140d2b;
   --bg-dark-card-elevated: #1e133d;
 
@@ -18,6 +21,7 @@
   --brand-purple-light: #ece8fd;
   --brand-purple-glow: rgba(103, 61, 230, 0.22);
   --brand-purple-soft: #f5f3ff;
+  --purple-accent: #673de6;
 
   /* Neutrals & Text */
   --text-dark: #18181b;
@@ -53,11 +57,57 @@
   --radius-full: 9999px;
 
   /* Elevation */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.06), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
-  --shadow-hover: 0 16px 32px -4px rgba(0, 0, 0, 0.1), 0 4px 12px -2px rgba(0, 0, 0, 0.05);
-  --shadow-dropdown: 0 20px 45px -8px rgba(0, 0, 0, 0.14), 0 6px 16px rgba(0, 0, 0, 0.06);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
+  --shadow-hover: 0 16px 32px -4px rgba(103, 61, 230, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
+  --shadow-dropdown: 0 20px 45px -8px rgba(0, 0, 0, 0.12), 0 6px 16px rgba(0, 0, 0, 0.05);
   --shadow-featured: 0 20px 40px -10px rgba(103, 61, 230, 0.35);
+}
+
+/* ==========================================================================
+   DARK MODE SYSTEM
+   ========================================================================== */
+html.dark {
+  /* Fondo principal: #0F0E17 */
+  --bg-base: #0F0E17;
+  --bg-page: #0F0E17;
+  /* Cards y superficies: #1A1825 */
+  --bg-white: #1A1825;
+  --bg-card: #1A1825;
+  --bg-card-subtle: #221f32;
+  --bg-alt: #161422;
+  --bg-alt-subtle: #14121f;
+  --bg-dark-card: #141224;
+  --bg-dark-card-elevated: #1e1a33;
+
+  /* Acento violeta: #A78BFA */
+  --brand-purple: #A78BFA;
+  --brand-purple-hover: #9065f6;
+  --brand-purple-light: rgba(167, 139, 250, 0.15);
+  --brand-purple-glow: rgba(167, 139, 250, 0.25);
+  --brand-purple-soft: rgba(167, 139, 250, 0.1);
+  --purple-accent: #A78BFA;
+
+  /* Texto principal: #F1F0F5, Texto secundario: #A1A0B0 */
+  --text-dark: #F1F0F5;
+  --text-title: #F1F0F5;
+  --text-body: #A1A0B0;
+  --text-muted: #8e8d9e;
+  --text-light: #6f6e80;
+  --text-white: #ffffff;
+
+  /* Bordes: rgba(255, 255, 255, 0.08) */
+  --border-light: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-purple-focus: rgba(167, 139, 250, 0.4);
+  --border-dark-card: rgba(255, 255, 255, 0.12);
+
+  /* Shadows for dark mode */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35);
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.45);
+  --shadow-hover: 0 16px 32px rgba(0, 0, 0, 0.6), 0 0 25px rgba(167, 139, 250, 0.14);
+  --shadow-dropdown: 0 20px 45px rgba(0, 0, 0, 0.7);
+  --shadow-featured: 0 20px 45px -10px rgba(167, 139, 250, 0.35);
 }
 
 /* Global Reset & Base */
@@ -74,15 +124,56 @@ html {
   color: var(--text-body);
 }
 
+/* Smooth 0.3s Theme Transition */
+body, 
+header, 
+.navbar-header, 
+section, 
+.journey-step-card, 
+.presence-step-card, 
+.situation-card, 
+.demo-industry-card, 
+.pricing-card-hostinger, 
+.faq-item-card, 
+.faq-cta-banner, 
+.footer-section-wrapper, 
+.theme-toggle-btn, 
+.btn-nav-cta, 
+.btn-hostinger-primary, 
+.btn-hostinger-outline,
+.interactive-tripod-section,
+.opportunity-calc-box {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
 body {
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.6;
   color: var(--text-body);
-  background-color: var(--bg-page);
+  background-color: #F8F7FC;
+  background-image: 
+    radial-gradient(ellipse 80% 60% at 10% 0%, rgba(139, 92, 246, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 50% at 90% 100%, rgba(167, 139, 250, 0.06) 0%, transparent 55%),
+    radial-gradient(rgba(139, 92, 246, 0.12) 1.2px, transparent 1.2px);
+  background-size: 100% 100%, 100% 100%, 26px 26px;
+  background-attachment: fixed, fixed, scroll;
+  background-repeat: no-repeat, no-repeat, repeat;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html.dark body {
+  background-color: #0F0E17;
+  background-image: 
+    radial-gradient(ellipse 80% 60% at 10% 0%, rgba(167, 139, 250, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 50% at 90% 100%, rgba(139, 92, 246, 0.08) 0%, transparent 55%),
+    radial-gradient(rgba(167, 139, 250, 0.09) 1.2px, transparent 1.2px);
+  background-size: 100% 100%, 100% 100%, 26px 26px;
+  background-attachment: fixed, fixed, scroll;
+  background-repeat: no-repeat, no-repeat, repeat;
+  color: var(--text-body);
 }
 
 #root {
@@ -289,6 +380,52 @@ button {
   white-space: nowrap;
 }
 
+.header-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+}
+
+.theme-toggle-btn:hover {
+  background: var(--brand-purple-soft);
+  color: var(--brand-purple);
+  border-color: var(--brand-purple);
+  transform: scale(1.06);
+}
+
+.theme-toggle-icon {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.theme-toggle-btn:hover .theme-toggle-icon {
+  transform: rotate(18deg);
+}
+
+.theme-toggle-icon.sun {
+  color: #fbbf24;
+}
+
+.theme-toggle-icon.moon {
+  color: var(--brand-purple);
+}
+
 .btn-nav-cta {
   display: inline-flex;
   align-items: center;
@@ -309,10 +446,15 @@ button {
   transform: translateY(-1px);
 }
 
+.btn-nav-cta.btn-nav-wa {
+  background: var(--brand-purple);
+}
+
 .mobile-nav-toggle {
   display: none;
   padding: 6px;
   color: var(--text-dark);
+  cursor: pointer;
 }
 
 /* ==========================================================================
@@ -531,6 +673,40 @@ button {
   box-shadow: var(--shadow-dropdown);
 }
 
+.mobile-drawer-theme-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: var(--bg-card-subtle);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  margin-bottom: 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.theme-toggle-btn-mobile {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  color: var(--text-dark);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle-btn-mobile:hover {
+  border-color: var(--brand-purple);
+  color: var(--brand-purple);
+}
+
 .mobile-nav-drawer a {
   font-size: 1rem;
   font-weight: 600;
@@ -589,26 +765,12 @@ button {
 
 .hero-section-wrapper {
   padding: 60px 0 68px;
-  background: 
-    radial-gradient(circle at 50% -15%, rgba(103, 61, 230, 0.07) 0%, transparent 60%),
-    radial-gradient(circle at 85% 25%, rgba(56, 189, 248, 0.035) 0%, transparent 40%),
-    radial-gradient(circle at 15% 35%, rgba(168, 85, 247, 0.03) 0%, transparent 40%),
-    linear-gradient(180deg, #ffffff 0%, #f8faff 100%);
-  text-align: center;
+  background: transparent;
   position: relative;
-  overflow: hidden;
 }
 
 .hero-section-wrapper::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(103, 61, 230, 0.08) 1px, transparent 1px);
-  background-size: 32px 32px;
-  mask-image: radial-gradient(ellipse at 50% 30%, black 35%, transparent 80%);
-  -webkit-mask-image: radial-gradient(ellipse at 50% 30%, black 35%, transparent 80%);
-  pointer-events: none;
-  opacity: 0.65;
+  display: none;
 }
 
 .hero-section-wrapper > .container {
@@ -798,26 +960,14 @@ button {
 .pricing-section-wrapper {
   padding: 80px 0 96px;
   position: relative;
-  background: 
-    radial-gradient(circle at 50% 0%, rgba(103, 61, 230, 0.055) 0%, transparent 55%),
-    radial-gradient(circle at 90% 85%, rgba(37, 211, 102, 0.035) 0%, transparent 45%),
-    radial-gradient(circle at 10% 40%, rgba(99, 102, 241, 0.03) 0%, transparent 45%),
-    linear-gradient(180deg, #f8faff 0%, #f1f4fa 50%, #f8faff 100%);
+  background: transparent;
   border-top: 1px solid var(--border-light);
   border-bottom: 1px solid var(--border-light);
   overflow: hidden;
 }
 
 .pricing-section-wrapper::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(100, 116, 139, 0.13) 1px, transparent 1px);
-  background-size: 28px 28px;
-  mask-image: radial-gradient(ellipse at 50% 50%, black 40%, transparent 85%);
-  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 40%, transparent 85%);
-  pointer-events: none;
-  opacity: 0.65;
+  display: none;
 }
 
 .pricing-section-wrapper > .container {
@@ -2645,7 +2795,7 @@ button {
 
 .faq-section-wrapper {
   padding: 92px 0 96px;
-  background: var(--bg-alt-subtle);
+  background: transparent;
   border-top: 1px solid var(--border-light);
 }
 
@@ -5186,7 +5336,7 @@ button {
 
 .visual-journey-section {
   padding: 84px 0 88px;
-  background: var(--bg-page);
+  background: transparent;
   position: relative;
 }
 
@@ -5364,7 +5514,7 @@ button {
 
 .digital-presence-section {
   padding: 84px 0 88px;
-  background: #ffffff;
+  background: transparent;
   border-top: 1px solid var(--border-light);
   border-bottom: 1px solid var(--border-light);
 }
@@ -5517,7 +5667,7 @@ button {
 
 .situations-section-wrapper {
   padding: 88px 0 92px;
-  background: var(--bg-alt-subtle);
+  background: transparent;
 }
 
 .situations-cards-grid {
@@ -5646,7 +5796,7 @@ button {
 
 .demos-section-wrapper {
   padding: 92px 0 96px;
-  background: #ffffff;
+  background: transparent;
   border-top: 1px solid var(--border-light);
 }
 
@@ -5841,7 +5991,7 @@ button {
 
 .final-cta-section-wrapper {
   padding: 88px 0 92px;
-  background: var(--bg-page);
+  background: transparent;
 }
 
 .final-cta-card {
@@ -6153,5 +6303,714 @@ button {
   }
 }
 
+/* ==========================================================================
+   COMPLETE DARK MODE SYSTEM (CLASS "dark" ON <html>)
+   Color Palette:
+   - Main Background: #0F0E17
+   - Cards & Surfaces: #1A1825
+   - Primary Text: #F1F0F5
+   - Secondary Text: #A1A0B0
+   - Accent Purple: #A78BFA
+   - Borders: rgba(255, 255, 255, 0.08)
+   ========================================================================== */
 
+/* 1. Navbar & Header */
+html.dark .navbar-header {
+  background: rgba(26, 24, 37, 0.92) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
 
+html.dark .brand-title-main {
+  color: #F1F0F5 !important;
+}
+
+html.dark .brand-title-tag {
+  color: #A1A0B0 !important;
+}
+
+html.dark .nav-item-btn,
+html.dark .nav-link-item {
+  color: #F1F0F5 !important;
+}
+
+html.dark .nav-item-btn:hover,
+html.dark .nav-link-item:hover {
+  color: #A78BFA !important;
+  background: rgba(167, 139, 250, 0.12) !important;
+}
+
+html.dark .theme-toggle-btn {
+  background: #1A1825 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #F1F0F5 !important;
+}
+
+html.dark .theme-toggle-btn:hover {
+  background: rgba(167, 139, 250, 0.15) !important;
+  border-color: #A78BFA !important;
+}
+
+html.dark .mobile-nav-toggle {
+  color: #F1F0F5 !important;
+}
+
+html.dark .mobile-nav-drawer {
+  background: #1A1825 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .mobile-drawer-theme-bar {
+  background: #221f32 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: #F1F0F5 !important;
+}
+
+html.dark .theme-toggle-btn-mobile {
+  background: #1A1825 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #F1F0F5 !important;
+}
+
+html.dark .mobile-nav-drawer a {
+  color: #F1F0F5 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* 2. Global Headings, Titles & Texts */
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4,
+html.dark .section-title,
+html.dark .section-main-title,
+html.dark .hero-headline-result {
+  color: #F1F0F5 !important;
+}
+
+html.dark .hero-headline-result .highlight-purple {
+  color: #A78BFA !important;
+}
+
+html.dark p,
+html.dark .section-subtitle,
+html.dark .section-main-desc,
+html.dark .hero-subtitle-result {
+  color: #A1A0B0 !important;
+}
+
+/* 3. Badges, Kickers & Trust Tags */
+html.dark .hero-kicker-badge,
+html.dark .section-kicker-tag,
+html.dark .section-kicker-pill {
+  background: rgba(167, 139, 250, 0.15) !important;
+  border: 1px solid rgba(167, 139, 250, 0.3) !important;
+  color: #A78BFA !important;
+}
+
+html.dark .trust-pill-tag {
+  background: #1A1825 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: #F1F0F5 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) !important;
+}
+
+html.dark .trust-pill-tag .text-purple-icon {
+  color: #A78BFA !important;
+}
+
+html.dark .btn-hostinger-outline,
+html.dark .hero-btn-demo {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  color: #F1F0F5 !important;
+}
+
+html.dark .btn-hostinger-outline:hover,
+html.dark .hero-btn-demo:hover {
+  background: rgba(167, 139, 250, 0.15) !important;
+  border-color: #A78BFA !important;
+  color: #A78BFA !important;
+}
+
+/* 4. Hero 3-in-1 Connected Mockup (Google + Web + WhatsApp) */
+html.dark .mockup-connected-canvas {
+  background: linear-gradient(150deg, #181628 0%, #12101e 100%) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.6) !important;
+}
+
+html.dark .card-google {
+  background: #1A1825 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  border-left: 4px solid #ea4335 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
+}
+
+html.dark .google-icon-circle {
+  background: rgba(234, 67, 53, 0.18) !important;
+  color: #f87171 !important;
+}
+
+html.dark .mockup-business-name {
+  color: #F1F0F5 !important;
+}
+
+html.dark .rating-num {
+  color: #F1F0F5 !important;
+}
+
+html.dark .rating-count {
+  color: #A1A0B0 !important;
+}
+
+html.dark .google-mini-btn {
+  background: #232034 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: #A1A0B0 !important;
+}
+
+html.dark .google-mini-btn.active {
+  background: rgba(167, 139, 250, 0.2) !important;
+  color: #A78BFA !important;
+  border-color: rgba(167, 139, 250, 0.4) !important;
+}
+
+html.dark .mockup-browser-window {
+  background: #1A1825 !important;
+  border: 1.5px solid rgba(167, 139, 250, 0.45) !important;
+  box-shadow: 0 12px 36px -4px rgba(0, 0, 0, 0.6), 0 0 24px rgba(167, 139, 250, 0.16) !important;
+}
+
+html.dark .browser-top-bar {
+  background: #13121f !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .browser-url-pill {
+  background: #1c1a2d !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: #A1A0B0 !important;
+}
+
+html.dark .browser-screen-inner {
+  background: linear-gradient(180deg, #1A1825 0%, #151322 100%) !important;
+}
+
+html.dark .mini-web-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .mini-web-brand {
+  color: #F1F0F5 !important;
+}
+
+html.dark .mini-web-nav {
+  color: #A1A0B0 !important;
+}
+
+html.dark .mini-btn-contact {
+  background: #A78BFA !important;
+  color: #0F0E17 !important;
+  font-weight: 800 !important;
+}
+
+html.dark .mini-web-badge {
+  background: rgba(16, 185, 129, 0.15) !important;
+  color: #34d399 !important;
+}
+
+html.dark .mini-web-hero h4 {
+  color: #F1F0F5 !important;
+}
+
+html.dark .mini-web-hero p {
+  color: #A1A0B0 !important;
+}
+
+html.dark .mini-chip {
+  background: #232034 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: #F1F0F5 !important;
+}
+
+html.dark .card-whatsapp {
+  background: #1A1825 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  border-left: 4px solid #25d366 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
+}
+
+html.dark .wa-avatar-box {
+  background: rgba(37, 211, 102, 0.18) !important;
+  color: #25d366 !important;
+}
+
+html.dark .wa-name-row strong {
+  color: #F1F0F5 !important;
+}
+
+html.dark .wa-verified-pill {
+  background: rgba(37, 211, 102, 0.18) !important;
+  color: #25d366 !important;
+}
+
+html.dark .wa-status-text {
+  color: #A1A0B0 !important;
+}
+
+html.dark .mockup-wa-bubble {
+  background: #10261c !important;
+  color: #e2f5ec !important;
+  border: 1px solid rgba(37, 211, 102, 0.25) !important;
+}
+
+html.dark .mockup-wa-bubble .wa-time {
+  color: #6ee7b7 !important;
+}
+
+html.dark .mockup-wa-catalog-pill {
+  background: #232034 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .catalog-pill-info strong {
+  color: #F1F0F5 !important;
+}
+
+html.dark .catalog-pill-info span {
+  color: #A1A0B0 !important;
+}
+
+html.dark .ribbon-flow {
+  background: #110e20 !important;
+  border: 1px solid rgba(167, 139, 250, 0.3) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* 5. Visual Journey Flow Cards */
+html.dark .journey-step-card {
+  background: #1A1825 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
+}
+
+html.dark .journey-step-card:hover {
+  border-color: rgba(167, 139, 250, 0.45) !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(167, 139, 250, 0.12) !important;
+}
+
+html.dark .journey-step-num {
+  color: rgba(255, 255, 255, 0.22) !important;
+}
+
+html.dark .journey-step-title {
+  color: #F1F0F5 !important;
+}
+
+html.dark .journey-step-desc {
+  color: #A1A0B0 !important;
+}
+
+html.dark .journey-bullets-box {
+  border-top-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .journey-bullet-item {
+  color: #F1F0F5 !important;
+}
+
+html.dark .journey-card-footer {
+  border-top-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .journey-footer-tag {
+  color: #A1A0B0 !important;
+}
+
+/* 6. Digital Presence Cards */
+html.dark .presence-flow-connector {
+  background: #1A1825 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: #F1F0F5 !important;
+}
+
+html.dark .active-web-node {
+  background: rgba(167, 139, 250, 0.2) !important;
+  color: #A78BFA !important;
+}
+
+html.dark .presence-feature-card {
+  background: #1A1825 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
+}
+
+html.dark .presence-feature-card:hover {
+  border-color: rgba(167, 139, 250, 0.45) !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(167, 139, 250, 0.12) !important;
+}
+
+html.dark .presence-num {
+  color: rgba(255, 255, 255, 0.22) !important;
+}
+
+html.dark .presence-card-title {
+  color: #F1F0F5 !important;
+}
+
+html.dark .presence-card-desc {
+  color: #A1A0B0 !important;
+}
+
+html.dark .presence-bullets {
+  border-top-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .presence-bullets li {
+  color: #F1F0F5 !important;
+}
+
+html.dark .presence-check-icon {
+  color: #A78BFA !important;
+}
+
+/* 7. Business Situations Cards */
+html.dark .situation-card {
+  background: #1A1825 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+}
+
+html.dark .situation-card:hover {
+  border-color: rgba(167, 139, 250, 0.45) !important;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5) !important;
+}
+
+html.dark .situation-card-title {
+  color: #F1F0F5 !important;
+}
+
+html.dark .situation-card-detail {
+  color: #A1A0B0 !important;
+}
+
+html.dark .situation-icon-box {
+  background: rgba(167, 139, 250, 0.15) !important;
+  color: #A78BFA !important;
+}
+
+html.dark .situations-resolution-box {
+  border: 1px solid rgba(167, 139, 250, 0.3) !important;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* 8. Tripod Simulator */
+html.dark .simulator-controls-card,
+html.dark .tripod-sim-card {
+  background: #1A1825 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
+}
+
+html.dark .sim-controls-top-row {
+  border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .sim-brand-title {
+  color: #F1F0F5 !important;
+}
+
+html.dark .sim-brand-subtitle {
+  color: #A1A0B0 !important;
+}
+
+html.dark .segmented-pill-bar-container {
+  background: #13121f !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .pill-tab-item {
+  color: #A1A0B0 !important;
+}
+
+html.dark .pill-tab-item:hover {
+  color: #F1F0F5 !important;
+}
+
+html.dark .pill-tab-item.active {
+  background: #A78BFA !important;
+  color: #0F0E17 !important;
+  font-weight: 800 !important;
+}
+
+/* 9. Industry Demos Cards */
+html.dark .demo-industry-card {
+  background: #1A1825 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
+}
+
+html.dark .demo-industry-card:hover {
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(167, 139, 250, 0.12) !important;
+  border-color: rgba(167, 139, 250, 0.4) !important;
+}
+
+html.dark .demo-category-pill {
+  background: #1A1825 !important;
+  color: #F1F0F5 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+}
+
+html.dark .demo-business-title {
+  color: #F1F0F5 !important;
+}
+
+html.dark .demo-business-desc {
+  color: #A1A0B0 !important;
+}
+
+html.dark .demo-deliverables-list {
+  background: #232034 !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+html.dark .demo-item-text strong {
+  color: #F1F0F5 !important;
+}
+
+html.dark .demo-item-text span {
+  color: #A1A0B0 !important;
+}
+
+html.dark .btn-demo-trigger {
+  background: #1A1825 !important;
+  border-color: rgba(167, 139, 250, 0.35) !important;
+  color: #A78BFA !important;
+}
+
+html.dark .btn-demo-trigger:hover {
+  background: rgba(167, 139, 250, 0.16) !important;
+  border-color: #A78BFA !important;
+}
+
+html.dark .demos-transparency-note {
+  background: #1A1825 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .demos-transparency-note strong {
+  color: #F1F0F5 !important;
+}
+
+html.dark .demos-transparency-note p {
+  color: #A1A0B0 !important;
+}
+
+/* 10. Process Steps */
+html.dark .process-step-card-hostinger,
+html.dark .process-card-item {
+  background: #1A1825 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
+}
+
+html.dark .step-number-title-row h3,
+html.dark .step-header-row h3 {
+  color: #F1F0F5 !important;
+}
+
+html.dark .step-desc-text {
+  color: #A1A0B0 !important;
+}
+
+/* 11. Opportunity Calculator */
+html.dark .opportunity-calc-box,
+html.dark .calculator-card-wrapper {
+  background: #1A1825 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
+}
+
+html.dark .calc-metric-label {
+  color: #A1A0B0 !important;
+}
+
+html.dark .calc-metric-val {
+  color: #F1F0F5 !important;
+}
+
+/* 12. Pricing Section */
+html.dark .pricing-card-hostinger.standard {
+  background: #1A1825 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
+}
+
+html.dark .pricing-card-hostinger.standard:hover {
+  border-color: rgba(167, 139, 250, 0.45) !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(167, 139, 250, 0.12) !important;
+}
+
+html.dark .pricing-card-hostinger.featured {
+  background: #201a38 !important;
+  border: 1.5px solid rgba(167, 139, 250, 0.55) !important;
+  box-shadow: 0 16px 45px -10px rgba(167, 139, 250, 0.35) !important;
+}
+
+html.dark .pricing-card-hostinger.pos-pack-card {
+  background: #1A1825 !important;
+  border: 1.5px solid rgba(16, 185, 129, 0.4) !important;
+}
+
+html.dark .card-top-badge.pos-badge {
+  background: rgba(16, 185, 129, 0.15) !important;
+  color: #34d399 !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+html.dark .pricing-card-hostinger.standard .plan-name {
+  color: #F1F0F5 !important;
+}
+
+html.dark .pricing-card-hostinger.standard .plan-desc {
+  color: #A1A0B0 !important;
+}
+
+html.dark .pricing-card-hostinger.standard .price-amount-bold {
+  color: #F1F0F5 !important;
+}
+
+html.dark .pricing-card-hostinger.standard .price-unit {
+  color: #A1A0B0 !important;
+}
+
+html.dark .pricing-card-hostinger.standard .plan-sub-guarantee {
+  color: #A1A0B0 !important;
+  border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .pricing-card-hostinger.standard .plan-feature-item {
+  color: #F1F0F5 !important;
+}
+
+html.dark .plan-feature-item.excluded {
+  color: #6f6e80 !important;
+}
+
+html.dark .pricing-card-hostinger.standard .btn-plan-hostinger {
+  background: rgba(167, 139, 250, 0.12) !important;
+  color: #A78BFA !important;
+  border: 1.5px solid #A78BFA !important;
+}
+
+html.dark .pricing-card-hostinger.standard .btn-plan-hostinger:hover {
+  background: #A78BFA !important;
+  color: #0F0E17 !important;
+}
+
+/* 13. FAQ Section */
+html.dark .faq-item-card {
+  background: #1A1825 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+}
+
+html.dark .faq-item-card:hover {
+  border-color: rgba(167, 139, 250, 0.35) !important;
+}
+
+html.dark .faq-item-card.is-open {
+  border-color: rgba(167, 139, 250, 0.5) !important;
+}
+
+html.dark .faq-question-btn {
+  color: #F1F0F5 !important;
+}
+
+html.dark .faq-question-btn:hover {
+  background: rgba(167, 139, 250, 0.08) !important;
+  color: #A78BFA !important;
+}
+
+html.dark .faq-toggle-icon {
+  background: #232034 !important;
+  color: #A78BFA !important;
+}
+
+html.dark .faq-answer-paragraph {
+  color: #A1A0B0 !important;
+}
+
+html.dark .faq-cta-banner {
+  background: #1A1825 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .faq-cta-title {
+  color: #F1F0F5 !important;
+}
+
+html.dark .faq-cta-desc {
+  color: #A1A0B0 !important;
+}
+
+/* 14. Footer */
+html.dark .footer-section-wrapper {
+  background: #141221 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .footer-brand-col p {
+  color: #A1A0B0 !important;
+}
+
+html.dark .footer-col-title {
+  color: #F1F0F5 !important;
+}
+
+html.dark .footer-col-links a {
+  color: #A1A0B0 !important;
+}
+
+html.dark .footer-col-links a:hover {
+  color: #A78BFA !important;
+}
+
+html.dark .footer-bottom-bar {
+  border-top-color: rgba(255, 255, 255, 0.08) !important;
+  color: #A1A0B0 !important;
+}
+
+/* 15. WhatsApp Floating Button & Tooltip */
+.whatsapp-floating-button {
+  background: #25d366 !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5) !important;
+}
+
+.whatsapp-floating-button:hover {
+  background: #1eb956 !important;
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.65) !important;
+}
+
+html.dark .whatsapp-floating-tooltip {
+  background: #1A1825 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5) !important;
+}
+
+html.dark .tooltip-text strong {
+  color: #F1F0F5 !important;
+}
+
+html.dark .tooltip-text span {
+  color: #A1A0B0 !important;
+}
+
+html.dark .btn-tooltip-close {
+  color: #A1A0B0 !important;
+}
+
+html.dark .btn-tooltip-close:hover {
+  color: #F1F0F5 !important;
+}
