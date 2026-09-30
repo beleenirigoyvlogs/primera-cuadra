@@ -5428,10 +5428,22 @@ button {
 
 .journey-step-num {
   font-family: var(--font-heading);
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: var(--text-light);
+  font-size: 1.85rem;
+  font-weight: 900;
+  color: var(--text-title);
   letter-spacing: -0.04em;
+}
+
+.card-google .journey-step-num {
+  color: #ea4335;
+}
+
+.card-web .journey-step-num {
+  color: var(--brand-purple);
+}
+
+.card-wa .journey-step-num {
+  color: #10b981;
 }
 
 .journey-phase-badge {
@@ -6639,7 +6651,20 @@ html.dark .journey-step-card:hover {
 }
 
 html.dark .journey-step-num {
-  color: rgba(255, 255, 255, 0.22) !important;
+  color: #F1F0F5 !important;
+  font-weight: 900 !important;
+}
+
+html.dark .card-google .journey-step-num {
+  color: #fca5a5 !important;
+}
+
+html.dark .card-web .journey-step-num {
+  color: #c4b5fd !important;
+}
+
+html.dark .card-wa .journey-step-num {
+  color: #6ee7b7 !important;
 }
 
 html.dark .journey-step-title {
@@ -7230,6 +7255,628 @@ html.dark .btn-tooltip-close:hover {
     will-change: auto !important;
   }
 }
+
+/* ==========================================================================
+   CONTACT SECTION (2-COLUMN HIGH-CONVERSION LEAD FORM)
+   ========================================================================== */
+
+.contact-section-wrapper {
+  padding: 88px 0 96px;
+  background: transparent;
+  position: relative;
+  border-top: none;
+}
+
+.contact-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 52px;
+  align-items: start;
+}
+
+/* Left Column: Info & Value Proposition */
+.contact-info-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-pill {
+  margin-bottom: 8px;
+  width: fit-content;
+}
+
+.contact-main-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.4vw, 2.7rem);
+  font-weight: 800;
+  color: var(--text-title);
+  line-height: 1.22;
+  letter-spacing: -0.025em;
+  margin: 16px 0 14px;
+}
+
+.contact-main-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.contact-benefits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.contact-benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 0.94rem;
+}
+
+.benefit-icon-circle {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--brand-purple-light);
+  color: var(--brand-purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.contact-benefit-item strong {
+  display: block;
+  color: var(--text-title);
+  font-weight: 700;
+  margin-bottom: 2px;
+  font-size: 0.96rem;
+}
+
+.contact-benefit-item span {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.86rem;
+  line-height: 1.4;
+}
+
+/* Direct WhatsApp Box */
+.contact-direct-wa-box {
+  background: rgba(103, 61, 230, 0.04);
+  border: 1px solid rgba(103, 61, 230, 0.15);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+  margin-top: 8px;
+}
+
+.direct-wa-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-title);
+  margin-bottom: 6px;
+}
+
+.direct-wa-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.btn-contact-wa-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--brand-purple);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.18s ease;
+}
+
+.btn-contact-wa-link:hover {
+  color: var(--brand-purple-dark);
+  transform: translateX(3px);
+}
+
+/* Right Column: Modern Form Card */
+.contact-form-col {
+  position: relative;
+}
+
+.contact-form-card {
+  background: #ffffff;
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 38px 34px;
+  box-shadow: 0 14px 40px -6px rgba(15, 23, 42, 0.08), 0 4px 14px rgba(103, 61, 230, 0.04);
+  position: relative;
+}
+
+.form-card-header {
+  margin-bottom: 24px;
+}
+
+.form-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--text-title);
+  margin-bottom: 4px;
+}
+
+.form-card-subtitle {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.contact-actual-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field-group {
+  margin-bottom: 18px;
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-title);
+  margin-bottom: 6px;
+}
+
+.required-star {
+  color: #ef4444;
+  margin-left: 3px;
+  font-weight: 800;
+}
+
+.optional-tag {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-adornment-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px 12px 42px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border-light);
+  background: #ffffff;
+  color: var(--text-title);
+  font-size: 0.94rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.form-input:focus {
+  border-color: var(--brand-purple);
+  box-shadow: 0 0 0 3px rgba(103, 61, 230, 0.15);
+}
+
+.form-input.is-invalid {
+  border-color: #ef4444;
+  background: #fff8f8;
+}
+
+.field-error-msg {
+  font-size: 0.78rem;
+  color: #ef4444;
+  font-weight: 600;
+  margin-top: 4px;
+  display: block;
+}
+
+/* Service Chips Selector */
+.service-chips-selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.service-chip-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px 8px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border-light);
+  background: var(--bg-alt);
+  color: var(--text-body);
+  font-size: 0.84rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.service-chip-btn:hover {
+  border-color: var(--brand-purple);
+  color: var(--brand-purple);
+  background: var(--brand-purple-light);
+}
+
+.service-chip-btn.is-selected {
+  border-color: var(--brand-purple);
+  background: var(--brand-purple);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(103, 61, 230, 0.28);
+}
+
+.form-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border-light);
+  background: #ffffff;
+  color: var(--text-title);
+  font-size: 0.92rem;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 82px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-textarea:focus {
+  border-color: var(--brand-purple);
+  box-shadow: 0 0 0 3px rgba(103, 61, 230, 0.15);
+}
+
+/* Submit Button */
+.btn-submit-lead {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 24px;
+  border-radius: var(--radius-full);
+  background: var(--brand-purple);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 8px 24px rgba(103, 61, 230, 0.35);
+  margin-top: 10px;
+}
+
+.btn-submit-lead:hover:not(:disabled) {
+  background: var(--brand-purple-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(103, 61, 230, 0.45);
+}
+
+.btn-submit-lead:disabled {
+  opacity: 0.72;
+  cursor: not-allowed;
+}
+
+.spinner-icon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.form-helper-footnote {
+  text-align: center;
+  font-size: 0.81rem;
+  color: var(--text-muted);
+  margin-top: 14px;
+  line-height: 1.45;
+}
+
+/* Success Card Presentation */
+.contact-success-box {
+  text-align: center;
+  padding: 24px 10px;
+}
+
+.success-icon-badge {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #ecfdf5;
+  color: #10b981;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.25);
+}
+
+.success-headline {
+  font-family: var(--font-heading);
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--text-title);
+  margin-bottom: 12px;
+}
+
+.success-message {
+  font-size: 0.95rem;
+  color: var(--text-body);
+  line-height: 1.6;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.success-divider {
+  height: 1px;
+  background: var(--border-light);
+  margin: 26px 0;
+}
+
+.success-wa-prompt {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.success-wa-question {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-title);
+  margin: 0;
+}
+
+.btn-success-wa-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 360px;
+  padding: 14px 22px;
+  border-radius: var(--radius-full);
+  background: #25d366;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+  transition: all 0.2s ease;
+}
+
+.btn-success-wa-action:hover {
+  background: #20ba5a;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(37, 211, 102, 0.45);
+  color: #ffffff;
+}
+
+.btn-reset-form {
+  margin-top: 20px;
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-decoration: underline;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.18s ease;
+}
+
+.btn-reset-form:hover {
+  color: var(--brand-purple);
+}
+
+/* ==========================================================================
+   CONTACT SECTION DARK MODE SUPPORT (html.dark)
+   ========================================================================== */
+
+html.dark .contact-main-title {
+  color: #F1F0F5 !important;
+}
+
+html.dark .contact-main-subtitle {
+  color: #A1A0B0 !important;
+}
+
+html.dark .contact-benefit-item strong {
+  color: #F1F0F5 !important;
+}
+
+html.dark .contact-benefit-item span {
+  color: #A1A0B0 !important;
+}
+
+html.dark .benefit-icon-circle {
+  background: rgba(167, 139, 250, 0.18) !important;
+  color: #c4b5fd !important;
+}
+
+html.dark .contact-direct-wa-box {
+  background: rgba(167, 139, 250, 0.05) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+html.dark .direct-wa-header {
+  color: #F1F0F5 !important;
+}
+
+html.dark .direct-wa-desc {
+  color: #A1A0B0 !important;
+}
+
+html.dark .btn-contact-wa-link {
+  color: #c4b5fd !important;
+}
+
+html.dark .btn-contact-wa-link:hover {
+  color: #ffffff !important;
+}
+
+html.dark .contact-form-card {
+  background: #1A1825 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5) !important;
+}
+
+html.dark .form-card-title {
+  color: #F1F0F5 !important;
+}
+
+html.dark .form-card-subtitle {
+  color: #A1A0B0 !important;
+}
+
+html.dark .form-label {
+  color: #F1F0F5 !important;
+}
+
+html.dark .form-input {
+  background: #232034 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #F1F0F5 !important;
+}
+
+html.dark .form-input:focus {
+  border-color: #A78BFA !important;
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.2) !important;
+}
+
+html.dark .form-input.is-invalid {
+  border-color: #ef4444 !important;
+  background: rgba(239, 68, 68, 0.12) !important;
+}
+
+html.dark .service-chip-btn {
+  background: #232034 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #F1F0F5 !important;
+}
+
+html.dark .service-chip-btn:hover {
+  border-color: #A78BFA !important;
+  color: #A78BFA !important;
+  background: rgba(167, 139, 250, 0.12) !important;
+}
+
+html.dark .service-chip-btn.is-selected {
+  background: #8B5CF6 !important;
+  border-color: #8B5CF6 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(139, 92, 246, 0.4) !important;
+}
+
+html.dark .form-textarea {
+  background: #232034 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #F1F0F5 !important;
+}
+
+html.dark .form-textarea:focus {
+  border-color: #A78BFA !important;
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.2) !important;
+}
+
+html.dark .form-helper-footnote {
+  color: #A1A0B0 !important;
+}
+
+html.dark .success-headline {
+  color: #F1F0F5 !important;
+}
+
+html.dark .success-message {
+  color: #A1A0B0 !important;
+}
+
+html.dark .success-divider {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+html.dark .success-wa-question {
+  color: #F1F0F5 !important;
+}
+
+html.dark .btn-reset-form {
+  color: #A1A0B0 !important;
+}
+
+html.dark .btn-reset-form:hover {
+  color: #c4b5fd !important;
+}
+
+/* ==========================================================================
+   CONTACT SECTION RESPONSIVENESS
+   ========================================================================== */
+
+@media (max-width: 960px) {
+  .contact-grid-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .contact-info-col {
+    text-align: left;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-section-wrapper {
+    padding: 64px 0 72px;
+  }
+
+  .contact-form-card {
+    padding: 28px 18px;
+    border-radius: var(--radius-lg);
+  }
+
+  .service-chips-selector {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form-input {
+    font-size: 16px; /* Prevents auto-zoom on iOS */
+  }
+
+  .form-textarea {
+    font-size: 16px;
+  }
+
+  .btn-submit-lead {
+    padding: 14px 20px;
+    font-size: 0.9rem;
+  }
+}
+
 
 
 

@@ -10,6 +10,7 @@ import ProcessSteps from './components/ProcessSteps';
 import PricingPacks from './components/PricingPacks';
 import OpportunityCalculator from './components/OpportunityCalculator';
 import FAQSection from './components/FAQSection';
+import ContactSection from './components/ContactSection';
 import FinalCtaSection from './components/FinalCtaSection';
 import Footer from './components/Footer';
 import WhatsAppFloatingBtn from './components/WhatsAppFloatingBtn';
@@ -65,7 +66,10 @@ export default function App() {
         {/* 11. Frequently Asked Questions */}
         <FAQSection niche={niche} />
 
-        {/* 12. Final High-Impact CTA: ¿Querés mejorar la presencia digital de tu negocio? */}
+        {/* 12. Contact Form: ¿Querés mejorar la presencia digital de tu negocio? */}
+        <ContactSection />
+
+        {/* 13. Final High-Impact CTA */}
         <FinalCtaSection />
       </main>
 
