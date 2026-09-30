@@ -42,8 +42,24 @@ export default function Hero() {
 
             {/* Specific Subtitle */}
             <p className="hero-subtitle-result">
-              Creemos la presencia digital de tu negocio con una página web profesional, Google optimizado y WhatsApp Business con catálogo.
+              Llevamos tu negocio a Internet para que tus clientes puedan encontrarte, conocerte y contactarte fácilmente.
             </p>
+
+            {/* Visual Service Elements */}
+            <div className="hero-service-badges-row" aria-label="Servicios incluidos">
+              <span className="hero-service-badge">
+                <Globe size={15} className="text-purple-icon" />
+                <span>Página Web</span>
+              </span>
+              <span className="hero-service-badge">
+                <MapPin size={15} className="text-purple-icon" />
+                <span>Google</span>
+              </span>
+              <span className="hero-service-badge">
+                <MessageSquare size={15} className="text-purple-icon" />
+                <span>WhatsApp Business</span>
+              </span>
+            </div>
 
             {/* CTAs Row */}
             <div className="hero-cta-actions">

@@ -5259,7 +5259,29 @@ button {
   color: var(--text-muted);
   line-height: 1.6;
   max-width: 580px;
+  margin-bottom: 20px;
+}
+
+.hero-service-badges-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
   margin-bottom: 32px;
+}
+
+.hero-service-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .hero-cta-actions {
@@ -6606,6 +6628,16 @@ button {
     font-size: 2.1rem;
   }
 
+  .hero-service-badges-row {
+    gap: 8px;
+    margin-bottom: 26px;
+  }
+
+  .hero-service-badge {
+    font-size: 0.82rem;
+    padding: 5px 12px;
+  }
+
   .hero-cta-actions {
     flex-direction: column;
     width: 100%;
@@ -6786,14 +6818,16 @@ html.dark .section-kicker-pill {
   color: #A78BFA !important;
 }
 
-html.dark .trust-pill-tag {
+html.dark .trust-pill-tag,
+html.dark .hero-service-badge {
   background: #1A1825 !important;
   border-color: rgba(255, 255, 255, 0.08) !important;
   color: #F1F0F5 !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) !important;
 }
 
-html.dark .trust-pill-tag .text-purple-icon {
+html.dark .trust-pill-tag .text-purple-icon,
+html.dark .hero-service-badge .text-purple-icon {
   color: #A78BFA !important;
 }
 
