@@ -56,7 +56,7 @@ export default function ProcessSteps() {
   return (
     <section className="process-section-wrapper" id="como-funciona">
       <div className="container">
-        <div className="section-header-center">
+        <div className="section-header-center reveal">
           <div className="section-kicker-pill">
             <Sparkles size={14} />
             <span>METODOLOGÍA SIMPLE Y ÁGIL</span>
@@ -69,11 +69,11 @@ export default function ProcessSteps() {
           </p>
         </div>
 
-        <div className="process-steps-grid">
+        <div className="process-steps-grid reveal-group">
           {steps.map((step, idx) => {
             const IconComponent = step.icon;
             return (
-              <div key={idx} className={`process-step-card color-${step.color}`}>
+              <div key={idx} className={`process-step-card color-${step.color} reveal`}>
                 <div className="step-card-header">
                   <span className="step-watermark">{step.number}</span>
                   <div className={`step-icon-wrapper ${step.color}`}>
@@ -102,7 +102,7 @@ export default function ProcessSteps() {
         </div>
 
         {/* Bottom Banner */}
-        <div className="process-guarantee-banner">
+        <div className="process-guarantee-banner reveal">
           <div className="banner-left">
             <ShieldCheck size={28} className="banner-icon" />
             <div>

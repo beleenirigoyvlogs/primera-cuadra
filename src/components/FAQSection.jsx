@@ -113,7 +113,7 @@ export default function FAQSection() {
     <section className="faq-section-wrapper" id="preguntas">
       <div className="container">
         {/* Section Header */}
-        <div className="section-header-center">
+        <div className="section-header-center reveal">
           <div className="section-kicker-tag">
             <HelpCircle size={14} />
             <span>RESPUESTAS CLARAS</span>
@@ -127,13 +127,13 @@ export default function FAQSection() {
         </div>
 
         {/* Accordion List */}
-        <div className="faq-accordion-list">
+        <div className="faq-accordion-list reveal-group">
           {faqItems.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
               <div 
                 key={index} 
-                className={`faq-item-card ${isOpen ? 'is-open' : ''}`}
+                className={`faq-item-card reveal ${isOpen ? 'is-open' : ''}`}
               >
                 <button
                   type="button"
@@ -164,7 +164,7 @@ export default function FAQSection() {
         </div>
 
         {/* Bottom Elegant WhatsApp CTA */}
-        <div className="faq-cta-banner">
+        <div className="faq-cta-banner reveal">
           <div className="faq-cta-badge">
             <MessageCircle size={14} />
             <span>CONSULTA SIN COMPROMISO</span>

@@ -14,8 +14,12 @@ import FinalCtaSection from './components/FinalCtaSection';
 import Footer from './components/Footer';
 import WhatsAppFloatingBtn from './components/WhatsAppFloatingBtn';
 import { NICHES } from './data/nicheData';
+import { useScrollReveal } from './hooks/useScrollReveal';
+import { useMouseParallaxDots } from './hooks/useMouseParallaxDots';
 
 export default function App() {
+  useScrollReveal();
+  useMouseParallaxDots();
   const [currentNiche, setCurrentNiche] = useState('peluqueria');
   const niche = NICHES[currentNiche] || NICHES.peluqueria;
 

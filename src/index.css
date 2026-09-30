@@ -157,6 +157,10 @@ body {
     radial-gradient(ellipse 70% 50% at 90% 100%, rgba(167, 139, 250, 0.06) 0%, transparent 55%),
     radial-gradient(rgba(139, 92, 246, 0.12) 1.2px, transparent 1.2px);
   background-size: 100% 100%, 100% 100%, 26px 26px;
+  background-position: 
+    0 0, 
+    0 0, 
+    calc(var(--dot-offset-x, 0px)) calc(var(--dot-offset-y, 0px));
   background-attachment: fixed, fixed, scroll;
   background-repeat: no-repeat, no-repeat, repeat;
   overflow-x: hidden;
@@ -171,6 +175,10 @@ html.dark body {
     radial-gradient(ellipse 70% 50% at 90% 100%, rgba(139, 92, 246, 0.08) 0%, transparent 55%),
     radial-gradient(rgba(167, 139, 250, 0.09) 1.2px, transparent 1.2px);
   background-size: 100% 100%, 100% 100%, 26px 26px;
+  background-position: 
+    0 0, 
+    0 0, 
+    calc(var(--dot-offset-x, 0px)) calc(var(--dot-offset-y, 0px));
   background-attachment: fixed, fixed, scroll;
   background-repeat: no-repeat, no-repeat, repeat;
   color: var(--text-body);
@@ -961,8 +969,8 @@ button {
   padding: 80px 0 96px;
   position: relative;
   background: transparent;
-  border-top: 1px solid var(--border-light);
-  border-bottom: 1px solid var(--border-light);
+  border-top: none;
+  border-bottom: none;
   overflow: hidden;
 }
 
@@ -1613,12 +1621,14 @@ button {
    ========================================================================== */
 
 .simulator-controls-card {
-  background: #ffffff;
+  background: var(--bg-card, #ffffff);
   border-radius: var(--radius-xl);
   border: 1.5px solid var(--border-light);
   box-shadow: var(--shadow-card);
   padding: 28px 32px;
-  margin-bottom: 28px;
+  margin-bottom: 44px;
+  position: relative;
+  z-index: 5;
 }
 
 .sim-controls-top-row {
@@ -1722,7 +1732,7 @@ button {
   padding: 12px 16px;
   border-radius: var(--radius-md);
   border: 1.5px solid var(--border-light);
-  background: #ffffff;
+  background: var(--bg-card, #ffffff);
   font-family: var(--font-body);
   font-size: 0.95rem;
   font-weight: 600;
@@ -1839,10 +1849,12 @@ button {
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   margin-bottom: 32px;
+  position: relative;
+  z-index: 2;
 }
 
 .tripod-tab-btn {
-  background: #ffffff;
+  background: var(--bg-card, #ffffff);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
   padding: 18px 20px;
@@ -2510,7 +2522,7 @@ button {
 }
 
 .process-step-card {
-  background: #ffffff;
+  background: var(--bg-card, #ffffff);
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-light);
   box-shadow: var(--shadow-card);
@@ -2599,7 +2611,7 @@ button {
 }
 
 .process-guarantee-banner {
-  background: #ffffff;
+  background: var(--bg-card, #ffffff);
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-light);
   box-shadow: var(--shadow-sm);
@@ -5515,8 +5527,8 @@ button {
 .digital-presence-section {
   padding: 84px 0 88px;
   background: transparent;
-  border-top: 1px solid var(--border-light);
-  border-bottom: 1px solid var(--border-light);
+  border-top: none;
+  border-bottom: none;
 }
 
 .presence-flow-connector {
@@ -6724,6 +6736,71 @@ html.dark .sim-brand-subtitle {
   color: #A1A0B0 !important;
 }
 
+html.dark .sim-input-group label {
+  color: #A1A0B0 !important;
+}
+
+html.dark .sim-input-field {
+  background: #141224 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #F1F0F5 !important;
+}
+
+html.dark .sim-input-field::placeholder {
+  color: #6E6D82 !important;
+}
+
+html.dark .sim-example-select {
+  background: #141224 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #F1F0F5 !important;
+}
+
+html.dark .sim-reassurance-strip {
+  border-top-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .sim-reassurance-left {
+  color: #F1F0F5 !important;
+}
+
+html.dark .sim-reassurance-right {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #A1A0B0 !important;
+}
+
+html.dark .tripod-tab-btn {
+  background: #1A1825 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: #F1F0F5 !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+}
+
+html.dark .tripod-tab-btn .tab-text strong {
+  color: #F1F0F5 !important;
+}
+
+html.dark .tripod-tab-btn .tab-sub-url {
+  color: #A1A0B0 !important;
+}
+
+html.dark .tripod-tab-btn .tab-icon-wrap {
+  background: rgba(103, 61, 230, 0.18) !important;
+  color: #A78BFA !important;
+}
+
+html.dark .tripod-tab-btn.active {
+  background: rgba(103, 61, 230, 0.25) !important;
+  border-color: #8B5CF6 !important;
+  box-shadow: 0 4px 20px rgba(103, 61, 230, 0.35) !important;
+}
+
+html.dark .tripod-tab-btn.active .tab-icon-wrap {
+  background: #673DE6 !important;
+  color: #ffffff !important;
+}
+
 html.dark .segmented-pill-bar-container {
   background: #13121f !important;
   border-color: rgba(255, 255, 255, 0.08) !important;
@@ -6807,6 +6884,7 @@ html.dark .demos-transparency-note p {
 }
 
 /* 10. Process Steps */
+html.dark .process-step-card,
 html.dark .process-step-card-hostinger,
 html.dark .process-card-item {
   background: #1A1825 !important;
@@ -6814,12 +6892,41 @@ html.dark .process-card-item {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
 }
 
+html.dark .step-card-title,
 html.dark .step-number-title-row h3,
 html.dark .step-header-row h3 {
   color: #F1F0F5 !important;
 }
 
+html.dark .step-card-desc,
 html.dark .step-desc-text {
+  color: #A1A0B0 !important;
+}
+
+html.dark .step-bullet-list {
+  border-top-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .step-bullet-list li {
+  color: #E2E1EC !important;
+}
+
+html.dark .step-badge-time {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: #A1A0B0 !important;
+}
+
+html.dark .process-guarantee-banner {
+  background: #1A1825 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
+}
+
+html.dark .process-guarantee-banner strong {
+  color: #F1F0F5 !important;
+}
+
+html.dark .process-guarantee-banner p {
   color: #A1A0B0 !important;
 }
 
@@ -7014,3 +7121,57 @@ html.dark .btn-tooltip-close {
 html.dark .btn-tooltip-close:hover {
   color: #F1F0F5 !important;
 }
+
+/* ==========================================================================
+   SCROLL REVEAL ANIMATIONS (INTERSECTION OBSERVER)
+   ========================================================================== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition-property: opacity, transform;
+  transition-duration: 0.6s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+:where(.reveal.visible),
+.reveal.visible {
+  opacity: 1;
+}
+
+:where(.reveal.visible) {
+  transform: translateY(0);
+}
+
+/* Cleanup GPU will-change once transition finishes */
+.reveal.revealed {
+  will-change: auto;
+}
+
+/* Staggered card groups (80ms - 100ms delay, using 90ms step) */
+.reveal-group > .reveal:nth-child(1) { --reveal-delay: 0ms; }
+.reveal-group > .reveal:nth-child(2) { --reveal-delay: 90ms; }
+.reveal-group > .reveal:nth-child(3) { --reveal-delay: 180ms; }
+.reveal-group > .reveal:nth-child(4) { --reveal-delay: 270ms; }
+.reveal-group > .reveal:nth-child(5) { --reveal-delay: 360ms; }
+.reveal-group > .reveal:nth-child(6) { --reveal-delay: 450ms; }
+.reveal-group > .reveal:nth-child(7) { --reveal-delay: 540ms; }
+.reveal-group > .reveal:nth-child(8) { --reveal-delay: 630ms; }
+
+/* Respect prefers-reduced-motion: no animation, fully visible immediately */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.visible,
+  .reveal:not(.visible) {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    will-change: auto !important;
+  }
+}
+
+
+

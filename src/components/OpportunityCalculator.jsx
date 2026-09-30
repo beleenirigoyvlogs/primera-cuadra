@@ -44,7 +44,7 @@ export default function OpportunityCalculator({ niche }) {
   return (
     <section className="calculator-section-wrapper" id="calculadora-oportunidad">
       <div className="container">
-        <div className="section-header-center">
+        <div className="section-header-center reveal">
           <div className="section-kicker-pill">
             <Calculator size={14} />
             <span>CALCULADORA DE RETORNO Y OPORTUNIDAD</span>
@@ -57,7 +57,7 @@ export default function OpportunityCalculator({ niche }) {
           </p>
         </div>
 
-        <div className="calculator-card-container">
+        <div className="calculator-card-container reveal">
           {/* Left Column: Sliders */}
           <div className="calc-sliders-col">
             <h3 className="calc-col-title">Ajustá los números de tu negocio</h3>

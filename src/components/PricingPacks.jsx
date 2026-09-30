@@ -41,7 +41,7 @@ export default function PricingPacks({ niche }) {
     <section className="pricing-section-wrapper" id="precios">
       <div className="container">
         {/* Hostinger Section Header */}
-        <div className="section-header-center">
+        <div className="section-header-center reveal">
           <div className="section-kicker-tag">
             <Sparkles size={14} />
             <span>PRECIOS TRANSPARENTES • SIN COSTOS OCULTOS</span>
@@ -61,9 +61,9 @@ export default function PricingPacks({ niche }) {
         </div>
 
         {/* Pricing Cards Grid (Exact Hostinger style) */}
-        <div className="pricing-cards-grid">
+        <div className="pricing-cards-grid reveal-group">
           {/* Card 1: Pack Express (Standard White Card) */}
-          <div className="pricing-card-hostinger standard">
+          <div className="pricing-card-hostinger standard reveal">
             <div className="card-top-badge">
               48hs entrega • 60% off
             </div>
@@ -135,7 +135,7 @@ export default function PricingPacks({ niche }) {
           </div>
 
           {/* Card 2: Pack Solo Web (Standard White Card with Web emphasis) */}
-          <div className="pricing-card-hostinger standard">
+          <div className="pricing-card-hostinger standard reveal">
             <div className="card-top-badge" style={{ background: '#ede9fe', color: '#673de6' }}>
               Dominio gratis • 4 días
             </div>
@@ -207,7 +207,7 @@ export default function PricingPacks({ niche }) {
           </div>
 
           {/* Card 3: Pack Completo (FEATURED DARK NIGHT PURPLE CARD - Screenshot 1) */}
-          <div className="pricing-card-hostinger featured">
+          <div className="pricing-card-hostinger featured reveal">
             <div className="card-top-badge">
               Oferta especial • 4 días entrega
             </div>
@@ -281,7 +281,7 @@ export default function PricingPacks({ niche }) {
           </div>
 
           {/* Card 4: Pack Comercio & POS Total (Special High-Value Tier) */}
-          <div className="pricing-card-hostinger standard pos-pack-card">
+          <div className="pricing-card-hostinger standard pos-pack-card reveal">
             <div className="card-top-badge pos-badge">
               ⚡ POS + Stock + Web • 7 días
             </div>
@@ -360,7 +360,7 @@ export default function PricingPacks({ niche }) {
         </div>
 
         {/* POS Standalone Callout Banner */}
-        <div className="pos-standalone-banner">
+        <div className="pos-standalone-banner reveal">
           <div className="pos-banner-left">
             <div className="pos-badge-pill">
               <Boxes size={15} />

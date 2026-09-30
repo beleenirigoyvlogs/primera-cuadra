@@ -60,7 +60,7 @@ export default function VisualJourneyFlow() {
     <section className="visual-journey-section" id="como-funciona">
       <div className="container">
         {/* Section Header */}
-        <div className="section-header-center">
+        <div className="section-header-center reveal">
           <div className="section-kicker-tag">
             <Sparkles size={14} />
             <span>EL RECORRIDO DEL CLIENTE</span>
@@ -78,12 +78,12 @@ export default function VisualJourneyFlow() {
           {/* Progress Connector Line (Desktop) */}
           <div className="journey-connector-line" aria-hidden="true"></div>
 
-          <div className="journey-cards-grid">
+          <div className="journey-cards-grid reveal-group">
             {steps.map((step, idx) => {
               const IconComp = step.icon;
               return (
                 <React.Fragment key={idx}>
-                  <div className={`journey-step-card card-${step.accent}`}>
+                  <div className={`journey-step-card card-${step.accent} reveal`}>
                     {/* Top Phase & Step Indicator */}
                     <div className="journey-card-top">
                       <span className="journey-step-num">{step.num}</span>

@@ -17,7 +17,7 @@ export default function FinalCtaSection() {
   return (
     <section className="final-cta-section-wrapper" id="contacto">
       <div className="container">
-        <div className="final-cta-card">
+        <div className="final-cta-card reveal">
           <div className="final-cta-kicker">
             <Sparkles size={15} />
             <span>EL SIGUIENTE PASO</span>

@@ -11,7 +11,9 @@ import {
   Sparkles,
   ExternalLink,
   ShieldCheck,
-  CheckCircle2
+  CheckCircle2,
+  Anchor,
+  Scale
 } from 'lucide-react';
 
 export default function DemosSection({ onSelectPreset }) {
@@ -63,6 +65,30 @@ export default function DemosSection({ onSelectPreset }) {
       googleItems: 'Ubicación exacta, fotos de vidriera y horarios de atención al público',
       waItems: 'Canal de WhatsApp para consultar talles, stock y envíos',
       presetKey: 'comercio'
+    },
+    {
+      id: 'nautica',
+      category: 'Náutica & Guarderías',
+      icon: Anchor,
+      demoName: 'Marina & Guardería Náutica Delta',
+      image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&auto=format&fit=crop&q=80',
+      description: 'Para guarderías náuticas, astilleros, marinas y alquiler de embarcaciones.',
+      webItems: 'Tarifario de cunas por eslora, bajadas con pluma y servicios fluviales',
+      googleItems: 'Ficha en Google Maps con ubicación en río, fotos y accesos',
+      waItems: 'Atención directa por WhatsApp para reservas de cuna y bajadas',
+      presetKey: 'nautica'
+    },
+    {
+      id: 'profesional',
+      category: 'Servicios Profesionales',
+      icon: Scale,
+      demoName: 'Estudio Jurídico & Contable Morales',
+      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&auto=format&fit=crop&q=80',
+      description: 'Para estudios jurídicos, contadores, escribanías y consultoras.',
+      webItems: 'Presentación de áreas de práctica, credenciales y agendamiento online',
+      googleItems: 'Posicionamiento en búsquedas locales corporativas y asesoría',
+      waItems: 'Canal directo para coordinar reuniones presenciales o virtuales',
+      presetKey: 'profesional'
     }
   ];
 
@@ -80,7 +106,7 @@ export default function DemosSection({ onSelectPreset }) {
     <section className="demos-section-wrapper" id="demos">
       <div className="container">
         {/* Section Header */}
-        <div className="section-header-center">
+        <div className="section-header-center reveal">
           <div className="section-kicker-tag">
             <Sparkles size={14} />
             <span>EJEMPLOS ILUSTRATIVOS</span>
@@ -94,11 +120,11 @@ export default function DemosSection({ onSelectPreset }) {
         </div>
 
         {/* Demos Cards Grid */}
-        <div className="demos-cards-grid">
+        <div className="demos-cards-grid reveal-group">
           {demos.map((d) => {
             const IconComponent = d.icon;
             return (
-              <div key={d.id} className="demo-industry-card">
+              <div key={d.id} className="demo-industry-card reveal">
                 {/* Image Wrap with Demo Badge */}
                 <div className="demo-card-image-wrap">
                   <img src={d.image} alt={d.demoName} className="demo-card-img" />

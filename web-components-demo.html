@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demostración de Web Components con Slots y Eventos Personalizados</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-base: #0F0E17;
+      --bg-card: #1A1825;
+      --text-title: #F1F0F5;
+      --text-body: #A1A0B0;
+      --brand-purple: #673DE6;
+      --brand-purple-hover: #5025D1;
+      --brand-purple-glow: rgba(103, 61, 230, 0.4);
+      --border-light: rgba(255, 255, 255, 0.08);
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      background-color: var(--bg-base);
+      color: var(--text-body);
+      font-family: var(--font-body);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1000px;
+      width: 100%;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-family: var(--font-heading);
+      color: var(--text-title);
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    p.subtitle {
+      max-width: 650px;
+      margin: 0 auto;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+
+    /* Consola visual para ver los eventos en vivo */
+    .event-logger-box {
+      background: #141220;
+      border: 1px solid rgba(167, 139, 250, 0.25);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .logger-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 12px;
+    }
+
+    .logger-title {
+      color: #A78BFA;
+      font-weight: 800;
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+    }
+
+    #log-output {
+      font-family: monospace;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: #38BDF8;
+      background: #0B0A11;
+      padding: 16px;
+      border-radius: 8px;
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .empty-log {
+      color: #64748B;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Web Components: Slots & Custom Events</h1>
+      <p class="subtitle">
+        Ejemplo interactivo con <strong>Shadow DOM</strong> encapsulado, <strong>Named Slots</strong> para inyectar contenido dinámico desde el exterior y <strong>CustomEvent</strong> con <code>bubbles: true</code> y <code>composed: true</code>.
+      </p>
+    </header>
+
+    <div class="components-grid" id="wc-container">
+      
+      <!-- 1. COMPONENTE <demo-card> -->
+      <demo-card
+        imagen="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&auto=format&fit=crop&q=80"
+        titulo="Pizzería & Ristorante Roma"
+        rubro="Gastronomía"
+        badge="DEMO ILUSTRATIVA"
+      >
+        <!-- Slot con nombre: descripcion -->
+        <p slot="descripcion">
+          Menú digital interactivo con fotos en alta definición, reservas de mesas y pedidos directos sin comisiones por aplicación.
+        </p>
+
+        <!-- Slot con nombre: beneficios -->
+        <ul slot="beneficios">
+          <li>✓ Menú digital con fotos de platos</li>
+          <li>✓ Ficha verificada en Google Maps</li>
+          <li>✓ Botón directo a WhatsApp oficial</li>
+        </ul>
+
+        <!-- Slot con nombre: boton -->
+        <button slot="boton" type="button">
+          Probar Demo en el Simulador →
+        </button>
+      </demo-card>
+
+      <!-- 2. COMPONENTE <precio-plan> -->
+      <precio-plan
+        nombre="Pack Completo"
+        precio="$250.000"
+        periodo="Pago único"
+        badge="MÁS POPULAR"
+        destacado="true"
+      >
+        <!-- Slot con nombre: caracteristicas -->
+        <ul slot="caracteristicas">
+          <li>✓ <strong>Página Web Propia</strong> (.com o .com.ar)</li>
+          <li>✓ <strong>Ficha de Google Maps</strong> optimizada</li>
+          <li>✓ <strong>WhatsApp Business</strong> con catálogo cargado</li>
+          <li>✓ <strong>Entrega Llave en Mano</strong> en 4 días hábiles</li>
+        </ul>
+
+        <!-- Slot con nombre: boton -->
+        <button slot="boton" type="button">
+          Elegir Plan Completo →
+        </button>
+      </precio-plan>
+
+    </div>
+
+    <!-- Logger visual de Eventos Personalizados -->
+    <div class="event-logger-box">
+      <div class="logger-header">
+        <span class="logger-title">Consola de Eventos Personalizados (CustomEvent Listener)</span>
+        <span style="font-size: 0.8rem; color: #94A3B8;">Haz clic en cualquier botón de las tarjetas arriba</span>
+      </div>
+      <div id="log-output">
+        <span class="empty-log">&gt; Esperando interacción del usuario... (abre también la consola de desarrollador F12)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script modular con los Web Components y los listeners de eventos -->
+  <script type="module">
+    import { DemoCard, PrecioPlan } from './src/web-components/customCards.js';
+
+    const logOutput = document.getElementById('log-output');
+    const container = document.getElementById('wc-container');
+
+    function registrarLog(nombreEvento, detalle) {
+      // 1. Mostrar en la consola del navegador como solicita el requerimiento
+      console.log(`⚡ [Evento Capturado]: "${nombreEvento}"`, detalle);
+
+      // 2. Mostrar visualmente en pantalla
+      const hora = new Date().toLocaleTimeString();
+      const linea = document.createElement('div');
+      linea.style.marginBottom = '8px';
+      linea.innerHTML = `
+        <span style="color: #A78BFA;">[${hora}]</span> 
+        <strong style="color: #4ADE80;">"${nombreEvento}"</strong>: 
+        <span>${JSON.stringify(detalle, null, 2)}</span>
+      `;
+
+      if (logOutput.querySelector('.empty-log')) {
+        logOutput.innerHTML = '';
+      }
+      logOutput.prepend(linea);
+    }
+
+    // Escuchador para "demo-seleccionada" (cruza el Shadow DOM gracias a composed: true)
+    container.addEventListener('demo-seleccionada', (event) => {
+      registrarLog('demo-seleccionada', event.detail);
+      alert(`¡Has seleccionado la demo de ${event.detail.rubro} ("${event.detail.titulo}")!`);
+    });
+
+    // Escuchador para "plan-elegido" (cruza el Shadow DOM gracias a composed: true)
+    container.addEventListener('plan-elegido', (event) => {
+      registrarLog('plan-elegido', event.detail);
+      alert(`¡Has elegido el "${event.detail.plan}" por ${event.detail.precio}!`);
+    });
+  </script>
+
+</body>
+</html>

@@ -56,7 +56,7 @@ export default function BusinessSituationsSection() {
     <section className="situations-section-wrapper" id="situaciones">
       <div className="container">
         {/* Section Header */}
-        <div className="section-header-center">
+        <div className="section-header-center reveal">
           <div className="section-kicker-tag">
             <HelpCircle size={14} />
             <span>DIAGNÓSTICO RÁPIDO</span>
@@ -70,11 +70,11 @@ export default function BusinessSituationsSection() {
         </div>
 
         {/* Situations Grid */}
-        <div className="situations-cards-grid">
+        <div className="situations-cards-grid reveal-group">
           {situations.map((item, idx) => {
             const IconComponent = item.icon;
             return (
-              <div key={idx} className="situation-card">
+              <div key={idx} className="situation-card reveal">
                 <div className="situation-card-header">
                   <div className="situation-icon-box">
                     <IconComponent size={20} />
@@ -89,7 +89,7 @@ export default function BusinessSituationsSection() {
         </div>
 
         {/* Closing Resolution Box */}
-        <div className="situations-resolution-box">
+        <div className="situations-resolution-box reveal">
           <div className="resolution-text-group">
             <div className="resolution-badge">
               <Sparkles size={16} />

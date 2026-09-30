@@ -52,7 +52,7 @@ export default function DigitalPresenceSection() {
     <section className="digital-presence-section" id="servicios">
       <div className="container">
         {/* Section Header */}
-        <div className="section-header-center">
+        <div className="section-header-center reveal">
           <div className="section-kicker-tag">
             <Sparkles size={14} />
             <span>SOLUCIÓN INTEGRAL</span>
@@ -65,7 +65,7 @@ export default function DigitalPresenceSection() {
           </p>
 
           {/* Visual Connection Ribbon between the 3 elements */}
-          <div className="presence-flow-connector" aria-label="Flujo de conexión: Google a Web y a WhatsApp">
+          <div className="presence-flow-connector reveal" aria-label="Flujo de conexión: Google a Web y a WhatsApp">
             <div className="connector-node">
               <MapPin size={16} className="text-google-color" />
               <span>Google</span>
@@ -84,11 +84,11 @@ export default function DigitalPresenceSection() {
         </div>
 
         {/* 3 Pillars Cards Grid */}
-        <div className="presence-cards-grid">
+        <div className="presence-cards-grid reveal-group">
           {cards.map((c, idx) => {
             const IconComponent = c.icon;
             return (
-              <div key={idx} className={`presence-feature-card card-${c.accent}`}>
+              <div key={idx} className={`presence-feature-card card-${c.accent} reveal`}>
                 <div className="presence-card-header">
                   <span className="presence-num">{c.num}</span>
                   <div className={`presence-icon-sq ${c.accent}`}>
