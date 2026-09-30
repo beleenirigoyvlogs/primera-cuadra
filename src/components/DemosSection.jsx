@@ -47,7 +47,7 @@ export default function DemosSection({ onSelectPreset }) {
       category: 'Taller & Servicios',
       icon: Wrench,
       demoName: 'Taller Mecánico Especializado',
-      image: 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?w=800&auto=format&fit=crop&q=80',
+      image: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=800&auto=format&fit=crop&q=80',
       description: 'Para talleres mecánicos, service técnico, colocación y profesionales de oficio.',
       webItems: 'Explicación clara de servicios, marcas atendidas y respaldo técnico',
       googleItems: 'Aparición destacada en búsquedas de auxilio y urgencias en la zona',

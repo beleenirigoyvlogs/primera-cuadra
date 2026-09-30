@@ -92,7 +92,7 @@ const RUBRO_TEMPLATES = {
     nameDefault: 'Taller Mecánico San Martín',
     cityDefault: 'San Martín, Bs As',
     categoryTag: 'Taller Mecánico Especializado & Servicios',
-    coverImage: 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?w=1200&auto=format&fit=crop&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1200&auto=format&fit=crop&q=80',
     avatarImage: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=400&auto=format&fit=crop&q=80',
     keywords: ['taller', 'mecanico', 'mecánico', 'mecanica', 'mecánica', 'auto', 'autos', 'chapa', 'pintura', 'frenos', 'inyeccion', 'inyección', 'gomeria', 'gomería', 'repuestos', 'motor'],
     services: [

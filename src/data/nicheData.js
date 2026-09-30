@@ -130,7 +130,7 @@ export const RUBROS = {
       { name: 'Diagnóstico Computarizado Check Engine', price: '$30.000', desc: 'Escaneo completo de módulos y borrado de fallas en el día.' },
       { name: 'Kit Distribución + Bomba de Agua', price: '$210.000', desc: 'Repuestos de primera línea y garantía escrita de 1 año.' }
     ],
-    sampleCoverImage: 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?w=1200&auto=format&fit=crop&q=80',
+    sampleCoverImage: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1200&auto=format&fit=crop&q=80',
     sampleAvatar: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=400&auto=format&fit=crop&q=80'
   },
 
