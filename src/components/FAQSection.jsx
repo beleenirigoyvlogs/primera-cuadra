@@ -127,13 +127,13 @@ export default function FAQSection() {
         </div>
 
         {/* Accordion List */}
-        <div className="faq-accordion-list reveal-group">
+        <div className="faq-accordion-list reveal">
           {faqItems.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
               <div 
                 key={index} 
-                className={`faq-item-card reveal ${isOpen ? 'is-open' : ''}`}
+                className={`faq-item-card ${isOpen ? 'is-open' : ''}`}
               >
                 <button
                   type="button"

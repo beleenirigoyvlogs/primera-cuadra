@@ -54,7 +54,7 @@ export default function PricingPacks({ niche }) {
           </p>
 
           {/* Condition Dropdown Pill (Hostinger style) */}
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#f1f3f7', border: '1px solid #e5e7eb', padding: '8px 18px', borderRadius: '9999px', marginTop: '20px', fontSize: '0.88rem', fontWeight: 700, color: '#18181b' }}>
+          <div className="pricing-scheme-pill">
             <span>Esquema de Pago Seguro: 50% inicio / 50% entrega</span>
             <ChevronDown size={14} />
           </div>
@@ -136,7 +136,7 @@ export default function PricingPacks({ niche }) {
 
           {/* Card 2: Pack Solo Web (Standard White Card with Web emphasis) */}
           <div className="pricing-card-hostinger standard reveal">
-            <div className="card-top-badge" style={{ background: '#ede9fe', color: '#673de6' }}>
+            <div className="card-top-badge badge-purple-soft">
               Dominio gratis • 4 días
             </div>
 

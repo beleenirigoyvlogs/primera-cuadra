@@ -984,18 +984,34 @@ button {
   max-width: 1360px;
 }
 
+.pricing-scheme-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f1f3f7;
+  border: 1px solid #e2e8f0;
+  padding: 8px 20px;
+  border-radius: var(--radius-full);
+  margin-top: 22px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
 .pricing-cards-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(250px, 1fr));
   justify-content: center;
   gap: 24px;
-  margin-top: 48px;
+  margin-top: 52px;
   align-items: stretch;
 }
 
 .pricing-card-hostinger {
   border-radius: var(--radius-lg);
-  padding: 36px 32px 32px;
+  padding: 30px 28px 32px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -1031,14 +1047,17 @@ button {
 }
 
 .card-top-badge {
-  position: absolute;
-  top: 18px;
-  right: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
   font-size: 0.76rem;
   font-weight: 800;
-  padding: 4px 12px;
+  padding: 5px 12px;
   border-radius: var(--radius-full);
   letter-spacing: 0.04em;
+  margin-bottom: 14px;
+  width: fit-content;
 }
 
 .pricing-card-hostinger.standard .card-top-badge {
@@ -1046,10 +1065,15 @@ button {
   color: var(--brand-purple);
 }
 
+.pricing-card-hostinger.standard .card-top-badge.badge-purple-soft {
+  background: #ede9fe;
+  color: #673de6;
+}
+
 .pricing-card-hostinger.featured .card-top-badge {
-  background: var(--brand-purple);
+  background: #8B5CF6;
   color: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 10px rgba(139, 92, 246, 0.4);
 }
 
 .plan-name {
@@ -6974,6 +6998,29 @@ html.dark .pricing-card-hostinger.featured:hover {
   box-shadow: 0 18px 45px -8px rgba(139, 92, 246, 0.55), 0 0 20px rgba(139, 92, 246, 0.25) !important;
 }
 
+html.dark .pricing-scheme-pill {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #F1F0F5 !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3) !important;
+}
+
+html.dark .pricing-card-hostinger.standard .card-top-badge {
+  background: rgba(167, 139, 250, 0.15) !important;
+  color: #c4b5fd !important;
+}
+
+html.dark .pricing-card-hostinger.standard .card-top-badge.badge-purple-soft {
+  background: rgba(167, 139, 250, 0.2) !important;
+  color: #d8b4fe !important;
+}
+
+html.dark .pricing-card-hostinger.featured .card-top-badge {
+  background: #8B5CF6 !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 12px rgba(139, 92, 246, 0.45) !important;
+}
+
 html.dark .pricing-card-hostinger.pos-pack-card {
   background: #1A1825 !important;
   border: 1.5px solid rgba(16, 185, 129, 0.4) !important;
@@ -7136,7 +7183,7 @@ html.dark .btn-tooltip-close:hover {
    SCROLL REVEAL ANIMATIONS (INTERSECTION OBSERVER)
    ========================================================================== */
 
-.reveal {
+.reveal:not(.visible):not(.revealed):not([data-revealed="true"]) {
   opacity: 0;
   transform: translateY(30px);
   transition-property: opacity, transform;
@@ -7147,16 +7194,17 @@ html.dark .btn-tooltip-close:hover {
 }
 
 :where(.reveal.visible),
-.reveal.visible {
-  opacity: 1;
-}
-
-:where(.reveal.visible) {
-  transform: translateY(0);
+.reveal.visible,
+.reveal.revealed,
+.reveal[data-revealed="true"],
+[data-revealed="true"] {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
 /* Cleanup GPU will-change once transition finishes */
-.reveal.revealed {
+.reveal.revealed,
+[data-revealed="true"] {
   will-change: auto;
 }
 

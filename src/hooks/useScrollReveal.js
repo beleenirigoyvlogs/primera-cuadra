@@ -49,6 +49,7 @@ export function useScrollReveal() {
         if (entry.isIntersecting) {
           const target = entry.target;
           target.classList.add('visible');
+          target.setAttribute('data-revealed', 'true');
 
           // Optimize GPU memory: clean up will-change after transition finishes
           const onTransitionEnd = (e) => {
@@ -58,6 +59,12 @@ export function useScrollReveal() {
             }
           };
           target.addEventListener('transitionend', onTransitionEnd);
+
+          // Safety fallback ensures state persists even if transitionend doesn't fire
+          setTimeout(() => {
+            target.classList.add('revealed');
+            target.setAttribute('data-revealed', 'true');
+          }, 800);
 
           // Only run once: unobserve immediately so scrolling up doesn't re-trigger
           obs.unobserve(target);
