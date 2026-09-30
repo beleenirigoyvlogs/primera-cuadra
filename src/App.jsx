@@ -18,6 +18,7 @@ import AdminLeadsModal from './components/AdminLeadsModal';
 import { NICHES } from './data/nicheData';
 import { useScrollReveal } from './hooks/useScrollReveal';
 import { useMouseParallaxDots } from './hooks/useMouseParallaxDots';
+import { recordPageView } from './utils/visitorTracker';
 
 export default function App() {
   useScrollReveal();
@@ -25,6 +26,11 @@ export default function App() {
   const [currentNiche, setCurrentNiche] = useState('peluqueria');
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const niche = NICHES[currentNiche] || NICHES.peluqueria;
+
+  // Track page visit on mount
+  useEffect(() => {
+    recordPageView();
+  }, []);
 
   // Shortcuts: Ctrl+Shift+A, Alt+A or #admin in URL
   useEffect(() => {

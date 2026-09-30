@@ -22,7 +22,16 @@ import {
   SlidersHorizontal,
   ChevronRight,
   Settings,
-  Key
+  Key,
+  Eye,
+  BarChart2,
+  Users,
+  Smartphone,
+  Monitor,
+  TrendingUp,
+  Percent,
+  CalendarDays,
+  Globe2
 } from 'lucide-react';
 import { 
   NOTIFICATION_EMAIL, 
@@ -31,6 +40,10 @@ import {
   sendTestEmail, 
   getGmailComposeUrl 
 } from '../utils/emailDispatcher';
+import { 
+  getVisitorDashboardStats, 
+  resetVisitorStats 
+} from '../utils/visitorTracker';
 
 export default function AdminLeadsModal({ isOpen, onClose }) {
   const DEFAULT_PIN = '1234';
@@ -41,6 +54,8 @@ export default function AdminLeadsModal({ isOpen, onClose }) {
     return sessionStorage.getItem('pc_admin_auth') === 'true';
   });
 
+  const [activeTab, setActiveTab] = useState('leads'); // 'leads' | 'traffic'
+  const [visitorStats, setVisitorStats] = useState(() => getVisitorDashboardStats());
   const [leads, setLeads] = useState([]);
   const [filterType, setFilterType] = useState('all'); // all, contact, simulator, new
   const [searchQuery, setSearchQuery] = useState('');
@@ -88,17 +103,32 @@ export default function AdminLeadsModal({ isOpen, onClose }) {
   useEffect(() => {
     if (isOpen) {
       loadLeads();
+      setVisitorStats(getVisitorDashboardStats());
     }
   }, [isOpen]);
 
-  // Listen to new lead events in real-time
+  // Listen to new lead events and analytics in real-time
   useEffect(() => {
     const handleNewLead = () => {
       loadLeads();
+      setVisitorStats(getVisitorDashboardStats());
+    };
+    const handleAnalyticsUpdate = () => {
+      setVisitorStats(getVisitorDashboardStats());
     };
     window.addEventListener('pc-new-lead', handleNewLead);
-    return () => window.removeEventListener('pc-new-lead', handleNewLead);
+    window.addEventListener('pc_analytics_update', handleAnalyticsUpdate);
+    return () => {
+      window.removeEventListener('pc-new-lead', handleNewLead);
+      window.removeEventListener('pc_analytics_update', handleAnalyticsUpdate);
+    };
   }, []);
+
+  const handleResetAnalytics = () => {
+    if (!window.confirm('¿Deseás reiniciar el contador de visitas?')) return;
+    resetVisitorStats();
+    setVisitorStats(getVisitorDashboardStats());
+  };
 
   // Handle PIN authentication
   const handlePinSubmit = (e) => {
@@ -361,6 +391,15 @@ export default function AdminLeadsModal({ isOpen, onClose }) {
                     <Mail size={13} />
                     <span>Conectado a: <strong>{NOTIFICATION_EMAIL}</strong></span>
                     <span className="email-status-dot" title="Notificaciones activas">● Activo</span>
+                    <button 
+                      type="button" 
+                      onClick={() => setActiveTab('traffic')}
+                      className="admin-traffic-live-pill" 
+                      title="Ver estadísticas de tráfico"
+                    >
+                      <Eye size={12} />
+                      <span>{visitorStats.totalVisits} visitas ({visitorStats.todayVisits} hoy)</span>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -489,226 +528,432 @@ export default function AdminLeadsModal({ isOpen, onClose }) {
               </div>
             )}
 
-            {/* Metrics Counters Bar */}
-            <div className="admin-metrics-bar">
-              <div 
-                className={`metric-chip ${filterType === 'all' ? 'active' : ''}`}
-                onClick={() => setFilterType('all')}
+            {/* Top Navigation Tabs: Leads vs Traffic */}
+            <div className="admin-nav-tabs">
+              <button 
+                type="button" 
+                onClick={() => setActiveTab('leads')} 
+                className={`admin-nav-tab ${activeTab === 'leads' ? 'active' : ''}`}
               >
-                <span className="metric-number">{leads.length}</span>
-                <span className="metric-label">Total Consultas</span>
-              </div>
+                <MessageSquare size={15} />
+                <span>Consultas & Leads ({leads.length})</span>
+                {newCount > 0 && <span className="tab-badge-new">{newCount} nuevas</span>}
+              </button>
 
-              <div 
-                className={`metric-chip alert ${filterType === 'new' ? 'active' : ''}`}
-                onClick={() => setFilterType('new')}
+              <button 
+                type="button" 
+                onClick={() => { setActiveTab('traffic'); setVisitorStats(getVisitorDashboardStats()); }} 
+                className={`admin-nav-tab ${activeTab === 'traffic' ? 'active' : ''}`}
               >
-                <span className="metric-number">{newCount}</span>
-                <span className="metric-label">Nuevas sin atender</span>
-              </div>
-
-              <div 
-                className={`metric-chip ${filterType === 'contact' ? 'active' : ''}`}
-                onClick={() => setFilterType('contact')}
-              >
-                <span className="metric-number">{contactCount}</span>
-                <span className="metric-label">Formulario Web</span>
-              </div>
-
-              <div 
-                className={`metric-chip ${filterType === 'simulator' ? 'active' : ''}`}
-                onClick={() => setFilterType('simulator')}
-              >
-                <span className="metric-number">{simCount}</span>
-                <span className="metric-label">Simulador 3-en-1</span>
-              </div>
+                <BarChart2 size={15} />
+                <span>Visitas & Tráfico Web ({visitorStats.totalVisits})</span>
+                <span className="live-visitor-pill">{visitorStats.todayVisits} hoy</span>
+              </button>
             </div>
 
-            {/* Filter and Search Bar */}
-            <div className="admin-toolbar">
-              <div className="admin-search-box">
-                <Search size={16} className="search-icon" />
-                <input 
-                  type="text" 
-                  placeholder="Buscar por cliente, negocio, teléfono o servicio..."
-                  value={searchQuery}
-                  onChange={e => setSearchQuery(e.target.value)}
-                  className="admin-search-input"
-                />
-                {searchQuery && (
-                  <button type="button" onClick={() => setSearchQuery('')} className="search-clear-btn">
-                    ×
-                  </button>
-                )}
-              </div>
-
-              <div className="admin-filter-selectors">
-                <select 
-                  value={statusFilter} 
-                  onChange={e => setStatusFilter(e.target.value)}
-                  className="admin-select-filter"
-                >
-                  <option value="all">Todos los estados</option>
-                  <option value="nuevo">🟡 Nuevos</option>
-                  <option value="contactado">🟢 Contactados</option>
-                  <option value="negociacion">🔵 En Negociación</option>
-                  <option value="cerrado">🟣 Cerrados</option>
-                </select>
-
-                <button 
-                  type="button" 
-                  onClick={loadLeads} 
-                  className="btn-admin-refresh" 
-                  title="Recargar consultas"
-                >
-                  <RefreshCw size={15} />
-                </button>
-              </div>
-            </div>
-
-            {/* Leads List Body */}
-            <div className="admin-leads-list-scroll">
-              {filteredLeads.length === 0 ? (
-                <div className="admin-empty-state">
-                  <div className="empty-icon-wrap">
-                    <MessageSquare size={34} />
+            {/* TAB 1: LEADS MANAGEMENT */}
+            {activeTab === 'leads' && (
+              <>
+                {/* Metrics Counters Bar */}
+                <div className="admin-metrics-bar">
+                  <div 
+                    className={`metric-chip ${filterType === 'all' ? 'active' : ''}`}
+                    onClick={() => setFilterType('all')}
+                  >
+                    <span className="metric-number">{leads.length}</span>
+                    <span className="metric-label">Total Consultas</span>
                   </div>
-                  <h4>No se encontraron consultas</h4>
-                  <p>
-                    {leads.length === 0 
-                      ? 'Aún no recibiste consultas o se borraron las anteriores. Podés enviar una prueba desde el formulario o generar un ejemplo.'
-                      : 'Ninguna consulta coincide con el filtro o búsqueda actual.'}
-                  </p>
-                  {leads.length === 0 && (
-                    <button type="button" onClick={handleCreateSampleLead} className="btn-admin-primary sm">
-                      <Sparkles size={15} />
-                      <span>Generar consulta de ejemplo</span>
+
+                  <div 
+                    className={`metric-chip alert ${filterType === 'new' ? 'active' : ''}`}
+                    onClick={() => setFilterType('new')}
+                  >
+                    <span className="metric-number">{newCount}</span>
+                    <span className="metric-label">Nuevas sin atender</span>
+                  </div>
+
+                  <div 
+                    className={`metric-chip ${filterType === 'contact' ? 'active' : ''}`}
+                    onClick={() => setFilterType('contact')}
+                  >
+                    <span className="metric-number">{contactCount}</span>
+                    <span className="metric-label">Formulario Web</span>
+                  </div>
+
+                  <div 
+                    className={`metric-chip ${filterType === 'simulator' ? 'active' : ''}`}
+                    onClick={() => setFilterType('simulator')}
+                  >
+                    <span className="metric-number">{simCount}</span>
+                    <span className="metric-label">Simulador 3-en-1</span>
+                  </div>
+                </div>
+
+                {/* Filter and Search Bar */}
+                <div className="admin-toolbar">
+                  <div className="admin-search-box">
+                    <Search size={16} className="search-icon" />
+                    <input 
+                      type="text" 
+                      placeholder="Buscar por cliente, negocio, teléfono o servicio..."
+                      value={searchQuery}
+                      onChange={e => setSearchQuery(e.target.value)}
+                      className="admin-search-input"
+                    />
+                    {searchQuery && (
+                      <button type="button" onClick={() => setSearchQuery('')} className="search-clear-btn">
+                        ×
+                      </button>
+                    )}
+                  </div>
+
+                  <div className="admin-filter-selectors">
+                    <select 
+                      value={statusFilter} 
+                      onChange={e => setStatusFilter(e.target.value)}
+                      className="admin-select-filter"
+                    >
+                      <option value="all">Todos los estados</option>
+                      <option value="nuevo">🟡 Nuevos</option>
+                      <option value="contactado">🟢 Contactados</option>
+                      <option value="negociacion">🔵 En negociación</option>
+                      <option value="cerrado">🟣 Cerrados</option>
+                    </select>
+
+                    <button 
+                      type="button" 
+                      onClick={loadLeads} 
+                      className="btn-admin-refresh" 
+                      title="Actualizar consultas"
+                    >
+                      <RefreshCw size={14} />
                     </button>
+                  </div>
+                </div>
+
+                {/* Leads List Body */}
+                <div className="admin-leads-list-scroll">
+                  {filteredLeads.length === 0 ? (
+                    <div className="admin-empty-state">
+                      <div className="empty-icon-wrap">
+                        <MessageSquare size={34} />
+                      </div>
+                      <h4>No se encontraron consultas</h4>
+                      <p>
+                        {leads.length === 0 
+                          ? 'Aún no recibiste consultas o se borraron las anteriores. Podés enviar una prueba desde el formulario o generar un ejemplo.'
+                          : 'Ninguna consulta coincide con el filtro o búsqueda actual.'}
+                      </p>
+                      {leads.length === 0 && (
+                        <button type="button" onClick={handleCreateSampleLead} className="btn-admin-primary sm">
+                          <Sparkles size={15} />
+                          <span>Generar consulta de ejemplo</span>
+                        </button>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="admin-leads-grid">
+                      {filteredLeads.map((lead) => (
+                        <div key={lead.id} className={`admin-lead-card status-${lead.status || 'nuevo'}`}>
+                          {/* Top Header of Card */}
+                          <div className="lead-card-header">
+                            <div className="lead-source-tag">
+                              <span className={`source-pill ${lead.sourceType}`}>
+                                {lead.sourceLabel}
+                              </span>
+                              <span className="lead-time">
+                                <Clock size={12} />
+                                {new Date(lead.date).toLocaleString('es-AR', {
+                                  day: '2-digit',
+                                  month: 'short',
+                                  hour: '2-digit',
+                                  minute: '2-digit'
+                                })}
+                              </span>
+                            </div>
+
+                            {/* Status Select */}
+                            <div className="lead-status-wrapper">
+                              <select 
+                                value={lead.status || 'nuevo'} 
+                                onChange={(e) => handleStatusChange(lead.id, e.target.value)}
+                                className={`lead-status-select ${lead.status || 'nuevo'}`}
+                              >
+                                <option value="nuevo">🟡 Nuevo</option>
+                                <option value="contactado">🟢 Contactado</option>
+                                <option value="negociacion">🔵 En negociación</option>
+                                <option value="cerrado">🟣 Cerrado</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          {/* Main Client Info */}
+                          <div className="lead-card-body">
+                            <div className="lead-client-row">
+                              <div className="client-avatar-sq">
+                                <User size={18} />
+                              </div>
+                              <div>
+                                <h4 className="client-name">{lead.name || 'Sin nombre especificado'}</h4>
+                                <div className="client-business">
+                                  <Building2 size={13} />
+                                  <span>{lead.businessName || 'Negocio no especificado'}</span>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Contact & Service */}
+                            <div className="lead-details-table">
+                              <div className="detail-row">
+                                <span className="detail-label">Teléfono / WA:</span>
+                                <strong className="detail-val">{lead.phone || 'No indicado'}</strong>
+                              </div>
+
+                              <div className="detail-row">
+                                <span className="detail-label">Servicio:</span>
+                                <span className="detail-badge-service">{lead.service || 'Interés general'}</span>
+                              </div>
+
+                              {lead.rubro && (
+                                <div className="detail-row">
+                                  <span className="detail-label">Rubro & Ciudad:</span>
+                                  <span className="detail-val">{lead.rubro} • {lead.city || ''}</span>
+                                </div>
+                              )}
+
+                              {lead.message && (
+                                <div className="detail-message-box">
+                                  <span className="message-label">Mensaje del cliente:</span>
+                                  <p className="message-content">"{lead.message}"</p>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+
+                          {/* Footer Actions of Card */}
+                          <div className="lead-card-actions">
+                            <button 
+                              type="button" 
+                              onClick={() => openWhatsApp(lead)} 
+                              className="btn-lead-wa"
+                              title="Contactar al cliente por WhatsApp de inmediato"
+                            >
+                              <MessageSquare size={15} />
+                              <span>Contactar por WhatsApp</span>
+                            </button>
+
+                            <a 
+                              href={getGmailComposeUrl(lead)} 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="btn-lead-gmail"
+                              title={`Abrir borrador en Gmail dirigido a ${NOTIFICATION_EMAIL}`}
+                            >
+                              <Mail size={14} />
+                              <span>Abrir en Gmail</span>
+                            </a>
+
+                            <button 
+                              type="button" 
+                              onClick={() => handleDeleteLead(lead.id)} 
+                              className="btn-lead-delete" 
+                              title="Eliminar consulta"
+                            >
+                              <Trash2 size={15} />
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   )}
                 </div>
-              ) : (
-                <div className="admin-leads-grid">
-                  {filteredLeads.map((lead) => (
-                    <div key={lead.id} className={`admin-lead-card status-${lead.status || 'nuevo'}`}>
-                      {/* Top Header of Card */}
-                      <div className="lead-card-header">
-                        <div className="lead-source-tag">
-                          <span className={`source-pill ${lead.sourceType}`}>
-                            {lead.sourceLabel}
-                          </span>
-                          <span className="lead-time">
-                            <Clock size={12} />
-                            {new Date(lead.date).toLocaleString('es-AR', {
-                              day: '2-digit',
-                              month: 'short',
-                              hour: '2-digit',
-                              minute: '2-digit'
-                            })}
-                          </span>
-                        </div>
+              </>
+            )}
 
-                        {/* Status Select */}
-                        <div className="lead-status-wrapper">
-                          <select 
-                            value={lead.status || 'nuevo'} 
-                            onChange={(e) => handleStatusChange(lead.id, e.target.value)}
-                            className={`lead-status-select ${lead.status || 'nuevo'}`}
-                          >
-                            <option value="nuevo">🟡 Nuevo</option>
-                            <option value="contactado">🟢 Contactado</option>
-                            <option value="negociacion">🔵 En negociación</option>
-                            <option value="cerrado">🟣 Cerrado</option>
-                          </select>
+            {/* TAB 2: TRAFFIC & VISITOR ANALYTICS */}
+            {activeTab === 'traffic' && (
+              <div className="admin-traffic-view">
+                {/* Traffic KPI Metrics Bar */}
+                <div className="admin-traffic-kpis">
+                  <div className="traffic-kpi-card">
+                    <div className="kpi-icon-circle blue">
+                      <Eye size={20} />
+                    </div>
+                    <div className="kpi-info">
+                      <span className="kpi-num">{visitorStats.totalVisits}</span>
+                      <span className="kpi-tag">Visitas Totales</span>
+                      <small className="kpi-subtext">{visitorStats.totalPageviews} vistas de página</small>
+                    </div>
+                  </div>
+
+                  <div className="traffic-kpi-card">
+                    <div className="kpi-icon-circle purple">
+                      <Users size={20} />
+                    </div>
+                    <div className="kpi-info">
+                      <span className="kpi-num">{visitorStats.uniqueVisitors}</span>
+                      <span className="kpi-tag">Visitantes Únicos</span>
+                      <small className="kpi-subtext">Navegadores distintos</small>
+                    </div>
+                  </div>
+
+                  <div className="traffic-kpi-card highlight">
+                    <div className="kpi-icon-circle gold">
+                      <CalendarDays size={20} />
+                    </div>
+                    <div className="kpi-info">
+                      <span className="kpi-num">{visitorStats.todayVisits}</span>
+                      <span className="kpi-tag">Visitas de Hoy</span>
+                      <small className="kpi-subtext">Actividad en tiempo real</small>
+                    </div>
+                  </div>
+
+                  <div className="traffic-kpi-card">
+                    <div className="kpi-icon-circle green">
+                      <TrendingUp size={20} />
+                    </div>
+                    <div className="kpi-info">
+                      <span className="kpi-num">{visitorStats.conversionRate}%</span>
+                      <span className="kpi-tag">Tasa de Conversión</span>
+                      <small className="kpi-subtext">{visitorStats.totalLeadsCount} consultas generadas</small>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 7-Days Chart Section */}
+                <div className="traffic-chart-section">
+                  <div className="chart-header-row">
+                    <div>
+                      <h3 className="chart-title">Evolución de Visitas (Últimos 7 días)</h3>
+                      <p className="chart-subtitle">Registro diario de ingresos a la web de Primera Cuadra</p>
+                    </div>
+                    <div className="chart-badge">
+                      <span>Total últimos 7 días: <strong>{visitorStats.last7Days.reduce((acc, d) => acc + d.visits, 0)}</strong></span>
+                    </div>
+                  </div>
+
+                  <div className="traffic-bars-container">
+                    {visitorStats.last7Days.map((d, index) => {
+                      const maxVisits = Math.max(...visitorStats.last7Days.map(x => x.visits), 1);
+                      const heightPercent = d.visits > 0 
+                        ? Math.max(Math.round((d.visits / maxVisits) * 100), 12) 
+                        : 6;
+                      const isToday = index === visitorStats.last7Days.length - 1;
+
+                      return (
+                        <div key={d.date} className={`traffic-bar-col ${isToday ? 'today' : ''}`}>
+                          <span className="bar-count-tag">{d.visits}</span>
+                          <div className="bar-track">
+                            <div 
+                              className="bar-fill" 
+                              style={{ height: `${heightPercent}%` }}
+                              title={`${d.visits} visitas el ${d.fullDate}`}
+                            />
+                          </div>
+                          <span className="bar-day-name">{d.dayLabel}</span>
+                          <span className="bar-date-label">{d.fullDate}</span>
                         </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Devices & Sources Breakdown Row */}
+                <div className="traffic-breakdown-grid">
+                  {/* Card 1: Devices */}
+                  <div className="breakdown-card">
+                    <h4 className="breakdown-card-title">
+                      <Smartphone size={16} />
+                      <span>Dispositivos de Entrada</span>
+                    </h4>
+                    
+                    <div className="device-progress-wrap">
+                      <div className="device-progress-bar">
+                        <div className="device-bar-segment mobile" style={{ width: `${visitorStats.mobilePct}%` }} />
+                        <div className="device-bar-segment desktop" style={{ width: `${visitorStats.desktopPct}%` }} />
                       </div>
-
-                      {/* Main Client Info */}
-                      <div className="lead-card-body">
-                        <div className="lead-client-row">
-                          <div className="client-avatar-sq">
-                            <User size={18} />
-                          </div>
-                          <div>
-                            <h4 className="client-name">{lead.name || 'Sin nombre especificado'}</h4>
-                            <div className="client-business">
-                              <Building2 size={13} />
-                              <span>{lead.businessName || 'Negocio no especificado'}</span>
-                            </div>
-                          </div>
+                      <div className="device-legend">
+                        <div className="legend-item">
+                          <span className="legend-dot mobile" />
+                          <Smartphone size={13} />
+                          <span>Celulares / Móvil</span>
+                          <strong>{visitorStats.mobilePct}%</strong>
                         </div>
-
-                        {/* Contact & Service */}
-                        <div className="lead-details-table">
-                          <div className="detail-row">
-                            <span className="detail-label">Teléfono / WA:</span>
-                            <strong className="detail-val">{lead.phone || 'No indicado'}</strong>
-                          </div>
-
-                          <div className="detail-row">
-                            <span className="detail-label">Servicio:</span>
-                            <span className="detail-badge-service">{lead.service || 'Interés general'}</span>
-                          </div>
-
-                          {lead.rubro && (
-                            <div className="detail-row">
-                              <span className="detail-label">Rubro & Ciudad:</span>
-                              <span className="detail-val">{lead.rubro} • {lead.city || ''}</span>
-                            </div>
-                          )}
-
-                          {lead.message && (
-                            <div className="detail-message-box">
-                              <span className="message-label">Mensaje del cliente:</span>
-                              <p className="message-content">"{lead.message}"</p>
-                            </div>
-                          )}
+                        <div className="legend-item">
+                          <span className="legend-dot desktop" />
+                          <Monitor size={13} />
+                          <span>Computadoras / PC</span>
+                          <strong>{visitorStats.desktopPct}%</strong>
                         </div>
-                      </div>
-
-                      {/* Footer Actions of Card */}
-                      <div className="lead-card-actions">
-                        <button 
-                          type="button" 
-                          onClick={() => openWhatsApp(lead)} 
-                          className="btn-lead-wa"
-                          title="Contactar al cliente por WhatsApp de inmediato"
-                        >
-                          <MessageSquare size={15} />
-                          <span>Contactar por WhatsApp</span>
-                        </button>
-
-                        <a 
-                          href={getGmailComposeUrl(lead)} 
-                          target="_blank" 
-                          rel="noopener noreferrer" 
-                          className="btn-lead-gmail"
-                          title={`Abrir borrador en Gmail dirigido a ${NOTIFICATION_EMAIL}`}
-                        >
-                          <Mail size={14} />
-                          <span>Abrir en Gmail</span>
-                        </a>
-
-                        <button 
-                          type="button" 
-                          onClick={() => handleDeleteLead(lead.id)} 
-                          className="btn-lead-delete" 
-                          title="Eliminar consulta"
-                        >
-                          <Trash2 size={15} />
-                        </button>
                       </div>
                     </div>
-                  ))}
+                  </div>
+
+                  {/* Card 2: Sources */}
+                  <div className="breakdown-card">
+                    <h4 className="breakdown-card-title">
+                      <Globe2 size={16} />
+                      <span>Fuentes de Tráfico</span>
+                    </h4>
+
+                    <div className="sources-list">
+                      <div className="source-row">
+                        <span className="source-name">🌐 Acceso Directo / URL</span>
+                        <span className="source-badge">{visitorStats.sources.direct || 1} visitas</span>
+                      </div>
+                      <div className="source-row">
+                        <span className="source-name">💬 WhatsApp</span>
+                        <span className="source-badge">{visitorStats.sources.whatsapp || 0} visitas</span>
+                      </div>
+                      <div className="source-row">
+                        <span className="source-name">📸 Instagram / Redes</span>
+                        <span className="source-badge">{visitorStats.sources.instagram || 0} visitas</span>
+                      </div>
+                      <div className="source-row">
+                        <span className="source-name">🔍 Búsqueda Google</span>
+                        <span className="source-badge">{visitorStats.sources.google || 0} visitas</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              )}
-            </div>
+
+                {/* Traffic Controls Row */}
+                <div className="traffic-controls-footer">
+                  <div className="traffic-note">
+                    <span>⚡ El contador funciona en tiempo real. Cada persona que abre la web incrementa el registro.</span>
+                  </div>
+                  <div className="traffic-action-buttons">
+                    <button 
+                      type="button" 
+                      onClick={() => setVisitorStats(getVisitorDashboardStats())} 
+                      className="btn-admin-header-action"
+                    >
+                      <RefreshCw size={13} />
+                      <span>Actualizar Métricas</span>
+                    </button>
+                    <button 
+                      type="button" 
+                      onClick={handleResetAnalytics} 
+                      className="btn-admin-cancel"
+                      style={{ padding: '8px 14px', fontSize: '0.8rem' }}
+                    >
+                      Reiniciar Contador
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Bottom Footer Info */}
             <div className="admin-dashboard-footer">
               <div className="footer-info-text">
-                <span>Las consultas quedan registradas localmente en el navegador y se envían copia a <strong>{NOTIFICATION_EMAIL}</strong>.</span>
+                {activeTab === 'leads' ? (
+                  <span>Las consultas quedan registradas localmente en el navegador y se envían copia a <strong>{NOTIFICATION_EMAIL}</strong>.</span>
+                ) : (
+                  <span>Estadísticas locales en tiempo real para <strong>Primera Cuadra</strong>.</span>
+                )}
               </div>
-              {leads.length > 0 && (
+              {activeTab === 'leads' && leads.length > 0 && (
                 <button type="button" onClick={handleClearAll} className="btn-admin-clear-all">
                   <Trash2 size={13} />
                   <span>Borrar historial completo</span>

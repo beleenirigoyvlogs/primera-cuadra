@@ -10301,6 +10301,433 @@ html.dark .sim-btn-close-modal-link:hover {
   transform: translateY(-1px);
 }
 
+/* Live Traffic Header Pill */
+.admin-traffic-live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #93c5fd;
+  padding: 3px 9px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-left: 6px;
+}
+
+.admin-traffic-live-pill:hover {
+  background: rgba(59, 130, 246, 0.25);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Admin Navigation Tabs */
+.admin-nav-tabs {
+  display: flex;
+  background: #100E19;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0 24px;
+  gap: 8px;
+}
+
+.admin-nav-tab {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #a1a0b0;
+  padding: 13px 16px;
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.admin-nav-tab:hover {
+  color: #ffffff;
+}
+
+.admin-nav-tab.active {
+  color: #ffffff;
+  border-bottom-color: #673DE6;
+  background: rgba(103, 61, 230, 0.08);
+}
+
+.tab-badge-new {
+  background: #f59e0b;
+  color: #0b141a;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.live-visitor-pill {
+  background: rgba(16, 185, 129, 0.18);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #34d399;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+}
+
+/* ==========================================================================
+   Traffic & Visitor Analytics Tab View
+   ========================================================================== */
+
+.admin-traffic-view {
+  padding: 20px 24px;
+  overflow-y: auto;
+  max-height: 52vh;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* 4 KPI Cards */
+.admin-traffic-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.traffic-kpi-card {
+  background: #1A1726;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: all 0.2s ease;
+}
+
+.traffic-kpi-card:hover {
+  border-color: rgba(167, 139, 250, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.traffic-kpi-card.highlight {
+  border-color: rgba(245, 158, 11, 0.35);
+  background: linear-gradient(135deg, #1C182B 0%, #251D33 100%);
+}
+
+.kpi-icon-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.kpi-icon-circle.blue {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.kpi-icon-circle.purple {
+  background: rgba(147, 51, 234, 0.15);
+  color: #c084fc;
+  border: 1px solid rgba(147, 51, 234, 0.25);
+}
+
+.kpi-icon-circle.gold {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.kpi-icon-circle.green {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.traffic-kpi-card .kpi-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.traffic-kpi-card .kpi-num {
+  font-family: var(--font-heading);
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+}
+
+.traffic-kpi-card .kpi-tag {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #c4b5fd;
+  margin-top: 2px;
+}
+
+.traffic-kpi-card .kpi-subtext {
+  font-size: 0.72rem;
+  color: #a1a0b0;
+  margin-top: 2px;
+}
+
+/* 7 Days Bar Chart Card */
+.traffic-chart-section {
+  background: #1A1726;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-xl);
+  padding: 20px 22px;
+}
+
+.chart-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.chart-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.chart-subtitle {
+  font-size: 0.8rem;
+  color: #a1a0b0;
+  margin-top: 2px;
+}
+
+.chart-badge {
+  background: #141120;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  color: #c4b5fd;
+}
+
+.traffic-bars-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px;
+  height: 160px;
+  padding: 10px 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.traffic-bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.bar-count-tag {
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: #c4b5fd;
+  opacity: 0.9;
+}
+
+.traffic-bar-col.today .bar-count-tag {
+  color: #34d399;
+}
+
+.bar-track {
+  width: 100%;
+  max-width: 40px;
+  flex: 1;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.bar-fill {
+  width: 100%;
+  background: linear-gradient(to top, #673DE6 0%, #A78BFA 100%);
+  border-radius: 6px 6px 0 0;
+  transition: height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 12px rgba(103, 61, 230, 0.3);
+}
+
+.traffic-bar-col.today .bar-fill {
+  background: linear-gradient(to top, #059669 0%, #34D399 100%);
+  box-shadow: 0 0 16px rgba(52, 211, 153, 0.4);
+}
+
+.bar-day-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.traffic-bar-col.today .bar-day-name {
+  color: #34d399;
+  font-weight: 800;
+}
+
+.bar-date-label {
+  font-size: 0.68rem;
+  color: #71717a;
+}
+
+/* Breakdown Grid */
+.traffic-breakdown-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.breakdown-card {
+  background: #1A1726;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+}
+
+.breakdown-card-title {
+  font-family: var(--font-heading);
+  font-size: 0.94rem;
+  font-weight: 800;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.device-progress-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.device-progress-bar {
+  width: 100%;
+  height: 12px;
+  background: #141120;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  display: flex;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.device-bar-segment.mobile {
+  background: linear-gradient(90deg, #673DE6, #a855f7);
+  transition: width 0.5s ease;
+}
+
+.device-bar-segment.desktop {
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  transition: width 0.5s ease;
+}
+
+.device-legend {
+  display: flex;
+  justify-content: space-around;
+  gap: 12px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: #a1a0b0;
+}
+
+.legend-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.legend-dot.mobile { background: #a855f7; }
+.legend-dot.desktop { background: #3b82f6; }
+
+.legend-item strong {
+  color: #ffffff;
+  font-size: 0.88rem;
+  margin-left: 4px;
+}
+
+/* Sources list */
+.sources-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.source-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: #141120;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.8rem;
+}
+
+.source-name {
+  color: #f1f0f5;
+  font-weight: 600;
+}
+
+.source-badge {
+  background: rgba(167, 139, 250, 0.15);
+  color: #c4b5fd;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.74rem;
+}
+
+/* Traffic Controls Footer */
+.traffic-controls-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: #141120;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.traffic-note {
+  font-size: 0.76rem;
+  color: #a1a0b0;
+}
+
+.traffic-action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 /* Mobile Adjustments for Admin Modal */
 @media (max-width: 768px) {
   .admin-modal-backdrop {
