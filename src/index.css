@@ -10196,6 +10196,111 @@ html.dark .sim-btn-close-modal-link:hover {
   border-color: #ef4444;
 }
 
+/* Settings Drawer */
+.admin-settings-drawer {
+  background: #181524;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 18px 24px;
+  animation: adminFadeIn 0.2s ease-out;
+}
+
+.admin-settings-box {
+  background: #110F1C;
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+}
+
+.admin-settings-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.admin-settings-title h4 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-settings-desc {
+  font-size: 0.82rem;
+  color: #a1a0b0;
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+
+.admin-key-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.admin-key-input {
+  flex: 1;
+  min-width: 260px;
+  background: #1C192B;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  padding: 9px 14px;
+  border-radius: var(--radius-md);
+  font-size: 0.84rem;
+  font-family: monospace;
+}
+
+.admin-key-input:focus {
+  outline: none;
+  border-color: #A78BFA;
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.2);
+}
+
+.btn-get-key-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #c4b5fd;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: color 0.15s ease;
+}
+
+.btn-get-key-link:hover {
+  color: #ffffff;
+}
+
+/* Gmail Compose Button */
+.btn-lead-gmail {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  color: #fca5a5;
+  padding: 9px 14px;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-lead-gmail:hover {
+  background: rgba(239, 68, 68, 0.22);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
 /* Mobile Adjustments for Admin Modal */
 @media (max-width: 768px) {
   .admin-modal-backdrop {

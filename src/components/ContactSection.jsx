@@ -13,6 +13,7 @@ import {
   HelpCircle,
   Clock
 } from 'lucide-react';
+import { dispatchLeadEmail } from '../utils/emailDispatcher';
 
 export default function ContactSection() {
   const whatsappNumber = '5491128779641';
@@ -170,30 +171,11 @@ export default function ContactSection() {
         window.dispatchEvent(new CustomEvent('pc-new-lead', { detail: newLead }));
       }
 
-      // Send automated email notification to primeracuadraweb@gmail.com via FormSubmit
-      try {
-        await fetch('https://formsubmit.co/ajax/primeracuadraweb@gmail.com', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify({
-            _subject: `🔥 Nueva Consulta Web: ${formData.businessName} (${formData.name})`,
-            _template: 'table',
-            _captcha: 'false',
-            Nombre_Contacto: formData.name,
-            Nombre_Negocio: formData.businessName,
-            WhatsApp_Telefono: formData.phone,
-            Servicio_Requerido: formData.service,
-            Mensaje_Adicional: formData.message || 'Sin mensaje adicional',
-            Fecha_Envio: new Date().toLocaleString('es-AR', { timeZone: 'America/Argentina/Buenos_Aires' }),
-            Origen: 'Formulario de Contacto - Primera Cuadra'
-          })
-        });
-      } catch (emailErr) {
-        console.warn('Email dispatch warning (saved locally in admin):', emailErr);
-      }
+      // Send automated email notification to primeracuadraweb@gmail.com
+      dispatchLeadEmail({
+        ...newLead,
+        sourceLabel: 'Formulario Web'
+      }).catch(err => console.warn('Email dispatch notice:', err));
 
       // Realistic feedback delay
       await new Promise(resolve => setTimeout(resolve, 600));

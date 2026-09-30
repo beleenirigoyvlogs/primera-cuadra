@@ -20,12 +20,20 @@ import {
   ExternalLink,
   RefreshCw,
   SlidersHorizontal,
-  ChevronRight
+  ChevronRight,
+  Settings,
+  Key
 } from 'lucide-react';
+import { 
+  NOTIFICATION_EMAIL, 
+  getWeb3FormsKey, 
+  setWeb3FormsKey, 
+  sendTestEmail, 
+  getGmailComposeUrl 
+} from '../utils/emailDispatcher';
 
 export default function AdminLeadsModal({ isOpen, onClose }) {
   const DEFAULT_PIN = '1234';
-  const NOTIFICATION_EMAIL = 'primeracuadraweb@gmail.com';
 
   const [pinInput, setPinInput] = useState('');
   const [pinError, setPinError] = useState(false);
@@ -39,6 +47,9 @@ export default function AdminLeadsModal({ isOpen, onClose }) {
   const [statusFilter, setStatusFilter] = useState('all');
   const [isSendingTestEmail, setIsSendingTestEmail] = useState(false);
   const [testEmailStatus, setTestEmailStatus] = useState(null); // 'success', 'error'
+  const [testEmailMessage, setTestEmailMessage] = useState('');
+  const [showSettings, setShowSettings] = useState(false);
+  const [web3KeyInput, setWeb3KeyInput] = useState(() => getWeb3FormsKey());
 
   // Load leads from localStorage
   const loadLeads = () => {
@@ -193,37 +204,33 @@ export default function AdminLeadsModal({ isOpen, onClose }) {
     document.body.removeChild(link);
   };
 
+  // Save Web3Forms Key
+  const handleSaveWeb3Key = (e) => {
+    e.preventDefault();
+    setWeb3FormsKey(web3KeyInput);
+    setShowSettings(false);
+    setTestEmailStatus('success');
+    setTestEmailMessage('Clave de Web3Forms guardada. Podés probar el envío ahora con el botón "Probar Email".');
+  };
+
   // Test Email to primeracuadraweb@gmail.com
   const handleSendTestEmail = async () => {
     setIsSendingTestEmail(true);
     setTestEmailStatus(null);
+    setTestEmailMessage('');
 
     try {
-      const response = await fetch(`https://formsubmit.co/ajax/${NOTIFICATION_EMAIL}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          _subject: '✅ Prueba de Conexión de Email - Primera Cuadra',
-          _template: 'table',
-          _captcha: 'false',
-          Estado: 'Conexión verificada exitosamente',
-          Destino: NOTIFICATION_EMAIL,
-          Fecha_Prueba: new Date().toLocaleString('es-AR', { timeZone: 'America/Argentina/Buenos_Aires' }),
-          Nota: 'Si recibiste este correo, significa que el sistema de recepción de consultas de Primera Cuadra está funcionando perfectamente.'
-        })
-      });
-
-      if (response.ok) {
+      const result = await sendTestEmail();
+      if (result.success) {
         setTestEmailStatus('success');
+        setTestEmailMessage(`¡Correo de prueba despachado con éxito mediante ${result.provider} a ${NOTIFICATION_EMAIL}! Revisá tu bandeja de entrada o spam.`);
       } else {
         setTestEmailStatus('error');
+        setTestEmailMessage(result.error || 'Ocurrió un error al despachar el correo.');
       }
     } catch (err) {
-      console.error('Error sending test email:', err);
       setTestEmailStatus('error');
+      setTestEmailMessage(err.message || 'Error de conexión.');
     } finally {
       setIsSendingTestEmail(false);
     }
@@ -361,6 +368,16 @@ export default function AdminLeadsModal({ isOpen, onClose }) {
               <div className="admin-header-controls">
                 <button 
                   type="button" 
+                  onClick={() => setShowSettings(!showSettings)} 
+                  className={`btn-admin-header-action ${showSettings ? 'active' : ''}`}
+                  title="Configurar entrega de correos (Web3Forms)"
+                >
+                  <Settings size={14} />
+                  <span>Configurar Mail</span>
+                </button>
+
+                <button 
+                  type="button" 
                   onClick={handleSendTestEmail} 
                   disabled={isSendingTestEmail}
                   className="btn-admin-header-action"
@@ -400,24 +417,74 @@ export default function AdminLeadsModal({ isOpen, onClose }) {
               </div>
             </div>
 
+            {/* Email Settings Drawer */}
+            {showSettings && (
+              <div className="admin-settings-drawer">
+                <div className="admin-settings-box">
+                  <div className="admin-settings-title">
+                    <h4>
+                      <Key size={16} />
+                      <span>Conexión de Correo Directo a {NOTIFICATION_EMAIL}</span>
+                    </h4>
+                    <button type="button" onClick={() => setShowSettings(false)} className="alert-close-btn">×</button>
+                  </div>
+                  <p className="admin-settings-desc">
+                    El servicio por defecto (FormSubmit.co) puede sufrir caídas temporales de sus servidores (Error 500). 
+                    Para garantizar que <strong>todas las consultas lleguen 100% a tu casilla</strong>, podés ingresar una clave gratuita de <strong>Web3Forms</strong> (toma 10 segundos).
+                  </p>
+                  <form onSubmit={handleSaveWeb3Key} className="admin-key-form">
+                    <input 
+                      type="text" 
+                      placeholder="Pegá tu Access Key de Web3Forms (ej: a1b2c3d4-e5f6...)"
+                      value={web3KeyInput}
+                      onChange={(e) => setWeb3KeyInput(e.target.value)}
+                      className="admin-key-input"
+                    />
+                    <button type="submit" className="btn-admin-primary sm">
+                      Guardar Clave
+                    </button>
+                    {web3KeyInput && (
+                      <button 
+                        type="button" 
+                        onClick={() => { setWeb3KeyInput(''); setWeb3FormsKey(''); }}
+                        className="btn-admin-cancel"
+                        style={{ padding: '8px 12px', fontSize: '0.8rem' }}
+                      >
+                        Quitar clave
+                      </button>
+                    )}
+                  </form>
+                  <a 
+                    href="https://web3forms.com/" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="btn-get-key-link"
+                  >
+                    <span>👉 Obtené tu clave gratis ingresando tu correo en Web3Forms.com (sin registro)</span>
+                    <ExternalLink size={12} />
+                  </a>
+                </div>
+              </div>
+            )}
+
             {/* Test Email Alert Notification Banner */}
             {testEmailStatus === 'success' && (
               <div className="admin-alert-banner success">
                 <CheckCircle2 size={16} />
-                <span>
-                  ¡Correo de prueba enviado con éxito a <strong>{NOTIFICATION_EMAIL}</strong>! 
-                  Revisá tu bandeja de entrada (o Spam en el primer envío).
-                </span>
+                <span>{testEmailMessage}</span>
                 <button type="button" onClick={() => setTestEmailStatus(null)} className="alert-close-btn">×</button>
               </div>
             )}
 
             {testEmailStatus === 'error' && (
               <div className="admin-alert-banner error">
-                <AlertCircle size={16} />
-                <span>
-                  Ocurrió un error al despachar el correo de prueba. Verificá tu conexión a Internet.
-                </span>
+                <AlertCircle size={16} style={{ flexShrink: 0 }} />
+                <div style={{ flex: 1 }}>
+                  <strong>Aviso de Entrega:</strong> {testEmailMessage}
+                  <div style={{ marginTop: '6px', fontSize: '0.8rem' }}>
+                    💡 <em>Tip: Podés abrir y enviar la consulta directamente a tu casilla haciendo clic en el botón <strong>"Abrir en Gmail"</strong> en cada ficha, o cargar tu clave gratuita de Web3Forms.</em>
+                  </div>
+                </div>
                 <button type="button" onClick={() => setTestEmailStatus(null)} className="alert-close-btn">×</button>
               </div>
             )}
@@ -609,6 +676,17 @@ export default function AdminLeadsModal({ isOpen, onClose }) {
                           <MessageSquare size={15} />
                           <span>Contactar por WhatsApp</span>
                         </button>
+
+                        <a 
+                          href={getGmailComposeUrl(lead)} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="btn-lead-gmail"
+                          title={`Abrir borrador en Gmail dirigido a ${NOTIFICATION_EMAIL}`}
+                        >
+                          <Mail size={14} />
+                          <span>Abrir en Gmail</span>
+                        </a>
 
                         <button 
                           type="button" 

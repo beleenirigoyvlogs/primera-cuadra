@@ -26,6 +26,7 @@ import {
   MessageCircle,
   Send
 } from 'lucide-react';
+import { dispatchLeadEmail } from '../utils/emailDispatcher';
 
 // Comprehensive Rubro Templates with authentic, high-res photos & industry-specific catalogs
 const RUBRO_TEMPLATES = {
@@ -482,22 +483,11 @@ export default function TripodMockup({ niche }) {
       }
 
       // Email notification to primeracuadraweb@gmail.com
-      fetch('https://formsubmit.co/ajax/primeracuadraweb@gmail.com', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          _subject: `⚡ Solicitud de Propuesta (Simulador): ${leadPayload.businessName} (${leadPayload.name})`,
-          _template: 'table',
-          _captcha: 'false',
-          Nombre: leadPayload.name,
-          Negocio: leadPayload.businessName,
-          Rubro: leadPayload.rubro,
-          Ciudad: leadPayload.city,
-          WhatsApp: leadPayload.whatsapp,
-          Dominio_Sugerido: leadPayload.domain,
-          Fecha: new Date().toLocaleString('es-AR', { timeZone: 'America/Argentina/Buenos_Aires' }),
-          Origen: 'Simulador 3-en-1 - Primera Cuadra'
-        })
+      dispatchLeadEmail({
+        ...leadPayload,
+        sourceLabel: 'Simulador 3-en-1',
+        phone: leadPayload.whatsapp,
+        service: `Pack ${leadPayload.rubro} (${leadPayload.city})`
       }).catch(() => {});
     } catch (err) {
       // Storage failed silently
