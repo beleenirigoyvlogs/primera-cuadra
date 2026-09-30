@@ -7,7 +7,8 @@ import {
   Sparkles,
   MapPin,
   Globe,
-  Phone
+  Phone,
+  Lock
 } from 'lucide-react';
 
 function FacebookIcon({ size = 18, color = 'currentColor', className = '' }) {
@@ -26,7 +27,7 @@ function FacebookIcon({ size = 18, color = 'currentColor', className = '' }) {
   );
 }
 
-export default function Footer({ niche, onSelectNiche }) {
+export default function Footer({ niche, onSelectNiche, onOpenAdmin }) {
   const whatsappNumber = '5491128779641';
   const facebookUrl = 'https://www.facebook.com/profile.php?id=61594410424409';
   const currentYear = new Date().getFullYear();
@@ -247,6 +248,16 @@ export default function Footer({ niche, onSelectNiche }) {
           <div className="footer-bottom-trust">
             <CheckCircle2 size={15} className="text-emerald" />
             <span>Páginas web profesionales para negocios locales</span>
+            <button 
+              type="button" 
+              onClick={onOpenAdmin} 
+              className="footer-admin-discreet-btn"
+              title="Acceso restringido para el equipo de Primera Cuadra"
+              aria-label="Panel de gestión de consultas"
+            >
+              <Lock size={11} />
+              <span>Gestión</span>
+            </button>
           </div>
         </div>
       </div>

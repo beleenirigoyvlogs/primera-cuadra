@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import VisualJourneyFlow from './components/VisualJourneyFlow';
@@ -14,6 +14,7 @@ import ContactSection from './components/ContactSection';
 import FinalCtaSection from './components/FinalCtaSection';
 import Footer from './components/Footer';
 import WhatsAppFloatingBtn from './components/WhatsAppFloatingBtn';
+import AdminLeadsModal from './components/AdminLeadsModal';
 import { NICHES } from './data/nicheData';
 import { useScrollReveal } from './hooks/useScrollReveal';
 import { useMouseParallaxDots } from './hooks/useMouseParallaxDots';
@@ -22,7 +23,32 @@ export default function App() {
   useScrollReveal();
   useMouseParallaxDots();
   const [currentNiche, setCurrentNiche] = useState('peluqueria');
+  const [isAdminOpen, setIsAdminOpen] = useState(false);
   const niche = NICHES[currentNiche] || NICHES.peluqueria;
+
+  // Shortcuts: Ctrl+Shift+A, Alt+A or #admin in URL
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') || (e.altKey && e.key.toLowerCase() === 'a')) {
+        e.preventDefault();
+        setIsAdminOpen(prev => !prev);
+      }
+    };
+    const handleHash = () => {
+      if (window.location.hash === '#admin') {
+        setIsAdminOpen(true);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('hashchange', handleHash);
+    if (window.location.hash === '#admin') {
+      setIsAdminOpen(true);
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('hashchange', handleHash);
+    };
+  }, []);
 
   const handleSelectPreset = (nicheKey) => {
     if (NICHES[nicheKey]) {
@@ -74,10 +100,20 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <Footer niche={niche} onSelectNiche={setCurrentNiche} />
+      <Footer 
+        niche={niche} 
+        onSelectNiche={setCurrentNiche} 
+        onOpenAdmin={() => setIsAdminOpen(true)}
+      />
 
       {/* Persistent Floating WhatsApp Action Button */}
       <WhatsAppFloatingBtn niche={niche} />
+
+      {/* Hidden Admin Leads Panel Modal */}
+      <AdminLeadsModal 
+        isOpen={isAdminOpen} 
+        onClose={() => setIsAdminOpen(false)} 
+      />
     </div>
   );
 }

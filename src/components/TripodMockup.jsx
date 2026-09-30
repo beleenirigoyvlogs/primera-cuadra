@@ -475,6 +475,30 @@ export default function TripodMockup({ niche }) {
       const existingLeads = JSON.parse(localStorage.getItem('pc_simulator_leads') || '[]');
       existingLeads.unshift(leadPayload);
       localStorage.setItem('pc_simulator_leads', JSON.stringify(existingLeads));
+      
+      // Real-time admin event dispatch
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('pc-new-lead', { detail: leadPayload }));
+      }
+
+      // Email notification to primeracuadraweb@gmail.com
+      fetch('https://formsubmit.co/ajax/primeracuadraweb@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          _subject: `⚡ Solicitud de Propuesta (Simulador): ${leadPayload.businessName} (${leadPayload.name})`,
+          _template: 'table',
+          _captcha: 'false',
+          Nombre: leadPayload.name,
+          Negocio: leadPayload.businessName,
+          Rubro: leadPayload.rubro,
+          Ciudad: leadPayload.city,
+          WhatsApp: leadPayload.whatsapp,
+          Dominio_Sugerido: leadPayload.domain,
+          Fecha: new Date().toLocaleString('es-AR', { timeZone: 'America/Argentina/Buenos_Aires' }),
+          Origen: 'Simulador 3-en-1 - Primera Cuadra'
+        })
+      }).catch(() => {});
     } catch (err) {
       // Storage failed silently
     }

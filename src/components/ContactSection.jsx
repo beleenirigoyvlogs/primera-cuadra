@@ -159,13 +159,44 @@ export default function ContactSection() {
       const newLead = {
         ...formData,
         id: `lead_${Date.now()}`,
-        submittedAt: new Date().toISOString()
+        submittedAt: new Date().toISOString(),
+        status: 'nuevo'
       };
-      currentLeads.push(newLead);
+      currentLeads.unshift(newLead);
       localStorage.setItem('pc_contact_leads', JSON.stringify(currentLeads));
 
-      // Simulate realistic network feedback
-      await new Promise(resolve => setTimeout(resolve, 850));
+      // Dispatch event for real-time admin sync
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('pc-new-lead', { detail: newLead }));
+      }
+
+      // Send automated email notification to primeracuadraweb@gmail.com via FormSubmit
+      try {
+        await fetch('https://formsubmit.co/ajax/primeracuadraweb@gmail.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            _subject: `🔥 Nueva Consulta Web: ${formData.businessName} (${formData.name})`,
+            _template: 'table',
+            _captcha: 'false',
+            Nombre_Contacto: formData.name,
+            Nombre_Negocio: formData.businessName,
+            WhatsApp_Telefono: formData.phone,
+            Servicio_Requerido: formData.service,
+            Mensaje_Adicional: formData.message || 'Sin mensaje adicional',
+            Fecha_Envio: new Date().toLocaleString('es-AR', { timeZone: 'America/Argentina/Buenos_Aires' }),
+            Origen: 'Formulario de Contacto - Primera Cuadra'
+          })
+        });
+      } catch (emailErr) {
+        console.warn('Email dispatch warning (saved locally in admin):', emailErr);
+      }
+
+      // Realistic feedback delay
+      await new Promise(resolve => setTimeout(resolve, 600));
 
       // Trigger analytics
       trackEvent('form_submit', {
