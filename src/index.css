@@ -1397,7 +1397,7 @@ button {
 
 .street-comp-section {
   padding: 80px 0;
-  background: var(--bg-alt);
+  background: transparent;
 }
 
 .three-pillars-strip-agency {
@@ -2539,7 +2539,7 @@ button {
 
 .process-section-wrapper {
   padding: 80px 0;
-  background: var(--bg-alt);
+  background: transparent;
 }
 
 .process-steps-grid {
@@ -2691,7 +2691,7 @@ button {
 
 .calculator-section-wrapper {
   padding: 80px 0;
-  background: #ffffff;
+  background: transparent;
 }
 
 .calculator-card-container {
@@ -2835,7 +2835,7 @@ button {
 .faq-section-wrapper {
   padding: 92px 0 96px;
   background: transparent;
-  border-top: 1px solid var(--border-light);
+  border-top: none;
 }
 
 .faq-accordion-list {
@@ -3176,9 +3176,9 @@ button {
 
 .calculator-section-wrapper {
   padding: 84px 0;
-  background: var(--bg-alt-subtle);
-  border-top: 1px solid var(--border-light);
-  border-bottom: 1px solid var(--border-light);
+  background: transparent;
+  border-top: none;
+  border-bottom: none;
 }
 
 .calculator-card-container {
@@ -5836,7 +5836,7 @@ button {
 .demos-section-wrapper {
   padding: 92px 0 96px;
   background: transparent;
-  border-top: 1px solid var(--border-light);
+  border-top: none;
 }
 
 .demos-cards-grid {
