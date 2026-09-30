@@ -54,7 +54,17 @@ export default function FacebookFeedSection() {
           <div className="facebook-brand-card">
             <div className="fb-profile-header">
               <div className="fb-avatar-box">
-                <img src="/logo.jpg" alt="Primera Cuadra" className="fb-avatar-img" />
+                <picture className="fb-avatar-picture">
+                  <source srcSet="/logo.webp" type="image/webp" />
+                  <img 
+                    src="/logo.jpg" 
+                    alt="Primera Cuadra" 
+                    className="fb-avatar-img" 
+                    loading="lazy"
+                    width="44"
+                    height="44"
+                  />
+                </picture>
                 <div className="fb-badge-icon">
                   <FacebookIcon size={13} color="#ffffff" />
                 </div>

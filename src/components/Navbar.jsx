@@ -76,7 +76,18 @@ export default function Navbar() {
       <div className="container navbar-content">
         {/* Brand Logo */}
         <a href="#" className="brand-logo" onClick={() => setMobileMenuOpen(false)}>
-          <img src="/logo.jpg" alt="Logo Primera Cuadra" className="brand-logo-img" />
+          <picture className="brand-logo-picture">
+            <source srcSet="/logo.webp" type="image/webp" />
+            <img 
+              src="/logo.jpg" 
+              alt="Logo Primera Cuadra" 
+              className="brand-logo-img" 
+              loading="eager"
+              fetchpriority="high"
+              width="48"
+              height="48"
+            />
+          </picture>
           <div className="brand-title-wrap">
             <span className="brand-title-main">Primera <span>Cuadra</span></span>
             <span className="brand-title-tag">Páginas Web & Presencia Digital</span>

@@ -2045,6 +2045,13 @@ button {
   margin-bottom: 24px;
 }
 
+.web-hero-picture,
+.listing-hero-picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .web-hero-bg {
   width: 100%;
   height: 100%;
@@ -6231,6 +6238,21 @@ button {
   background: #18181b;
 }
 
+.demo-card-picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.brand-logo-picture,
+.footer-brand-logo-picture,
+.fb-avatar-picture {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
 .demo-card-img {
   width: 100%;
   height: 100%;
@@ -7232,6 +7254,212 @@ html.dark .pill-tab-item.active {
   background: #A78BFA !important;
   color: #0F0E17 !important;
   font-weight: 800 !important;
+}
+
+/* ==========================================================================
+   SIMULATOR INTERNAL MOCKUPS - DARK MODE THEME ADAPTATION
+   (Juanita Peluquería & Studio, Google Maps, WhatsApp Business)
+   ========================================================================== */
+
+/* 1. Web Mockup Browser Frame & Inner Body */
+html.dark .web-mockup-wrapper {
+  background: #1A1825 !important;
+  border: 1px solid rgba(167, 139, 250, 0.28) !important;
+  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.7), 0 0 24px rgba(167, 139, 250, 0.1) !important;
+}
+
+html.dark .web-mockup-wrapper .browser-bar {
+  background: #14121F !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .web-mockup-wrapper .browser-url-bar {
+  background: #1E1B2E !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #F1F0F5 !important;
+}
+
+html.dark .web-mockup-wrapper .browser-url-text {
+  color: #C4B5FD !important;
+}
+
+html.dark .web-mockup-wrapper .browser-ssl-badge {
+  color: #34D399 !important;
+}
+
+html.dark .web-preview-body {
+  background: #1A1825 !important;
+}
+
+html.dark .web-inner-navbar {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .web-inner-brand {
+  color: #F1F0F5 !important;
+}
+
+html.dark .web-inner-brand strong {
+  color: #F1F0F5 !important;
+}
+
+html.dark .web-inner-links {
+  color: #A1A0B0 !important;
+}
+
+html.dark .web-highlight-card {
+  background: #221F2E !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #E2E8F0 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+html.dark .web-highlight-card strong {
+  color: #FFFFFF !important;
+}
+
+/* 2. Google Maps Mockup Frame & Elements */
+html.dark .google-mockup-wrapper {
+  background: #1A1825 !important;
+  border: 1px solid rgba(167, 139, 250, 0.28) !important;
+  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.7), 0 0 24px rgba(167, 139, 250, 0.1) !important;
+}
+
+html.dark .google-search-bar {
+  background: #14121F !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+html.dark .search-query {
+  color: #F1F0F5 !important;
+}
+
+html.dark .search-geo {
+  color: #A1A0B0 !important;
+}
+
+html.dark .listing-verified-chip {
+  background: #221F2E !important;
+  color: #F1F0F5 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+}
+
+html.dark .listing-header-title h3 {
+  color: #F1F0F5 !important;
+}
+
+html.dark .listing-category {
+  color: #A1A0B0 !important;
+}
+
+html.dark .reviews-count {
+  color: #A1A0B0 !important;
+}
+
+html.dark .btn-g-action:not(.primary) {
+  background: #221F2E !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #F1F0F5 !important;
+}
+
+html.dark .listing-services-loaded h4 {
+  color: #F1F0F5 !important;
+}
+
+html.dark .listing-services-loaded .service-chip {
+  background: #221F2E !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #E2E8F0 !important;
+}
+
+html.dark .listing-sample-review {
+  background: #14121F !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .review-author {
+  color: #A1A0B0 !important;
+}
+
+html.dark .review-comment {
+  color: #E2E8F0 !important;
+}
+
+html.dark .owner-response-pill {
+  background: #1E1B2E !important;
+  color: #F1F0F5 !important;
+  border-left: 3px solid #A78BFA !important;
+}
+
+html.dark .owner-response-pill strong {
+  color: #C4B5FD !important;
+}
+
+/* 3. WhatsApp Business Phone Frame & Chat in Dark Mode */
+html.dark .wa-phone-frame {
+  background: #0B141A !important;
+  border-color: #0E0D14 !important;
+  box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.8), 0 0 24px rgba(167, 139, 250, 0.12) !important;
+}
+
+html.dark .phone-island {
+  background: #0E0D14 !important;
+}
+
+html.dark .wa-top-header {
+  background: #1F2C34 !important;
+  color: #E9EDEF !important;
+}
+
+html.dark .wa-chat-canvas {
+  background: #0B141A !important;
+}
+
+html.dark .wa-date-pill {
+  background: #182229 !important;
+  color: #8696A0 !important;
+}
+
+html.dark .wa-msg.incoming {
+  background: #202C33 !important;
+  color: #E9EDEF !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+html.dark .wa-msg.outgoing {
+  background: #005C4B !important;
+  color: #E9EDEF !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+html.dark .wa-msg-time {
+  color: #8696A0 !important;
+}
+
+html.dark .wa-catalog-bubble {
+  background: #1F2C34 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .catalog-header-meta {
+  color: #C4B5FD !important;
+}
+
+html.dark .wa-catalog-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .wa-item-name {
+  color: #E9EDEF !important;
+}
+
+html.dark .wa-item-desc {
+  color: #8696A0 !important;
+}
+
+html.dark .wa-item-price {
+  color: #25D366 !important;
 }
 
 /* 9. Industry Demos Cards */

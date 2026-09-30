@@ -23,7 +23,11 @@ export default function DemosSection({ onSelectPreset }) {
       category: 'Gastronomía',
       icon: Utensils,
       demoName: 'Pizzería & Ristorante Roma',
-      image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&auto=format&fit=crop&q=80',
+      imageWebp: '/images/demos/demo-gastronomia.webp',
+      imageJpg: '/images/demos/demo-gastronomia.jpg',
+      image: '/images/demos/demo-gastronomia.jpg',
+      width: 800,
+      height: 533,
       description: 'Ideal para pizzerías, cafeterías, hamburgueserías, bares y restaurantes.',
       webItems: 'Menú digital, fotos de especialidades y reservas sin comisiones',
       googleItems: 'Ficha optimizada en Google Maps con horarios y fotos del local',
@@ -35,7 +39,11 @@ export default function DemosSection({ onSelectPreset }) {
       category: 'Barbería & Estética',
       icon: Scissors,
       demoName: 'Studio & Barbería Urbana',
-      image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&auto=format&fit=crop&q=80',
+      imageWebp: '/images/demos/demo-barberia.webp',
+      imageJpg: '/images/demos/demo-barberia.jpg',
+      image: '/images/demos/demo-barberia.jpg',
+      width: 800,
+      height: 600,
       description: 'Pensado para peluquerías, salones de belleza, barberías y estética.',
       webItems: 'Catálogo de servicios (corte, color, tratamientos) con precios claros',
       googleItems: 'Perfil de Google con reseñas y botón directo para llegar al salón',
@@ -47,7 +55,11 @@ export default function DemosSection({ onSelectPreset }) {
       category: 'Taller & Servicios',
       icon: Wrench,
       demoName: 'Taller Mecánico Especializado',
-      image: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=800&auto=format&fit=crop&q=80',
+      imageWebp: '/images/demos/demo-taller.webp',
+      imageJpg: '/images/demos/demo-taller.jpg',
+      image: '/images/demos/demo-taller.jpg',
+      width: 800,
+      height: 600,
       description: 'Para talleres mecánicos, service técnico, colocación y profesionales de oficio.',
       webItems: 'Explicación clara de servicios, marcas atendidas y respaldo técnico',
       googleItems: 'Aparición destacada en búsquedas de auxilio y urgencias en la zona',
@@ -59,7 +71,11 @@ export default function DemosSection({ onSelectPreset }) {
       category: 'Comercio Local',
       icon: ShoppingBag,
       demoName: 'Tienda & Bazar de Diseño',
-      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&auto=format&fit=crop&q=80',
+      imageWebp: '/images/demos/demo-comercio.webp',
+      imageJpg: '/images/demos/demo-comercio.jpg',
+      image: '/images/demos/demo-comercio.jpg',
+      width: 800,
+      height: 534,
       description: 'Para locales a la calle, indumentaria, ferreterías, mueblerías y bazares.',
       webItems: 'Vidriera online con productos destacados, promociones y formas de pago',
       googleItems: 'Ubicación exacta, fotos de vidriera y horarios de atención al público',
@@ -71,7 +87,11 @@ export default function DemosSection({ onSelectPreset }) {
       category: 'Náutica & Guarderías',
       icon: Anchor,
       demoName: 'Marina & Guardería Náutica Delta',
-      image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&auto=format&fit=crop&q=80',
+      imageWebp: '/images/demos/demo-nautica.webp',
+      imageJpg: '/images/demos/demo-nautica.jpg',
+      image: '/images/demos/demo-nautica.jpg',
+      width: 800,
+      height: 533,
       description: 'Para guarderías náuticas, astilleros, marinas y alquiler de embarcaciones.',
       webItems: 'Tarifario de cunas por eslora, bajadas con pluma y servicios fluviales',
       googleItems: 'Ficha en Google Maps con ubicación en río, fotos y accesos',
@@ -83,7 +103,11 @@ export default function DemosSection({ onSelectPreset }) {
       category: 'Servicios Profesionales',
       icon: Scale,
       demoName: 'Estudio Jurídico & Contable Morales',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&auto=format&fit=crop&q=80',
+      imageWebp: '/images/demos/demo-profesional.webp',
+      imageJpg: '/images/demos/demo-profesional.jpg',
+      image: '/images/demos/demo-profesional.jpg',
+      width: 800,
+      height: 534,
       description: 'Para estudios jurídicos, contadores, escribanías y consultoras.',
       webItems: 'Presentación de áreas de práctica, credenciales y agendamiento online',
       googleItems: 'Posicionamiento en búsquedas locales corporativas y asesoría',
@@ -127,7 +151,17 @@ export default function DemosSection({ onSelectPreset }) {
               <div key={d.id} className="demo-industry-card reveal">
                 {/* Image Wrap with Demo Badge */}
                 <div className="demo-card-image-wrap">
-                  <img src={d.image} alt={d.demoName} className="demo-card-img" />
+                  <picture className="demo-card-picture">
+                    <source srcSet={d.imageWebp} type="image/webp" />
+                    <img 
+                      src={d.imageJpg || d.image} 
+                      alt={d.demoName} 
+                      className="demo-card-img" 
+                      loading="lazy"
+                      width={d.width || 800}
+                      height={d.height || 533}
+                    />
+                  </picture>
                   <div className="demo-overlay-gradient"></div>
 
                   <span className="demo-strict-badge">

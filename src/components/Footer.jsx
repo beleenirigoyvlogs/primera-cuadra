@@ -79,11 +79,17 @@ export default function Footer({ niche, onSelectNiche }) {
           {/* COLUMNA 1: MARCA */}
           <div className="footer-col footer-col-brand">
             <a href="#" className="footer-brand-header" aria-label="Ir al inicio de Primera Cuadra">
-              <img 
-                src="/logo.jpg" 
-                alt="Logo Primera Cuadra" 
-                className="footer-brand-logo-img" 
-              />
+              <picture className="footer-brand-logo-picture">
+                <source srcSet="/logo.webp" type="image/webp" />
+                <img 
+                  src="/logo.jpg" 
+                  alt="Logo Primera Cuadra" 
+                  className="footer-brand-logo-img" 
+                  width="48"
+                  height="48"
+                  loading="lazy"
+                />
+              </picture>
               <div className="footer-brand-title-wrap">
                 <span className="footer-brand-name">Primera <span>Cuadra</span></span>
                 <span className="footer-brand-subtitle">Páginas Web & Presencia</span>

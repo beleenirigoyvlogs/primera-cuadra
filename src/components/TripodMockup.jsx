@@ -35,8 +35,12 @@ const RUBRO_TEMPLATES = {
     nameDefault: 'Juanita Peluquería & Studio',
     cityDefault: 'Palermo, Buenos Aires',
     categoryTag: 'Peluquería de Diseño & Salón de Belleza',
-    coverImage: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200&auto=format&fit=crop&q=80',
-    avatarImage: 'https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=400&auto=format&fit=crop&q=80',
+    coverImageWebp: '/images/mockups/peluqueria-cover.webp',
+    coverImageJpg: '/images/mockups/peluqueria-cover.jpg',
+    coverImage: '/images/mockups/peluqueria-cover.jpg',
+    avatarImageWebp: '/images/mockups/peluqueria-avatar.webp',
+    avatarImageJpg: '/images/mockups/peluqueria-avatar.jpg',
+    avatarImage: '/images/mockups/peluqueria-avatar.jpg',
     keywords: ['peluqueria', 'peluquería', 'barberia', 'barbería', 'barber', 'salon', 'salón', 'corte', 'peinado', 'color', 'mechas', 'balayage', 'estetica', 'estética', 'manicuria', 'uñas', 'juanita', 'belleza'],
     services: [
       'Corte de diseño femenino y masculino',
@@ -56,8 +60,12 @@ const RUBRO_TEMPLATES = {
     nameDefault: 'Guardería Náutica Delta',
     cityDefault: 'Tigre & San Fernando',
     categoryTag: 'Guardería Náutica & Alquiler de Embarcaciones',
-    coverImage: 'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=1200&auto=format&fit=crop&q=80',
-    avatarImage: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&auto=format&fit=crop&q=80',
+    coverImageWebp: '/images/mockups/nautica-cover.webp',
+    coverImageJpg: '/images/mockups/nautica-cover.jpg',
+    coverImage: '/images/mockups/nautica-cover.jpg',
+    avatarImageWebp: '/images/mockups/nautica-avatar.webp',
+    avatarImageJpg: '/images/mockups/nautica-avatar.jpg',
+    avatarImage: '/images/mockups/nautica-avatar.jpg',
     keywords: ['nautica', 'náutica', 'lancha', 'barco', 'bote', 'velero', 'guarderia', 'guardería', 'astillero', 'rio', 'delta', 'marina', 'cuna', 'embarcacion', 'delta'],
     services: [
       'Cunas techadas para lanchas y motos de agua',
@@ -77,8 +85,12 @@ const RUBRO_TEMPLATES = {
     nameDefault: 'Estudio Morales & Asociados',
     cityDefault: 'CABA & Centro',
     categoryTag: 'Estudio Jurídico & Asesoría Corporativa',
-    coverImage: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&auto=format&fit=crop&q=80',
-    avatarImage: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?w=400&auto=format&fit=crop&q=80',
+    coverImageWebp: '/images/mockups/profesional-cover.webp',
+    coverImageJpg: '/images/mockups/profesional-cover.jpg',
+    coverImage: '/images/mockups/profesional-cover.jpg',
+    avatarImageWebp: '/images/mockups/profesional-avatar.webp',
+    avatarImageJpg: '/images/mockups/profesional-avatar.jpg',
+    avatarImage: '/images/mockups/profesional-avatar.jpg',
     keywords: ['abogado', 'abogados', 'juridico', 'jurídico', 'derecho', 'estudio', 'contador', 'contable', 'escribania', 'escribanía', 'leyes', 'consultora', 'asociados'],
     services: [
       'Asesoramiento laboral y societario para empresas',
@@ -98,8 +110,12 @@ const RUBRO_TEMPLATES = {
     nameDefault: 'Taller Mecánico San Martín',
     cityDefault: 'San Martín, Bs As',
     categoryTag: 'Taller Mecánico Especializado & Servicios',
-    coverImage: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1200&auto=format&fit=crop&q=80',
-    avatarImage: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=400&auto=format&fit=crop&q=80',
+    coverImageWebp: '/images/mockups/mecanica-cover.webp',
+    coverImageJpg: '/images/mockups/mecanica-cover.jpg',
+    coverImage: '/images/mockups/mecanica-cover.jpg',
+    avatarImageWebp: '/images/mockups/mecanica-avatar.webp',
+    avatarImageJpg: '/images/mockups/mecanica-avatar.jpg',
+    avatarImage: '/images/mockups/mecanica-avatar.jpg',
     keywords: ['taller', 'mecanico', 'mecánico', 'mecanica', 'mecánica', 'auto', 'autos', 'chapa', 'pintura', 'frenos', 'inyeccion', 'inyección', 'gomeria', 'gomería', 'repuestos', 'motor'],
     services: [
       'Service oficial de aceite sintético y 4 filtros',
@@ -119,8 +135,12 @@ const RUBRO_TEMPLATES = {
     nameDefault: 'Centro Odontológico Belgrano',
     cityDefault: 'Belgrano, CABA',
     categoryTag: 'Clínica Odontológica & Consultorios Médicos',
-    coverImage: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200&auto=format&fit=crop&q=80',
-    avatarImage: 'https://images.unsplash.com/photo-1594824813575-b8a7c6f092fb?w=400&auto=format&fit=crop&q=80',
+    coverImageWebp: '/images/mockups/salud-cover.webp',
+    coverImageJpg: '/images/mockups/salud-cover.jpg',
+    coverImage: '/images/mockups/salud-cover.jpg',
+    avatarImageWebp: '/images/mockups/salud-avatar.webp',
+    avatarImageJpg: '/images/mockups/salud-avatar.jpg',
+    avatarImage: '/images/mockups/salud-avatar.jpg',
     keywords: ['odontolog', 'odontólogo', 'odontologa', 'dental', 'diente', 'dentista', 'clinica', 'clínica', 'medico', 'médico', 'salud', 'consultorio', 'kinesiolog', 'kinesiología', 'pediatra'],
     services: [
       'Ortodoncia invisible y brackets estéticos',
@@ -140,8 +160,12 @@ const RUBRO_TEMPLATES = {
     nameDefault: 'Pizzería & Ristorante Roma',
     cityDefault: 'Recoleta, Buenos Aires',
     categoryTag: 'Restaurante, Bar & Cafetería de Especialidad',
-    coverImage: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&auto=format&fit=crop&q=80',
-    avatarImage: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&auto=format&fit=crop&q=80',
+    coverImageWebp: '/images/mockups/gastronomia-cover.webp',
+    coverImageJpg: '/images/mockups/gastronomia-cover.jpg',
+    coverImage: '/images/mockups/gastronomia-cover.jpg',
+    avatarImageWebp: '/images/mockups/gastronomia-avatar.webp',
+    avatarImageJpg: '/images/mockups/gastronomia-avatar.jpg',
+    avatarImage: '/images/mockups/gastronomia-avatar.jpg',
     keywords: ['resto', 'restaurante', 'bar', 'cafe', 'café', 'cafeteria', 'cafetería', 'pizza', 'pizzeria', 'pizzería', 'hamburguesa', 'burger', 'comida', 'parrilla', 'panaderia', 'cerveceria', 'gourmet'],
     services: [
       'Almuerzos y cenas ejecutivas con menú del día',
@@ -161,8 +185,12 @@ const RUBRO_TEMPLATES = {
     nameDefault: 'Tienda & Bazar San Isidro',
     cityDefault: 'San Isidro, Buenos Aires',
     categoryTag: 'Comercio Local, Tienda & Distribución',
-    coverImage: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&auto=format&fit=crop&q=80',
-    avatarImage: 'https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=400&auto=format&fit=crop&q=80',
+    coverImageWebp: '/images/mockups/comercio-cover.webp',
+    coverImageJpg: '/images/mockups/comercio-cover.jpg',
+    coverImage: '/images/mockups/comercio-cover.jpg',
+    avatarImageWebp: '/images/mockups/comercio-avatar.webp',
+    avatarImageJpg: '/images/mockups/comercio-avatar.jpg',
+    avatarImage: '/images/mockups/comercio-avatar.jpg',
     keywords: ['tienda', 'local', 'comercio', 'ropa', 'indumentaria', 'zapateria', 'ferreteria', 'bazar', 'muebleria', 'libreria', 'electronica', 'calzado', 'negocio'],
     services: [
       'Venta minorista y mayorista con stock permanente',
@@ -182,8 +210,12 @@ const RUBRO_TEMPLATES = {
     nameDefault: 'Club Fitness & Cross Training',
     cityDefault: 'Vicente López, Bs As',
     categoryTag: 'Gimnasio, Entrenamiento & Crossfit',
-    coverImage: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&auto=format&fit=crop&q=80',
-    avatarImage: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=400&auto=format&fit=crop&q=80',
+    coverImageWebp: '/images/mockups/fitness-cover.webp',
+    coverImageJpg: '/images/mockups/fitness-cover.jpg',
+    coverImage: '/images/mockups/fitness-cover.jpg',
+    avatarImageWebp: '/images/mockups/fitness-avatar.webp',
+    avatarImageJpg: '/images/mockups/fitness-avatar.jpg',
+    avatarImage: '/images/mockups/fitness-avatar.jpg',
     keywords: ['gym', 'gimnasio', 'fitness', 'crossfit', 'entrenamiento', 'personal trainer', 'boxeo', 'yoga', 'pilates', 'pesas'],
     services: [
       'Sala de musculación y equipamiento de última generación',
@@ -745,11 +777,17 @@ export default function TripodMockup({ niche }) {
 
                 {/* Web Hero Banner */}
                 <div className="web-hero-banner">
-                  <img 
-                    src={currentTemplate.coverImage} 
-                    alt={brandName} 
-                    className="web-hero-bg" 
-                  />
+                  <picture className="web-hero-picture">
+                    <source srcSet={currentTemplate.coverImageWebp} type="image/webp" />
+                    <img 
+                      src={currentTemplate.coverImageJpg || currentTemplate.coverImage} 
+                      alt={brandName} 
+                      className="web-hero-bg" 
+                      loading="lazy"
+                      width="1200"
+                      height="800"
+                    />
+                  </picture>
                   <div className="web-hero-overlay">
                     <span className="web-pill-tag">{rubroTag.toUpperCase()} • {city.toUpperCase()}</span>
                     <h4>Bienvenido a {brandName}</h4>
@@ -809,11 +847,17 @@ export default function TripodMockup({ niche }) {
               <div className="google-listing-card">
                 {/* Photo Wrap */}
                 <div className="listing-hero-photo-wrap">
-                  <img 
-                    src={currentTemplate.coverImage} 
-                    alt={brandName} 
-                    className="listing-hero-img" 
-                  />
+                  <picture className="listing-hero-picture">
+                    <source srcSet={currentTemplate.coverImageWebp} type="image/webp" />
+                    <img 
+                      src={currentTemplate.coverImageJpg || currentTemplate.coverImage} 
+                      alt={brandName} 
+                      className="listing-hero-img" 
+                      loading="lazy"
+                      width="1200"
+                      height="800"
+                    />
+                  </picture>
                   <div className="listing-open-badge">
                     <span>● Abierto ahora · Horario actualizado</span>
                   </div>
@@ -909,7 +953,17 @@ export default function TripodMockup({ niche }) {
 
                 {/* WhatsApp Header */}
                 <div className="wa-top-header">
-                  <img src={currentTemplate.avatarImage} alt="Logo" className="wa-avatar-img" />
+                  <picture className="wa-avatar-picture">
+                    <source srcSet={currentTemplate.avatarImageWebp} type="image/webp" />
+                    <img 
+                      src={currentTemplate.avatarImageJpg || currentTemplate.avatarImage} 
+                      alt="Logo" 
+                      className="wa-avatar-img" 
+                      loading="lazy"
+                      width="40"
+                      height="40"
+                    />
+                  </picture>
                   <div className="wa-user-info">
                     <div className="wa-name-row">
                       <strong>{brandName}</strong>
