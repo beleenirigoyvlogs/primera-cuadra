@@ -55,13 +55,13 @@ export default function DigitalPresenceSection() {
     {
       num: '04',
       title: 'Desarrollo de aplicaciones móviles',
-      text: 'Creamos apps a medida para llevar tu negocio al celular.',
+      text: 'Creamos apps a medida para cualquier idea, proyecto o negocio en Android y iOS.',
       icon: Smartphone,
       accent: 'apps',
       features: [
-        'Apps a medida para Android y iOS',
-        'Turnos, catálogos o reservas según tu proyecto',
-        'Presupuesto personalizado para tu negocio'
+        'Desarrollo para Android y iOS',
+        'Cualquier idea, proyecto, startup o utilidad',
+        'Presupuesto personalizado según tu alcance'
       ],
       isAppCard: true
     }
@@ -80,7 +80,7 @@ export default function DigitalPresenceSection() {
             Una presencia digital <span className="highlight-purple">completa</span>
           </h2>
           <p className="section-subtitle">
-            No necesitás contratar múltiples proveedores distintos. Primera Cuadra integra tu página web, tu ficha de Google, tu WhatsApp Business y el desarrollo de tu aplicación móvil en soluciones coordinadas para tu negocio.
+            No necesitás contratar múltiples proveedores distintos. Primera Cuadra integra tu página web, tu ficha de Google, tu WhatsApp Business y el desarrollo de aplicaciones móviles a medida para cualquier idea, proyecto o negocio.
           </p>
 
           {/* Visual Connection Ribbon between the elements */}

@@ -73,7 +73,7 @@ export default function Hero() {
                 <ArrowRight size={18} />
               </a>
 
-              <a href="#demos" className="btn-hostinger-outline hero-btn-demo">
+              <a href="#demostracion-en-vivo" className="btn-hostinger-outline hero-btn-demo">
                 <Monitor size={17} />
                 <span>VER DEMOSTRACIÓN</span>
               </a>

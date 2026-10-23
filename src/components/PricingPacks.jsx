@@ -333,6 +333,10 @@ export default function PricingPacks({ niche }) {
               </li>
               <li className="plan-feature-item">
                 <Check size={18} className="feature-check-icon text-emerald" />
+                <span><strong>Catálogo digital con QR para mostrador</strong> (listo para imprimir y exhibir)</span>
+              </li>
+              <li className="plan-feature-item">
+                <Check size={18} className="feature-check-icon text-emerald" />
                 <span>Arqueo de caja diaria, cierres y balance de ventas</span>
               </li>
               <li className="plan-feature-item">
@@ -368,7 +372,7 @@ export default function PricingPacks({ niche }) {
             </div>
             <h4 className="pos-banner-title">¿Buscás únicamente el Software de Punto de Venta (POS) y Stock para tu local?</h4>
             <p className="pos-banner-desc">
-              Desarrollamos el sistema a la medida exacta de tu negocio: facturación express, control de stock con alertas de reposición, gestión de empleados por turno y cuenta corriente de clientes. Sin pagar abonos mensuales abusivos.
+              Desarrollamos el sistema a la medida exacta de tu negocio: facturación express, control de stock con alertas de reposición, gestión de empleados por turno, cuenta corriente de clientes y <strong>catálogo digital interactivo con código QR para mostrador</strong> (para que tus clientes escaneen y elijan desde su celular en tu local). Sin pagar abonos mensuales abusivos.
             </p>
           </div>
           <div className="pos-banner-right">

@@ -31,3 +31,5 @@ dist-ssr
 temp_*
 __pycache__/
 *.pyc
+
+.vercel

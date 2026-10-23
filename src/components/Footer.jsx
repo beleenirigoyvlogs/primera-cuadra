@@ -143,13 +143,8 @@ export default function Footer({ niche, onSelectNiche, onOpenAdmin }) {
                 </a>
               </li>
               <li>
-                <a href="#demos" className="footer-link">
-                  <span>Catálogo</span>
-                </a>
-              </li>
-              <li>
-                <a href="#demos" className="footer-link">
-                  <span>Demos</span>
+                <a href="#servicios" className="footer-link">
+                  <span>Catálogo Digital</span>
                 </a>
               </li>
               <li>

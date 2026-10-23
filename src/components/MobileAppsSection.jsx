@@ -2,54 +2,53 @@ import React from 'react';
 import { 
   Smartphone, 
   Sparkles, 
-  CheckCircle2, 
   ArrowRight, 
   MessageSquare, 
   ShieldCheck, 
   Layers, 
-  Calendar, 
-  ShoppingBag, 
-  Bell, 
-  TrendingUp,
-  Cpu,
-  Check
+  Cpu, 
+  Rocket, 
+  Globe2, 
+  Check,
+  Zap,
+  Code2
 } from 'lucide-react';
 
 export default function MobileAppsSection() {
   const defaultWhatsappNumber = '5491128779641';
   const whatsappAppMsg = encodeURIComponent(
-    'Hola, llegué desde Primera Cuadra y quiero consultar por el desarrollo de una aplicación móvil para mi negocio. ¿Podrían asesorarme y pasarme los valores?'
+    'Hola, llegué desde Primera Cuadra y quiero consultar por el desarrollo de una aplicación móvil. Tengo una idea/proyecto que me gustaría presupuestar. ¿Podrían asesorarme y pasarme los valores?'
   );
 
   const benefits = [
     {
-      title: 'Aplicaciones móviles para Android y iOS',
-      desc: 'Llegá a todos tus clientes con desarrollos adaptados a las plataformas móviles líderes del mercado.',
+      title: 'Desarrollo para Android y iOS',
+      desc: 'Tu aplicación lista y optimizada para las tiendas oficiales de Google Play y App Store.',
       icon: Smartphone,
       tag: 'Multiplataforma'
     },
     {
-      title: 'Diseño moderno, intuitivo y adaptado a tus usuarios',
-      desc: 'Interfaces visuales atractivas y de fácil navegación que reflejan fielmente la identidad de tu negocio.',
+      title: 'Apps de cualquier tipo, idea o temática',
+      desc: 'Creamos desde herramientas de utilidad y startups hasta apps de reservas, comunidades, gestión o entretenimiento.',
+      icon: Rocket,
+      tag: 'Cualquier Rubro'
+    },
+    {
+      title: 'Diseño UX/UI moderno, intuitivo y atractivo',
+      desc: 'Interfaces cuidadas al detalle para que la experiencia de uso sea fluida, rápida y disfrutable para tus usuarios.',
       icon: Layers,
-      tag: 'UX / UI'
+      tag: 'Diseño Pro'
     },
     {
-      title: 'Funcionalidades personalizadas según tu proyecto',
-      desc: 'Desarrollamos soluciones a la medida exacta de tus procesos comerciales y requerimientos específicos.',
+      title: 'Funcionalidades e integraciones avanzadas',
+      desc: 'Autenticación de usuarios, bases de datos en la nube, notificaciones push, pasarelas de pago y APIs a medida.',
       icon: Cpu,
-      tag: 'A medida'
+      tag: 'A Medida'
     },
     {
-      title: 'Integración de catálogos, reservas, turnos y servicios',
-      desc: 'Posibilidad de incorporar herramientas clave de gestión, atención al cliente y venta directa.',
-      icon: ShoppingBag,
-      tag: 'Integraciones'
-    },
-    {
-      title: 'Soluciones escalables que acompañan tu crecimiento',
-      desc: 'Estructura tecnológica sólida, preparada para incorporar nuevas opciones a medida que tu negocio evolucione.',
-      icon: TrendingUp,
+      title: 'Tecnología escalable preparada para crecer',
+      desc: 'Estructura modular y código limpio que te permite lanzar una primera versión y seguir expandiéndola en el tiempo.',
+      icon: Code2,
       tag: 'Escalable'
     }
   ];
@@ -64,16 +63,16 @@ export default function MobileAppsSection() {
         <div className="section-header-center reveal">
           <div className="section-kicker-tag apps-kicker">
             <Sparkles size={14} />
-            <span>NUEVO SERVICIO • TECNOLOGÍA A MEDIDA</span>
+            <span>DESARROLLO DE SOFTWARE • APPS EN GENERAL</span>
           </div>
 
           <h2 className="section-title">
-            Tu negocio también puede{' '}
-            <span className="highlight-purple">tener su propia app</span>
+            Desarrollamos la app que{' '}
+            <span className="highlight-purple">tenés en mente</span>
           </h2>
 
           <p className="section-subtitle">
-            Damos vida a tus ideas con aplicaciones móviles diseñadas para tu negocio. Desarrollamos soluciones a medida para que puedas ofrecer servicios, gestionar turnos, vender productos, conectar con tus clientes o crear nuevas experiencias digitales.
+            Damos vida a cualquier idea con aplicaciones móviles a medida para Android y iOS. Desarrollamos apps para todo tipo de proyectos: startups, utilidades, herramientas digitales, plataformas de gestión, servicios, comunidades o nuevas experiencias interactivas.
           </p>
         </div>
 
@@ -90,6 +89,9 @@ export default function MobileAppsSection() {
               <span className="platform-pill">
                 <span className="pill-dot ios"></span>
                 <span>iOS (App Store)</span>
+              </span>
+              <span className="platform-pill highlight">
+                <span>Cualquier idea o proyecto</span>
               </span>
               <span className="platform-pill highlight">
                 <span>100% a medida</span>
@@ -124,7 +126,7 @@ export default function MobileAppsSection() {
                 <span className="disclaimer-title">Presupuesto personalizado y transparente</span>
               </div>
               <p className="disclaimer-text">
-                Las funcionalidades, integraciones y características técnicas se definen de acuerdo con el alcance y los requisitos específicos de cada desarrollo. No publicamos tarifas fijas porque cada proyecto es único y presupuestamos a medida de lo que realmente necesitás.
+                Las funcionalidades, integraciones y características técnicas se definen de acuerdo con el alcance y los requisitos específicos de cada desarrollo. No publicamos tarifas fijas porque cada idea es única y presupuestamos a medida de lo que realmente necesitás.
               </p>
             </div>
 
@@ -153,11 +155,11 @@ export default function MobileAppsSection() {
               {/* Floating Accents */}
               <div className="phone-floating-badge badge-top">
                 <div className="badge-icon-wrap wa">
-                  <Bell size={14} />
+                  <Zap size={14} />
                 </div>
                 <div className="badge-content">
-                  <span className="badge-title">Notificaciones activas</span>
-                  <span className="badge-sub">Turnos y promociones en vivo</span>
+                  <span className="badge-title">Cualquier funcionalidad</span>
+                  <span className="badge-sub">Lógica a medida y bases de datos</span>
                 </div>
               </div>
 
@@ -166,8 +168,8 @@ export default function MobileAppsSection() {
                   <Check size={14} />
                 </div>
                 <div className="badge-content">
-                  <span className="badge-title">Para Android & iOS</span>
-                  <span className="badge-sub">Descarga directa en tiendas</span>
+                  <span className="badge-title">Android & iOS Ready</span>
+                  <span className="badge-sub">Desarrollo nativo o multiplataforma</span>
                 </div>
               </div>
 
@@ -194,66 +196,66 @@ export default function MobileAppsSection() {
                   {/* App Header */}
                   <div className="screen-app-header">
                     <div className="app-profile-wrap">
-                      <div className="app-avatar">PC</div>
+                      <div className="app-avatar">APP</div>
                       <div className="app-header-text">
-                        <span className="app-name">Tu Negocio App</span>
+                        <span className="app-name">Tu App a Medida</span>
                         <span className="app-status-badge">
-                          <span className="live-dot"></span> Abierto hoy
+                          <span className="live-dot"></span> Proyecto Activo
                         </span>
                       </div>
                     </div>
                     <div className="app-header-action">
-                      <Bell size={16} />
+                      <Sparkles size={15} />
                     </div>
                   </div>
 
                   {/* Dynamic Promo Banner */}
                   <div className="screen-hero-banner">
-                    <div className="banner-badge">APP EXCLUSIVA</div>
-                    <h4 className="banner-title">Reservá tu turno o comprá online</h4>
-                    <p className="banner-sub">Rápido, simple y directo desde tu celular.</p>
+                    <div className="banner-badge">TECNOLOGÍA A MEDIDA</div>
+                    <h4 className="banner-title">Cualquier idea, cualquier rubro</h4>
+                    <p className="banner-sub">Apps personalizadas para startups, proyectos y empresas.</p>
                   </div>
 
-                  {/* Quick Action Tiles */}
+                  {/* Modular Functional Tiles */}
                   <div className="screen-quick-actions">
                     <div className="quick-action-tile active">
-                      <Calendar size={18} />
-                      <span>Turnos</span>
+                      <Rocket size={17} />
+                      <span>Startups</span>
                     </div>
                     <div className="quick-action-tile">
-                      <ShoppingBag size={18} />
-                      <span>Catálogo</span>
+                      <Cpu size={17} />
+                      <span>Sistemas</span>
                     </div>
                     <div className="quick-action-tile">
-                      <MessageSquare size={18} />
-                      <span>Contacto</span>
+                      <Globe2 size={17} />
+                      <span>Comunidad</span>
                     </div>
                   </div>
 
-                  {/* Sample Module: Active Reservation / Service */}
+                  {/* Sample Module: Custom Feature Widget */}
                   <div className="screen-service-card">
                     <div className="service-card-top">
-                      <span className="service-tag">Turnos Online</span>
-                      <span className="service-state">Disponible</span>
+                      <span className="service-tag">Módulo a Medida</span>
+                      <span className="service-state">En la Nube</span>
                     </div>
-                    <h5 className="service-title">Gestión de citas & servicios</h5>
-                    <p className="service-desc">Seleccioná fecha, profesional o servicio en 3 toques.</p>
+                    <h5 className="service-title">Gestión, pagos y usuarios</h5>
+                    <p className="service-desc">Perfiles, sincronización en vivo, notificaciones y reportes.</p>
                     <div className="service-card-footer">
-                      <span className="service-chip">Lunes a Sábado</span>
-                      <span className="service-btn-mock">Reservar</span>
+                      <span className="service-chip">Android & iOS</span>
+                      <span className="service-btn-mock">Ver Demo</span>
                     </div>
                   </div>
 
-                  {/* Sample Mini Catalog Item */}
+                  {/* Sample Interactive Component */}
                   <div className="screen-catalog-item">
                     <div className="item-icon-box">
-                      <ShoppingBag size={16} />
+                      <Code2 size={16} />
                     </div>
                     <div className="item-details">
-                      <span className="item-title">Catálogo de productos</span>
-                      <span className="item-desc">Actualizaciones y pedidos en tiempo real</span>
+                      <span className="item-title">APIs & Base de Datos</span>
+                      <span className="item-desc">Infraestructura rápida, segura y escalable</span>
                     </div>
-                    <span className="item-add-btn">+</span>
+                    <span className="item-add-btn">✓</span>
                   </div>
 
                   {/* Bottom Navigation Mockup */}
@@ -263,12 +265,12 @@ export default function MobileAppsSection() {
                       <span>Inicio</span>
                     </div>
                     <div className="nav-tab">
-                      <Calendar size={14} />
-                      <span>Turnos</span>
+                      <Layers size={14} />
+                      <span>Módulos</span>
                     </div>
                     <div className="nav-tab">
-                      <ShoppingBag size={14} />
-                      <span>Catálogo</span>
+                      <Rocket size={14} />
+                      <span>Proyectos</span>
                     </div>
                   </div>
                 </div>

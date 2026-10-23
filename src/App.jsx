@@ -5,7 +5,6 @@ import VisualJourneyFlow from './components/VisualJourneyFlow';
 import DigitalPresenceSection from './components/DigitalPresenceSection';
 import BusinessSituationsSection from './components/BusinessSituationsSection';
 import SimulatorModal from './components/SimulatorModal';
-import DemosSection from './components/DemosSection';
 import ProcessSteps from './components/ProcessSteps';
 import MobileAppsSection from './components/MobileAppsSection';
 import PricingPacks from './components/PricingPacks';
@@ -127,13 +126,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* 7. Industry Demos: Así podría verse tu negocio (Gastronomía, Barbería, Taller, Comercio) */}
-        <DemosSection 
-          onSelectPreset={handleSelectPreset} 
-          onOpenSimulator={handleOpenSimulator}
-        />
-
-        {/* 8. Process Methodology: ¿Cómo trabajamos? 3 simples pasos */}
+        {/* 7. Process Methodology: ¿Cómo trabajamos? 3 simples pasos */}
         <ProcessSteps />
 
         {/* 9. Mobile App Development Section: Tu negocio también puede tener su propia app */}

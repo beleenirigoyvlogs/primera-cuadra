@@ -314,6 +314,7 @@ export const PACKS = [
     features: [
       { text: 'Sistema de Punto de Venta (POS) táctil para PC, tablet o celular', highlight: true },
       { text: 'Control de stock e inventario en tiempo real con alertas de reposición', highlight: true },
+      { text: 'Catálogo digital interactivo con código QR para mostrador (listo para exhibir)', highlight: true },
       { text: 'Gestión de empleados con roles y permisos (cajeros, admin, vendedores)', highlight: true },
       { text: 'Base de datos de clientes, historial de compras y cuenta corriente', highlight: true },
       { text: 'Arqueo de caja diaria, balance y reportes de ventas descargables', highlight: true },

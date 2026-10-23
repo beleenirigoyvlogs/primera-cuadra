@@ -67,7 +67,6 @@ export default function Navbar() {
     { label: 'Servicios', href: '#servicios' },
     { label: 'Apps Móviles', href: '#apps-moviles' },
     { label: 'Cómo funciona', href: '#como-funciona' },
-    { label: 'Demos', href: '#demos' },
     { label: 'Precios', href: '#precios' },
     { label: 'Preguntas', href: '#preguntas' }
   ];
