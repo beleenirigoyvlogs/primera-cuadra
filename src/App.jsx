@@ -88,11 +88,11 @@ export default function App() {
         {/* 2. Hero with Action-Oriented Headline, CTAs, Trust Badges & 3-in-1 Mockup */}
         <Hero />
 
+        {/* 2. Servicios Profesionales: Qué hacemos y qué ofrecemos */}
+        <DigitalPresenceSection />
+
         {/* 3. Customer Journey: Así te encuentra un nuevo cliente (Te busca -> Te conoce -> Te contacta) */}
         <VisualJourneyFlow />
-
-        {/* 4. Complete Digital Presence: Una presencia digital completa (01 Web -> 02 Google -> 03 WhatsApp -> 04 Apps) */}
-        <DigitalPresenceSection />
 
         {/* 5. Business Situations: ¿Tu negocio está en alguna de estas situaciones? */}
         <BusinessSituationsSection />

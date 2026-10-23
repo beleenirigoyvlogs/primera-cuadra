@@ -57,7 +57,7 @@ export default function VisualJourneyFlow() {
   ];
 
   return (
-    <section className="visual-journey-section" id="como-funciona">
+    <section className="visual-journey-section" id="recorrido">
       <div className="container">
         {/* Section Header */}
         <div className="section-header-center reveal">
