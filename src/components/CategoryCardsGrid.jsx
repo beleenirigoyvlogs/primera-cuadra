@@ -201,7 +201,12 @@ export default function CategoryCardsGrid({ currentNiche, onSelectNiche }) {
             </p>
           </div>
           <div className="guarantee-action">
-            <a href="#demostracion-en-vivo" className="guarantee-sim-btn">
+            <a 
+              href="/simulador" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="guarantee-sim-btn"
+            >
               <span>Probar en el simulador</span>
               <ArrowRight size={16} />
             </a>

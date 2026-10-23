@@ -73,9 +73,15 @@ export default function Hero() {
                 <ArrowRight size={18} />
               </a>
 
-              <a href="#demostracion-en-vivo" className="btn-hostinger-outline hero-btn-demo">
+              <a 
+                href="/simulador" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="btn-hostinger-outline hero-btn-demo"
+              >
                 <Monitor size={17} />
-                <span>VER DEMOSTRACIÓN</span>
+                <span>PROBAR SIMULADOR</span>
+                <ExternalLink size={14} />
               </a>
             </div>
 

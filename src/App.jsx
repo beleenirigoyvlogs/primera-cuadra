@@ -4,7 +4,7 @@ import Hero from './components/Hero';
 import VisualJourneyFlow from './components/VisualJourneyFlow';
 import DigitalPresenceSection from './components/DigitalPresenceSection';
 import BusinessSituationsSection from './components/BusinessSituationsSection';
-import SimulatorModal from './components/SimulatorModal';
+import SimulatorPage from './pages/SimulatorPage';
 import ProcessSteps from './components/ProcessSteps';
 import MobileAppsSection from './components/MobileAppsSection';
 import PricingPacks from './components/PricingPacks';
@@ -18,23 +18,34 @@ import { NICHES } from './data/nicheData';
 import { useScrollReveal } from './hooks/useScrollReveal';
 import { useMouseParallaxDots } from './hooks/useMouseParallaxDots';
 import { recordPageView } from './utils/visitorTracker';
-import { Sparkles, ArrowRight, Eye } from 'lucide-react';
+import { Sparkles, Eye, ExternalLink } from 'lucide-react';
 
 export default function App() {
   useScrollReveal();
   useMouseParallaxDots();
   const [currentNiche, setCurrentNiche] = useState('peluqueria');
   const [isAdminOpen, setIsAdminOpen] = useState(false);
-  const [isSimulatorOpen, setIsSimulatorOpen] = useState(false);
   const niche = NICHES[currentNiche] || NICHES.peluqueria;
+
+  const isSimulatorRoute = () => {
+    if (typeof window === 'undefined') return false;
+    const path = window.location.pathname.toLowerCase();
+    const hash = window.location.hash.toLowerCase();
+    return path === '/simulador' || path === '/simulador/' || path.startsWith('/simulador') || hash === '#simulador';
+  };
+
+  const [isSimulatorPage, setIsSimulatorPage] = useState(isSimulatorRoute);
 
   // Track page visit on mount
   useEffect(() => {
     recordPageView();
   }, []);
 
-  // Shortcuts: Ctrl+Shift+A, Alt+A or #admin in URL, #simulador in URL
+  // Shortcuts: Ctrl+Shift+A, Alt+A or #admin in URL; handle /simulador routing
   useEffect(() => {
+    const handleRouteChange = () => {
+      setIsSimulatorPage(isSimulatorRoute());
+    };
     const handleKeyDown = (e) => {
       if ((e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') || (e.altKey && e.key.toLowerCase() === 'a')) {
         e.preventDefault();
@@ -45,36 +56,28 @@ export default function App() {
       if (window.location.hash === '#admin') {
         setIsAdminOpen(true);
       }
-      if (window.location.hash === '#simulador') {
-        setIsSimulatorOpen(true);
-      }
+      handleRouteChange();
     };
+
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('hashchange', handleHash);
+    window.addEventListener('popstate', handleRouteChange);
+
     if (window.location.hash === '#admin') {
       setIsAdminOpen(true);
     }
-    if (window.location.hash === '#simulador') {
-      setIsSimulatorOpen(true);
-    }
+
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('hashchange', handleHash);
+      window.removeEventListener('popstate', handleRouteChange);
     };
   }, []);
 
-  const handleSelectPreset = (nicheKey) => {
-    if (NICHES[nicheKey]) {
-      setCurrentNiche(nicheKey);
-    }
-  };
-
-  const handleOpenSimulator = (presetKey) => {
-    if (presetKey && NICHES[presetKey]) {
-      setCurrentNiche(presetKey);
-    }
-    setIsSimulatorOpen(true);
-  };
+  // If visiting the standalone simulator route, render the separate full-page simulator
+  if (isSimulatorPage) {
+    return <SimulatorPage />;
+  }
 
   return (
     <div className="app-root">
@@ -111,16 +114,17 @@ export default function App() {
                 </p>
               </div>
               <div className="callout-action-right">
-                <button 
-                  type="button" 
+                <a 
+                  href="/simulador" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
                   className="btn-hostinger-primary btn-launch-simulator"
-                  onClick={() => setIsSimulatorOpen(true)}
                 >
                   <Eye size={17} />
-                  <span>PROBAR SIMULADOR EN VIVO</span>
-                  <ArrowRight size={17} />
-                </button>
-                <span className="callout-footnote">Se abre en una vista interactiva aparte</span>
+                  <span>ABRIR SIMULADOR EN VIVO</span>
+                  <ExternalLink size={16} />
+                </a>
+                <span className="callout-footnote">Se abre en una pestaña aparte, fuera de la web</span>
               </div>
             </div>
           </div>
@@ -154,14 +158,6 @@ export default function App() {
 
       {/* Persistent Floating WhatsApp Action Button */}
       <WhatsAppFloatingBtn niche={niche} />
-
-      {/* Separate Interactive Simulator Modal */}
-      <SimulatorModal 
-        isOpen={isSimulatorOpen} 
-        onClose={() => setIsSimulatorOpen(false)} 
-        niche={niche} 
-        onSelectPreset={handleSelectPreset}
-      />
 
       {/* Hidden Admin Leads Panel Modal */}
       <AdminLeadsModal 
