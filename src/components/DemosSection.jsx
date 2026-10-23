@@ -16,7 +16,7 @@ import {
   Scale
 } from 'lucide-react';
 
-export default function DemosSection({ onSelectPreset }) {
+export default function DemosSection({ onSelectPreset, onOpenSimulator }) {
   const demos = [
     {
       id: 'gastronomia',
@@ -120,9 +120,13 @@ export default function DemosSection({ onSelectPreset }) {
     if (onSelectPreset) {
       onSelectPreset(presetKey);
     }
-    const el = document.getElementById('demostracion-en-vivo');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+    if (onOpenSimulator) {
+      onOpenSimulator(presetKey);
+    } else {
+      const el = document.getElementById('demostracion-en-vivo');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 

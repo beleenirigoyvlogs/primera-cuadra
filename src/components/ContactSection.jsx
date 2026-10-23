@@ -38,6 +38,7 @@ export default function ContactSection() {
     'Google',
     'WhatsApp Business',
     'Catálogo',
+    'Aplicación Móvil',
     'Todo lo anterior',
     'No estoy seguro'
   ];

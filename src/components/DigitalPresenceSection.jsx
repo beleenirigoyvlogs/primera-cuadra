@@ -5,10 +5,16 @@ import {
   MessageSquare, 
   Sparkles, 
   ArrowRight,
-  CheckCircle2
+  CheckCircle2,
+  Smartphone
 } from 'lucide-react';
 
 export default function DigitalPresenceSection() {
+  const defaultWhatsappNumber = '5491128779641';
+  const whatsappAppsMsg = encodeURIComponent(
+    'Hola, llegué desde Primera Cuadra y quiero consultar por el desarrollo de una aplicación móvil para mi negocio. ¿Podrían asesorarme y pasarme los valores?'
+  );
+
   const cards = [
     {
       num: '01',
@@ -45,6 +51,19 @@ export default function DigitalPresenceSection() {
         'Respuestas rápidas para tus clientes',
         'Botón de contacto en tu página web sin intermediarios'
       ]
+    },
+    {
+      num: '04',
+      title: 'Desarrollo de aplicaciones móviles',
+      text: 'Creamos apps a medida para llevar tu negocio al celular.',
+      icon: Smartphone,
+      accent: 'apps',
+      features: [
+        'Apps a medida para Android y iOS',
+        'Turnos, catálogos o reservas según tu proyecto',
+        'Presupuesto personalizado para tu negocio'
+      ],
+      isAppCard: true
     }
   ];
 
@@ -61,11 +80,11 @@ export default function DigitalPresenceSection() {
             Una presencia digital <span className="highlight-purple">completa</span>
           </h2>
           <p className="section-subtitle">
-            No necesitás contratar tres proveedores distintos. Primera Cuadra integra tu página web, tu ficha de Google y tu WhatsApp Business en un solo trabajo coordinado.
+            No necesitás contratar múltiples proveedores distintos. Primera Cuadra integra tu página web, tu ficha de Google, tu WhatsApp Business y el desarrollo de tu aplicación móvil en soluciones coordinadas para tu negocio.
           </p>
 
-          {/* Visual Connection Ribbon between the 3 elements */}
-          <div className="presence-flow-connector reveal" aria-label="Flujo de conexión: Google a Web y a WhatsApp">
+          {/* Visual Connection Ribbon between the elements */}
+          <div className="presence-flow-connector reveal" aria-label="Flujo de conexión: Google a Web, WhatsApp y Apps">
             <div className="connector-node">
               <MapPin size={16} className="text-google-color" />
               <span>Google</span>
@@ -80,15 +99,20 @@ export default function DigitalPresenceSection() {
               <MessageSquare size={16} className="text-wa-color" />
               <span>WhatsApp Business</span>
             </div>
+            <div className="connector-arrow">→</div>
+            <div className="connector-node">
+              <Smartphone size={16} className="text-apps-color" />
+              <span>Apps Móviles</span>
+            </div>
           </div>
         </div>
 
-        {/* 3 Pillars Cards Grid */}
+        {/* Pillars Cards Grid */}
         <div className="presence-cards-grid reveal-group">
           {cards.map((c, idx) => {
             const IconComponent = c.icon;
             return (
-              <div key={idx} className={`presence-feature-card card-${c.accent} reveal`}>
+              <div key={idx} className={`presence-feature-card card-${c.accent} ${c.isAppCard ? 'card-app-highlight' : ''} reveal`}>
                 <div className="presence-card-header">
                   <span className="presence-num">{c.num}</span>
                   <div className={`presence-icon-sq ${c.accent}`}>
@@ -107,6 +131,24 @@ export default function DigitalPresenceSection() {
                     </li>
                   ))}
                 </ul>
+
+                {c.isAppCard && (
+                  <div className="presence-card-footer-action">
+                    <a 
+                      href={`https://wa.me/${defaultWhatsappNumber}?text=${whatsappAppsMsg}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-presence-card-wa"
+                    >
+                      <MessageSquare size={15} />
+                      <span>Consultar por WhatsApp</span>
+                    </a>
+                    <a href="#apps-moviles" className="presence-card-more-link">
+                      <span>Ver detalles de apps</span>
+                      <ArrowRight size={13} />
+                    </a>
+                  </div>
+                )}
               </div>
             );
           })}

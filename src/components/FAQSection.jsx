@@ -106,6 +106,14 @@ export default function FAQSection() {
         'Google + Página Web + WhatsApp Business.',
         'Esa es tu Primera Cuadra digital.'
       ]
+    },
+    {
+      q: '¿También desarrollan aplicaciones móviles a medida para mi negocio?',
+      paragraphs: [
+        'Sí. Desarrollamos aplicaciones móviles personalizadas para Android y iOS, adaptadas a las necesidades específicas de tu empresa o comercio.',
+        'Podemos crear soluciones para gestión de turnos, catálogos interactivos, reservas, pedidos, servicios o fidelización de clientes.',
+        'Las funcionalidades y el presupuesto se evalúan de forma personalizada según el alcance de cada proyecto.'
+      ]
     }
   ];
 

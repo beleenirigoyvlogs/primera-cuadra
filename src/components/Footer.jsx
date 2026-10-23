@@ -138,6 +138,11 @@ export default function Footer({ niche, onSelectNiche, onOpenAdmin }) {
                 </a>
               </li>
               <li>
+                <a href="#apps-moviles" className="footer-link">
+                  <span>Apps Móviles</span>
+                </a>
+              </li>
+              <li>
                 <a href="#demos" className="footer-link">
                   <span>Catálogo</span>
                 </a>
@@ -170,8 +175,8 @@ export default function Footer({ niche, onSelectNiche, onOpenAdmin }) {
                 </a>
               </li>
               <li>
-                <a href="#demostracion-en-vivo" className="footer-link">
-                  <span>Calculadora / Simulador</span>
+                <a href="#simulador" className="footer-link">
+                  <span>Simulador interactivo</span>
                 </a>
               </li>
               <li>
