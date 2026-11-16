@@ -16,11 +16,12 @@ import {
   Phone,
   Eye
 } from 'lucide-react';
+import { trackWhatsAppClick, trackSimulatorOpen } from '../utils/gtm';
 
 export default function Hero() {
   const defaultWhatsappNumber = '5491128779641';
   const whatsappHeroMsg = encodeURIComponent(
-    '¡Hola Primera Cuadra! Quiero mejorar la presencia digital de mi negocio con página web, Google y WhatsApp. ¿Podrían asesorarme?'
+    '¡Hola Belén! Quiero consultar sobre página web, Google Maps y WhatsApp para mi negocio en Primera Cuadra.'
   );
 
   return (
@@ -66,9 +67,10 @@ export default function Hero() {
             <div className="hero-cta-actions">
               <a 
                 href={`https://wa.me/${defaultWhatsappNumber}?text=${whatsappHeroMsg}`}
-                target="_blank"
+                target="_blank" 
                 rel="noopener noreferrer"
                 className="btn-hostinger-primary hero-btn-main"
+                onClick={() => trackWhatsAppClick('hero_cta_main', 'Quiero_mejorar_mi_negocio')}
               >
                 <span>QUIERO MEJORAR MI NEGOCIO</span>
                 <ArrowRight size={18} />
@@ -79,6 +81,7 @@ export default function Hero() {
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="btn-hostinger-outline hero-btn-demo"
+                onClick={() => trackSimulatorOpen('hero_button')}
               >
                 <Monitor size={17} />
                 <span>PROBAR SIMULADOR</span>
@@ -86,19 +89,19 @@ export default function Hero() {
               </a>
             </div>
 
-            {/* Trust Indicators Bar: Solo los 3 elementos especificados */}
+            {/* Trust Indicators Bar: 1 sola línea por píldora */}
             <div className="hero-trust-guarantees">
               <div className="trust-pill-tag">
-                <Clock size={16} className="text-purple-icon" />
-                <span>Entrega estimada en 4 días hábiles desde que recibimos tu material</span>
+                <Clock size={15} className="text-purple-icon" />
+                <span>Entrega estimada en 4 días</span>
               </div>
               <div className="trust-pill-tag">
-                <Zap size={16} className="text-purple-icon" />
-                <span>50% al iniciar</span>
+                <ShieldCheck size={15} className="text-purple-icon" />
+                <span>50% al iniciar / 50% contra entrega</span>
               </div>
               <div className="trust-pill-tag">
-                <ShieldCheck size={16} className="text-purple-icon" />
-                <span>50% contra entrega</span>
+                <Zap size={15} className="text-purple-icon" />
+                <span>Sin costos ocultos</span>
               </div>
             </div>
           </div>

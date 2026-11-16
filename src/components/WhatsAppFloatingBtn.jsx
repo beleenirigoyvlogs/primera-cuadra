@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { MessageCircle, X } from 'lucide-react';
+import { trackWhatsAppClick } from '../utils/gtm';
 
 export default function WhatsAppFloatingBtn({ niche }) {
   const [showTooltip, setShowTooltip] = useState(true);
   const whatsappNumber = '5491128779641';
 
   const msg = encodeURIComponent(
-    '¡Hola Primera Cuadra! Quisiera consultar sobre el servicio de Google Maps, WhatsApp y Página Web para mi negocio.'
+    '¡Hola Belén! Quisiera consultar sobre el servicio de Google Maps, WhatsApp y Página Web para mi negocio.'
   );
 
   return (
@@ -15,7 +16,7 @@ export default function WhatsAppFloatingBtn({ niche }) {
         <div className="whatsapp-floating-tooltip">
           <div className="tooltip-text">
             <strong>¿Tenés dudas?</strong>
-            <span>Escribinos al WhatsApp directo</span>
+            <span>Escribime al WhatsApp directo</span>
           </div>
           <button 
             type="button" 
@@ -33,7 +34,8 @@ export default function WhatsAppFloatingBtn({ niche }) {
         target="_blank"
         rel="noopener noreferrer"
         className="whatsapp-floating-button"
-        aria-label="Contactar por WhatsApp"
+        aria-label="Contactar a Belén por WhatsApp"
+        onClick={() => trackWhatsAppClick('desktop_floating_bubble', 'Presencia_digital')}
       >
         <span className="floating-pulse-ring"></span>
         <MessageCircle size={28} />

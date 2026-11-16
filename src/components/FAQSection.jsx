@@ -178,27 +178,6 @@ export default function FAQSection() {
             );
           })}
         </div>
-
-        {/* Bottom Elegant WhatsApp CTA */}
-        <div className="faq-cta-banner reveal">
-          <div className="faq-cta-badge">
-            <MessageCircle size={14} />
-            <span>CONSULTA SIN COMPROMISO</span>
-          </div>
-          <h3 className="faq-cta-title">¿Todavía tenés dudas?</h3>
-          <p className="faq-cta-desc">
-            Contanos qué necesitás y te ayudamos a encontrar la opción adecuada para tu negocio.
-          </p>
-          <a 
-            href={`https://wa.me/${whatsappNumber}?text=${whatsappDoubtMsg}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-hostinger-primary faq-cta-btn"
-          >
-            <MessageCircle size={18} />
-            <span>HABLAR POR WHATSAPP</span>
-          </a>
-        </div>
       </div>
     </section>
   );

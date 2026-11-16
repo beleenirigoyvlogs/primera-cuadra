@@ -191,7 +191,7 @@ export default function Footer({ niche, onSelectNiche, onOpenAdmin }) {
           <div className="footer-col footer-col-contact">
             <h4 className="footer-col-title">Contacto & Ubicación</h4>
             <p className="footer-contact-desc">
-              Atención directa y personalizada con Belen Irigoy para que tu negocio tenga su presencia digital.
+              Atención directa y personalizada con Belén Irigoy para que tu negocio tenga su presencia digital.
             </p>
 
             <div className="footer-contact-channels">
@@ -200,6 +200,7 @@ export default function Footer({ niche, onSelectNiche, onOpenAdmin }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-contact-item"
+                data-gtm="whatsapp_footer"
               >
                 <div className="footer-channel-icon wa">
                   <MessageCircle size={16} />
@@ -232,22 +233,6 @@ export default function Footer({ niche, onSelectNiche, onOpenAdmin }) {
                   <strong className="channel-val">Tigre y Zona Norte (Atención remota a todo el país)</strong>
                 </div>
               </div>
-
-              {/* Espacio para enlazar ficha de Google Maps */}
-              <div className="footer-contact-item pending-gmaps-item">
-                <div className="footer-channel-icon">
-                  <MapPin size={16} className="text-purple-icon" />
-                </div>
-                <div className="footer-channel-text">
-                  <span className="channel-label">Google Maps</span>
-                  <span className="channel-val pending-pill">[PENDIENTE: link a ficha de Google]</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="footer-guarantee-box">
-              <ShieldCheck size={16} className="text-emerald" />
-              <span>Condición de pago: 50% al iniciar / 50% contra entrega.</span>
             </div>
           </div>
         </div>

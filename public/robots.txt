@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /propuesta/
+Disallow: /#propuesta/
+Disallow: /#admin
+
+Sitemap: https://primeracuadra.com.ar/sitemap.xml

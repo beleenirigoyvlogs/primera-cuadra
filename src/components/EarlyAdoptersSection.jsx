@@ -9,11 +9,12 @@ import {
   Gift,
   Award
 } from 'lucide-react';
+import { trackWhatsAppClick } from '../utils/gtm';
 
 export default function EarlyAdoptersSection() {
   const whatsappNumber = '5491128779641';
   const whatsappMsg = encodeURIComponent(
-    '¡Hola Belen! Quiero postular mi negocio al "Programa de Primeros Clientes" de Primera Cuadra para acceder al precio de lanzamiento a cambio de mi testimonio y permiso para mostrar el trabajo terminado. ¿Quedan cupos disponibles?'
+    '¡Hola Belén! Quiero sumarme al Programa de primeros clientes de Primera Cuadra para acceder al precio de lanzamiento a cambio de mi testimonio y permiso para mostrar el trabajo terminado. ¿Quedan cupos disponibles?'
   );
 
   return (
@@ -26,14 +27,14 @@ export default function EarlyAdoptersSection() {
           </div>
 
           <div className="early-split-layout">
-            {/* Left Column: Description & Proposition */}
+            {/* Left Column: Description & Proposition in 1st Person Singular */}
             <div className="early-text-col">
               <h2 className="early-title">
                 Programa de <span className="highlight-purple">Primeros Clientes</span>
               </h2>
 
               <p className="early-description">
-                Primera Cuadra es un proyecto nuevo y queremos que nuestros primeros trabajos hablen por nosotros. Por eso abrimos <strong>5 lugares exclusivos con precio de lanzamiento</strong> para negocios, comercios y profesionales que quieran dar el salto digital hoy.
+                Primera Cuadra es mi nuevo proyecto y quiero que mis primeros trabajos hablen por mí. Por eso abro <strong>5 lugares exclusivos con precio de lanzamiento</strong> para negocios, comercios y profesionales que quieran dar el salto digital hoy.
               </p>
 
               <div className="early-exchange-box">
@@ -43,7 +44,7 @@ export default function EarlyAdoptersSection() {
                   </div>
                   <div>
                     <strong>Lo que recibís:</strong>
-                    <p>Precio promocional de lanzamiento en cualquiera de nuestros packs, entrega ágil y atención 100% personalizada conmigo en cada detalle.</p>
+                    <p>Precio promocional de lanzamiento en cualquiera de mis packs, entrega ágil y atención 100% personalizada conmigo en cada detalle.</p>
                   </div>
                 </div>
 
@@ -52,15 +53,10 @@ export default function EarlyAdoptersSection() {
                     <Award size={20} />
                   </div>
                   <div>
-                    <strong>Lo que te pedimos a cambio:</strong>
-                    <p>Tu testimonio sincero una vez entregado el trabajo y el permiso para mostrar tu página web y ficha de Google como caso de éxito en nuestra web.</p>
+                    <strong>Lo que te pido a cambio:</strong>
+                    <p>Tu testimonio sincero una vez entregado el trabajo y tu permiso para mostrar tu página web y ficha de Google como caso de éxito en mi portfolio.</p>
                   </div>
                 </div>
-              </div>
-
-              <div className="early-condition-note">
-                <ShieldCheck size={16} className="text-emerald" />
-                <span>Misma garantía que siempre: 50% al iniciar / 50% contra entrega conforme.</span>
               </div>
             </div>
 
@@ -73,7 +69,7 @@ export default function EarlyAdoptersSection() {
                   <span className="spots-total">/ 5 lugares</span>
                 </div>
                 <p className="spots-note">
-                  Cupo limitado para garantizar atención ultra personalizada en cada proyecto.
+                  Cupo limitado para garantizarte dedicación total en tu proyecto.
                 </p>
 
                 <div className="spots-progress-bar">
@@ -86,6 +82,8 @@ export default function EarlyAdoptersSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-hostinger-primary btn-early-cta"
+                  data-gtm="whatsapp_early_adopters"
+                  onClick={() => trackWhatsAppClick('early_adopters_cta', 'Programa_Primeros_Clientes')}
                 >
                   <MessageSquare size={18} />
                   <span>POSTULARME POR WHATSAPP</span>
@@ -93,7 +91,7 @@ export default function EarlyAdoptersSection() {
                 </a>
 
                 <span className="early-helper-text">
-                  Escribinos y contanos qué hacés para reservar tu lugar.
+                  Escribime y contame de qué es tu negocio para reservar tu lugar.
                 </span>
               </div>
             </div>

@@ -5,29 +5,28 @@ import {
   Sparkles, 
   ShieldCheck, 
   Info,
-  ExternalLink
+  ExternalLink,
+  ArrowRight
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import { PACKS } from '../data/nicheData';
+import { trackWhatsAppClick } from '../utils/gtm';
 
 export default function PricingPacks({ niche }) {
   const whatsappNumber = '5491128779641';
 
-  const handleSelectPack = (pack) => {
+  const handleSelectPack = (packName, price, msgText) => {
     confetti({
-      particleCount: 80,
-      spread: 85,
+      particleCount: 70,
+      spread: 75,
       origin: { y: 0.65 }
     });
 
-    const msg = pack.whatsappMessage();
-    const url = `https://wa.me/${whatsappNumber}?text=${msg}`;
+    trackWhatsAppClick('pricing_card_button', packName);
+
+    const encoded = encodeURIComponent(msgText);
+    const url = `https://wa.me/${whatsappNumber}?text=${encoded}`;
     window.open(url, '_blank', 'noopener,noreferrer');
   };
-
-  const packExpress = PACKS.find(p => p.id === 'pack-express') || PACKS[0];
-  const packSoloWeb = PACKS.find(p => p.id === 'pack-solo-web') || PACKS[1];
-  const packCompleto = PACKS.find(p => p.id === 'pack-completo') || PACKS[2];
 
   return (
     <section className="pricing-section-wrapper" id="precios">
@@ -39,37 +38,35 @@ export default function PricingPacks({ niche }) {
             <span>PRECIOS TRANSPARENTES • SIN COSTOS OCULTOS</span>
           </div>
           <h2 className="section-title">
-            Elegí el plan ideal para vos
+            Elegí el plan ideal para tu negocio
           </h2>
           <p className="section-subtitle">
-            Probá Primera Cuadra con total tranquilidad: 50% al iniciar y 50% contra entrega conforme, con atención directa y personalizada de principio a fin.
+            Probá Primera Cuadra con total tranquilidad: 50% al iniciar y 50% contra entrega conforme, con atención directa de Belén Irigoy de principio a fin.
           </p>
-
-          {/* Condition Pill */}
-          <div className="pricing-scheme-pill">
-            <ShieldCheck size={16} className="text-purple-icon" />
-            <span>Condición de pago: 50% al iniciar / 50% contra entrega</span>
-          </div>
 
           {/* User rule 8: "Esta página la diseñamos nosotros: así de rápida y clara va a ser la tuya." */}
           <div className="own-page-proof-pill">
             <Sparkles size={15} className="text-purple-icon" />
-            <strong>Esta página la diseñamos nosotros: así de rápida y clara va a ser la tuya.</strong>
+            <span>Esta página la diseñamos nosotros: así de rápida y clara va a ser la tuya.</span>
           </div>
         </div>
 
-        {/* Pricing Cards Grid (Exact 3 Plans) */}
+        {/* Single Launch Banner Above Grid (Item 3 Requirement) */}
+        <div className="pricing-launch-banner-strip reveal">
+          <Sparkles size={16} className="text-purple-accent" />
+          <span>Precio de lanzamiento para los primeros 5 negocios • 50% al iniciar / 50% contra entrega</span>
+        </div>
+
+        {/* Pricing Cards Grid (Exact 3 Plans aligned) */}
         <div className="pricing-cards-grid reveal-group">
           {/* Card 1: Pack Express */}
           <div className="pricing-card-hostinger standard reveal">
-            <div className="card-top-badge launch-badge">
-              Precio de lanzamiento para los primeros 5 negocios
+            <div className="plan-card-header">
+              <h3 className="plan-name">Express</h3>
+              <p className="plan-desc">
+                Para negocios que quieren aparecer en Google Maps y atender por WhatsApp ya, sin página web.
+              </p>
             </div>
-
-            <h3 className="plan-name">Express</h3>
-            <p className="plan-desc">
-              Para negocios que quieren aparecer en Google Maps y atender por WhatsApp ya, sin página web.
-            </p>
 
             <div className="price-tag-wrapper">
               <div className="price-main-row">
@@ -82,13 +79,14 @@ export default function PricingPacks({ niche }) {
             <button 
               type="button" 
               className="btn-plan-hostinger"
-              onClick={() => handleSelectPack(packExpress)}
+              onClick={() => handleSelectPack('Express', 120000, '¡Hola Belén! Me interesa el Plan Express ($120.000) para mi negocio. ¿Cómo podemos empezar?')}
             >
-              Elegir plan
+              <span>Elegir plan Express</span>
+              <ArrowRight size={15} />
             </button>
 
             <div className="plan-sub-guarantee">
-              50% al iniciar ($60.000) y 50% contra entrega ($60.000) en 48 horas.
+              50% al iniciar ($60.000) y 50% contra entrega ($60.000).
             </div>
 
             <ul className="plan-features-list">
@@ -133,14 +131,12 @@ export default function PricingPacks({ niche }) {
 
           {/* Card 2: Pack Solo Web */}
           <div className="pricing-card-hostinger standard reveal">
-            <div className="card-top-badge launch-badge">
-              Precio de lanzamiento para los primeros 5 negocios
+            <div className="plan-card-header">
+              <h3 className="plan-name">Solo Web</h3>
+              <p className="plan-desc">
+                Tu página web profesional mobile-first con dominio a tu nombre, catálogo de servicios y WhatsApp directo.
+              </p>
             </div>
-
-            <h3 className="plan-name">Solo Web Propia</h3>
-            <p className="plan-desc">
-              Tu página web profesional mobile-first con dominio a tu nombre, catálogo de servicios y WhatsApp directo.
-            </p>
 
             <div className="price-tag-wrapper">
               <div className="price-main-row">
@@ -153,13 +149,14 @@ export default function PricingPacks({ niche }) {
             <button 
               type="button" 
               className="btn-plan-hostinger"
-              onClick={() => handleSelectPack(packSoloWeb)}
+              onClick={() => handleSelectPack('Solo Web', 150000, '¡Hola Belén! Me interesa el Plan Solo Web ($150.000) para mi negocio. ¿Cómo podemos empezar?')}
             >
-              Elegir plan
+              <span>Elegir plan Solo Web</span>
+              <ArrowRight size={15} />
             </button>
 
             <div className="plan-sub-guarantee">
-              50% al iniciar ($75.000) y 50% contra entrega ($75.000) cuando la web está lista y aprobada.
+              50% al iniciar ($75.000) y 50% contra entrega ($75.000).
             </div>
 
             <ul className="plan-features-list">
@@ -173,7 +170,7 @@ export default function PricingPacks({ niche }) {
               </li>
               <li className="plan-feature-item">
                 <Check size={18} className="feature-check-icon" />
-                <span>Certificado SSL (candado seguro https)</span>
+                <span>Certificado SSL (candado de navegación segura)</span>
               </li>
               <li className="plan-feature-item">
                 <Check size={18} className="feature-check-icon" />
@@ -193,7 +190,7 @@ export default function PricingPacks({ niche }) {
               </li>
               <li className="plan-feature-item">
                 <Check size={18} className="feature-check-icon" />
-                <span>100% de tu propiedad (sin alquileres forzados)</span>
+                <span>100% de tu propiedad (sin mensualidades obligatorias)</span>
               </li>
               <li className="plan-feature-item excluded">
                 <X size={18} className="feature-x-icon" />
@@ -208,16 +205,18 @@ export default function PricingPacks({ niche }) {
 
           {/* Card 3: Pack Completo */}
           <div className="pricing-card-hostinger featured reveal">
-            <div className="card-top-badge launch-badge">
-              Precio de lanzamiento para los primeros 5 negocios
+            <div className="card-top-badge featured-badge">
+              ✦ MÁS ELEGIDO
             </div>
 
-            <h3 className="plan-name">
-              <span>✦</span> Completo + Web Propia
-            </h3>
-            <p className="plan-desc">
-              La solución definitiva: tu propia página web profesional con dominio a tu nombre, Google Maps y WhatsApp integrados.
-            </p>
+            <div className="plan-card-header">
+              <h3 className="plan-name">
+                Completo + Web Propia
+              </h3>
+              <p className="plan-desc">
+                La solución definitiva: tu propia página web profesional con dominio a tu nombre, Google Maps y WhatsApp integrados.
+              </p>
+            </div>
 
             <div className="price-tag-wrapper">
               <div className="price-main-row">
@@ -229,14 +228,15 @@ export default function PricingPacks({ niche }) {
 
             <button 
               type="button" 
-              className="btn-plan-hostinger"
-              onClick={() => handleSelectPack(packCompleto)}
+              className="btn-plan-hostinger btn-plan-featured"
+              onClick={() => handleSelectPack('Completo + Web Propia', 250000, '¡Hola Belén! Me interesa el Plan Completo + Web Propia ($250.000) para mi negocio. ¿Cómo podemos empezar?')}
             >
-              Elegir plan
+              <span>Elegir plan Completo</span>
+              <ArrowRight size={15} />
             </button>
 
             <div className="plan-sub-guarantee">
-              50% al iniciar ($125.000) y 50% contra entrega ($125.000) cuando la web está lista y aprobada.
+              50% al iniciar ($125.000) y 50% contra entrega ($125.000).
             </div>
 
             <ul className="plan-features-list">

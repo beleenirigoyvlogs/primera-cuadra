@@ -3,20 +3,19 @@ import {
   HelpCircle, 
   ArrowRight, 
   MessageSquare, 
-  Sparkles,
-  CheckCircle,
-  AlertCircle,
-  Smartphone,
-  MapPin,
-  ListOrdered,
-  Briefcase,
-  Users
+  Sparkles, 
+  Smartphone, 
+  MapPin, 
+  ListOrdered, 
+  Briefcase, 
+  Users 
 } from 'lucide-react';
+import { trackWhatsAppClick } from '../utils/gtm';
 
 export default function BusinessSituationsSection() {
   const defaultWhatsappNumber = '5491128779641';
   const whatsappConsultMsg = encodeURIComponent(
-    '¡Hola Primera Cuadra! Estuve leyendo las situaciones en la web y me siento identificado con mi negocio. Me gustaría consultar cómo podrían ayudarme a mejorar mi presencia digital.'
+    '¡Hola Belén! Estuve viendo las situaciones en la web y me siento identificado con mi negocio. Me gustaría consultar cómo podemos ordenar mi presencia digital.'
   );
 
   const situations = [
@@ -106,6 +105,7 @@ export default function BusinessSituationsSection() {
             target="_blank"
             rel="noopener noreferrer"
             className="btn-hostinger-primary resolution-cta-btn"
+            onClick={() => trackWhatsAppClick('situations_resolution_cta', 'Quiero_consultar')}
           >
             <span>QUIERO CONSULTAR</span>
             <ArrowRight size={18} />

@@ -15,8 +15,8 @@ export default function ProcessSteps() {
     {
       number: '01',
       icon: MessageSquareCheck,
-      title: 'Relevamiento Express por WhatsApp',
-      duration: '15 minutos de tu tiempo',
+      title: 'Relevamiento express por WhatsApp',
+      duration: '15 min',
       color: 'cyan',
       description: 'Sin reuniones pesadas ni trámites complejos. Te mandamos 4 preguntas puntuales por WhatsApp para que nos pases tus fotos, lista de servicios, precios de referencia y dirección.',
       bulletList: [
@@ -28,8 +28,8 @@ export default function ProcessSteps() {
     {
       number: '02',
       icon: Settings,
-      title: 'Optimización y Configuración Pro',
-      duration: 'Entrega estimada en 48hs a 4 días hábiles',
+      title: 'Optimización y configuración pro',
+      duration: '48 h a 4 días',
       color: 'amber',
       description: 'Configuramos tu presencia en Google con la categoría correspondiente, fotos y servicios, desarrollamos tu página web profesional y dejamos tu WhatsApp Business con catálogo listo para recibir consultas.',
       bulletList: [
@@ -41,13 +41,13 @@ export default function ProcessSteps() {
     {
       number: '03',
       icon: Rocket,
-      title: 'Entrega Llave en Mano y Lanzamiento',
-      duration: 'Listo para recibir consultas',
+      title: 'Entrega llave en mano y lanzamiento',
+      duration: 'Puesta en marcha',
       color: 'emerald',
       description: 'Te entregamos los accesos completos y te mostramos cómo funciona cada canal. Tu negocio queda formalmente en la Primera Cuadra digital.',
       bulletList: [
         'Verificación de funcionamiento en vivo con vos',
-        'Condición de pago: 50% al iniciar / 50% contra entrega',
+        'Entrega formal con todos tus accesos y claves',
         'Soporte directo para dudas post-lanzamiento'
       ]
     }
@@ -79,13 +79,15 @@ export default function ProcessSteps() {
                   <div className={`step-icon-wrapper ${step.color}`}>
                     <IconComponent size={24} />
                   </div>
-                  <div className="step-badge-time">
-                    <Clock size={13} />
-                    <span>{step.duration}</span>
-                  </div>
                 </div>
 
                 <h3 className="step-card-title">{step.title}</h3>
+
+                <div className="step-badge-time">
+                  <Clock size={13} />
+                  <span>{step.duration}</span>
+                </div>
+
                 <p className="step-card-desc">{step.description}</p>
 
                 <ul className="step-bullet-list">
@@ -99,22 +101,6 @@ export default function ProcessSteps() {
               </div>
             );
           })}
-        </div>
-
-        {/* Bottom Banner */}
-        <div className="process-guarantee-banner reveal">
-          <div className="banner-left">
-            <ShieldCheck size={28} className="banner-icon" />
-            <div>
-              <strong>Condición de pago: 50% al iniciar / 50% contra entrega</strong>
-              <p>Abonás el 50% al iniciar el proyecto y el 50% restante recién contra entrega una vez que revisás que todo funciona a la perfección.</p>
-            </div>
-          </div>
-
-          <a href="#precios" className="banner-btn">
-            <span>Ver Tarifas</span>
-            <ArrowRight size={16} />
-          </a>
         </div>
       </div>
     </section>

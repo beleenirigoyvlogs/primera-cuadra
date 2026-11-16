@@ -11,9 +11,12 @@ import {
   User, 
   Phone, 
   HelpCircle,
-  Clock
+  Clock,
+  ShieldCheck,
+  MapPin
 } from 'lucide-react';
 import { dispatchLeadEmail } from '../utils/emailDispatcher';
+import { pushGtmEvent, trackContactFormSubmit, trackWhatsAppClick } from '../utils/gtm';
 
 export default function ContactSection() {
   const whatsappNumber = '5491128779641';
@@ -25,7 +28,7 @@ export default function ContactSection() {
     name: '',
     businessName: '',
     phone: '',
-    service: 'Todo lo anterior',
+    service: 'Todo lo anterior (Web + Google + WhatsApp)',
     message: ''
   });
 
@@ -34,40 +37,14 @@ export default function ContactSection() {
   const [isSuccess, setIsSuccess] = useState(false);
 
   const serviceOptions = [
-    'Página Web',
-    'Google',
-    'WhatsApp Business',
-    'Catálogo',
-    'Aplicación Móvil',
-    'Todo lo anterior',
-    'No estoy seguro'
+    'Todo lo anterior (Web + Google + WhatsApp)',
+    'Página Web Propia con dominio',
+    'Ficha optimizada de Google Maps',
+    'WhatsApp Business configurado',
+    'Programa de Primeros Clientes (Precio Lanzamiento)',
+    'Desarrollo a medida / Sistema POS',
+    'Todavía tengo dudas / Asesoramiento'
   ];
-
-  // =========================================================================
-  // Analytics & Conversion Tracking Helper
-  // =========================================================================
-  const trackEvent = (eventName, data = {}) => {
-    if (typeof window === 'undefined') return;
-
-    // Standard Google Tag Manager (dataLayer)
-    if (window.dataLayer && Array.isArray(window.dataLayer)) {
-      window.dataLayer.push({ event: eventName, ...data });
-    }
-
-    // Google Analytics 4 (gtag)
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', eventName, data);
-    }
-
-    // Custom DOM Event for any analytics listeners
-    window.dispatchEvent(new CustomEvent('pc-analytics', { 
-      detail: { event: eventName, data } 
-    }));
-
-    if (import.meta.env?.DEV) {
-      console.log(`[Analytics Event] ${eventName}:`, data);
-    }
-  };
 
   // Track form_view when section scrolls into viewport
   useEffect(() => {
@@ -77,7 +54,7 @@ export default function ContactSection() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            trackEvent('form_view', { section: 'contact_form' });
+            pushGtmEvent('form_view', { section: 'contact_form' });
             observer.disconnect();
           }
         });
@@ -89,74 +66,46 @@ export default function ContactSection() {
     return () => observer.disconnect();
   }, []);
 
-  // Trigger form_start on first user interaction
   const handleInteractionStart = () => {
     if (!formStartedRef.current) {
       formStartedRef.current = true;
-      trackEvent('form_start', { section: 'contact_form' });
+      pushGtmEvent('form_start', { section: 'contact_form' });
     }
   };
 
-  // Change handlers
-  const handleChange = (field, value) => {
-    handleInteractionStart();
-    setFormData(prev => ({ ...prev, [field]: value }));
-    if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: null }));
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: null }));
     }
   };
 
-  // Validation
-  const validateForm = () => {
+  const validate = () => {
     const newErrors = {};
     if (!formData.name.trim()) {
-      newErrors.name = 'Por favor ingresá tu nombre';
+      newErrors.name = 'Por favor, ingresá tu nombre';
     }
     if (!formData.businessName.trim()) {
-      newErrors.businessName = 'Por favor ingresá el nombre de tu negocio';
+      newErrors.businessName = 'Por favor, ingresá el nombre de tu negocio';
     }
     if (!formData.phone.trim()) {
-      newErrors.phone = 'Por favor ingresá tu WhatsApp o teléfono';
-    } else if (formData.phone.trim().length < 6) {
-      newErrors.phone = 'Ingresá un número de contacto válido';
+      newErrors.phone = 'Por favor, ingresá tu teléfono o WhatsApp';
+    } else if (formData.phone.trim().length < 8) {
+      newErrors.phone = 'Ingresá un teléfono válido (mínimo 8 dígitos)';
     }
-    if (!formData.service) {
-      newErrors.service = 'Por favor seleccioná una opción';
-    }
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  // Submit Handler
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isSubmitting) return;
-
-    if (!validateForm()) {
-      return;
-    }
+    if (!validate()) return;
 
     setIsSubmitting(true);
 
     try {
-      /**
-       * =========================================================================
-       * BACKEND INTEGRATION POINT:
-       * Currently the web application runs without a custom server backend.
-       * 
-       * When ready to connect an API, webhook or service (e.g. EmailJS, Formspree, 
-       * Google Sheets Webhook, or your REST endpoint), simply call it here:
-       * 
-       * await fetch('https://your-api-endpoint.com/api/leads', {
-       *   method: 'POST',
-       *   headers: { 'Content-Type': 'application/json' },
-       *   body: JSON.stringify(formData)
-       * });
-       * =========================================================================
-       */
-
-      // Save lead to localStorage for local testing & persistence
+      // 1. Save lead to localStorage
       const currentLeads = JSON.parse(localStorage.getItem('pc_contact_leads') || '[]');
       const newLead = {
         ...formData,
@@ -167,26 +116,21 @@ export default function ContactSection() {
       currentLeads.unshift(newLead);
       localStorage.setItem('pc_contact_leads', JSON.stringify(currentLeads));
 
-      // Dispatch event for real-time admin sync
+      // 2. Dispatch event for real-time admin sync
       if (typeof window !== 'undefined') {
         window.dispatchEvent(new CustomEvent('pc-new-lead', { detail: newLead }));
       }
 
-      // Send automated email notification to primeracuadraweb@gmail.com
+      // 3. Dispatch automated notification email
       dispatchLeadEmail({
         ...newLead,
-        sourceLabel: 'Formulario Web'
+        sourceLabel: 'Formulario Unificado de Contacto'
       }).catch(err => console.warn('Email dispatch notice:', err));
 
-      // Realistic feedback delay
+      // 4. Analytics & GTM
+      trackContactFormSubmit(formData);
+
       await new Promise(resolve => setTimeout(resolve, 600));
-
-      // Trigger analytics
-      trackEvent('form_submit', {
-        service_requested: formData.service,
-        business_name: formData.businessName
-      });
-
       setIsSuccess(true);
     } catch (err) {
       console.error('Error submitting form:', err);
@@ -195,23 +139,16 @@ export default function ContactSection() {
     }
   };
 
-  // Pre-filled WhatsApp message for direct chat or post-submit
-  const getWhatsAppMessage = () => {
-    if (formData.name && formData.businessName) {
-      return encodeURIComponent(
-        `¡Hola Primera Cuadra! Soy ${formData.name} de "${formData.businessName}". Les escribo desde el formulario web porque me interesa asesoramiento para: ${formData.service}.`
-      );
-    }
+  const getDirectWhatsAppMsg = () => {
     return encodeURIComponent(
-      '¡Hola Primera Cuadra! Me gustaría recibir asesoramiento para la presencia digital de mi negocio.'
+      '¡Hola Belén! Tengo dudas y me gustaría conversar sobre las opciones de presencia digital para mi negocio.'
     );
   };
 
-  const handleWhatsAppClick = () => {
-    trackEvent('whatsapp_click', {
-      origin: isSuccess ? 'contact_form_success' : 'contact_form_sidebar',
-      service_requested: formData.service
-    });
+  const getPostSubmitWhatsAppMsg = () => {
+    return encodeURIComponent(
+      `¡Hola Belén! Acabo de enviar el formulario desde la web de Primera Cuadra. Soy ${formData.name} de "${formData.businessName}" y me interesa: ${formData.service}.`
+    );
   };
 
   return (
@@ -229,7 +166,7 @@ export default function ContactSection() {
           <div className="contact-info-col">
             <div className="section-kicker-pill contact-pill">
               <Sparkles size={14} />
-              <span>ASESORAMIENTO SIN COMPROMISO</span>
+              <span>EL SIGUIENTE PASO • ASESORAMIENTO DIRECTO</span>
             </div>
 
             <h2 className="contact-main-title">
@@ -237,18 +174,18 @@ export default function ContactSection() {
             </h2>
 
             <p className="contact-main-subtitle">
-              Contanos brevemente qué necesitás y te contactamos para mostrarte qué podemos hacer.
+              Contame qué hacés y te muestro cómo podría verse tu negocio online. Atención directa y personalizada conmigo de principio a fin, sin tecnicismos ni letra chica.
             </p>
 
-            {/* Quick Benefits Checklist */}
+            {/* Trust Checklist */}
             <div className="contact-benefits-list">
               <div className="contact-benefit-item">
                 <div className="benefit-icon-circle">
                   <Check size={16} strokeWidth={2.6} />
                 </div>
                 <div>
-                  <strong>Atención personalizada</strong>
-                  <span>Te escuchamos, entendemos tu rubro y tus tiempos.</span>
+                  <strong>Atención directa con Belén Irigoy</strong>
+                  <span>Desde Tigre para comercios y profesionales de todo el país.</span>
                 </div>
               </div>
 
@@ -257,8 +194,8 @@ export default function ContactSection() {
                   <Check size={16} strokeWidth={2.6} />
                 </div>
                 <div>
-                  <strong>Propuesta adaptada a tu negocio</strong>
-                  <span>Sin herramientas de más ni costos extras ocultos.</span>
+                  <strong>Presupuesto claro y precio justo</strong>
+                  <span>Sin herramientas de más ni costos de mantenimiento forzados.</span>
                 </div>
               </div>
 
@@ -268,17 +205,7 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <strong>Sin compromiso inicial</strong>
-                  <span>Primero te mostramos la mejor opción para vos.</span>
-                </div>
-              </div>
-
-              <div className="contact-benefit-item">
-                <div className="benefit-icon-circle">
-                  <Check size={16} strokeWidth={2.6} />
-                </div>
-                <div>
-                  <strong>Web + Google + WhatsApp</strong>
-                  <span>Los tres canales conectados para generar consultas reales.</span>
+                  <span>Evaluamos juntos qué necesita hoy tu negocio antes de empezar.</span>
                 </div>
               </div>
             </div>
@@ -287,20 +214,20 @@ export default function ContactSection() {
             <div className="contact-direct-wa-box">
               <div className="direct-wa-header">
                 <Clock size={16} className="text-brand-purple" />
-                <span>¿Preferís una respuesta inmediata?</span>
+                <span>¿Preferís una respuesta rápida?</span>
               </div>
               <p className="direct-wa-desc">
-                Si no querés esperar a que te llamemos, escribinos directo por WhatsApp y te respondemos en el día.
+                Escribime directo por WhatsApp para consultar dudas o contarme sobre tu comercio. Respondo en el día.
               </p>
               <a
-                href={`https://wa.me/${whatsappNumber}?text=${getWhatsAppMessage()}`}
+                href={`https://wa.me/${whatsappNumber}?text=${getDirectWhatsAppMsg()}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-contact-wa-link"
-                onClick={handleWhatsAppClick}
+                onClick={() => trackWhatsAppClick('contact_sidebar_direct', 'Dudas_o_inicio')}
               >
                 <MessageCircle size={18} />
-                <span>Escribir por WhatsApp ahora</span>
+                <span>Escribir a Belén por WhatsApp</span>
                 <ArrowRight size={15} />
               </a>
             </div>
@@ -319,195 +246,161 @@ export default function ContactSection() {
                   </div>
                   <h3 className="success-headline">¡Consulta recibida con éxito!</h3>
                   <p className="success-message">
-                    ¡Gracias! Recibimos tu consulta. Nos vamos a contactar para conocer tu negocio y mostrarte las opciones que podemos ofrecerte.
+                    ¡Muchas gracias, <strong>{formData.name}</strong>! Recibí los datos de <strong>{formData.businessName}</strong>. Me voy a poner en contacto con vos a la brevedad para asesorarte.
                   </p>
 
                   <div className="success-divider"></div>
 
                   <div className="success-wa-prompt">
-                    <p className="success-wa-question">¿Preferís hablar directamente?</p>
+                    <p className="success-wa-question">¿Querés que lo veamos ya mismo?</p>
                     <a
-                      href={`https://wa.me/${whatsappNumber}?text=${getWhatsAppMessage()}`}
+                      href={`https://wa.me/${whatsappNumber}?text=${getPostSubmitWhatsAppMsg()}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn-success-wa-action"
-                      onClick={handleWhatsAppClick}
+                      onClick={() => trackWhatsAppClick('contact_form_success_button', formData.service)}
                     >
                       <MessageCircle size={20} />
-                      <span>HABLAR POR WHATSAPP</span>
+                      <span>ABRIR CHAT DE WHATSAPP CON BELÉN</span>
                     </a>
                   </div>
-
-                  <button
-                    type="button"
-                    className="btn-reset-form"
-                    onClick={() => {
-                      setIsSuccess(false);
-                      setFormData({
-                        name: '',
-                        businessName: '',
-                        phone: '',
-                        service: 'Todo lo anterior',
-                        message: ''
-                      });
-                      formStartedRef.current = false;
-                    }}
-                  >
-                    Enviar otra consulta
-                  </button>
                 </div>
               ) : (
                 /* ================= FORM STATE ================= */
                 <form 
                   onSubmit={handleSubmit} 
-                  className="contact-actual-form" 
                   noValidate
-                  data-analytics-form="lead_form"
+                  onFocus={handleInteractionStart}
+                  className="contact-actual-form"
                 >
                   <div className="form-card-header">
-                    <h3 className="form-card-title">Dejanos tus datos</h3>
-                    <p className="form-card-subtitle">
-                      Completalo en menos de 1 minuto y nos contactamos con vos.
-                    </p>
+                    <h3 className="form-title">Dejanos tu consulta</h3>
+                    <p className="form-subtitle">Completá este formulario breve y te contactamos.</p>
                   </div>
 
-                  {/* Field 1: Nombre */}
-                  <div className="form-field-group">
-                    <label htmlFor="lead-name" className="form-label">
-                      <span>Tu nombre</span>
-                      <span className="required-star">*</span>
+                  {/* Field: Name */}
+                  <div className="form-group">
+                    <label htmlFor="contact-name" className="form-label">
+                      Tu nombre <span className="required-star">*</span>
                     </label>
-                    <div className="input-with-icon">
-                      <User size={18} className="input-adornment-icon" />
+                    <div className={`input-wrapper ${errors.name ? 'has-error' : ''}`}>
+                      <User size={18} className="input-icon" />
                       <input
-                        id="lead-name"
+                        id="contact-name"
                         type="text"
                         name="name"
-                        autoComplete="name"
                         value={formData.name}
-                        onChange={(e) => handleChange('name', e.target.value)}
-                        onFocus={handleInteractionStart}
-                        placeholder="Tu nombre"
-                        className={`form-input ${errors.name ? 'is-invalid' : ''}`}
+                        onChange={handleChange}
+                        placeholder="Ej: Marcelo Gómez"
+                        className="form-input"
+                        autoComplete="name"
                       />
                     </div>
                     {errors.name && <span className="field-error-msg">{errors.name}</span>}
                   </div>
 
-                  {/* Field 2: Nombre del negocio */}
-                  <div className="form-field-group">
-                    <label htmlFor="lead-business" className="form-label">
-                      <span>Nombre del negocio</span>
-                      <span className="required-star">*</span>
+                  {/* Field: Business Name */}
+                  <div className="form-group">
+                    <label htmlFor="contact-business" className="form-label">
+                      Nombre de tu negocio o actividad <span className="required-star">*</span>
                     </label>
-                    <div className="input-with-icon">
-                      <Building2 size={18} className="input-adornment-icon" />
+                    <div className={`input-wrapper ${errors.businessName ? 'has-error' : ''}`}>
+                      <Building2 size={18} className="input-icon" />
                       <input
-                        id="lead-business"
+                        id="contact-business"
                         type="text"
                         name="businessName"
                         value={formData.businessName}
-                        onChange={(e) => handleChange('businessName', e.target.value)}
-                        onFocus={handleInteractionStart}
-                        placeholder="Ej. Barbería Central"
-                        className={`form-input ${errors.businessName ? 'is-invalid' : ''}`}
+                        onChange={handleChange}
+                        placeholder="Ej: Taller Mecánico Gómez / Barbería Tigre"
+                        className="form-input"
+                        autoComplete="organization"
                       />
                     </div>
-                    {errors.businessName && (
-                      <span className="field-error-msg">{errors.businessName}</span>
-                    )}
+                    {errors.businessName && <span className="field-error-msg">{errors.businessName}</span>}
                   </div>
 
-                  {/* Field 3: WhatsApp / Teléfono */}
-                  <div className="form-field-group">
-                    <label htmlFor="lead-phone" className="form-label">
-                      <span>WhatsApp / Teléfono</span>
-                      <span className="required-star">*</span>
+                  {/* Field: Phone / WhatsApp */}
+                  <div className="form-group">
+                    <label htmlFor="contact-phone" className="form-label">
+                      Teléfono o WhatsApp de contacto <span className="required-star">*</span>
                     </label>
-                    <div className="input-with-icon">
-                      <Phone size={18} className="input-adornment-icon" />
+                    <div className={`input-wrapper ${errors.phone ? 'has-error' : ''}`}>
+                      <Phone size={18} className="input-icon" />
                       <input
-                        id="lead-phone"
+                        id="contact-phone"
                         type="tel"
                         name="phone"
-                        autoComplete="tel"
                         value={formData.phone}
-                        onChange={(e) => handleChange('phone', e.target.value)}
-                        onFocus={handleInteractionStart}
-                        placeholder="11 1234-5678"
-                        className={`form-input ${errors.phone ? 'is-invalid' : ''}`}
+                        onChange={handleChange}
+                        placeholder="Ej: 11 2345-6789"
+                        className="form-input"
+                        autoComplete="tel"
                       />
                     </div>
                     {errors.phone && <span className="field-error-msg">{errors.phone}</span>}
                   </div>
 
-                  {/* Field 4: ¿Qué necesitás? (Interactive Selector Chips) */}
-                  <div className="form-field-group">
-                    <label className="form-label">
-                      <span>¿Qué necesitás?</span>
-                      <span className="required-star">*</span>
+                  {/* Field: Service of Interest */}
+                  <div className="form-group">
+                    <label htmlFor="contact-service" className="form-label">
+                      ¿Qué estás buscando para tu negocio?
                     </label>
-                    <div className="service-chips-selector">
-                      {serviceOptions.map((opt) => {
-                        const isSelected = formData.service === opt;
-                        return (
-                          <button
-                            key={opt}
-                            type="button"
-                            className={`service-chip-btn ${isSelected ? 'is-selected' : ''}`}
-                            onClick={() => handleChange('service', opt)}
-                          >
-                            <span className="chip-indicator"></span>
-                            <span className="chip-text">{opt}</span>
-                          </button>
-                        );
-                      })}
+                    <div className="input-wrapper select-wrapper">
+                      <select
+                        id="contact-service"
+                        name="service"
+                        value={formData.service}
+                        onChange={handleChange}
+                        className="form-select"
+                      >
+                        {serviceOptions.map((opt, i) => (
+                          <option key={i} value={opt}>
+                            {opt}
+                          </option>
+                        ))}
+                      </select>
                     </div>
-                    {errors.service && (
-                      <span className="field-error-msg">{errors.service}</span>
-                    )}
                   </div>
 
-                  {/* Field 5: Mensaje (Opcional) */}
-                  <div className="form-field-group">
-                    <label htmlFor="lead-message" className="form-label">
-                      <span>Mensaje</span>
-                      <span className="optional-tag">(opcional)</span>
+                  {/* Field: Optional Message */}
+                  <div className="form-group">
+                    <label htmlFor="contact-message" className="form-label">
+                      ¿Querés contarnos algo más? <span className="optional-tag">(opcional)</span>
                     </label>
                     <textarea
-                      id="lead-message"
+                      id="contact-message"
                       name="message"
-                      rows={3}
                       value={formData.message}
-                      onChange={(e) => handleChange('message', e.target.value)}
-                      onFocus={handleInteractionStart}
-                      placeholder="Contanos brevemente qué necesitás o qué te gustaría mejorar..."
+                      onChange={handleChange}
+                      placeholder="Contanos si ya tenés fotos, redes o si estás empezando desde cero..."
+                      rows="3"
                       className="form-textarea"
                     ></textarea>
                   </div>
 
-                  {/* Main Action Button */}
+                  {/* Submit Button */}
                   <button
                     type="submit"
-                    className="btn-submit-lead"
                     disabled={isSubmitting}
+                    className="btn-hostinger-primary btn-submit-form"
                   >
                     {isSubmitting ? (
                       <>
-                        <Loader2 size={20} className="spinner-icon animate-spin" />
-                        <span>ENVIANDO CONSULTA...</span>
+                        <Loader2 size={18} className="spinner-icon animate-spin" />
+                        <span>Enviando consulta...</span>
                       </>
                     ) : (
                       <>
                         <Send size={18} />
-                        <span>QUIERO RECIBIR ASESORAMIENTO</span>
+                        <span>Enviar consulta</span>
+                        <ArrowRight size={16} />
                       </>
                     )}
                   </button>
 
-                  {/* Clarification footnote */}
-                  <p className="form-helper-footnote">
-                    ¿No sabés exactamente qué necesitás? No hay problema. Contanos sobre tu negocio y te orientamos.
+                  <p className="form-privacy-note">
+                    Tus datos se usan únicamente para responderte. Cero spam.
                   </p>
                 </form>
               )}

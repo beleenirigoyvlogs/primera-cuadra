@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import VisualJourneyFlow from './components/VisualJourneyFlow';
-import DigitalPresenceSection from './components/DigitalPresenceSection';
 import BusinessSituationsSection from './components/BusinessSituationsSection';
-import SimulatorPage from './pages/SimulatorPage';
-import CustomDevelopmentPage from './pages/CustomDevelopmentPage';
+import DigitalPresenceSection from './components/DigitalPresenceSection';
 import ProcessSteps from './components/ProcessSteps';
-import WhoIsBehindSection from './components/WhoIsBehindSection';
 import ExampleDesignsSection from './components/ExampleDesignsSection';
+import WhoIsBehindSection from './components/WhoIsBehindSection';
 import EarlyAdoptersSection from './components/EarlyAdoptersSection';
 import PricingPacks from './components/PricingPacks';
 import FAQSection from './components/FAQSection';
 import ContactSection from './components/ContactSection';
-import FinalCtaSection from './components/FinalCtaSection';
 import Footer from './components/Footer';
 import WhatsAppFloatingBtn from './components/WhatsAppFloatingBtn';
 import AdminLeadsModal from './components/AdminLeadsModal';
+import SimulatorPage from './pages/SimulatorPage';
+import CustomDevelopmentPage from './pages/CustomDevelopmentPage';
+import ProposalPage from './pages/ProposalPage';
 import { NICHES } from './data/nicheData';
 import { useScrollReveal } from './hooks/useScrollReveal';
 import { useMouseParallaxDots } from './hooks/useMouseParallaxDots';
 import { recordPageView } from './utils/visitorTracker';
-import { Sparkles, Eye, ExternalLink } from 'lucide-react';
+import { trackWhatsAppClick, trackSimulatorOpen } from './utils/gtm';
+import { Sparkles, Eye, ExternalLink, MessageCircle } from 'lucide-react';
 
 export default function App() {
   useScrollReveal();
@@ -29,6 +29,22 @@ export default function App() {
   const [currentNiche, setCurrentNiche] = useState('peluqueria');
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const niche = NICHES[currentNiche] || NICHES.peluqueria;
+
+  // Route resolvers
+  const getProposalSlug = () => {
+    if (typeof window === 'undefined') return null;
+    const path = window.location.pathname.toLowerCase();
+    const hash = window.location.hash.toLowerCase();
+    if (path.startsWith('/propuesta/')) {
+      const parts = path.split('/propuesta/')[1].split('/')[0];
+      return parts || null;
+    }
+    if (hash.startsWith('#propuesta/')) {
+      const parts = hash.split('#propuesta/')[1].split('/')[0];
+      return parts || null;
+    }
+    return null;
+  };
 
   const isSimulatorRoute = () => {
     if (typeof window === 'undefined') return false;
@@ -44,6 +60,7 @@ export default function App() {
     return path === '/desarrollo-a-medida' || path === '/desarrollo-a-medida/' || path.startsWith('/desarrollo-a-medida') || hash === '#desarrollo-a-medida';
   };
 
+  const [proposalSlug, setProposalSlug] = useState(getProposalSlug);
   const [isSimulatorPage, setIsSimulatorPage] = useState(isSimulatorRoute);
   const [isCustomDevPage, setIsCustomDevPage] = useState(isCustomDevRoute);
 
@@ -55,6 +72,7 @@ export default function App() {
   // Shortcuts: Ctrl+Shift+A, Alt+A or #admin in URL; handle routing
   useEffect(() => {
     const handleRouteChange = () => {
+      setProposalSlug(getProposalSlug());
       setIsSimulatorPage(isSimulatorRoute());
       setIsCustomDevPage(isCustomDevRoute());
     };
@@ -86,44 +104,48 @@ export default function App() {
     };
   }, []);
 
-  // Dedicated Route: Full-Page Simulator
+  // 1. Dedicated Route: Personalized Commercial Proposal
+  if (proposalSlug) {
+    return <ProposalPage slug={proposalSlug} />;
+  }
+
+  // 2. Dedicated Route: Full-Page Simulator
   if (isSimulatorPage) {
     return <SimulatorPage />;
   }
 
-  // Dedicated Route: Custom Development (Apps Móviles & Sistemas POS)
+  // 3. Dedicated Route: Custom Development (Apps Móviles & Sistemas POS)
   if (isCustomDevPage) {
     return <CustomDevelopmentPage />;
   }
 
+  const defaultWhatsappNumber = '5491128779641';
+  const stickyMobileMsg = encodeURIComponent(
+    '¡Hola Belén! Quiero consultar para mejorar la presencia digital de mi negocio en Primera Cuadra.'
+  );
+
   return (
     <div className="app-root">
-      {/* 1. Top Navigation */}
+      {/* Top Navigation */}
       <Navbar />
 
       <main>
-        {/* 2. Hero with Action-Oriented Headline, CTAs & 3-in-1 Mockup */}
+        {/* 1. Hero with Action-Oriented Headline, CTAs & 3-in-1 Mockup */}
         <Hero />
 
-        {/* 3. Servicios Profesionales: Web, Google Maps y WhatsApp */}
-        <DigitalPresenceSection />
-
-        {/* 4. Customer Journey: Así te encuentra un nuevo cliente */}
-        <VisualJourneyFlow />
-
-        {/* 5. Business Situations: ¿Tu negocio está en alguna de estas situaciones? */}
+        {/* 2. ¿Tu negocio está en alguna de estas situaciones? */}
         <BusinessSituationsSection />
 
-        {/* 6. Process Methodology: ¿Cómo trabajamos? 3 simples pasos */}
+        {/* 3. Servicios Profesionales (3): Web Propia, Google Maps y WhatsApp */}
+        <DigitalPresenceSection />
+
+        {/* 4. ¿Cómo trabajamos? 3 simples pasos */}
         <ProcessSteps />
 
-        {/* 7. Quién está detrás de Primera Cuadra (Belen Irigoy, Tigre) */}
-        <WhoIsBehindSection />
-
-        {/* 8. Diseños de Ejemplo: 4 Demos de Negocios Ficticios */}
+        {/* 5. Diseños de ejemplo (4 demos ficticias) */}
         <ExampleDesignsSection />
 
-        {/* 9. Live Interactive Simulator Callout - Compact Card */}
+        {/* 6. Simulador interactivo en vivo (única sección de llamado) */}
         <section className="simulator-callout-section" id="demostracion-en-vivo">
           <div className="container">
             <div className="simulator-callout-card reveal">
@@ -136,7 +158,7 @@ export default function App() {
                   ¿Querés ver cómo podría <span className="highlight-purple">quedar tu negocio</span>?
                 </h2>
                 <p className="callout-description">
-                  Probá nuestro simulador interactivo para previsualizar tu página web, ficha de Google Maps y WhatsApp Business con el nombre y rubro de tu empresa.
+                  Probá nuestro simulador para previsualizar tu página web, ficha de Google Maps y WhatsApp Business con el nombre y rubro de tu empresa.
                 </p>
               </div>
               <div className="callout-action-right">
@@ -145,6 +167,7 @@ export default function App() {
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="btn-hostinger-primary btn-launch-simulator"
+                  onClick={() => trackSimulatorOpen('home_callout_button')}
                 >
                   <Eye size={17} />
                   <span>ABRIR SIMULADOR EN VIVO</span>
@@ -156,20 +179,20 @@ export default function App() {
           </div>
         </section>
 
-        {/* 10. Programa de Primeros Clientes: 5 lugares con precio de lanzamiento */}
+        {/* 7. Quién está detrás de Primera Cuadra (Belén Irigoy, Tigre) */}
+        <WhoIsBehindSection />
+
+        {/* 8. Programa de Primeros Clientes: 5 lugares con precio de lanzamiento */}
         <EarlyAdoptersSection />
 
-        {/* 11. Pricing Section: 3 Packs Transparentes */}
+        {/* 9. Precios: 3 Planes Transparentes */}
         <PricingPacks niche={niche} />
 
-        {/* 12. Frequently Asked Questions */}
+        {/* 10. Preguntas frecuentes */}
         <FAQSection niche={niche} />
 
-        {/* 13. Contact Form: ¿Querés mejorar la presencia digital de tu negocio? */}
+        {/* 11. Sección unificada de Contacto (El siguiente paso + dudas + formulario + WhatsApp) */}
         <ContactSection />
-
-        {/* 14. Final High-Impact CTA */}
-        <FinalCtaSection />
       </main>
 
       {/* Footer */}
@@ -179,8 +202,22 @@ export default function App() {
         onOpenAdmin={() => setIsAdminOpen(true)}
       />
 
-      {/* Persistent Floating WhatsApp Action Button */}
+      {/* Persistent Floating WhatsApp Action Button (desktop) */}
       <WhatsAppFloatingBtn niche={niche} />
+
+      {/* Mobile Sticky WhatsApp Action Bar (Clean and prominent on mobile screens) */}
+      <div className="mobile-sticky-wa-bar">
+        <a 
+          href={`https://wa.me/${defaultWhatsappNumber}?text=${stickyMobileMsg}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-mobile-sticky-wa"
+          onClick={() => trackWhatsAppClick('mobile_sticky_bar', 'Escribinos_por_WhatsApp')}
+        >
+          <MessageCircle size={20} />
+          <span>Escribinos por WhatsApp</span>
+        </a>
+      </div>
 
       {/* Hidden Admin Leads Panel Modal */}
       <AdminLeadsModal 

@@ -10,6 +10,7 @@ import {
   Moon,
   Sun
 } from 'lucide-react';
+import { trackWhatsAppClick } from '../utils/gtm';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -41,7 +42,7 @@ export default function Navbar() {
 
   const defaultWhatsappNumber = '5491128779641';
   const defaultMsg = encodeURIComponent(
-    '¡Hola Primera Cuadra! Quisiera consultar sobre el diseño de página web y presencia digital para mi negocio.'
+    '¡Hola Belén! Quisiera consultar sobre el diseño de página web y presencia digital para mi negocio.'
   );
 
   useEffect(() => {
@@ -128,6 +129,7 @@ export default function Navbar() {
             target="_blank"
             rel="noopener noreferrer"
             className="btn-nav-cta btn-nav-wa"
+            onClick={() => trackWhatsAppClick('navbar_cta_wa', 'Header_WhatsApp')}
           >
             <MessageSquare size={16} />
             <span>WhatsApp</span>

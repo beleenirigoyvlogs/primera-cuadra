@@ -14045,3 +14045,940 @@ html.dark .custom-dev-footer {
     font-size: 1.8rem;
   }
 }
+
+
+/* ==========================================================================
+   SEGUNDA PASADA: DESIGN SYSTEM & POLISH (Noviembre 2026)
+   - Escala tipográfica unificada
+   - Espaciado en múltiplos de 8px
+   - Contenedor 1200px y padding vertical 96px/64px
+   - Contraste WCAG AA sobre fondo oscuro
+   - Navbar con blur, sin solapamiento y menú hamburguesa <= 1280px
+   - Tarjetas de precios alineadas en altura con sub-banner único
+   - Corner badge en diseños de ejemplo y sin desborde
+   - Barra fija de WhatsApp en mobile y propuesta comercial /propuesta/:slug
+   ========================================================================== */
+
+/* 1. SISTEMA DE DISEÑO BASE */
+:root {
+  --text-h1: clamp(2.2rem, 4vw, 3.2rem);
+  --text-h2: clamp(1.75rem, 2.8vw, 2.35rem);
+  --text-h3: clamp(1.2rem, 1.8vw, 1.45rem);
+  --text-body: 1rem;
+  --text-sm: 0.875rem;
+  --text-xs: 0.75rem;
+
+  --space-8: 8px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-48: 48px;
+  --space-64: 64px;
+  --space-80: 80px;
+  --space-96: 96px;
+}
+
+/* Contenedor centralizado a 1200px */
+.container {
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+  box-sizing: border-box !important;
+}
+
+/* Padding vertical unificado en todas las secciones */
+main > section {
+  padding-top: 96px !important;
+  padding-bottom: 96px !important;
+}
+
+.simulator-callout-section {
+  padding-top: 48px !important;
+  padding-bottom: 56px !important;
+}
+
+@media (max-width: 768px) {
+  main > section {
+    padding-top: 64px !important;
+    padding-bottom: 64px !important;
+  }
+  .simulator-callout-section {
+    padding-top: 36px !important;
+    padding-bottom: 40px !important;
+  }
+}
+
+/* Escala tipográfica unificada */
+h1, .hero-headline-result {
+  font-size: var(--text-h1) !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.025em !important;
+}
+
+h2, .section-title, .callout-heading, .contact-main-title {
+  font-size: var(--text-h2) !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.02em !important;
+}
+
+h3, .plan-name, .situation-card-title, .form-title, .who-name-headline {
+  font-size: var(--text-h3) !important;
+  line-height: 1.35 !important;
+}
+
+p, .section-subtitle, .callout-description, .contact-main-subtitle, .hero-subtitle-result {
+  font-size: var(--text-body) !important;
+  line-height: 1.6 !important;
+}
+
+small, .plan-sub-guarantee, .callout-footnote, .form-privacy-note {
+  font-size: var(--text-sm) !important;
+}
+
+/* Píldoras y etiquetas en una sola línea */
+.section-kicker-pill,
+.section-kicker-tag,
+.hero-kicker-badge,
+.callout-kicker-tag,
+.trust-pill-tag,
+.own-page-proof-pill,
+.honest-samples-pill {
+  white-space: nowrap !important;
+  max-width: 100% !important;
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+/* Contraste WCAG AA en Modo Oscuro */
+html.dark {
+  --text-body: #D1D0DD !important;
+  --text-muted: #A8A6BE !important;
+  --text-light: #9492AB !important;
+}
+
+html.dark p,
+html.dark .section-subtitle,
+html.dark .callout-description,
+html.dark .contact-main-subtitle,
+html.dark .plan-sub-guarantee,
+html.dark .clarity-item p,
+html.dark .who-bio-paragraph,
+html.dark .early-description,
+html.dark .situation-card-detail {
+  color: #D1D0DD !important;
+}
+
+html.dark .text-muted,
+html.dark .form-privacy-note,
+html.dark .callout-footnote,
+html.dark .demo-item-desc {
+  color: #A8A6BE !important;
+}
+
+/* 2. NAVBAR BLUR & HAMBURGUESA <= 1280px */
+.navbar-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-bottom: 1px solid var(--border-light) !important;
+  height: 68px !important;
+}
+
+html.dark .navbar-header {
+  background: rgba(15, 14, 23, 0.94) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.desktop-nav-links {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.nav-link-item {
+  font-size: 0.86rem !important;
+  padding: 6px 10px !important;
+  white-space: nowrap !important;
+  color: var(--text-title) !important;
+  font-weight: 600 !important;
+  border-radius: 6px !important;
+  transition: all 0.2s ease !important;
+}
+
+.nav-link-item:hover {
+  background: rgba(103, 61, 230, 0.08) !important;
+  color: var(--brand-purple) !important;
+}
+
+.btn-nav-wa {
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+  font-size: 0.86rem !important;
+  padding: 8px 16px !important;
+}
+
+@media (max-width: 1280px) {
+  .desktop-nav-links {
+    display: none !important;
+  }
+  .mobile-nav-toggle {
+    display: flex !important;
+  }
+}
+
+/* 3. PRECIOS: ALINEACIÓN PERFECTA Y BANNER ÚNICO */
+.pricing-launch-banner-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, rgba(103, 61, 230, 0.08) 0%, rgba(167, 139, 250, 0.14) 100%);
+  border: 1px solid rgba(103, 61, 230, 0.25);
+  border-radius: var(--radius-full);
+  padding: 10px 24px;
+  margin: 28px auto 0;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--brand-purple);
+  text-align: center;
+  max-width: 680px;
+}
+
+html.dark .pricing-launch-banner-strip {
+  background: rgba(167, 139, 250, 0.1);
+  border-color: rgba(167, 139, 250, 0.25);
+  color: #C4B5FD;
+}
+
+.pricing-cards-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 24px !important;
+  align-items: stretch !important;
+  margin-top: 36px !important;
+}
+
+@media (max-width: 1024px) {
+  .pricing-cards-grid {
+    grid-template-columns: 1fr !important;
+    max-width: 520px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+.pricing-card-hostinger {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  padding: 32px 24px !important;
+  position: relative !important;
+  border-radius: 18px !important;
+  box-sizing: border-box !important;
+}
+
+.pricing-card-hostinger .plan-card-header {
+  min-height: 110px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+}
+
+.pricing-card-hostinger .plan-name {
+  font-size: 1.45rem !important;
+  font-weight: 800 !important;
+  margin-bottom: 8px !important;
+}
+
+.pricing-card-hostinger .plan-desc {
+  font-size: 0.88rem !important;
+  line-height: 1.5 !important;
+  color: var(--text-muted) !important;
+  margin: 0 !important;
+}
+
+.pricing-card-hostinger .price-tag-wrapper {
+  margin: 20px 0 16px !important;
+  min-height: 50px !important;
+  display: flex !important;
+  align-items: baseline !important;
+}
+
+.pricing-card-hostinger .price-amount-bold {
+  font-size: 2.25rem !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.pricing-card-hostinger .btn-plan-hostinger {
+  width: 100% !important;
+  margin-bottom: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+}
+
+.pricing-card-hostinger .plan-sub-guarantee {
+  min-height: 44px !important;
+  font-size: 0.82rem !important;
+  line-height: 1.45 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  margin-bottom: 20px !important;
+  padding: 6px 12px !important;
+  background: rgba(103, 61, 230, 0.06) !important;
+  border-radius: 6px !important;
+}
+
+html.dark .pricing-card-hostinger .plan-sub-guarantee {
+  background: rgba(167, 139, 250, 0.08) !important;
+}
+
+.pricing-card-hostinger .plan-features-list {
+  flex-grow: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+/* 4. DISEÑOS DE EJEMPLO: CORNER BADGE & SIN DESBORDE */
+.example-demos-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 24px !important;
+  margin-top: 40px !important;
+  width: 100% !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 1100px) {
+  .example-demos-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .example-demos-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.demo-showcase-card {
+  position: relative !important;
+  padding: 24px !important;
+  border-radius: 18px !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+}
+
+.demo-corner-badge {
+  position: absolute !important;
+  top: 14px !important;
+  right: 14px !important;
+  font-size: 0.68rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  padding: 3px 8px !important;
+  border-radius: 4px !important;
+  background: rgba(103, 61, 230, 0.08) !important;
+  border: 1px solid rgba(103, 61, 230, 0.18) !important;
+  color: var(--brand-purple) !important;
+  white-space: nowrap !important;
+}
+
+html.dark .demo-corner-badge {
+  background: rgba(167, 139, 250, 0.12) !important;
+  border-color: rgba(167, 139, 250, 0.25) !important;
+  color: #C4B5FD !important;
+}
+
+/* 5. QUIÉN ESTÁ DETRÁS: AVATAR BI */
+.who-avatar-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #673de6 0%, #9065f6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(103, 61, 230, 0.35);
+  border: 3px solid #ffffff;
+}
+
+html.dark .who-avatar-circle {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.who-initials,
+.who-initials-text {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+}
+
+/* 6. BARRA FIJA DE WHATSAPP EN CELULAR */
+.mobile-sticky-wa-bar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-sticky-wa-bar {
+    display: block !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 9999 !important;
+    padding: 10px 16px !important;
+    background: rgba(15, 14, 23, 0.96) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .btn-mobile-sticky-wa {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    width: 100% !important;
+    padding: 14px 20px !important;
+    background: #25D366 !important;
+    color: #ffffff !important;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    border-radius: 9999px !important;
+    text-decoration: none !important;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35) !important;
+  }
+
+  .whatsapp-floating-container {
+    display: none !important;
+  }
+
+  body {
+    padding-bottom: 70px !important;
+  }
+}
+
+/* 7. PROPUESTAS PERSONALIZADAS (/propuesta/:slug) */
+.proposal-page-root {
+  min-height: 100vh;
+  background-color: var(--bg-page);
+  color: var(--text-title);
+  display: flex;
+  flex-direction: column;
+}
+
+.proposal-sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(15, 14, 23, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 12px 0;
+}
+
+.proposal-header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.proposal-header-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.proposal-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #A1A0B0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  transition: all 0.2s;
+}
+
+.proposal-back-link:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.proposal-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #c4b5fd;
+  background: rgba(167, 139, 250, 0.15);
+  border: 1px solid rgba(167, 139, 250, 0.3);
+  padding: 3px 10px;
+  border-radius: 9999px;
+}
+
+.proposal-header-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+}
+
+.proposal-header-rubro {
+  font-size: 0.85rem;
+  color: #A1A0B0;
+}
+
+.proposal-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.proposal-validity-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: #e2e8f0;
+}
+
+.btn-proposal-interest {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #22c55e;
+  color: #ffffff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 9px 18px;
+  border-radius: 9999px;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.35);
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn-proposal-interest:hover {
+  background: #16a34a;
+  transform: translateY(-1px);
+}
+
+.proposal-hero-section {
+  padding: 48px 0 24px;
+}
+
+.proposal-intro-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 36px 32px;
+  box-shadow: var(--shadow-card);
+}
+
+.proposal-kicker {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--brand-purple);
+  margin-bottom: 12px;
+}
+
+.proposal-main-heading {
+  font-size: var(--text-h2);
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+
+.proposal-summary-text {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-body);
+  max-width: 860px;
+  margin-bottom: 24px;
+}
+
+.proposal-client-metadata {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-light);
+}
+
+.metadata-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.metadata-item strong {
+  color: var(--text-title);
+}
+
+.proposal-preview-section {
+  padding: 24px 0 64px;
+}
+
+.proposal-mockup-frame {
+  background: #0f172a;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mockup-browser-chrome {
+  background: #1e293b;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mockup-window-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.mockup-window-dots .dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+
+.dot-red { background: #ef4444; }
+.dot-yellow { background: #f59e0b; }
+.dot-green { background: #22c55e; }
+
+.mockup-url-bar {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 0.82rem;
+  color: #e2e8f0;
+}
+
+.url-protocol { color: #64748b; }
+.url-domain { color: #38bdf8; font-weight: 600; }
+
+.mockup-window-tag {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.mockup-website-viewport {
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.demo-site-nav {
+  padding: 16px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid;
+  background: #ffffff;
+}
+
+.demo-brand-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  display: block;
+}
+
+.demo-brand-sub {
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+.demo-site-wa-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  text-decoration: none;
+}
+
+.demo-site-hero {
+  padding: 64px 32px;
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+}
+
+.demo-site-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.demo-site-title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  margin-bottom: 12px;
+  line-height: 1.15;
+}
+
+.demo-site-tagline {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin-bottom: 24px;
+  opacity: 0.9;
+}
+
+.demo-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.demo-site-services-grid {
+  padding: 40px 32px;
+  background: #f8fafc;
+}
+
+.demo-section-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 24px;
+  color: #1e293b;
+}
+
+.demo-items-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .demo-items-grid { grid-template-columns: 1fr; }
+}
+
+.demo-item-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.demo-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.demo-item-name {
+  font-weight: 700;
+  color: #0f172a;
+  font-size: 1rem;
+}
+
+.demo-item-price {
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.demo-item-desc {
+  font-size: 0.85rem;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.demo-site-footer-strip {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 24px 32px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+  .demo-site-footer-strip { grid-template-columns: 1fr; }
+}
+
+.demo-strip-col strong {
+  display: block;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.demo-maps-status {
+  color: #38bdf8;
+}
+
+.proposal-commercial-section {
+  padding: 0 0 80px;
+}
+
+.proposal-commercial-card {
+  background: var(--bg-card);
+  border: 2px solid rgba(103, 61, 230, 0.3);
+  border-radius: var(--radius-xl);
+  padding: 40px 36px;
+  box-shadow: 0 20px 45px -10px rgba(103, 61, 230, 0.15);
+}
+
+.commercial-card-header {
+  margin-bottom: 24px;
+}
+
+.commercial-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--brand-purple);
+  margin-bottom: 8px;
+}
+
+.commercial-title {
+  font-size: 1.85rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.commercial-desc {
+  font-size: 1rem;
+  color: var(--text-body);
+}
+
+.commercial-benefits-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+}
+
+@media (max-width: 768px) {
+  .commercial-benefits-list { grid-template-columns: 1fr; }
+}
+
+.commercial-benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: var(--text-title);
+}
+
+.commercial-guarantee-box {
+  background: rgba(103, 61, 230, 0.06);
+  border: 1px solid rgba(103, 61, 230, 0.15);
+  border-radius: 12px;
+  padding: 18px 24px;
+  margin: 28px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 0.92rem;
+}
+
+html.dark .commercial-guarantee-box {
+  background: rgba(167, 139, 250, 0.08);
+  border-color: rgba(167, 139, 250, 0.2);
+}
+
+.commercial-action-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.btn-accept-proposal {
+  width: auto;
+  min-width: 320px;
+  padding: 16px 32px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  justify-content: center;
+}
+
+.commercial-direct-contact {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.proposal-footer {
+  border-top: 1px solid var(--border-light);
+  padding: 24px 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.proposal-footer a {
+  color: var(--brand-purple);
+  text-decoration: underline;
+}

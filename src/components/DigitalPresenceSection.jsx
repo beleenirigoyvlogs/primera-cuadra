@@ -9,6 +9,7 @@ import {
   Zap, 
   ExternalLink 
 } from 'lucide-react';
+import { trackWhatsAppClick } from '../utils/gtm';
 
 export default function DigitalPresenceSection() {
   const whatsappNumber = '5491128779641';
@@ -30,7 +31,7 @@ export default function DigitalPresenceSection() {
         '100% de tu propiedad (sin alquileres forzados; renovación anual transparente de hosting y dominio)'
       ],
       ctaText: 'Consultar por Página Web',
-      waMsg: encodeURIComponent('¡Hola Primera Cuadra! Me interesa consultar por el servicio de Diseño y Desarrollo de Página Web profesional para mi negocio. ¿Podrían asesorarme?'),
+      waMsg: encodeURIComponent('¡Hola Belén! Me interesa consultar por el servicio de Diseño y Desarrollo de Página Web profesional para mi negocio.'),
       link: '#precios'
     },
     {
@@ -49,7 +50,7 @@ export default function DigitalPresenceSection() {
         'Canal directo hacia tu página web y botón de llamada telefónica'
       ],
       ctaText: 'Consultar por Google Maps',
-      waMsg: encodeURIComponent('¡Hola Primera Cuadra! Me interesa consultar por el servicio de Ficha optimizada para búsquedas de tu zona en Google Maps para mi comercio. ¿Podrían asesorarme?'),
+      waMsg: encodeURIComponent('¡Hola Belén! Me interesa consultar por el servicio de Ficha optimizada para búsquedas de tu zona en Google Maps para mi comercio.'),
       link: '#precios'
     },
     {
@@ -68,7 +69,7 @@ export default function DigitalPresenceSection() {
         'Organización de conversaciones con etiquetas personalizadas'
       ],
       ctaText: 'Consultar por WhatsApp Business',
-      waMsg: encodeURIComponent('¡Hola Primera Cuadra! Me interesa consultar por el servicio de configuración de WhatsApp Business oficial con catálogo. ¿Podrían asesorarme?'),
+      waMsg: encodeURIComponent('¡Hola Belén! Me interesa consultar por el servicio de configuración de WhatsApp Business oficial con catálogo para mi comercio.'),
       link: '#precios'
     }
   ];
@@ -134,6 +135,7 @@ export default function DigitalPresenceSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`btn-service-action btn-service-${s.accent}`}
+                    onClick={() => trackWhatsAppClick('service_card_btn', s.title)}
                   >
                     <MessageSquare size={16} />
                     <span>{s.ctaText}</span>

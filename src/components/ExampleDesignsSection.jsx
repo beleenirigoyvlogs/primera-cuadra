@@ -16,6 +16,7 @@ import {
   X,
   ArrowRight
 } from 'lucide-react';
+import { trackWhatsAppClick } from '../utils/gtm';
 
 /**
  * PLANTILLA DE DEMOS DUPLICABLE:
@@ -31,7 +32,7 @@ export const EXAMPLE_DEMOS = [
     businessName: 'La Esquina Parrilla & Restó',
     tagline: 'Carnes a las brasas, pastas caseras y carta de vinos',
     city: 'Tigre, Buenos Aires',
-    sampleDomain: 'laesquinaparrilla.com.ar',
+    sampleDomain: 'ejemplo-parrilla.primeracuadra.com.ar',
     accentColor: '#ea580c',
     heroBadge: 'Abierto hoy mediodía y noche',
     services: [
@@ -54,7 +55,7 @@ export const EXAMPLE_DEMOS = [
     businessName: 'Studio Urbano Hair & Barber',
     tagline: 'Cortes de diseño, colorimetría y tratamientos capilares',
     city: 'San Isidro, Buenos Aires',
-    sampleDomain: 'studiourbanobarber.com.ar',
+    sampleDomain: 'ejemplo-barberia.primeracuadra.com.ar',
     accentColor: '#7c3aed',
     heroBadge: 'Atención con turno previo',
     services: [
@@ -77,7 +78,7 @@ export const EXAMPLE_DEMOS = [
     businessName: 'Taller San Martín Mecánica Integral',
     tagline: 'Mecánica general, frenos, inyección electrónica y distribución',
     city: 'Vicente López, Buenos Aires',
-    sampleDomain: 'mecanicasanmartin.com.ar',
+    sampleDomain: 'ejemplo-taller.primeracuadra.com.ar',
     accentColor: '#2563eb',
     heroBadge: 'Diagnóstico en el día',
     services: [
@@ -100,7 +101,7 @@ export const EXAMPLE_DEMOS = [
     businessName: 'Centro Dental del Parque',
     tagline: 'Odontología integral, implantes y ortodoncia invisible',
     city: 'Martínez, Buenos Aires',
-    sampleDomain: 'dentaldelparque.com.ar',
+    sampleDomain: 'ejemplo-dental.primeracuadra.com.ar',
     accentColor: '#059669',
     heroBadge: 'Atención adultos y niños',
     services: [
@@ -133,20 +134,20 @@ export default function ExampleDesignsSection() {
         <div className="section-header-center reveal">
           <div className="section-kicker-tag">
             <Sparkles size={14} className="text-purple-icon" />
-            <span>MUESTRAS REALES • NEGOCIOS FICTICIOS</span>
+            <span>DISEÑOS DE EJEMPLO</span>
           </div>
 
           <h2 className="section-title">
-            Diseños de ejemplo: así se va a <span className="highlight-purple">ver tu negocio</span>
+            Así se va a <span className="highlight-purple">ver tu negocio</span>
           </h2>
 
           <p className="section-subtitle">
-            Para que veas la calidad, velocidad y claridad de nuestro trabajo antes de contratar, preparamos 4 propuestas de ejemplo para distintos rubros.
+            Propuestas modelo para que evalúes la calidad, velocidad y claridad de nuestro trabajo antes de contratar.
           </p>
 
           <div className="honest-samples-pill">
             <Eye size={15} />
-            <span>Todas las demostraciones a continuación son maquetas de ejemplo sobre negocios ficticios</span>
+            <span>Maquetas de ejemplo sobre comercios y marcas ficticias</span>
           </div>
         </div>
 
@@ -156,10 +157,8 @@ export default function ExampleDesignsSection() {
             const IconComp = demo.icon;
             return (
               <div key={demo.id} className="demo-showcase-card reveal">
-                {/* Mandatory Disclaimer Badge */}
-                <div className="demo-fictitious-badge" role="note">
-                  <span>Diseño de ejemplo – negocio ficticio</span>
-                </div>
+                {/* Discrete Corner Tag */}
+                <span className="demo-corner-badge">Ejemplo ficticio</span>
 
                 {/* Card Top Rubro & Icon */}
                 <div className="demo-card-top">
@@ -231,24 +230,6 @@ export default function ExampleDesignsSection() {
             );
           })}
         </div>
-
-        {/* Reassurance Banner */}
-        <div className="demos-bottom-reassurance reveal">
-          <div className="reassurance-text">
-            <strong>¿Tenés otro rubro o querés ver cómo quedaría tu nombre?</strong>
-            <p>Podés probar nuestro simulador interactivo gratuito o consultarnos directamente para que te armemos una propuesta personalizada.</p>
-          </div>
-          <div className="reassurance-actions">
-            <a href="/simulador" target="_blank" rel="noopener noreferrer" className="btn-hostinger-outline">
-              <Eye size={16} />
-              <span>Abrir Simulador</span>
-            </a>
-            <a href="#contacto" className="btn-hostinger-primary">
-              <span>Pedir propuesta para mi rubro</span>
-              <ArrowRight size={16} />
-            </a>
-          </div>
-        </div>
       </div>
 
       {/* Modal / Detailed Preview of the selected Fictitious Business */}
@@ -257,7 +238,7 @@ export default function ExampleDesignsSection() {
           <div className="demo-modal-window" onClick={(e) => e.stopPropagation()}>
             <div className="demo-modal-header">
               <div className="modal-title-group">
-                <span className="modal-disclaimer-pill">Diseño de ejemplo – negocio ficticio</span>
+                <span className="modal-disclaimer-pill">Ejemplo ficticio</span>
                 <h3>{selectedDemo.businessName}</h3>
                 <span className="modal-domain">https://{selectedDemo.sampleDomain}</span>
               </div>
@@ -311,16 +292,18 @@ export default function ExampleDesignsSection() {
 
             <div className="demo-modal-footer">
               <span className="modal-footer-note">
-                Así de claro y ordenado puede quedar tu negocio real.
+                Así de clara y ordenada puede quedar la web de tu negocio.
               </span>
               <a 
-                href={`https://wa.me/5491128779641?text=${encodeURIComponent(`¡Hola Belen! Estuve viendo el diseño de ejemplo para "${selectedDemo.rubroLabel}" en Primera Cuadra y me gustaría tener una propuesta similar para mi negocio.`)}`}
+                href={`https://wa.me/5491128779641?text=${encodeURIComponent(`¡Hola Belén! Estuve viendo el diseño de ejemplo para "${selectedDemo.rubroLabel}" en Primera Cuadra y me gustaría tener una propuesta similar para mi negocio.`)}`}
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="btn-hostinger-primary"
+                data-gtm="whatsapp_example_demo"
+                onClick={() => trackWhatsAppClick('example_modal_cta', selectedDemo.rubroLabel)}
               >
                 <MessageSquare size={16} />
-                <span>Quiero una web así para mi negocio</span>
+                <span>Quiero una web así</span>
               </a>
             </div>
           </div>
