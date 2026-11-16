@@ -142,7 +142,7 @@ export default function ExampleDesignsSection() {
           </h2>
 
           <p className="section-subtitle">
-            Propuestas modelo para que evalúes la calidad, velocidad y claridad de nuestro trabajo antes de contratar.
+            Propuestas modelo para que evalúes la calidad, velocidad y claridad de mi trabajo antes de contratar.
           </p>
 
           <div className="honest-samples-pill">

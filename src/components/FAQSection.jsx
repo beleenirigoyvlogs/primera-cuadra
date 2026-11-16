@@ -23,16 +23,16 @@ export default function FAQSection() {
     {
       q: '¿Qué incluye el servicio de Primera Cuadra?',
       paragraphs: [
-        'Nos ocupamos de crear y organizar la presencia digital de tu negocio. Según el proyecto, podemos incluir página web, dominio, optimización de tu presencia en Google, configuración de WhatsApp Business y catálogo de productos o servicios.',
-        'La propuesta se adapta a las necesidades de cada negocio, para que no pagues por herramientas que no necesitás.'
+        'Me ocupo de crear y organizar la presencia digital de tu negocio. Según el proyecto, incluyo página web, dominio, optimización de tu presencia en Google, configuración de WhatsApp Business y catálogo de productos o servicios.',
+        'Mi propuesta se adapta a las necesidades de cada negocio, para que no pagues por herramientas que no necesitás.'
       ]
     },
     {
-      q: '¿Para qué rubros trabajan?',
+      q: '¿Para qué rubros trabajás?',
       paragraphs: [
-        'Trabajamos con negocios, profesionales y empresas de prácticamente cualquier rubro: comercios, gastronomía, talleres, inmobiliarias, servicios, salud, profesionales y mucho más.',
+        'Trabajo con negocios, profesionales y empresas de prácticamente cualquier rubro: comercios, gastronomía, talleres, inmobiliarias, servicios, salud, profesionales y mucho más.',
         'La estructura, los textos y las funcionalidades se adaptan a cada proyecto.',
-        'No necesitás adaptar tu negocio a una plantilla. Nosotros adaptamos la solución a tu negocio.'
+        'No necesitás adaptar tu negocio a una plantilla. Yo adapto la solución a tu negocio.'
       ]
     },
     {
@@ -40,87 +40,85 @@ export default function FAQSection() {
       paragraphs: [
         'No es obligatorio, pero cumplen funciones diferentes.',
         'Las redes sociales ayudan a mostrar y comunicar tu negocio, mientras que una página web te permite tener un espacio propio donde presentar tus servicios, productos, información y formas de contacto de manera ordenada y profesional.',
-        'Además, puede funcionar como un punto central al que enviar a las personas desde Google, Instagram y WhatsApp.'
+        'Además, funciona como un punto central al que enviar a las personas desde Google, Instagram y WhatsApp.'
       ]
     },
     {
-      q: '¿También trabajan con Google y WhatsApp Business?',
+      q: '¿También trabajás con Google y WhatsApp Business?',
       paragraphs: [
-        'Sí. Podemos ayudarte a mejorar y organizar tu presencia en Google y configurar tu WhatsApp Business para que los clientes tengan un canal de contacto claro.',
-        'También podemos organizar un catálogo de productos o servicios y conectar estos canales con tu página web.',
+        'Sí. Te ayudo a mejorar y organizar tu presencia en Google y configuro tu WhatsApp Business para que tus clientes tengan un canal de contacto claro.',
+        'También puedo organizar tu catálogo de productos o servicios y conectar estos canales con tu página web.',
         'La idea es que Google, tu web y WhatsApp trabajen como parte de una misma presencia digital.'
       ]
     },
     {
-      q: '¿Pueden garantizar que mi negocio aparezca primero en Google?',
+      q: '¿Podés garantizar que mi negocio aparezca primero en Google?',
       paragraphs: [
-        'No. La posición en Google no puede garantizarse, ya que depende de distintos factores y puede cambiar con el tiempo.',
-        'Lo que sí hacemos es trabajar sobre los elementos de tu presencia digital que podemos optimizar: información del negocio, contenido, enlaces, estructura de la web y otros aspectos relevantes.',
-        'Nuestro objetivo es construir una presencia sólida y bien organizada, no prometer una posición que no depende exclusivamente de nosotros.'
+        'No. La posición en Google no puede garantizarse, ya que depende de distintos factores del algoritmo y puede cambiar con el tiempo.',
+        'Lo que sí hago es trabajar sobre los elementos de tu presencia digital que podemos optimizar: información del negocio, contenido, enlaces, estructura de la web y ficha local.',
+        'Mi objetivo es construirte una presencia sólida y bien organizada, no prometerte una posición que no depende exclusivamente de mí.'
       ]
     },
     {
       q: '¿Cuánto tarda en estar lista mi página?',
       paragraphs: [
-        'El tiempo depende del proyecto y de la cantidad de contenido y funcionalidades necesarias.',
-        'En los proyectos incluidos en nuestros planes estándar, la entrega estimada es de 4 días hábiles, siempre que contemos con la información y el material necesario para comenzar.',
-        'Si el proyecto requiere funcionalidades especiales, te indicamos previamente el plazo estimado.'
+        'El tiempo depende del proyecto y de la cantidad de contenido necesario.',
+        'En los planes estándar, mi entrega estimada es de 4 días hábiles desde que recibo tu material.',
+        'Si el proyecto requiere funcionalidades especiales, te indico previamente el plazo estimado.'
       ]
     },
     {
       q: '¿Tengo que preparar yo todo el contenido?',
       paragraphs: [
-        'Te pedimos la información y el material que tengas disponible, como logo, fotos, productos, servicios, horarios o datos de contacto.',
-        'Nosotros nos encargamos de organizarlo y adaptarlo a la estructura de la página.',
-        'Si todavía no tenés todo preparado, lo vemos juntos y te indicamos qué necesitamos.'
+        'Te pido la información y el material que tengas disponible: logo, fotos, productos, servicios, horarios o datos de contacto.',
+        'Yo me encargo de organizarlo y adaptarlo a la estructura de la página.',
+        'Si todavía no tenés todo preparado, lo vemos juntos y te oriento sobre qué necesitamos.'
       ]
     },
     {
       q: '¿La página funciona bien en celulares?',
       paragraphs: [
-        'Sí. Diseñamos las páginas pensando especialmente en dispositivos móviles, ya que gran parte de las consultas de los clientes se realizan desde el teléfono.',
+        'Sí. Diseño las páginas pensando especialmente en dispositivos móviles, ya que más del 80% de las consultas se realizan desde el teléfono.',
         'La información, botones, imágenes y formularios se adaptan a distintos tamaños de pantalla para ofrecer una navegación cómoda.'
       ]
     },
     {
       q: '¿Cuánto cuesta y cómo se paga?',
       paragraphs: [
-        'Tenemos precios de lanzamiento claros para los primeros 5 negocios: Pack Express ($120.000), Pack Solo Web ($150.000) y Pack Completo con Web Propia ($250.000).',
+        'Tengo precios de lanzamiento claros para los primeros 5 negocios: Pack Express ($120.000), Pack Solo Web ($150.000) y Pack Completo con Web Propia ($250.000).',
         'La condición de pago es 50% al iniciar / 50% contra entrega conforme una vez que revisás que todo funciona a la perfección.',
-        'Aceptamos transferencia bancaria, Mercado Pago o efectivo.'
+        'Acepto transferencia bancaria, Mercado Pago o efectivo.'
       ]
     },
     {
       q: '¿Qué pasa después del primer año?',
       paragraphs: [
         'Tu página web y tu dominio son 100% de tu propiedad. Durante el primer año el hosting y el dominio están incluidos en el precio del pack.',
-        'A partir del segundo año, solo abonás la renovación anual del dominio y el hosting para que tu sitio continúe online. Son valores que se actualizan año a año; para el año 2026 el costo de renovación anual de dominio + hosting es de $8.500.',
+        'A partir del segundo año, solo abonás la renovación anual del dominio y el hosting para que tu sitio continúe online (el valor de la renovación anual se informa al momento de contratar).',
         'No hay contratos de permanencia, ni alquileres forzados, ni sorpresas.',
-        'Además, si querés que nosotros nos ocupemos de hacer cambios, subir fotos o actualizar novedades mes a mes, ofrecemos un servicio de mantenimiento mensual opcional por $50.000/mes (totalmente a tu elección).'
+        'Además, si querés que yo me ocupe de hacer cambios, subir fotos o actualizar novedades mes a mes, ofrezco un servicio de mantenimiento mensual opcional por $50.000/mes (totalmente a tu elección).'
       ]
     },
     {
       q: '¿Puedo ver cómo podría quedar mi negocio antes de decidir?',
       paragraphs: [
-        'Sí. Podemos mostrarte ejemplos y, según el caso, preparar una propuesta visual para que tengas una idea concreta de cómo podría verse tu negocio online antes de avanzar.',
-        'No necesitás imaginarlo: podemos mostrártelo.'
+        'Sí. Te muestro una propuesta base gratis antes de que decidas para que tengas una idea concreta de cómo podría verse tu negocio online antes de avanzar.',
+        'No necesitás imaginarlo: te lo muestro.'
       ]
     },
     {
       q: '¿Por qué se llama "Primera Cuadra"?',
       paragraphs: [
         'Porque en un negocio físico, estar en la primera cuadra significa estar donde más fácilmente te encuentran.',
-        'Nosotros llevamos esa idea a Internet: ayudamos a que tu negocio tenga una presencia digital profesional, fácil de encontrar y simple de contactar.',
-        'Google + Página Web + WhatsApp Business.',
-        'Esa es tu Primera Cuadra digital.'
+        'Yo llevo esa idea a Internet: ayudo a que tu negocio tenga una presencia digital profesional, fácil de encontrar y simple de contactar.',
+        'Google + Página Web + WhatsApp Business. Esa es tu Primera Cuadra digital.'
       ]
     },
     {
-      q: '¿También desarrollan aplicaciones móviles a medida para mi negocio?',
+      q: '¿También desarrollás aplicaciones móviles o sistemas?',
       paragraphs: [
-        'Sí. Desarrollamos aplicaciones móviles personalizadas para Android y iOS, adaptadas a las necesidades específicas de tu empresa o comercio.',
-        'Podemos crear soluciones para gestión de turnos, catálogos interactivos, reservas, pedidos, servicios o fidelización de clientes.',
-        'Las funcionalidades y el presupuesto se evalúan de forma personalizada según el alcance de cada proyecto.'
+        'Contame tu proyecto y te digo si puedo ayudarte y con qué alcance.',
+        'Desarrollo soluciones a medida según los requerimientos técnicos y comerciales de cada caso.'
       ]
     }
   ];

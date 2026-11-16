@@ -96,7 +96,7 @@ export default function BusinessSituationsSection() {
             </div>
             <h3 className="resolution-title">Primera Cuadra puede ayudarte.</h3>
             <p className="resolution-desc">
-              Nos encargamos de diseñar tu página web, optimizar tu ficha de Google y ordenar tu WhatsApp Business para que tengas una presencia digital seria, clara y lista para recibir consultas.
+              Me encargo de diseñar tu página web, optimizar tu ficha de Google y ordenar tu WhatsApp Business para que tengas una presencia digital seria, clara y lista para recibir consultas.
             </p>
           </div>
 

@@ -186,7 +186,7 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <strong>Atención directa con Belén Irigoy</strong>
-                  <span>Desde Tigre para comercios y profesionales de todo el país.</span>
+                  <span>Desde Tigre, para negocios, profesionales y empresas de todo el país.</span>
                 </div>
               </div>
 
@@ -205,8 +205,8 @@ export default function ContactSection() {
                   <Check size={16} strokeWidth={2.6} />
                 </div>
                 <div>
-                  <strong>Sin compromiso inicial</strong>
-                  <span>Evaluamos juntos qué necesita hoy tu negocio antes de empezar.</span>
+                  <strong>Propuesta previa sin costo</strong>
+                  <span>Te muestro una propuesta base gratis antes de que decidas.</span>
                 </div>
               </div>
             </div>
@@ -275,8 +275,8 @@ export default function ContactSection() {
                   className="contact-actual-form"
                 >
                   <div className="form-card-header">
-                    <h3 className="form-title">Dejanos tu consulta</h3>
-                    <p className="form-subtitle">Completá este formulario breve y te contactamos.</p>
+                    <h3 className="form-title">Dejame tu consulta</h3>
+                    <p className="form-subtitle">Completá este formulario breve y te contacto.</p>
                   </div>
 
                   {/* Field: Name */}
@@ -371,7 +371,7 @@ export default function ContactSection() {
                   {/* Field: Optional Message */}
                   <div className="form-group">
                     <label htmlFor="contact-message" className="form-label">
-                      <span>¿Querés contarnos algo más?</span>
+                      <span>¿Querés contarme algo más?</span>
                       <span className="optional-tag">(opcional)</span>
                     </label>
                     <textarea

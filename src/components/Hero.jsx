@@ -32,7 +32,7 @@ export default function Hero() {
           <div className="hero-text-col">
             <div className="hero-kicker-badge">
               <Sparkles size={14} />
-              <span>PRESENCIA DIGITAL PARA COMERCIOS Y PROFESIONALES</span>
+              <span>PRESENCIA DIGITAL PARA NEGOCIOS, PROFESIONALES Y EMPRESAS</span>
             </div>
 
             {/* Main Action-Oriented Headline (Cambio 1) */}
@@ -42,9 +42,9 @@ export default function Hero() {
               <span className="highlight-purple">Que te contacten.</span>
             </h1>
 
-            {/* Specific Subtitle */}
+            {/* Specific Subtitle in 1st person singular */}
             <p className="hero-subtitle-result">
-              Llevamos tu negocio a Internet para que tus clientes puedan encontrarte, conocerte y contactarte fácilmente.
+              Llevo tu negocio a Internet para que tus clientes puedan encontrarte, conocerte y contactarte fácilmente.
             </p>
 
             {/* Visual Service Elements */}

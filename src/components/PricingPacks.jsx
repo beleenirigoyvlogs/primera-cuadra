@@ -44,17 +44,22 @@ export default function PricingPacks({ niche }) {
             Probá Primera Cuadra con total tranquilidad: 50% al iniciar y 50% contra entrega conforme, con atención directa de Belén Irigoy de principio a fin.
           </p>
 
-          {/* User rule 8: "Esta página la diseñamos nosotros: así de rápida y clara va a ser la tuya." */}
+          {/* User rule 3 & 8: 1st person singular */}
           <div className="own-page-proof-pill">
             <Sparkles size={15} className="text-purple-icon" />
-            <span>Esta página la diseñamos nosotros: así de rápida y clara va a ser la tuya.</span>
+            <span>Esta página la diseñé yo: así de rápida y clara va a ser la tuya.</span>
           </div>
         </div>
 
-        {/* Single Launch Banner Above Grid (Item 3 Requirement) */}
-        <div className="pricing-launch-banner-strip reveal">
-          <Sparkles size={16} className="text-purple-accent" />
-          <span>Precio de lanzamiento para los primeros 5 negocios • 50% al iniciar / 50% contra entrega</span>
+        {/* Single Launch Banner Above Grid & Post-launch Pricing Note */}
+        <div className="pricing-launch-banner-group reveal">
+          <div className="pricing-launch-banner-strip">
+            <Sparkles size={16} className="text-purple-accent" />
+            <span>Precio de lanzamiento para los primeros 5 negocios • 50% al iniciar / 50% contra entrega</span>
+          </div>
+          <p className="pricing-post-launch-notice">
+            Después de los primeros 5 negocios, los precios pasan a: Express $200.000, Solo Web $250.000, Completo $450.000.
+          </p>
         </div>
 
         {/* Pricing Cards Grid (Exact 3 Plans aligned) */}
@@ -206,7 +211,7 @@ export default function PricingPacks({ niche }) {
           {/* Card 3: Pack Completo */}
           <div className="pricing-card-hostinger featured reveal">
             <div className="card-top-badge featured-badge">
-              ✦ MÁS ELEGIDO
+              ✦ RECOMENDADO
             </div>
 
             <div className="plan-card-header">
@@ -270,7 +275,7 @@ export default function PricingPacks({ niche }) {
               </li>
               <li className="plan-feature-item">
                 <Check size={18} className="feature-check-icon" />
-                <span>Entrega estimada en 4 días hábiles desde que recibimos tu material</span>
+                <span>Entrega estimada en 4 días hábiles desde que recibo tu material</span>
               </li>
               <li className="plan-feature-item">
                 <Check size={18} className="feature-check-icon" />
@@ -289,15 +294,15 @@ export default function PricingPacks({ niche }) {
           <div className="clarity-notice-grid">
             <div className="clarity-item">
               <strong>100% de tu propiedad:</strong>
-              <p>Tu página web y tu dominio son tuyos. No te cobramos alquileres forzados ni cuotas mensuales de permanencia.</p>
+              <p>Tu página web y tu dominio son tuyos. No te cobro alquileres forzados ni cuotas mensuales de permanencia.</p>
             </div>
             <div className="clarity-item">
               <strong>Renovación anual (a partir del 2° año):</strong>
-              <p>El 1er año de dominio y hosting está incluido. Luego solo pagás la renovación anual a precio de costo (valores que se actualizan año a año; para el año 2026 el costo de renovación anual de dominio + hosting es de $8.500).</p>
+              <p>El 1er año de dominio y hosting está incluido. Luego solo pagás la renovación anual a precio de costo (el valor de la renovación anual se informa al momento de contratar).</p>
             </div>
             <div className="clarity-item">
               <strong>Mantenimiento mensual opcional:</strong>
-              <p>Si querés que nosotros nos ocupemos de actualizar fotos, precios o novedades mes a mes, podés contratar nuestro servicio de mantenimiento mensual por $50.000/mes (totalmente opcional, podés no contratarlo y tu web sigue funcionando igual).</p>
+              <p>Si querés que yo me ocupe de actualizar fotos, precios o novedades mes a mes, podés contratar mi servicio de mantenimiento mensual por $50.000/mes (totalmente opcional, podés no contratarlo y tu web sigue funcionando igual).</p>
             </div>
           </div>
         </div>

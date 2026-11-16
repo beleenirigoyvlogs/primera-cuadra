@@ -18,11 +18,11 @@ export default function ProcessSteps() {
       title: 'Relevamiento express por WhatsApp',
       duration: '15 min',
       color: 'cyan',
-      description: 'Sin reuniones pesadas ni trámites complejos. Te mandamos 4 preguntas puntuales por WhatsApp para que nos pases tus fotos, lista de servicios, precios de referencia y dirección.',
+      description: 'Sin reuniones pesadas ni trámites complejos. Te mando 4 preguntas puntuales por WhatsApp para que me pases tus fotos, lista de servicios, precios de referencia y dirección.',
       bulletList: [
         'Fotos de tu local, productos o trabajos',
         'Lista de servicios y tarifas actuales',
-        'Cero tecnicismos: nosotros nos ocupamos de todo'
+        'Cero tecnicismos: yo me ocupo de todo'
       ]
     },
     {
@@ -31,7 +31,7 @@ export default function ProcessSteps() {
       title: 'Optimización y configuración pro',
       duration: '48 h a 4 días',
       color: 'amber',
-      description: 'Configuramos tu presencia en Google con la categoría correspondiente, fotos y servicios, desarrollamos tu página web profesional y dejamos tu WhatsApp Business con catálogo listo para recibir consultas.',
+      description: 'Configuro tu presencia en Google con la categoría correspondiente, fotos y servicios, desarrollo tu página web profesional y dejo tu WhatsApp Business con catálogo listo para recibir consultas.',
       bulletList: [
         'Ficha optimizada para búsquedas de tu zona en Google Maps',
         'Carga de catálogo con precios y botón de contacto en WhatsApp',
@@ -44,7 +44,7 @@ export default function ProcessSteps() {
       title: 'Entrega llave en mano y lanzamiento',
       duration: 'Puesta en marcha',
       color: 'emerald',
-      description: 'Te entregamos los accesos completos y te mostramos cómo funciona cada canal. Tu negocio queda formalmente en la Primera Cuadra digital.',
+      description: 'Te entrego los accesos completos y te muestro cómo funciona cada canal. Tu negocio queda formalmente en la Primera Cuadra digital.',
       bulletList: [
         'Verificación de funcionamiento en vivo con vos',
         'Entrega formal con todos tus accesos y claves',
@@ -62,10 +62,10 @@ export default function ProcessSteps() {
             <span>METODOLOGÍA SIMPLE Y ÁGIL</span>
           </div>
           <h2 className="section-main-title">
-            ¿Cómo trabajamos? <span className="text-gradient-ocean">3 simples pasos</span> sin vueltas
+            ¿Cómo trabajo? <span className="text-gradient-ocean">3 simples pasos</span> sin vueltas
           </h2>
           <p className="section-main-desc">
-            Sabemos que tu tiempo vale oro atendiendo tu negocio. Nuestro proceso está diseñado para no quitarte más de 15 minutos.
+            Sé que tu tiempo vale oro atendiendo tu negocio. Mi proceso está diseñado para no quitarte más de 15 minutos.
           </p>
         </div>
 

@@ -158,7 +158,7 @@ export default function App() {
                   ¿Querés ver cómo podría <span className="highlight-purple">quedar tu negocio</span>?
                 </h2>
                 <p className="callout-description">
-                  Probá nuestro simulador para previsualizar tu página web, ficha de Google Maps y WhatsApp Business con el nombre y rubro de tu empresa.
+                  Probá el simulador interactivo para previsualizar tu página web, ficha de Google Maps y WhatsApp Business con el nombre y rubro de tu empresa.
                 </p>
               </div>
               <div className="callout-action-right">

@@ -15230,3 +15230,59 @@ html.dark .btn-submit-form:hover {
 .btn-submit-form:active {
   transform: translateY(0) !important;
 }
+
+
+/* Pricing Launch Banner Group & Post-launch notice */
+.pricing-launch-banner-group {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  margin-top: 28px !important;
+  gap: 8px !important;
+}
+
+.pricing-launch-banner-strip {
+  margin: 0 auto !important;
+}
+
+.pricing-post-launch-notice {
+  font-size: 0.86rem !important;
+  color: var(--text-muted) !important;
+  text-align: center !important;
+  margin: 0 !important;
+}
+
+html.dark .pricing-post-launch-notice {
+  color: #A8A6BE !important;
+}
+
+
+/* Prevent any horizontal overflow on any viewport */
+html, body {
+  overflow-x: clip !important;
+  max-width: 100vw !important;
+}
+
+.example-demos-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.demo-showcase-card {
+  min-width: 0 !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+
+.demo-browser-url,
+.demo-screen-preview,
+.demo-screen-browser-bar {
+  min-width: 0 !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}

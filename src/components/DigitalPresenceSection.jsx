@@ -21,7 +21,7 @@ export default function DigitalPresenceSection() {
       kicker: 'MOBILE-FIRST & DOMINIO PROPIO',
       icon: Globe,
       accent: 'web',
-      desc: 'Diseñamos tu página web a medida, moderna, ultra rápida y pensada para convertir visitas en consultas directas de clientes.',
+      desc: 'Diseño tu página web a medida, moderna, ultra rápida y pensada para convertir visitas en consultas directas de clientes.',
       features: [
         'Dominio propio incluido a tu nombre (.com o .com.ar)',
         'Diseño responsive mobile-first optimizado para celulares',
@@ -40,7 +40,7 @@ export default function DigitalPresenceSection() {
       kicker: 'Ficha optimizada para búsquedas de tu zona',
       icon: MapPin,
       accent: 'google',
-      desc: 'Optimizamos tu ficha oficial de empresa en Google y Google Maps para que aparezcas de forma profesional y clara cuando los clientes de tu zona busquen lo que ofrecés.',
+      desc: 'Optimizo tu ficha oficial de empresa en Google y Google Maps para que aparezcas de forma profesional y clara cuando los clientes de tu zona busquen lo que ofrecés.',
       features: [
         'Ficha en Google Maps 100% verificada, configurada y optimizada',
         'Carga de fotos de calidad, horarios de atención y teléfono de contacto',
@@ -59,7 +59,7 @@ export default function DigitalPresenceSection() {
       kicker: 'CANAL DE VENTAS OFICIAL',
       icon: MessageSquare,
       accent: 'whatsapp',
-      desc: 'Transformamos tu canal de WhatsApp en una herramienta formal de ventas con catálogo cargado, mensajes automáticos y atención ágil.',
+      desc: 'Transformo tu canal de WhatsApp en una herramienta formal de ventas con catálogo cargado, mensajes automáticos y atención ágil.',
       features: [
         'Perfil de empresa oficial configurado con logo, dirección y horarios',
         'Catálogo digital interactivo con fotos, descripciones y precios claros',
@@ -174,7 +174,7 @@ export default function DigitalPresenceSection() {
             </div>
             <h4 className="combo-title">¿Querés tu Web + Google Maps + WhatsApp todo junto en un solo paquete?</h4>
             <p className="combo-desc">
-              En lugar de contratar servicios por separado, nuestros <strong>Packs Llave en Mano</strong> combinan todo el ecosistema con precio de lanzamiento para los primeros 5 negocios y entrega estimada en 4 días hábiles desde que recibimos tu material.
+              En lugar de contratar servicios por separado, mis <strong>Packs Llave en Mano</strong> combinan todo el ecosistema con precio de lanzamiento para los primeros 5 negocios y entrega estimada en 4 días hábiles desde que recibo tu material.
             </p>
           </div>
           <div className="combo-banner-action">
