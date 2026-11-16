@@ -124,32 +124,27 @@ export default function Footer({ niche, onSelectNiche, onOpenAdmin }) {
             <ul className="footer-col-links">
               <li>
                 <a href="#servicios" className="footer-link">
-                  <span>Página Web</span>
-                </a>
-              </li>
-              <li>
-                <a href="#como-funciona" className="footer-link">
-                  <span>Google</span>
-                </a>
-              </li>
-              <li>
-                <a href="#como-funciona" className="footer-link">
-                  <span>WhatsApp Business</span>
-                </a>
-              </li>
-              <li>
-                <a href="#apps-moviles" className="footer-link">
-                  <span>Apps Móviles</span>
+                  <span>Páginas Web</span>
                 </a>
               </li>
               <li>
                 <a href="#servicios" className="footer-link">
-                  <span>Catálogo Digital</span>
+                  <span>Ficha de Google Maps</span>
+                </a>
+              </li>
+              <li>
+                <a href="#servicios" className="footer-link">
+                  <span>WhatsApp Business con Catálogo</span>
                 </a>
               </li>
               <li>
                 <a href="#precios" className="footer-link">
-                  <span>Packs & Precios</span>
+                  <span>Packs & Precios de Lanzamiento</span>
+                </a>
+              </li>
+              <li>
+                <a href="/desarrollo-a-medida" className="footer-link">
+                  <span>Desarrollo a medida (Apps & POS)</span>
                 </a>
               </li>
             </ul>
@@ -159,6 +154,21 @@ export default function Footer({ niche, onSelectNiche, onOpenAdmin }) {
           <div className="footer-col">
             <h4 className="footer-col-title">Primera Cuadra</h4>
             <ul className="footer-col-links">
+              <li>
+                <a href="#quien-esta-detras" className="footer-link">
+                  <span>Quién está detrás</span>
+                </a>
+              </li>
+              <li>
+                <a href="#disenos-ejemplo" className="footer-link">
+                  <span>Diseños de ejemplo</span>
+                </a>
+              </li>
+              <li>
+                <a href="#primeros-clientes" className="footer-link">
+                  <span>Programa primeros clientes</span>
+                </a>
+              </li>
               <li>
                 <a href="#como-funciona" className="footer-link">
                   <span>Cómo funciona</span>
@@ -170,13 +180,8 @@ export default function Footer({ niche, onSelectNiche, onOpenAdmin }) {
                 </a>
               </li>
               <li>
-                <a href="#simulador" className="footer-link">
+                <a href="/simulador" className="footer-link">
                   <span>Simulador interactivo</span>
-                </a>
-              </li>
-              <li>
-                <a href="#contacto" className="footer-link">
-                  <span>Contacto</span>
                 </a>
               </li>
             </ul>
@@ -184,9 +189,9 @@ export default function Footer({ niche, onSelectNiche, onOpenAdmin }) {
 
           {/* COLUMNA 4: CONTACTO */}
           <div className="footer-col footer-col-contact">
-            <h4 className="footer-col-title">¿Hablamos?</h4>
+            <h4 className="footer-col-title">Contacto & Ubicación</h4>
             <p className="footer-contact-desc">
-              Contanos sobre tu negocio y te mostramos cómo podría verse tu presencia digital.
+              Atención directa y personalizada con Belen Irigoy para que tu negocio tenga su presencia digital.
             </p>
 
             <div className="footer-contact-channels">
@@ -200,31 +205,49 @@ export default function Footer({ niche, onSelectNiche, onOpenAdmin }) {
                   <MessageCircle size={16} />
                 </div>
                 <div className="footer-channel-text">
-                  <span className="channel-label">WhatsApp Comercial</span>
-                  <strong className="channel-val">+54 9 11 2877-9641</strong>
+                  <span className="channel-label">WhatsApp</span>
+                  <strong className="channel-val">11 2877-9641</strong>
                 </div>
               </a>
 
-              {/* Real social network configured */}
               <a 
-                href={facebookUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-contact-item fb"
+                href="mailto:Primeracuadraweb@gmail.com" 
+                className="footer-contact-item"
               >
-                <div className="footer-channel-icon fb">
-                  <FacebookIcon size={16} color="#ffffff" />
+                <div className="footer-channel-icon">
+                  <Globe size={16} />
                 </div>
                 <div className="footer-channel-text">
-                  <span className="channel-label">Comunidad Oficial</span>
-                  <strong className="channel-val">Facebook Primera Cuadra</strong>
+                  <span className="channel-label">Email</span>
+                  <strong className="channel-val">Primeracuadraweb@gmail.com</strong>
                 </div>
               </a>
+
+              <div className="footer-contact-item">
+                <div className="footer-channel-icon">
+                  <MapPin size={16} />
+                </div>
+                <div className="footer-channel-text">
+                  <span className="channel-label">Zona de trabajo</span>
+                  <strong className="channel-val">Tigre y Zona Norte (Atención remota a todo el país)</strong>
+                </div>
+              </div>
+
+              {/* Espacio para enlazar ficha de Google Maps */}
+              <div className="footer-contact-item pending-gmaps-item">
+                <div className="footer-channel-icon">
+                  <MapPin size={16} className="text-purple-icon" />
+                </div>
+                <div className="footer-channel-text">
+                  <span className="channel-label">Google Maps</span>
+                  <span className="channel-val pending-pill">[PENDIENTE: link a ficha de Google]</span>
+                </div>
+              </div>
             </div>
 
             <div className="footer-guarantee-box">
               <ShieldCheck size={16} className="text-emerald" />
-              <span>Garantía de satisfacción: 50% al iniciar y 50% contra entrega.</span>
+              <span>Condición de pago: 50% al iniciar / 50% contra entrega.</span>
             </div>
           </div>
         </div>

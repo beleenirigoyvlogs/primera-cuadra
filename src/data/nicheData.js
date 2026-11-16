@@ -215,25 +215,25 @@ export const PACKS = [
     formattedPrice: '$250.000',
     initialPayment: '$125.000',
     finalPayment: '$125.000',
-    deliveryTime: 'Entrega en 4 días hábiles',
+    deliveryTime: 'Entrega estimada en 4 días hábiles desde que recibimos tu material',
     deliveryHours: '4 días',
     isFeatured: true,
-    description: 'El servicio integral para tener tu presencia web completa y dominar las búsquedas: Tu propia Página Web mobile-first con dominio a tu nombre + Ficha de Google Maps 100% optimizada + WhatsApp Business configurado.',
+    description: 'El servicio integral para tener tu presencia web completa: Tu propia Página Web mobile-first con dominio a tu nombre + Ficha optimizada para búsquedas de tu zona en Google Maps + WhatsApp Business configurado.',
     features: [
       { text: 'Página Web propia mobile-first diseñada a medida para tu rubro', highlight: true },
       { text: 'Dominio registrado a tu nombre (.com o .com.ar) incluido 100%', highlight: true },
       { text: 'Sección de servicios, lista de tarifas, fotos de tus trabajos y botón de consulta', highlight: true },
       { text: 'Velocidad de carga ultra rápida optimizada para celulares y conversión', highlight: false },
-      { text: 'Ficha de Google Maps 100% optimizada con la categoría exacta de tu rubro', highlight: true },
-      { text: 'Servicios, tarifas y publicaciones de novedades iniciales cargadas en Google', highlight: false },
-      { text: 'Todas las reseñas respondidas profesionalmente con palabras clave', highlight: false },
+      { text: 'Ficha optimizada para búsquedas de tu zona en Google Maps', highlight: true },
+      { text: 'Servicios, tarifas y publicaciones iniciales cargadas en Google', highlight: false },
       { text: 'WhatsApp Business configurado con catálogo oficial de servicios y precios', highlight: true },
       { text: 'Botón directo en la web y en WhatsApp para recibir consultas al instante', highlight: true },
-      { text: 'Entrega récord llave en mano en 4 días hábiles garantizada', highlight: true }
+      { text: 'Entrega estimada en 4 días hábiles desde que recibimos tu material', highlight: true },
+      { text: '100% de tu propiedad (sin alquileres forzados; renovación anual transparente)', highlight: true }
     ],
     ctaText: 'Quiero mi Página Web + Google + WhatsApp ($250.000)',
     whatsappMessage: () => 
-      encodeURIComponent('¡Hola Primera Cuadra! Me interesa contratar el PACK COMPLETO ($250.000 - 4 días) para hacer la página web de mi negocio. Quiero la web con dominio a mi nombre, la ficha de Google y el WhatsApp Business. ¿Cómo arrancamos?')
+      encodeURIComponent('¡Hola Primera Cuadra! Me interesa contratar el PACK COMPLETO ($250.000) con precio de lanzamiento para hacer la página web de mi negocio. Quiero la web con dominio a mi nombre, la ficha de Google y el WhatsApp Business. ¿Cómo arrancamos?')
   },
   {
     id: 'pack-express',
@@ -245,24 +245,23 @@ export const PACKS = [
     formattedPrice: '$120.000',
     initialPayment: '$60.000',
     finalPayment: '$60.000',
-    deliveryTime: 'Entrega en 48 horas',
+    deliveryTime: 'Entrega estimada en 48 horas desde que recibimos tu material',
     deliveryHours: '48hs',
     isFeatured: false,
-    description: 'Lo mismo pero sin la página web: ajustamos y dejamos impecable tu Ficha de Google Maps y configuramos tu WhatsApp Business con lista de servicios para empezar a recibir consultas en 48 horas.',
+    description: 'Ajustamos y dejamos impecable tu Ficha de Google Maps y configuramos tu WhatsApp Business con lista de servicios para empezar a recibir consultas en 48 horas.',
     features: [
-      { text: 'Ficha de Google Maps terminada de ajustar y verificar', highlight: true },
+      { text: 'Ficha optimizada para búsquedas de tu zona en Google Maps', highlight: true },
       { text: 'Categoría exacta de tu rubro sumada + subcategorías clave', highlight: false },
       { text: 'Servicios y tarifas de referencia cargados en el perfil de Google', highlight: false },
       { text: 'Novedades publicadas por vos optimizadas para SEO de cercanía', highlight: false },
-      { text: 'Todas las reseñas respondidas profesionalmente', highlight: true },
       { text: 'WhatsApp Business con la lista de servicios y catálogo cargado', highlight: true },
       { text: 'Botón directo configurado para consultar o reservar lugar', highlight: false },
-      { text: 'Entrega express en 48 horas con prueba en vivo', highlight: true },
+      { text: 'Entrega estimada en 48 horas desde que recibimos tu material', highlight: true },
       { text: 'Página web propia con dominio', included: false }
     ],
     ctaText: 'Quiero el Pack Express ($120.000)',
     whatsappMessage: () => 
-      encodeURIComponent('¡Hola Primera Cuadra! Me interesa contratar el PACK EXPRESS ($120.000 - 48hs) para optimizar la ficha de Google y WhatsApp de mi negocio. ¿Podemos coordinar?')
+      encodeURIComponent('¡Hola Primera Cuadra! Me interesa contratar el PACK EXPRESS ($120.000) con precio de lanzamiento para optimizar la ficha de Google y WhatsApp de mi negocio. ¿Podemos coordinar?')
   },
   {
     id: 'pack-solo-web',
@@ -274,7 +273,7 @@ export const PACKS = [
     formattedPrice: '$150.000',
     initialPayment: '$75.000',
     finalPayment: '$75.000',
-    deliveryTime: 'Entrega en 4 días hábiles',
+    deliveryTime: 'Entrega estimada en 4 días hábiles desde que recibimos tu material',
     deliveryHours: '4 días',
     isFeatured: false,
     description: 'Página web moderna mobile-first diseñada para tu rubro, con dominio registrado 100% a tu nombre (.com o .com.ar incluido), lista de servicios, tarifas y botón directo de WhatsApp.',
@@ -286,47 +285,44 @@ export const PACKS = [
       { text: 'Galería de fotos de tus trabajos, local o productos', highlight: false },
       { text: 'Velocidad de carga ultra rápida optimizada para celulares', highlight: false },
       { text: 'Botón flotante y directo en la web para consultas a tu WhatsApp', highlight: true },
-      { text: 'Entrega récord llave en mano en 4 días hábiles', highlight: true },
-      { text: '100% de tu propiedad (sin cuotas mensuales de alquiler)', highlight: true },
+      { text: 'Entrega estimada en 4 días hábiles desde que recibimos tu material', highlight: true },
+      { text: '100% de tu propiedad (sin alquileres forzados)', highlight: true },
       { text: 'Ficha de Google Maps optimizada', included: false },
       { text: 'Configuración de WhatsApp Business con catálogo', included: false }
     ],
     ctaText: 'Quiero Solo la Página Web ($150.000)',
     whatsappMessage: () => 
-      encodeURIComponent('¡Hola Primera Cuadra! Me interesa contratar el PACK SOLO WEB ($150.000 - 4 días) para hacer la página web de mi negocio con dominio a mi nombre. ¿Cómo arrancamos?')
+      encodeURIComponent('¡Hola Primera Cuadra! Me interesa contratar el PACK SOLO WEB ($150.000) con precio de lanzamiento para hacer la página web de mi negocio con dominio a mi nombre. ¿Cómo arrancamos?')
   },
   {
     id: 'pack-comercio-pos',
     name: 'COMERCIO & POS TOTAL',
-    badge: 'WEB + SISTEMA POS & STOCK • GESTIÓN TOTAL',
+    badge: 'WEB + SISTEMA POS & STOCK • A MEDIDA',
     tagline: 'Tu web propia + Software de Punto de Venta para tu local',
     price: 390000,
     currency: '$',
     formattedPrice: '$390.000',
-    strikePrice: 'ARS 580.000',
+    strikePrice: '',
     initialPayment: '$195.000',
     finalPayment: '$195.000',
-    deliveryTime: 'Entrega en 7 días hábiles',
-    deliveryHours: '7 días',
+    deliveryTime: 'Entrega estimada según alcance',
+    deliveryHours: 'A medida',
     isFeatured: false,
     isPos: true,
-    description: 'La solución definitiva para comercios, talleres, salones y locales: Tu propia Página Web mobile-first con dominio propio + Ficha de Google Maps + WhatsApp Business + Sistema de Punto de Venta (POS) con control de stock, gestión de empleados y clientes.',
+    description: 'Desarrollo a medida para locales y comercios: Sistema de Punto de Venta (POS) con control de stock, gestión de empleados y clientes, y página web.',
     features: [
       { text: 'Sistema de Punto de Venta (POS) táctil para PC, tablet o celular', highlight: true },
       { text: 'Control de stock e inventario en tiempo real con alertas de reposición', highlight: true },
-      { text: 'Catálogo digital interactivo con código QR para mostrador (listo para exhibir)', highlight: true },
-      { text: 'Gestión de empleados con roles y permisos (cajeros, admin, vendedores)', highlight: true },
-      { text: 'Base de datos de clientes, historial de compras y cuenta corriente', highlight: true },
-      { text: 'Arqueo de caja diaria, balance y reportes de ventas descargables', highlight: true },
-      { text: 'Página Web propia mobile-first diseñada a medida con dominio incluido', highlight: false },
-      { text: 'Ficha de Google Maps 100% optimizada para tu zona', highlight: false },
-      { text: 'WhatsApp Business oficial con catálogo completo de productos', highlight: false },
-      { text: 'Capacitación inicial incluida para vos y tu equipo de trabajo', highlight: true },
+      { text: 'Catálogo digital interactivo con código QR para mostrador', highlight: true },
+      { text: 'Gestión de empleados con roles y permisos', highlight: true },
+      { text: 'Base de datos de clientes e historial de compras', highlight: true },
+      { text: 'Página Web mobile-first diseñada a medida con dominio incluido', highlight: false },
+      { text: 'Ficha optimizada para búsquedas de tu zona en Google Maps', highlight: false },
       { text: '100% de tu propiedad: Sin mensualidades obligatorias de alquiler', highlight: true }
     ],
-    ctaText: 'Quiero Web + Sistema POS ($390.000)',
+    ctaText: 'Consultar por Sistema POS a Medida',
     whatsappMessage: () => 
-      encodeURIComponent('¡Hola Primera Cuadra! Me interesa contratar el PACK COMERCIO & POS TOTAL ($390.000) con Sistema de Punto de Venta, control de stock, empleados y página web para mi negocio. ¿Podemos coordinar una demo?')
+      encodeURIComponent('¡Hola Primera Cuadra! Me interesa consultar por el desarrollo de un Sistema de Punto de Venta (POS), control de stock y página web para mi negocio. ¿Podemos coordinar?')
   }
 ];
 
@@ -334,53 +330,57 @@ export const AGENCY_COMPARISON = [
   {
     aspect: 'Tiempo de Entrega',
     traditional: 'Entre 45 y 90 días con demoras eternas',
-    primeraCuadra: '4 días hábiles garantizados (Pack Completo y Solo Web), 48hs (Express) o 7 días (Comercio & POS)'
+    primeraCuadra: 'Entrega estimada en 4 días hábiles (Pack Completo y Solo Web) o 48hs (Express) desde que recibimos tu material'
   },
   {
-    aspect: 'Propiedad del Dominio y Software',
-    traditional: 'Te atan con "alquiler" mensual. Si dejás de pagar, perdés tu web y tu sistema',
-    primeraCuadra: '100% tuya. El dominio (.com o .com.ar) queda a tu nombre y el software es de tu propiedad'
+    aspect: 'Propiedad del Dominio y Web',
+    traditional: 'Te atan con alquiler mensual forzado. Si dejás de pagar, perdés tu web',
+    primeraCuadra: '100% tuya. El dominio queda a tu nombre y no pagás alquileres mensuales obligatorios'
   },
   {
-    aspect: 'Ecosistema de Ventas y Gestión',
+    aspect: 'Ecosistema de Contacto',
     traditional: 'Solo te hacen una web aislada que nadie visita',
-    primeraCuadra: 'Ecosistema integral: Web + Google Maps + WhatsApp Business + Sistema POS & Stock'
+    primeraCuadra: 'Ecosistema conectado: Ficha optimizada para búsquedas de tu zona + Web Propia + WhatsApp'
   },
   {
     aspect: 'Precios y Condiciones',
-    traditional: 'Presupuestos inflados de $800.000+ con costos ocultos y abonos mensuales',
-    primeraCuadra: 'Tarifas fijas y transparentes: $120.000, $150.000, $250.000 o $390.000. 50% inicio / 50% entrega'
+    traditional: 'Presupuestos inflados con costos ocultos y abonos mensuales',
+    primeraCuadra: 'Precios claros: 50% al iniciar / 50% contra entrega conforme'
   },
   {
     aspect: 'Adaptación al Rubro',
     traditional: 'Plantillas genéricas iguales para todos',
-    primeraCuadra: 'Diseño y lógica enfocados a tu rubro específico (comercio, náutica, peluquería, clínica, taller, etc.)'
+    primeraCuadra: 'Diseño enfocado a tu rubro (comercios, gastronomía, peluquerías, salud, talleres, etc.)'
   }
 ];
 
 export const FAQS = [
   {
-    q: '¿Para qué rubros hacen páginas web y sistemas?',
-    a: '¡Trabajamos con cualquier rubro comercial o empresa! Hemos desarrollado webs y sistemas para náuticas, guarderías de lanchas, peluquerías, barberías, talleres mecánicos, estudios jurídicos, contadores, clínicas médicas, odontología, ferreterías, inmobiliarias y comercios minoristas o mayoristas. La estructura y los textos se adaptan 100% a lo que ofrecés.'
+    q: '¿Para qué rubros hacen páginas web?',
+    a: '¡Trabajamos con cualquier rubro comercial o profesional! Comercios locales, talleres mecánicos, peluquerías, barberías, estudios profesionales, consultorios médicos, odontología, ferreterías, gastronomía, estética y emprendimientos. La estructura y los textos se adaptan 100% a lo que ofrecés.'
   },
   {
     q: '¿Por qué el servicio se llama "Primera Cuadra"?',
-    a: 'En cualquier centro comercial o ribera náutica, los locales de la primera cuadra concentran el 80% de las ventas porque la gente pasa por ahí. En internet, la Primera Cuadra es tener una página web rápida que dé confianza, aparecer en los primeros 3 lugares de Google Maps y tener un WhatsApp Business con catálogo listo para responder al instante.'
+    a: 'En cualquier centro comercial o avenida concurrida, los locales de la primera cuadra concentran la mayor parte de las visitas porque la gente pasa por ahí. En internet, la Primera Cuadra es tener una página web rápida que dé confianza, tener tu ficha de Google optimizada para búsquedas de tu zona y tener un WhatsApp Business con catálogo listo para responder al instante.'
   },
   {
     q: '¿Qué diferencia hay entre los planes de Primera Cuadra?',
-    a: 'Ofrecemos 4 soluciones transparentes: 1) Pack Completo ($250.000): Tu Página Web con dominio propio + Google Maps + WhatsApp Business en 4 días. 2) Pack Comercio & POS Total ($390.000): Suma un Sistema de Punto de Venta táctil con control de stock, gestión de empleados y clientes para tu local. 3) Pack Solo Web ($150.000): Únicamente tu web con dominio propio a tu nombre. 4) Pack Express ($120.000): Google Maps y WhatsApp Business en 48 horas sin página web.'
+    a: 'Ofrecemos 3 soluciones transparentes: 1) Pack Completo ($250.000): Tu Página Web con dominio propio + Ficha de Google optimizada para búsquedas de tu zona + WhatsApp Business en 4 días hábiles. 2) Pack Solo Web ($150.000): Tu web con dominio propio a tu nombre. 3) Pack Express ($120.000): Ficha de Google y WhatsApp Business en 48 horas sin página web. Además realizamos desarrollos a medida (aplicaciones móviles y sistemas POS) para proyectos específicos.'
   },
   {
-    q: '¿El dominio, la web y el sistema POS son míos?',
-    a: 'Sí, absolutamente. El dominio queda registrado a tu nombre o el de tu empresa. La web y el sistema son 100% de tu propiedad, sin contratos de permanencia, sin alquileres forzados ni sorpresas.'
+    q: '¿El dominio y la web son míos?',
+    a: 'Sí, absolutamente. El dominio queda registrado a tu nombre o el de tu empresa. La web es 100% de tu propiedad, sin contratos de permanencia ni alquileres forzados.'
+  },
+  {
+    q: '¿Qué pasa después del primer año?',
+    a: 'Tu página web y tu dominio son 100% de tu propiedad. Durante el primer año el dominio y el hosting están incluidos. A partir del segundo año, solo abonás la renovación anual de dominio y hosting para mantener tu web online (son valores que se actualizan año a año; para el año 2026 el costo de renovación anual es de $8.500). No hay contratos de permanencia ni costos ocultos. Y si querés que nos ocupemos de hacer cambios o actualizaciones mensuales, podés contratar nuestro servicio de mantenimiento mensual opcional por $50.000/mes, completamente optativo.'
   },
   {
     q: '¿Qué necesitan de mí para comenzar?',
-    a: 'Cero complicaciones técnicas para vos. Te enviamos un cuestionario express de 4 preguntas por WhatsApp para que nos pases: las fotos que tengas de tu local o trabajos, tu lista de servicios/productos con tarifas y tus datos de contacto. Nosotros nos ocupamos de la redacción comercial, el diseño, la programación y la configuración.'
+    a: 'Cero complicaciones técnicas para vos. Te enviamos un cuestionario express de 4 preguntas por WhatsApp para que nos pases: las fotos que tengas de tu local o trabajos, tu lista de servicios/productos con tarifas y tus datos de contacto. Nosotros nos ocupamos de la redacción comercial, el diseño y la configuración.'
   },
   {
     q: '¿Cuáles son los medios y condiciones de pago?',
-    a: 'Aceptamos transferencia bancaria, Mercado Pago o efectivo. Trabajamos con un esquema seguro 50/50: se abona el 50% al iniciar y el 50% restante recién contra entrega una vez que revisás que todo funcione a la perfección.'
+    a: 'Aceptamos transferencia bancaria, Mercado Pago o efectivo. La condición de pago es 50% al iniciar / 50% contra entrega una vez que revisás que todo funcione a la perfección.'
   }
 ];

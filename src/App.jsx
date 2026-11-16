@@ -5,8 +5,11 @@ import VisualJourneyFlow from './components/VisualJourneyFlow';
 import DigitalPresenceSection from './components/DigitalPresenceSection';
 import BusinessSituationsSection from './components/BusinessSituationsSection';
 import SimulatorPage from './pages/SimulatorPage';
+import CustomDevelopmentPage from './pages/CustomDevelopmentPage';
 import ProcessSteps from './components/ProcessSteps';
-import MobileAppsSection from './components/MobileAppsSection';
+import WhoIsBehindSection from './components/WhoIsBehindSection';
+import ExampleDesignsSection from './components/ExampleDesignsSection';
+import EarlyAdoptersSection from './components/EarlyAdoptersSection';
 import PricingPacks from './components/PricingPacks';
 import FAQSection from './components/FAQSection';
 import ContactSection from './components/ContactSection';
@@ -34,17 +37,26 @@ export default function App() {
     return path === '/simulador' || path === '/simulador/' || path.startsWith('/simulador') || hash === '#simulador';
   };
 
+  const isCustomDevRoute = () => {
+    if (typeof window === 'undefined') return false;
+    const path = window.location.pathname.toLowerCase();
+    const hash = window.location.hash.toLowerCase();
+    return path === '/desarrollo-a-medida' || path === '/desarrollo-a-medida/' || path.startsWith('/desarrollo-a-medida') || hash === '#desarrollo-a-medida';
+  };
+
   const [isSimulatorPage, setIsSimulatorPage] = useState(isSimulatorRoute);
+  const [isCustomDevPage, setIsCustomDevPage] = useState(isCustomDevRoute);
 
   // Track page visit on mount
   useEffect(() => {
     recordPageView();
   }, []);
 
-  // Shortcuts: Ctrl+Shift+A, Alt+A or #admin in URL; handle /simulador routing
+  // Shortcuts: Ctrl+Shift+A, Alt+A or #admin in URL; handle routing
   useEffect(() => {
     const handleRouteChange = () => {
       setIsSimulatorPage(isSimulatorRoute());
+      setIsCustomDevPage(isCustomDevRoute());
     };
     const handleKeyDown = (e) => {
       if ((e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') || (e.altKey && e.key.toLowerCase() === 'a')) {
@@ -74,30 +86,44 @@ export default function App() {
     };
   }, []);
 
-  // If visiting the standalone simulator route, render the separate full-page simulator
+  // Dedicated Route: Full-Page Simulator
   if (isSimulatorPage) {
     return <SimulatorPage />;
   }
 
+  // Dedicated Route: Custom Development (Apps Móviles & Sistemas POS)
+  if (isCustomDevPage) {
+    return <CustomDevelopmentPage />;
+  }
+
   return (
     <div className="app-root">
-      {/* 1. Top Navigation with reduced 6 items */}
+      {/* 1. Top Navigation */}
       <Navbar />
 
       <main>
-        {/* 2. Hero with Action-Oriented Headline, CTAs, Trust Badges & 3-in-1 Mockup */}
+        {/* 2. Hero with Action-Oriented Headline, CTAs & 3-in-1 Mockup */}
         <Hero />
 
-        {/* 2. Servicios Profesionales: Qué hacemos y qué ofrecemos */}
+        {/* 3. Servicios Profesionales: Web, Google Maps y WhatsApp */}
         <DigitalPresenceSection />
 
-        {/* 3. Customer Journey: Así te encuentra un nuevo cliente (Te busca -> Te conoce -> Te contacta) */}
+        {/* 4. Customer Journey: Así te encuentra un nuevo cliente */}
         <VisualJourneyFlow />
 
         {/* 5. Business Situations: ¿Tu negocio está en alguna de estas situaciones? */}
         <BusinessSituationsSection />
 
-        {/* 6. Live Interactive Simulator Callout - Compact Card */}
+        {/* 6. Process Methodology: ¿Cómo trabajamos? 3 simples pasos */}
+        <ProcessSteps />
+
+        {/* 7. Quién está detrás de Primera Cuadra (Belen Irigoy, Tigre) */}
+        <WhoIsBehindSection />
+
+        {/* 8. Diseños de Ejemplo: 4 Demos de Negocios Ficticios */}
+        <ExampleDesignsSection />
+
+        {/* 9. Live Interactive Simulator Callout - Compact Card */}
         <section className="simulator-callout-section" id="demostracion-en-vivo">
           <div className="container">
             <div className="simulator-callout-card reveal">
@@ -130,22 +156,19 @@ export default function App() {
           </div>
         </section>
 
-        {/* 7. Process Methodology: ¿Cómo trabajamos? 3 simples pasos */}
-        <ProcessSteps />
+        {/* 10. Programa de Primeros Clientes: 5 lugares con precio de lanzamiento */}
+        <EarlyAdoptersSection />
 
-        {/* 9. Mobile App Development Section: Tu negocio también puede tener su propia app */}
-        <MobileAppsSection />
-
-        {/* 10. Pricing Section: Packs & Precios transparentes */}
+        {/* 11. Pricing Section: 3 Packs Transparentes */}
         <PricingPacks niche={niche} />
 
-        {/* 11. Frequently Asked Questions */}
+        {/* 12. Frequently Asked Questions */}
         <FAQSection niche={niche} />
 
-        {/* 12. Contact Form: ¿Querés mejorar la presencia digital de tu negocio? */}
+        {/* 13. Contact Form: ¿Querés mejorar la presencia digital de tu negocio? */}
         <ContactSection />
 
-        {/* 13. Final High-Impact CTA */}
+        {/* 14. Final High-Impact CTA */}
         <FinalCtaSection />
       </main>
 

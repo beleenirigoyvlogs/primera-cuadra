@@ -65,10 +65,12 @@ export default function Navbar() {
 
   const navLinks = [
     { label: 'Servicios', href: '#servicios' },
-    { label: 'Apps Móviles', href: '#apps-moviles' },
     { label: 'Cómo funciona', href: '#como-funciona' },
+    { label: 'Quién soy', href: '#quien-esta-detras' },
+    { label: 'Demos de ejemplo', href: '#disenos-ejemplo' },
     { label: 'Precios', href: '#precios' },
-    { label: 'Preguntas', href: '#preguntas' }
+    { label: 'Preguntas', href: '#preguntas' },
+    { label: 'Desarrollo a medida', href: '/desarrollo-a-medida', isDiscreet: true }
   ];
 
   return (

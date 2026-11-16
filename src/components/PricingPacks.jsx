@@ -1,24 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { 
   Check, 
   X, 
   Sparkles, 
-  Clock, 
   ShieldCheck, 
-  ChevronDown,
-  ArrowRight,
-  HelpCircle,
-  Zap,
-  Boxes,
-  Store,
-  Users
+  Info,
+  ExternalLink
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { PACKS } from '../data/nicheData';
 
 export default function PricingPacks({ niche }) {
   const whatsappNumber = '5491128779641';
-  const [selectedPlanMode, setSelectedPlanMode] = useState('pago-unico');
 
   const handleSelectPack = (pack) => {
     confetti({
@@ -35,12 +28,11 @@ export default function PricingPacks({ niche }) {
   const packExpress = PACKS.find(p => p.id === 'pack-express') || PACKS[0];
   const packSoloWeb = PACKS.find(p => p.id === 'pack-solo-web') || PACKS[1];
   const packCompleto = PACKS.find(p => p.id === 'pack-completo') || PACKS[2];
-  const packComercioPOS = PACKS.find(p => p.id === 'pack-comercio-pos') || PACKS[3];
 
   return (
     <section className="pricing-section-wrapper" id="precios">
       <div className="container">
-        {/* Hostinger Section Header */}
+        {/* Section Header */}
         <div className="section-header-center reveal">
           <div className="section-kicker-tag">
             <Sparkles size={14} />
@@ -50,22 +42,28 @@ export default function PricingPacks({ niche }) {
             Elegí el plan ideal para vos
           </h2>
           <p className="section-subtitle">
-            Probá Primera Cuadra sin riesgos, con esquema 50% al iniciar y 50% contra entrega conforme y soporte directo por WhatsApp siempre que necesites ayuda.
+            Probá Primera Cuadra con total tranquilidad: 50% al iniciar y 50% contra entrega conforme, con atención directa y personalizada de principio a fin.
           </p>
 
-          {/* Condition Dropdown Pill (Hostinger style) */}
+          {/* Condition Pill */}
           <div className="pricing-scheme-pill">
-            <span>Esquema de Pago Seguro: 50% inicio / 50% entrega</span>
-            <ChevronDown size={14} />
+            <ShieldCheck size={16} className="text-purple-icon" />
+            <span>Condición de pago: 50% al iniciar / 50% contra entrega</span>
+          </div>
+
+          {/* User rule 8: "Esta página la diseñamos nosotros: así de rápida y clara va a ser la tuya." */}
+          <div className="own-page-proof-pill">
+            <Sparkles size={15} className="text-purple-icon" />
+            <strong>Esta página la diseñamos nosotros: así de rápida y clara va a ser la tuya.</strong>
           </div>
         </div>
 
-        {/* Pricing Cards Grid (Exact Hostinger style) */}
+        {/* Pricing Cards Grid (Exact 3 Plans) */}
         <div className="pricing-cards-grid reveal-group">
-          {/* Card 1: Pack Express (Standard White Card) */}
+          {/* Card 1: Pack Express */}
           <div className="pricing-card-hostinger standard reveal">
-            <div className="card-top-badge">
-              48hs entrega • 60% off
+            <div className="card-top-badge launch-badge">
+              Precio de lanzamiento para los primeros 5 negocios
             </div>
 
             <h3 className="plan-name">Express</h3>
@@ -74,7 +72,6 @@ export default function PricingPacks({ niche }) {
             </p>
 
             <div className="price-tag-wrapper">
-              <span className="price-strikethrough">ARS 180.000</span>
               <div className="price-main-row">
                 <span className="currency-code">ARS</span>
                 <span className="price-amount-bold">120.000</span>
@@ -91,13 +88,13 @@ export default function PricingPacks({ niche }) {
             </button>
 
             <div className="plan-sub-guarantee">
-              Iniciás con {packExpress.initialPayment} y el saldo de {packExpress.finalPayment} recién contra entrega en 48 horas.
+              50% al iniciar ($60.000) y 50% contra entrega ($60.000) en 48 horas.
             </div>
 
             <ul className="plan-features-list">
               <li className="plan-feature-item">
                 <Check size={18} className="feature-check-icon" />
-                <span>Ficha de Google Maps optimizada</span>
+                <span>Ficha optimizada para búsquedas de tu zona</span>
               </li>
               <li className="plan-feature-item">
                 <Check size={18} className="feature-check-icon" />
@@ -109,11 +106,11 @@ export default function PricingPacks({ niche }) {
               </li>
               <li className="plan-feature-item">
                 <Check size={18} className="feature-check-icon" />
-                <span>Novedades y fotos publicadas en Google</span>
+                <span>Novedades y fotos de tu negocio publicadas en Google</span>
               </li>
               <li className="plan-feature-item">
                 <Check size={18} className="feature-check-icon" />
-                <span>Reseñas respondidas profesionalmente</span>
+                <span>Respuestas profesionales para opiniones de clientes</span>
               </li>
               <li className="plan-feature-item">
                 <Check size={18} className="feature-check-icon" />
@@ -125,7 +122,7 @@ export default function PricingPacks({ niche }) {
               </li>
               <li className="plan-feature-item">
                 <Check size={18} className="feature-check-icon" />
-                <span>Entrega express garantizada en 48 horas</span>
+                <span>Entrega estimada en 48 horas desde que recibimos tu material</span>
               </li>
               <li className="plan-feature-item excluded">
                 <X size={18} className="feature-x-icon" />
@@ -134,10 +131,10 @@ export default function PricingPacks({ niche }) {
             </ul>
           </div>
 
-          {/* Card 2: Pack Solo Web (Standard White Card with Web emphasis) */}
+          {/* Card 2: Pack Solo Web */}
           <div className="pricing-card-hostinger standard reveal">
-            <div className="card-top-badge badge-purple-soft">
-              Dominio gratis • 4 días
+            <div className="card-top-badge launch-badge">
+              Precio de lanzamiento para los primeros 5 negocios
             </div>
 
             <h3 className="plan-name">Solo Web Propia</h3>
@@ -146,7 +143,6 @@ export default function PricingPacks({ niche }) {
             </p>
 
             <div className="price-tag-wrapper">
-              <span className="price-strikethrough">ARS 240.000</span>
               <div className="price-main-row">
                 <span className="currency-code">ARS</span>
                 <span className="price-amount-bold">150.000</span>
@@ -163,7 +159,7 @@ export default function PricingPacks({ niche }) {
             </button>
 
             <div className="plan-sub-guarantee">
-              Iniciás con {packSoloWeb.initialPayment} y el saldo de {packSoloWeb.finalPayment} recién cuando la web está lista y aprobada.
+              50% al iniciar ($75.000) y 50% contra entrega ($75.000) cuando la web está lista y aprobada.
             </div>
 
             <ul className="plan-features-list">
@@ -193,7 +189,11 @@ export default function PricingPacks({ niche }) {
               </li>
               <li className="plan-feature-item">
                 <Check size={18} className="feature-check-icon" />
-                <span><strong>Entrega garantizada en 4 días hábiles</strong></span>
+                <span>Entrega estimada en 4 días hábiles desde que recibimos tu material</span>
+              </li>
+              <li className="plan-feature-item">
+                <Check size={18} className="feature-check-icon" />
+                <span>100% de tu propiedad (sin alquileres forzados)</span>
               </li>
               <li className="plan-feature-item excluded">
                 <X size={18} className="feature-x-icon" />
@@ -206,10 +206,10 @@ export default function PricingPacks({ niche }) {
             </ul>
           </div>
 
-          {/* Card 3: Pack Completo (FEATURED DARK NIGHT PURPLE CARD - Screenshot 1) */}
+          {/* Card 3: Pack Completo */}
           <div className="pricing-card-hostinger featured reveal">
-            <div className="card-top-badge">
-              Oferta especial • 4 días entrega
+            <div className="card-top-badge launch-badge">
+              Precio de lanzamiento para los primeros 5 negocios
             </div>
 
             <h3 className="plan-name">
@@ -220,7 +220,6 @@ export default function PricingPacks({ niche }) {
             </p>
 
             <div className="price-tag-wrapper">
-              <span className="price-strikethrough">ARS 390.000</span>
               <div className="price-main-row">
                 <span className="currency-code">ARS</span>
                 <span className="price-amount-bold">250.000</span>
@@ -237,7 +236,7 @@ export default function PricingPacks({ niche }) {
             </button>
 
             <div className="plan-sub-guarantee">
-              Iniciás con {packCompleto.initialPayment} y el saldo de {packCompleto.finalPayment} recién cuando la web está lista y aprobada.
+              50% al iniciar ($125.000) y 50% contra entrega ($125.000) cuando la web está lista y aprobada.
             </div>
 
             <ul className="plan-features-list">
@@ -259,7 +258,7 @@ export default function PricingPacks({ niche }) {
               </li>
               <li className="plan-feature-item">
                 <Check size={18} className="feature-check-icon" />
-                <span>Ficha de Google Maps Top 3 optimizada</span>
+                <span>Ficha optimizada para búsquedas de tu zona</span>
               </li>
               <li className="plan-feature-item">
                 <Check size={18} className="feature-check-icon" />
@@ -267,125 +266,51 @@ export default function PricingPacks({ niche }) {
               </li>
               <li className="plan-feature-item">
                 <Check size={18} className="feature-check-icon" />
-                <span>Reseñas respondidas y novedades SEO publicadas</span>
+                <span>Configuración de palabras clave locales y fotos en Google</span>
               </li>
               <li className="plan-feature-item">
                 <Check size={18} className="feature-check-icon" />
-                <span><strong>Entrega llave en mano en 4 días hábiles</strong></span>
+                <span>Entrega estimada en 4 días hábiles desde que recibimos tu material</span>
               </li>
               <li className="plan-feature-item">
                 <Check size={18} className="feature-check-icon" />
-                <span>100% de tu propiedad (cero mensualidades de alquiler)</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Card 4: Pack Comercio & POS Total (Special High-Value Tier) */}
-          <div className="pricing-card-hostinger standard pos-pack-card reveal">
-            <div className="card-top-badge pos-badge">
-              ⚡ POS + Stock + Web • 7 días
-            </div>
-
-            <h3 className="plan-name">
-              <span>🏪</span> Comercio & POS Total
-            </h3>
-            <p className="plan-desc">
-              Presencia digital completa más tu Sistema de Punto de Venta (POS) con control de stock, empleados y clientes.
-            </p>
-
-            <div className="price-tag-wrapper">
-              <span className="price-strikethrough">ARS 580.000</span>
-              <div className="price-main-row">
-                <span className="currency-code">ARS</span>
-                <span className="price-amount-bold">390.000</span>
-                <span className="price-unit">/pago único</span>
-              </div>
-            </div>
-
-            <button 
-              type="button" 
-              className="btn-plan-hostinger btn-plan-pos"
-              onClick={() => handleSelectPack(packComercioPOS)}
-            >
-              Elegir plan
-            </button>
-
-            <div className="plan-sub-guarantee">
-              Iniciás con {packComercioPOS.initialPayment} y el saldo de {packComercioPOS.finalPayment} recién contra entrega y capacitación.
-            </div>
-
-            <ul className="plan-features-list">
-              <li className="plan-feature-item">
-                <Check size={18} className="feature-check-icon text-emerald" />
-                <span><strong>Sistema POS de Punto de Venta</strong> táctil para PC / Tablet</span>
-              </li>
-              <li className="plan-feature-item">
-                <Check size={18} className="feature-check-icon text-emerald" />
-                <span><strong>Control de Stock e Inventario</strong> en tiempo real</span>
-              </li>
-              <li className="plan-feature-item">
-                <Check size={18} className="feature-check-icon text-emerald" />
-                <span><strong>Gestión de Empleados</strong> con roles y permisos</span>
-              </li>
-              <li className="plan-feature-item">
-                <Check size={18} className="feature-check-icon text-emerald" />
-                <span><strong>Base de Clientes & CRM</strong> e historial de compras</span>
-              </li>
-              <li className="plan-feature-item">
-                <Check size={18} className="feature-check-icon text-emerald" />
-                <span><strong>Catálogo digital con QR para mostrador</strong> (listo para imprimir y exhibir)</span>
-              </li>
-              <li className="plan-feature-item">
-                <Check size={18} className="feature-check-icon text-emerald" />
-                <span>Arqueo de caja diaria, cierres y balance de ventas</span>
-              </li>
-              <li className="plan-feature-item">
-                <Check size={18} className="feature-check-icon" />
-                <span><strong>Tu Página Web Propia</strong> con dominio incluido</span>
-              </li>
-              <li className="plan-feature-item">
-                <Check size={18} className="feature-check-icon" />
-                <span>Ficha de Google Maps Top 3 optimizada</span>
-              </li>
-              <li className="plan-feature-item">
-                <Check size={18} className="feature-check-icon" />
-                <span>WhatsApp Business con catálogo cargado</span>
-              </li>
-              <li className="plan-feature-item">
-                <Check size={18} className="feature-check-icon" />
-                <span><strong>Capacitación inicial incluida</strong> para tu equipo</span>
-              </li>
-              <li className="plan-feature-item">
-                <Check size={18} className="feature-check-icon" />
-                <span>100% de tu propiedad (cero alquileres mensuales)</span>
+                <span>100% de tu propiedad (sin mensualidades de alquiler)</span>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* POS Standalone Callout Banner */}
-        <div className="pos-standalone-banner reveal">
-          <div className="pos-banner-left">
-            <div className="pos-badge-pill">
-              <Boxes size={15} />
-              <span>SISTEMA DE GESTIÓN A MEDIDA</span>
+        {/* Priority 3, Item 13: Honest explanation of ownership, renewals, and optional maintenance */}
+        <div className="pricing-clarity-notice reveal">
+          <div className="clarity-notice-header">
+            <Info size={20} className="text-purple-icon" />
+            <h4>Claridad total sobre la propiedad de tu web y costos futuros</h4>
+          </div>
+          <div className="clarity-notice-grid">
+            <div className="clarity-item">
+              <strong>100% de tu propiedad:</strong>
+              <p>Tu página web y tu dominio son tuyos. No te cobramos alquileres forzados ni cuotas mensuales de permanencia.</p>
             </div>
-            <h4 className="pos-banner-title">¿Buscás únicamente el Software de Punto de Venta (POS) y Stock para tu local?</h4>
-            <p className="pos-banner-desc">
-              Desarrollamos el sistema a la medida exacta de tu negocio: facturación express, control de stock con alertas de reposición, gestión de empleados por turno, cuenta corriente de clientes y <strong>catálogo digital interactivo con código QR para mostrador</strong> (para que tus clientes escaneen y elijan desde su celular en tu local). Sin pagar abonos mensuales abusivos.
-            </p>
+            <div className="clarity-item">
+              <strong>Renovación anual (a partir del 2° año):</strong>
+              <p>El 1er año de dominio y hosting está incluido. Luego solo pagás la renovación anual a precio de costo (valores que se actualizan año a año; para el año 2026 el costo de renovación anual de dominio + hosting es de $8.500).</p>
+            </div>
+            <div className="clarity-item">
+              <strong>Mantenimiento mensual opcional:</strong>
+              <p>Si querés que nosotros nos ocupemos de actualizar fotos, precios o novedades mes a mes, podés contratar nuestro servicio de mantenimiento mensual por $50.000/mes (totalmente opcional, podés no contratarlo y tu web sigue funcionando igual).</p>
+            </div>
           </div>
-          <div className="pos-banner-right">
-            <a 
-              href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent('¡Hola Primera Cuadra! Me interesa consultar por el desarrollo de un Sistema de Punto de Venta (POS) y control de stock para mi comercio. ¿Podemos coordinar?')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-pos-cta"
-            >
-              <span>Consultar por Sistema POS a medida</span>
-              <ArrowRight size={16} />
-            </a>
-          </div>
+        </div>
+
+        {/* Discreet link to Custom Development (POS / Software) */}
+        <div className="pricing-custom-dev-note reveal">
+          <p>
+            ¿Tu comercio necesita un <strong>Sistema de Punto de Venta (POS)</strong> táctil con control de stock o una <strong>Aplicación Móvil</strong>?
+          </p>
+          <a href="/desarrollo-a-medida" className="btn-pos-link">
+            <span>Ver desarrollo de software y sistemas a medida</span>
+            <ExternalLink size={14} />
+          </a>
         </div>
       </div>
     </section>

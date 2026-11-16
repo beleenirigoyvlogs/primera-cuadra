@@ -20,7 +20,7 @@ export default function ProcessSteps() {
       color: 'cyan',
       description: 'Sin reuniones pesadas ni trámites complejos. Te mandamos 4 preguntas puntuales por WhatsApp para que nos pases tus fotos, lista de servicios, precios de referencia y dirección.',
       bulletList: [
-        'Fotos de tus instalaciones o embarcaciones',
+        'Fotos de tu local, productos o trabajos',
         'Lista de servicios y tarifas actuales',
         'Cero tecnicismos: nosotros nos ocupamos de todo'
       ]
@@ -29,11 +29,11 @@ export default function ProcessSteps() {
       number: '02',
       icon: Settings,
       title: 'Optimización y Configuración Pro',
-      duration: '48hs (Express) / 4 días (Completo)',
+      duration: 'Entrega estimada en 48hs a 4 días hábiles',
       color: 'amber',
       description: 'Configuramos tu presencia en Google con la categoría correspondiente, fotos y servicios, desarrollamos tu página web profesional y dejamos tu WhatsApp Business con catálogo listo para recibir consultas.',
       bulletList: [
-        'Configuración completa de Google Maps y atención de consultas',
+        'Ficha optimizada para búsquedas de tu zona en Google Maps',
         'Carga de catálogo con precios y botón de contacto en WhatsApp',
         'En Pack Completo: diseño de tu web y registro de dominio'
       ]
@@ -44,10 +44,10 @@ export default function ProcessSteps() {
       title: 'Entrega Llave en Mano y Lanzamiento',
       duration: 'Listo para recibir consultas',
       color: 'emerald',
-      description: 'Te entregamos los accesos completos y te mostramos cómo funciona cada canal. Tu negocio queda formalmente en la Primera Cuadra digital de tu rubro.',
+      description: 'Te entregamos los accesos completos y te mostramos cómo funciona cada canal. Tu negocio queda formalmente en la Primera Cuadra digital.',
       bulletList: [
         'Verificación de funcionamiento en vivo con vos',
-        'Pago del 50% saldo únicamente tras tu conformidad',
+        'Condición de pago: 50% al iniciar / 50% contra entrega',
         'Soporte directo para dudas post-lanzamiento'
       ]
     }
@@ -106,12 +106,12 @@ export default function ProcessSteps() {
           <div className="banner-left">
             <ShieldCheck size={28} className="banner-icon" />
             <div>
-              <strong>Garantía de Satisfacción 50/50</strong>
-              <p>El 50% se abona al comenzar y el saldo restante recién contra entrega una vez que revisás que todo está perfecto.</p>
+              <strong>Condición de pago: 50% al iniciar / 50% contra entrega</strong>
+              <p>Abonás el 50% al iniciar el proyecto y el 50% restante recién contra entrega una vez que revisás que todo funciona a la perfección.</p>
             </div>
           </div>
 
-          <a href="#packs-precios" className="banner-btn">
+          <a href="#precios" className="banner-btn">
             <span>Ver Tarifas</span>
             <ArrowRight size={16} />
           </a>

@@ -85,10 +85,18 @@ export default function FAQSection() {
     {
       q: '¿Cuánto cuesta y cómo se paga?',
       paragraphs: [
-        'El precio depende del tipo de página, las funcionalidades y los servicios que necesite tu negocio.',
-        'Contamos con diferentes opciones para adaptarnos a distintos proyectos.',
-        'Para comenzar, trabajamos con 50% al iniciar y 50% contra entrega, según las condiciones del proyecto.',
-        'Si nos contás qué necesitás, podemos indicarte qué opción se adapta mejor a tu negocio.'
+        'Tenemos precios de lanzamiento claros para los primeros 5 negocios: Pack Express ($120.000), Pack Solo Web ($150.000) y Pack Completo con Web Propia ($250.000).',
+        'La condición de pago es 50% al iniciar / 50% contra entrega conforme una vez que revisás que todo funciona a la perfección.',
+        'Aceptamos transferencia bancaria, Mercado Pago o efectivo.'
+      ]
+    },
+    {
+      q: '¿Qué pasa después del primer año?',
+      paragraphs: [
+        'Tu página web y tu dominio son 100% de tu propiedad. Durante el primer año el hosting y el dominio están incluidos en el precio del pack.',
+        'A partir del segundo año, solo abonás la renovación anual del dominio y el hosting para que tu sitio continúe online. Son valores que se actualizan año a año; para el año 2026 el costo de renovación anual de dominio + hosting es de $8.500.',
+        'No hay contratos de permanencia, ni alquileres forzados, ni sorpresas.',
+        'Además, si querés que nosotros nos ocupemos de hacer cambios, subir fotos o actualizar novedades mes a mes, ofrecemos un servicio de mantenimiento mensual opcional por $50.000/mes (totalmente a tu elección).'
       ]
     },
     {

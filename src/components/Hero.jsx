@@ -89,7 +89,7 @@ export default function Hero() {
             <div className="hero-trust-guarantees">
               <div className="trust-pill-tag">
                 <Clock size={16} className="text-purple-icon" />
-                <span>Entrega en 4 días hábiles</span>
+                <span>Entrega estimada en 4 días hábiles desde que recibimos tu material</span>
               </div>
               <div className="trust-pill-tag">
                 <Zap size={16} className="text-purple-icon" />
@@ -105,6 +105,12 @@ export default function Hero() {
           {/* Right Column: Realistic 3-in-1 Connected Mockup */}
           <div className="hero-mockup-col">
             <div className="mockup-connected-canvas">
+              {/* Badge indicando claramente que es un negocio de ejemplo */}
+              <div className="mockup-example-disclaimer-pill" role="status">
+                <Eye size={14} className="text-purple-icon" />
+                <span>Ejemplo de cómo se vería tu negocio</span>
+              </div>
+
               {/* Floating Badge Google Maps Top */}
               <div className="mockup-floating-card card-google">
                 <div className="mockup-google-header">

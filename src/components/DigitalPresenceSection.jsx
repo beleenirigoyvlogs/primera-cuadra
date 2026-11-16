@@ -4,13 +4,10 @@ import {
   MapPin, 
   MessageSquare, 
   Sparkles, 
-  ArrowRight,
-  CheckCircle2,
-  Smartphone,
-  Boxes,
-  ShieldCheck,
-  Zap,
-  ExternalLink
+  ArrowRight, 
+  CheckCircle2, 
+  Zap, 
+  ExternalLink 
 } from 'lucide-react';
 
 export default function DigitalPresenceSection() {
@@ -30,7 +27,7 @@ export default function DigitalPresenceSection() {
         'Hosting cloud de alta velocidad con certificado de seguridad SSL',
         'Secciones a medida: Servicios, Fotos, Tarifas y Quiénes Somos',
         'Botón flotante de WhatsApp oficial para recibir consultas al instante',
-        '100% de tu propiedad (cero alquileres mensuales obligatorios)'
+        '100% de tu propiedad (sin alquileres forzados; renovación anual transparente de hosting y dominio)'
       ],
       ctaText: 'Consultar por Página Web',
       waMsg: encodeURIComponent('¡Hola Primera Cuadra! Me interesa consultar por el servicio de Diseño y Desarrollo de Página Web profesional para mi negocio. ¿Podrían asesorarme?'),
@@ -39,10 +36,10 @@ export default function DigitalPresenceSection() {
     {
       num: '02',
       title: 'Posicionamiento en Google Maps',
-      kicker: 'BÚSQUEDAS LOCALES TOP 3',
+      kicker: 'Ficha optimizada para búsquedas de tu zona',
       icon: MapPin,
       accent: 'google',
-      desc: 'Optimizamos tu ficha oficial de empresa en Google y Google Maps para que aparezcas primero cuando los clientes de tu zona busquen lo que ofrecés.',
+      desc: 'Optimizamos tu ficha oficial de empresa en Google y Google Maps para que aparezcas de forma profesional y clara cuando los clientes de tu zona busquen lo que ofrecés.',
       features: [
         'Ficha en Google Maps 100% verificada, configurada y optimizada',
         'Carga de fotos de calidad, horarios de atención y teléfono de contacto',
@@ -52,7 +49,7 @@ export default function DigitalPresenceSection() {
         'Canal directo hacia tu página web y botón de llamada telefónica'
       ],
       ctaText: 'Consultar por Google Maps',
-      waMsg: encodeURIComponent('¡Hola Primera Cuadra! Me interesa consultar por el servicio de Posicionamiento y Optimización en Google Maps para mi comercio. ¿Podrían asesorarme?'),
+      waMsg: encodeURIComponent('¡Hola Primera Cuadra! Me interesa consultar por el servicio de Ficha optimizada para búsquedas de tu zona en Google Maps para mi comercio. ¿Podrían asesorarme?'),
       link: '#precios'
     },
     {
@@ -73,46 +70,6 @@ export default function DigitalPresenceSection() {
       ctaText: 'Consultar por WhatsApp Business',
       waMsg: encodeURIComponent('¡Hola Primera Cuadra! Me interesa consultar por el servicio de configuración de WhatsApp Business oficial con catálogo. ¿Podrían asesorarme?'),
       link: '#precios'
-    },
-    {
-      num: '04',
-      title: 'Desarrollo de Aplicaciones Móviles',
-      kicker: 'ANDROID & IOS PARA CUALQUIER PROYECTO',
-      icon: Smartphone,
-      accent: 'apps',
-      isAppHighlight: true,
-      desc: 'Desarrollamos aplicaciones móviles nativas o multiplataforma para cualquier idea, proyecto, startup, utilidad, comunidad o negocio.',
-      features: [
-        'Desarrollo listo para publicar en Google Play Store y App Store',
-        'Diseño de interfaz UX/UI moderno, rápido y 100% intuitivo',
-        'Bases de datos en la nube, perfiles de usuarios y notificaciones push',
-        'Pasarelas de cobro, sincronización en vivo y arquitectura escalable',
-        'Integración con APIs externas y sistemas de gestión existentes',
-        'Presupuesto personalizado y alcance adaptado a tu proyecto'
-      ],
-      ctaText: 'Consultar por mi App',
-      waMsg: encodeURIComponent('¡Hola Primera Cuadra! Me interesa consultar por el servicio de Desarrollo de Aplicaciones Móviles. Tengo una idea/proyecto que me gustaría presupuestar.'),
-      link: '#apps-moviles'
-    },
-    {
-      num: '05',
-      title: 'Sistemas POS & Control de Stock',
-      kicker: 'FACTURACIÓN, CAJA Y CATÁLOGO QR',
-      icon: Boxes,
-      accent: 'pos',
-      isPosHighlight: true,
-      desc: 'Software de Punto de Venta táctil para comercios y locales con control de inventario en tiempo real y catálogo digital con QR para mostrador.',
-      features: [
-        'Sistema POS táctil para operar desde PC, notebook o tablet',
-        'Control de stock e inventario en tiempo real con alertas de reposición',
-        'Catálogo digital interactivo con código QR para mostrador (para tus clientes)',
-        'Gestión de empleados con roles y permisos (cajeros, admin, ventas)',
-        'Arqueo de caja diaria, cierres de turno y balances descargables',
-        'Software propio sin abonos mensuales obligatorios de mantenimiento'
-      ],
-      ctaText: 'Consultar por Sistema POS',
-      waMsg: encodeURIComponent('¡Hola Primera Cuadra! Me interesa consultar por el Sistema de Punto de Venta (POS), control de stock y catálogo QR para mostrador.'),
-      link: '#precios'
     }
   ];
 
@@ -129,7 +86,7 @@ export default function DigitalPresenceSection() {
             Servicios a medida para <span className="highlight-purple">impulsar tu negocio</span>
           </h2>
           <p className="section-subtitle">
-            Ofrecemos servicios individuales y soluciones integradas de diseño web, posicionamiento en búsquedas locales y desarrollo de software para que consigas más clientes todos los días.
+            Ofrecemos servicios individuales y soluciones integradas de diseño web, ficha optimizada para búsquedas de tu zona y configuración de canales directos para que consigas más clientes.
           </p>
         </div>
 
@@ -140,7 +97,7 @@ export default function DigitalPresenceSection() {
             return (
               <div 
                 key={idx} 
-                className={`service-showcase-card card-accent-${s.accent} ${s.isAppHighlight ? 'service-card-app' : ''} ${s.isPosHighlight ? 'service-card-pos' : ''} reveal`}
+                className={`service-showcase-card card-accent-${s.accent} reveal`}
               >
                 {/* Top Badge & Number */}
                 <div className="service-card-header">
@@ -185,7 +142,7 @@ export default function DigitalPresenceSection() {
 
                   {s.link && (
                     <a href={s.link} className="service-secondary-link">
-                      <span>{s.isAppHighlight ? 'Ver sección de Apps Móviles' : 'Ver planes y valores'}</span>
+                      <span>Ver planes y valores</span>
                       <ArrowRight size={13} />
                     </a>
                   )}
@@ -193,6 +150,17 @@ export default function DigitalPresenceSection() {
               </div>
             );
           })}
+        </div>
+
+        {/* Discreet link to Custom Development (Apps & POS) */}
+        <div className="custom-dev-discrete-callout reveal">
+          <p>
+            ¿Buscás soluciones avanzadas como <strong>Aplicaciones Móviles para iOS/Android</strong> o <strong>Sistemas POS con Control de Stock</strong> para tu local?
+          </p>
+          <a href="/desarrollo-a-medida" className="btn-custom-dev-link">
+            <span>Conocé nuestros desarrollos a medida</span>
+            <ExternalLink size={14} />
+          </a>
         </div>
 
         {/* Bottom Integration Notice */}
@@ -204,7 +172,7 @@ export default function DigitalPresenceSection() {
             </div>
             <h4 className="combo-title">¿Querés tu Web + Google Maps + WhatsApp todo junto en un solo paquete?</h4>
             <p className="combo-desc">
-              En lugar de contratar servicios por separado, nuestros <strong>Packs Llave en Mano</strong> combinan todo el ecosistema con descuento especial y entrega garantizada en 4 días hábiles.
+              En lugar de contratar servicios por separado, nuestros <strong>Packs Llave en Mano</strong> combinan todo el ecosistema con precio de lanzamiento para los primeros 5 negocios y entrega estimada en 4 días hábiles desde que recibimos tu material.
             </p>
           </div>
           <div className="combo-banner-action">
