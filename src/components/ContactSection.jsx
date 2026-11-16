@@ -379,7 +379,7 @@ export default function ContactSection() {
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      placeholder="Contanos si ya tenés fotos, redes o si estás empezando desde cero..."
+                      placeholder="Contame si ya tenés fotos, redes o si estás empezando desde cero..."
                       rows="3"
                       className="form-textarea"
                     ></textarea>

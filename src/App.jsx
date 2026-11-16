@@ -15,7 +15,7 @@ import WhatsAppFloatingBtn from './components/WhatsAppFloatingBtn';
 import AdminLeadsModal from './components/AdminLeadsModal';
 import SimulatorPage from './pages/SimulatorPage';
 import CustomDevelopmentPage from './pages/CustomDevelopmentPage';
-import ProposalPage from './pages/ProposalPage';
+import BusinessDemoSitePage from './pages/BusinessDemoSitePage';
 import { NICHES } from './data/nicheData';
 import { useScrollReveal } from './hooks/useScrollReveal';
 import { useMouseParallaxDots } from './hooks/useMouseParallaxDots';
@@ -31,6 +31,21 @@ export default function App() {
   const niche = NICHES[currentNiche] || NICHES.peluqueria;
 
   // Route resolvers
+  const getExampleSlug = () => {
+    if (typeof window === 'undefined') return null;
+    const path = window.location.pathname.toLowerCase();
+    const hash = window.location.hash.toLowerCase();
+    if (path.startsWith('/ejemplos/')) {
+      const parts = path.split('/ejemplos/')[1].split('/')[0];
+      return parts || null;
+    }
+    if (hash.startsWith('#ejemplos/')) {
+      const parts = hash.split('#ejemplos/')[1].split('/')[0];
+      return parts || null;
+    }
+    return null;
+  };
+
   const getProposalSlug = () => {
     if (typeof window === 'undefined') return null;
     const path = window.location.pathname.toLowerCase();
@@ -60,6 +75,7 @@ export default function App() {
     return path === '/desarrollo-a-medida' || path === '/desarrollo-a-medida/' || path.startsWith('/desarrollo-a-medida') || hash === '#desarrollo-a-medida';
   };
 
+  const [exampleSlug, setExampleSlug] = useState(getExampleSlug);
   const [proposalSlug, setProposalSlug] = useState(getProposalSlug);
   const [isSimulatorPage, setIsSimulatorPage] = useState(isSimulatorRoute);
   const [isCustomDevPage, setIsCustomDevPage] = useState(isCustomDevRoute);
@@ -72,6 +88,7 @@ export default function App() {
   // Shortcuts: Ctrl+Shift+A, Alt+A or #admin in URL; handle routing
   useEffect(() => {
     const handleRouteChange = () => {
+      setExampleSlug(getExampleSlug());
       setProposalSlug(getProposalSlug());
       setIsSimulatorPage(isSimulatorRoute());
       setIsCustomDevPage(isCustomDevRoute());
@@ -104,17 +121,22 @@ export default function App() {
     };
   }, []);
 
-  // 1. Dedicated Route: Personalized Commercial Proposal
-  if (proposalSlug) {
-    return <ProposalPage slug={proposalSlug} />;
+  // 1. Dedicated Route: Full Demo Website by Industry (/ejemplos/:slug)
+  if (exampleSlug) {
+    return <BusinessDemoSitePage slug={exampleSlug} isProposal={false} />;
   }
 
-  // 2. Dedicated Route: Full-Page Simulator
+  // 2. Dedicated Route: Personalized Commercial Proposal (/propuesta/:slug)
+  if (proposalSlug) {
+    return <BusinessDemoSitePage slug={proposalSlug} isProposal={true} />;
+  }
+
+  // 3. Dedicated Route: Full-Page Simulator
   if (isSimulatorPage) {
     return <SimulatorPage />;
   }
 
-  // 3. Dedicated Route: Custom Development (Apps Móviles & Sistemas POS)
+  // 4. Dedicated Route: Custom Development (Apps Móviles & Sistemas POS)
   if (isCustomDevPage) {
     return <CustomDevelopmentPage />;
   }
