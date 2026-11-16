@@ -2545,103 +2545,191 @@ button {
    ========================================================================== */
 
 .process-section-wrapper {
-  padding: 80px 0;
-  background: transparent;
+  padding: 96px 0 !important;
+  background: transparent !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 768px) {
+  .process-section-wrapper {
+    padding: 64px 0 !important;
+  }
+}
+
+.process-section-wrapper > .container {
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 24px !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 640px) {
+  .process-section-wrapper > .container {
+    padding: 0 20px !important;
+  }
 }
 
 .process-steps-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 24px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  margin-top: 40px !important;
+}
+
+@media (max-width: 960px) {
+  .process-steps-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
 }
 
 .process-step-card {
-  background: var(--bg-card, #ffffff);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-light);
-  box-shadow: var(--shadow-card);
-  padding: 32px 28px;
-  display: flex;
-  flex-direction: column;
-  transition: all 0.2s ease;
-  position: relative;
+  background: var(--bg-card, #ffffff) !important;
+  border-radius: 18px !important;
+  border: 1px solid var(--border-light) !important;
+  box-shadow: var(--shadow-card) !important;
+  padding: 32px 28px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  transition: all 0.2s ease !important;
+  position: relative !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+html.dark .process-step-card {
+  background: #171622 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
 }
 
 .process-step-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-hover);
-  border-color: var(--border-purple-focus);
+  transform: translateY(-4px) !important;
+  box-shadow: var(--shadow-hover) !important;
+  border-color: var(--border-purple-focus) !important;
 }
 
+/* 1. Header: Number / Icon -> 16px bottom margin */
 .step-card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 18px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin: 0 0 16px 0 !important;
 }
 
 .step-watermark {
-  font-family: var(--font-heading);
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: var(--brand-purple);
-  line-height: 1;
+  font-family: var(--font-heading) !important;
+  font-size: 2rem !important;
+  font-weight: 800 !important;
+  color: var(--brand-purple) !important;
+  line-height: 1 !important;
 }
 
 .step-icon-wrapper {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-md);
-  background: var(--brand-purple-soft);
-  color: var(--brand-purple);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: var(--radius-md) !important;
+  background: rgba(103, 61, 230, 0.12) !important;
+  color: var(--brand-purple, #673de6) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
-.step-badge-time {
-  font-size: 0.76rem;
-  font-weight: 700;
-  color: var(--text-muted);
-  background: var(--bg-alt);
-  padding: 4px 10px;
-  border-radius: var(--radius-full);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
+/* 2. Title -> 12px bottom margin, scaled down for 1-2 clean lines */
 .step-card-title {
-  font-family: var(--font-heading);
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: var(--text-title);
-  margin-bottom: 10px;
+  font-family: var(--font-heading) !important;
+  font-size: 1.12rem !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+  color: var(--text-title) !important;
+  margin: 0 0 12px 0 !important;
 }
 
+html.dark .step-card-title {
+  color: #F1F0F5 !important;
+}
+
+/* 3. Time pill -> width: fit-content (inline-flex), 16px bottom margin */
+.step-badge-time {
+  font-size: 0.74rem !important;
+  font-weight: 700 !important;
+  color: var(--text-muted) !important;
+  background: var(--bg-alt) !important;
+  padding: 4px 10px !important;
+  border-radius: 999px !important;
+  display: inline-flex !important;
+  width: fit-content !important;
+  align-self: flex-start !important;
+  align-items: center !important;
+  gap: 6px !important;
+  margin: 0 0 16px 0 !important;
+  border: 1px solid var(--border-light) !important;
+}
+
+html.dark .step-badge-time {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: #CBD5E1 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* 4. Description paragraph -> body font size, WCAG AA contrast, 24px bottom margin */
 .step-card-desc {
-  font-size: 0.92rem;
-  color: var(--text-muted);
-  line-height: 1.55;
-  margin-bottom: 20px;
+  font-size: 0.88rem !important;
+  color: var(--text-muted) !important;
+  line-height: 1.55 !important;
+  margin: 0 0 24px 0 !important;
 }
 
+html.dark .step-card-desc {
+  color: #CBD5E1 !important;
+}
+
+/* 5. Fixed Divider -> 20px bottom margin */
+.step-card-divider {
+  width: 100% !important;
+  height: 1px !important;
+  background-color: var(--border-subtle, rgba(0, 0, 0, 0.08)) !important;
+  margin: 0 0 20px 0 !important;
+}
+
+html.dark .step-card-divider {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* 6. Checklist: flows right after divider, no margin-top: auto */
 .step-bullet-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: auto;
-  border-top: 1px solid var(--border-subtle);
-  padding-top: 18px;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  border-top: none !important;
 }
 
 .step-bullet-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  font-size: 0.86rem;
-  color: var(--text-body);
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 8px !important;
+  font-size: 0.86rem !important;
+  line-height: 1.45 !important;
+  color: var(--text-body) !important;
+}
+
+html.dark .step-bullet-list li {
+  color: #E2E8F0 !important;
+}
+
+/* 7. Check icons: unified brand purple in all 3 cards */
+.step-check-icon {
+  color: var(--brand-purple, #673de6) !important;
+  flex-shrink: 0 !important;
+  margin-top: 2px !important;
 }
 
 .process-guarantee-banner {
@@ -3423,66 +3511,70 @@ button {
 }
 
 .whatsapp-floating-tooltip {
-  background: #ffffff;
-  border-radius: var(--radius-lg);
-  padding: 10px 14px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  border: 1px solid var(--border-light);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  animation: floatTooltip 3s ease-in-out infinite;
+  background: #ffffff !important;
+  border-radius: 12px !important;
+  padding: 6px 10px !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14) !important;
+  border: 1px solid var(--border-light) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  animation: floatTooltip 3s ease-in-out infinite !important;
 }
 
 @keyframes floatTooltip {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
+  50% { transform: translateY(-3px); }
 }
 
 .tooltip-text {
-  display: flex;
-  flex-direction: column;
-  text-align: right;
-  white-space: nowrap;
+  display: flex !important;
+  flex-direction: column !important;
+  text-align: right !important;
+  white-space: nowrap !important;
 }
 
 .tooltip-text strong {
-  font-size: 0.82rem;
-  color: var(--text-dark);
-  line-height: 1.2;
+  font-size: 0.76rem !important;
+  color: var(--text-dark) !important;
+  line-height: 1.2 !important;
 }
 
 .tooltip-text span {
-  font-size: 0.74rem;
-  color: var(--text-muted);
+  font-size: 0.68rem !important;
+  color: var(--text-muted) !important;
 }
 
 .btn-tooltip-close {
-  color: var(--text-light);
-  padding: 2px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: color 0.15s ease;
+  color: var(--text-light) !important;
+  padding: 3px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: color 0.15s ease, background-color 0.15s ease !important;
 }
 
 .btn-tooltip-close:hover {
-  color: var(--text-dark);
+  color: var(--text-dark) !important;
+  background: rgba(0, 0, 0, 0.05) !important;
 }
 
 .whatsapp-floating-button {
-  position: relative;
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
-  background: #25d366;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative !important;
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50% !important;
+  background: #25d366 !important;
+  color: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
 }
 
 .whatsapp-floating-button:hover {
