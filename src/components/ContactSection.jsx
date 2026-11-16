@@ -10,10 +10,11 @@ import {
   Building2, 
   User, 
   Phone, 
-  HelpCircle,
-  Clock,
-  ShieldCheck,
-  MapPin
+  HelpCircle, 
+  Clock, 
+  ShieldCheck, 
+  MapPin,
+  ChevronDown
 } from 'lucide-react';
 import { dispatchLeadEmail } from '../utils/emailDispatcher';
 import { pushGtmEvent, trackContactFormSubmit, trackWhatsAppClick } from '../utils/gtm';
@@ -281,10 +282,11 @@ export default function ContactSection() {
                   {/* Field: Name */}
                   <div className="form-group">
                     <label htmlFor="contact-name" className="form-label">
-                      Tu nombre <span className="required-star">*</span>
+                      <span>Tu nombre</span>
+                      <span className="required-star">*</span>
                     </label>
-                    <div className={`input-wrapper ${errors.name ? 'has-error' : ''}`}>
-                      <User size={18} className="input-icon" />
+                    <div className={`input-with-icon ${errors.name ? 'has-error' : ''}`}>
+                      <User size={18} className="input-adornment-icon" />
                       <input
                         id="contact-name"
                         type="text"
@@ -302,10 +304,11 @@ export default function ContactSection() {
                   {/* Field: Business Name */}
                   <div className="form-group">
                     <label htmlFor="contact-business" className="form-label">
-                      Nombre de tu negocio o actividad <span className="required-star">*</span>
+                      <span>Nombre de tu negocio o actividad</span>
+                      <span className="required-star">*</span>
                     </label>
-                    <div className={`input-wrapper ${errors.businessName ? 'has-error' : ''}`}>
-                      <Building2 size={18} className="input-icon" />
+                    <div className={`input-with-icon ${errors.businessName ? 'has-error' : ''}`}>
+                      <Building2 size={18} className="input-adornment-icon" />
                       <input
                         id="contact-business"
                         type="text"
@@ -323,10 +326,11 @@ export default function ContactSection() {
                   {/* Field: Phone / WhatsApp */}
                   <div className="form-group">
                     <label htmlFor="contact-phone" className="form-label">
-                      Teléfono o WhatsApp de contacto <span className="required-star">*</span>
+                      <span>Teléfono o WhatsApp de contacto</span>
+                      <span className="required-star">*</span>
                     </label>
-                    <div className={`input-wrapper ${errors.phone ? 'has-error' : ''}`}>
-                      <Phone size={18} className="input-icon" />
+                    <div className={`input-with-icon ${errors.phone ? 'has-error' : ''}`}>
+                      <Phone size={18} className="input-adornment-icon" />
                       <input
                         id="contact-phone"
                         type="tel"
@@ -344,9 +348,9 @@ export default function ContactSection() {
                   {/* Field: Service of Interest */}
                   <div className="form-group">
                     <label htmlFor="contact-service" className="form-label">
-                      ¿Qué estás buscando para tu negocio?
+                      <span>¿Qué estás buscando para tu negocio?</span>
                     </label>
-                    <div className="input-wrapper select-wrapper">
+                    <div className="select-wrapper">
                       <select
                         id="contact-service"
                         name="service"
@@ -360,13 +364,15 @@ export default function ContactSection() {
                           </option>
                         ))}
                       </select>
+                      <ChevronDown size={18} className="select-custom-arrow" />
                     </div>
                   </div>
 
                   {/* Field: Optional Message */}
                   <div className="form-group">
                     <label htmlFor="contact-message" className="form-label">
-                      ¿Querés contarnos algo más? <span className="optional-tag">(opcional)</span>
+                      <span>¿Querés contarnos algo más?</span>
+                      <span className="optional-tag">(opcional)</span>
                     </label>
                     <textarea
                       id="contact-message"

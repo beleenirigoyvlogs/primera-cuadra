@@ -55,3 +55,4 @@ export const trackSimulatorOpen = (source = 'home_callout') => {
     source_location: source
   });
 };
+

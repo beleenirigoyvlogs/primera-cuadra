@@ -14982,3 +14982,251 @@ html.dark .commercial-guarantee-box {
   color: var(--brand-purple);
   text-decoration: underline;
 }
+
+
+/* ==========================================================================
+   CONTACT FORM UI POLISH & FIXES
+   - Íconos correctamente integrados dentro de los campos
+   - Select estilizado nativo del tema oscuro/claro (sin combobox blanco)
+   - Asterisco rojo alineado junto al texto del label
+   - Textarea y botón de envío perfeccionados
+   ========================================================================== */
+
+.form-group {
+  margin-bottom: 20px !important;
+}
+
+.form-label {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 4px !important;
+  font-size: 0.88rem !important;
+  font-weight: 700 !important;
+  color: var(--text-title) !important;
+  margin-bottom: 8px !important;
+}
+
+.required-star {
+  color: #ef4444 !important;
+  font-size: 1rem !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  margin-left: 2px !important;
+}
+
+.optional-tag {
+  margin-left: auto !important;
+  font-size: 0.78rem !important;
+  color: var(--text-muted) !important;
+  font-weight: 500 !important;
+}
+
+.input-with-icon {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+.input-adornment-icon {
+  position: absolute !important;
+  left: 16px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  color: #8e8d9e !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: color 0.2s ease !important;
+}
+
+.input-with-icon:focus-within .input-adornment-icon {
+  color: var(--brand-purple) !important;
+}
+
+html.dark .input-with-icon:focus-within .input-adornment-icon {
+  color: #A78BFA !important;
+}
+
+.form-input {
+  width: 100% !important;
+  height: 50px !important;
+  padding: 0 16px 0 46px !important;
+  border-radius: 10px !important;
+  border: 1.5px solid var(--border-light) !important;
+  background: var(--bg-alt) !important;
+  color: var(--text-title) !important;
+  font-size: 0.94rem !important;
+  font-family: inherit !important;
+  box-sizing: border-box !important;
+  outline: none !important;
+  transition: all 0.2s ease !important;
+}
+
+html.dark .form-input {
+  background: #201d32 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #F1F0F5 !important;
+}
+
+.form-input:focus {
+  border-color: var(--brand-purple) !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(103, 61, 230, 0.15) !important;
+}
+
+html.dark .form-input:focus {
+  background: #25223a !important;
+  border-color: #A78BFA !important;
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.2) !important;
+}
+
+html.dark .form-input::placeholder,
+html.dark .form-textarea::placeholder {
+  color: #6e6d82 !important;
+}
+
+/* Custom Dropdown / Select */
+.select-wrapper {
+  position: relative !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.form-select {
+  width: 100% !important;
+  height: 50px !important;
+  padding: 0 42px 0 16px !important;
+  border-radius: 10px !important;
+  border: 1.5px solid var(--border-light) !important;
+  background-color: var(--bg-alt) !important;
+  color: var(--text-title) !important;
+  font-size: 0.94rem !important;
+  font-family: inherit !important;
+  font-weight: 500 !important;
+  outline: none !important;
+  cursor: pointer !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  box-sizing: border-box !important;
+  transition: all 0.2s ease !important;
+}
+
+html.dark .form-select {
+  background-color: #201d32 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #F1F0F5 !important;
+}
+
+.form-select:focus {
+  border-color: var(--brand-purple) !important;
+  box-shadow: 0 0 0 3px rgba(103, 61, 230, 0.15) !important;
+}
+
+html.dark .form-select:focus {
+  border-color: #A78BFA !important;
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.2) !important;
+}
+
+.form-select option {
+  background-color: #ffffff !important;
+  color: #18181b !important;
+  padding: 12px !important;
+}
+
+html.dark .form-select option {
+  background-color: #1A1825 !important;
+  color: #F1F0F5 !important;
+}
+
+.select-custom-arrow {
+  position: absolute !important;
+  right: 16px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  pointer-events: none !important;
+  color: #8e8d9e !important;
+}
+
+/* Textarea */
+.form-textarea {
+  width: 100% !important;
+  padding: 14px 16px !important;
+  border-radius: 10px !important;
+  border: 1.5px solid var(--border-light) !important;
+  background: var(--bg-alt) !important;
+  color: var(--text-title) !important;
+  font-size: 0.94rem !important;
+  font-family: inherit !important;
+  line-height: 1.5 !important;
+  box-sizing: border-box !important;
+  outline: none !important;
+  resize: vertical !important;
+  min-height: 95px !important;
+  transition: all 0.2s ease !important;
+}
+
+html.dark .form-textarea {
+  background: #201d32 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #F1F0F5 !important;
+}
+
+.form-textarea:focus {
+  border-color: var(--brand-purple) !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(103, 61, 230, 0.15) !important;
+}
+
+html.dark .form-textarea:focus {
+  background: #25223a !important;
+  border-color: #A78BFA !important;
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.2) !important;
+}
+
+/* Submit Button & Feedback */
+.btn-submit-form {
+  width: 100% !important;
+  height: 50px !important;
+  padding: 0 24px !important;
+  background: #673de6 !important;
+  color: #ffffff !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  border-radius: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 4px 16px rgba(103, 61, 230, 0.3) !important;
+  margin-top: 12px !important;
+}
+
+html.dark .btn-submit-form {
+  background: #8b5cf6 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.35) !important;
+}
+
+.btn-submit-form:hover {
+  background: #5025d1 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px rgba(103, 61, 230, 0.4) !important;
+}
+
+html.dark .btn-submit-form:hover {
+  background: #7c3aed !important;
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.45) !important;
+}
+
+.btn-submit-form:active {
+  transform: translateY(0) !important;
+}
