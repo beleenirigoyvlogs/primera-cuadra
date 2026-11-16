@@ -13,7 +13,8 @@ import {
   Star,
   ExternalLink,
   CheckCheck,
-  Phone
+  Phone,
+  Eye
 } from 'lucide-react';
 
 export default function Hero() {
