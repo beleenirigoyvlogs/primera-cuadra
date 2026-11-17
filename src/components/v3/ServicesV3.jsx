@@ -45,11 +45,12 @@ export default function ServicesV3() {
         style={{ 
           maxWidth: '1240px', 
           margin: '0 auto', 
-          padding: 'clamp(64px, 8vw, 104px) 24px',
+          padding: 'clamp(64px, 7vw, 96px) 24px',
           boxSizing: 'border-box'
         }}
       >
         <p 
+          className="pc-reveal-l"
           style={{ 
             margin: 0, 
             fontFamily: "'Oswald', sans-serif", 
@@ -62,6 +63,7 @@ export default function ServicesV3() {
           Qué hago
         </p>
         <h2 
+          className="pc-reveal-u"
           style={{ 
             margin: '10px 0 0', 
             fontFamily: "'Oswald', sans-serif", 
@@ -75,8 +77,9 @@ export default function ServicesV3() {
           Servicios de diseño web
         </h2>
         <p 
+          className="pc-reveal-u"
           style={{ 
-            margin: '18px 0 0', 
+            margin: '16px 0 0', 
             maxWidth: '680px', 
             fontSize: 'clamp(16px, 1.8vw, 17px)', 
             lineHeight: 1.6,
@@ -88,14 +91,21 @@ export default function ServicesV3() {
 
         <div 
           style={{ 
-            marginTop: '56px', 
+            marginTop: '44px', 
             display: 'grid', 
             gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', 
             gap: '40px 48px' 
           }}
         >
-          {services.map((s) => (
-            <article key={s.n} className="pc-reveal-r">
+          {services.map((s, idx) => (
+            <article 
+              key={s.n} 
+              className="pc-reveal-u"
+              style={{
+                '--pc-delay': `${idx * 0.12}s`,
+                transitionDelay: `${idx * 0.12}s`
+              }}
+            >
               <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                 <span 
                   style={{ 

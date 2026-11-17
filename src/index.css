@@ -164,21 +164,19 @@ html.dark {
   to { opacity: 1; transform: none; }
 }
 
-@media (max-width: 768px) {
-  @keyframes pcInRight {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: none; }
-  }
+@keyframes pcInLeft {
+  from { opacity: 0; transform: translateX(-100px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
-@keyframes pcInLeft {
-  from { opacity: 0; transform: translateX(-60px); }
-  to { opacity: 1; transform: none; }
+@keyframes pcInRight {
+  from { opacity: 0; transform: translateX(100px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes pcUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: none; }
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes pcCaret {
@@ -208,46 +206,135 @@ html.dark {
 }
 
 .pc-in-right {
-  animation: pcInRight 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation: pcInRight 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
 .pc-in-left {
-  animation: pcInLeft 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation: pcInLeft 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
-.pc-reveal-r.is-visible {
-  animation: pcInRight 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+/* IntersectionObserver reveal system (all browsers) */
+/* When JS is present, prepare for smooth 100px entry transition */
+.js .pc-reveal-r {
+  opacity: 0;
+  transform: translateX(100px);
+  transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--pc-delay, 0s);
+  will-change: opacity, transform;
 }
 
-.pc-reveal-l.is-visible {
-  animation: pcInLeft 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+.js .pc-reveal-l {
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--pc-delay, 0s);
+  will-change: opacity, transform;
 }
 
-.pc-reveal-u.is-visible {
-  animation: pcUp 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+.js .pc-reveal-u {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--pc-delay, 0s);
+  will-change: opacity, transform;
 }
 
-@supports (animation-timeline: view()) {
-  .pc-reveal-r {
-    animation: pcInRight linear both;
-    animation-timeline: view();
-    animation-range: entry 0% cover 28%;
-  }
-  .pc-reveal-l {
-    animation: pcInLeft linear both;
-    animation-timeline: view();
-    animation-range: entry 0% cover 28%;
-  }
-  .pc-reveal-u {
-    animation: pcUp linear both;
-    animation-timeline: view();
-    animation-range: entry 0% cover 25%;
-  }
+/* Visible state triggered by IntersectionObserver */
+.pc-reveal-r.is-visible,
+.pc-reveal-l.is-visible,
+.pc-reveal-u.is-visible,
+.js .pc-reveal-r.is-visible,
+.js .pc-reveal-l.is-visible,
+.js .pc-reveal-u.is-visible {
+  opacity: 1 !important;
+  transform: translate(0, 0) !important;
+}
+
+/* Fallback: if no-js or reduced-motion, ensure everything is fully visible */
+.no-js .pc-reveal-r,
+.no-js .pc-reveal-l,
+.no-js .pc-reveal-u {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Continuous Horizontal Marquee Loop */
+.pc-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: pcMarquee 26s linear infinite;
+  white-space: nowrap;
+}
+
+.pc-marquee-group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.pc-marquee-item {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(15px, 2vw, 18px);
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  padding: 0 16px;
+}
+
+.pc-marquee-sep {
+  margin-left: 32px;
+  color: #A48BFF;
+  font-size: 14px;
+}
+
+@keyframes pcMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Card Hover Elevation: 6px lift + deeper shadow */
+.pc-card-hover {
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.3s cubic-bezier(0.2, 0.7, 0.2, 1) !important;
+}
+
+.pc-card-hover:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.16) !important;
+}
+
+html.dark .pc-card-hover:hover {
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.55) !important;
+}
+
+/* Button & Link Arrow Slide on Hover */
+.pc-btn-hover .pc-arrow,
+.pc-card-hover .pc-arrow {
+  display: inline-block;
+  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.pc-btn-hover:hover .pc-arrow,
+.pc-card-hover:hover .pc-arrow {
+  transform: translateX(4px) !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation: none !important;
+    transition: none !important;
+  }
+  .pc-marquee-track {
+    animation: none !important;
+    transform: none !important;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .js .pc-reveal-r,
+  .js .pc-reveal-l,
+  .js .pc-reveal-u {
+    opacity: 1 !important;
+    transform: none !important;
     transition: none !important;
   }
 }
@@ -268,6 +355,51 @@ html.dark {
 html.dark .pc-early-adopters p {
   color: #FFFFFF !important;
   opacity: 1 !important;
+}
+
+.pc-brand-logo {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+
+.pc-early-adopters p,
+html.dark .pc-early-adopters p {
+  color: #FFFFFF !important;
+  opacity: 1 !important;
+}
+
+.pc-brand-logo {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .pc-brand-logo {
+    height: 28px;
+  }
+}
+
+@media (min-width: 769px) {
+  .pc-subcard-maps {
+    right: calc(100% - 2px) !important;
+    left: auto !important;
+    top: 50px !important;
+    width: 195px !important;
+  }
+  .pc-subcard-wa {
+    left: calc(100% - 2px) !important;
+    right: auto !important;
+    bottom: 70px !important;
+    width: 205px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .pc-brand-logo {
+    height: 28px;
+  }
 }
 
 @media (min-width: 769px) {

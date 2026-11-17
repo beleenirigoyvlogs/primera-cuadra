@@ -1,0 +1,16 @@
+LOGO PRIMERA CUADRA (opción C · el cursor en la esquina)
+
+Colores: violeta #673DE6 · violeta claro (fondos oscuros) #A48BFF · tinta #1B1B1B · crema #F4F2EC
+Tipografía: Poppins Medium ("primera") + Poppins Bold ("cuadra"), ya convertida en formas.
+
+primera-cuadra-logo-claro.svg/.png   Logo completo para fondos claros
+primera-cuadra-logo-oscuro.svg/.png  Logo completo para fondos oscuros
+primera-cuadra-logo-blanco.svg/.png  Logo todo blanco, para fondos violeta o fotos
+primera-cuadra-simbolo.svg/.png      Solo el símbolo (fondos claros)
+primera-cuadra-simbolo-oscuro.svg    Solo el símbolo (fondos oscuros)
+primera-cuadra-icono.svg             Ícono violeta (base de favicons y app)
+favicon.svg / favicon.ico            Ícono de la pestaña del navegador
+apple-touch-icon.png (180)           Ícono al guardar la web en iPhone
+icono-192.png / icono-512.png        Íconos para Android / web manifest
+icono-48.png                         Ícono chico
+perfil-redes-1080.png                Foto de perfil para WhatsApp, Instagram y Google

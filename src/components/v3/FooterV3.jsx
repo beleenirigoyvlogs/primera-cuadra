@@ -1,4 +1,5 @@
 import React from 'react';
+import BrandLogo from '../BrandLogo';
 
 export default function FooterV3() {
   return (
@@ -93,13 +94,17 @@ export default function FooterV3() {
             flexWrap: 'wrap', 
             gap: '16px 36px', 
             justifyContent: 'space-between', 
+            alignItems: 'center',
             fontSize: '13px', 
             color: '#8E8B99',
             borderTop: '1px solid rgba(255,255,255,0.06)',
             marginTop: '20px'
           }}
         >
-          <span>Primera Cuadra · Diseño web en Tigre, Zona Norte y CABA</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flexWrap: 'wrap' }}>
+            <BrandLogo variant="oscuro" height={26} />
+            <span>Primera Cuadra · Diseño web en Tigre, Zona Norte y CABA</span>
+          </div>
           <span>11 2877-9641 · primeracuadraweb@gmail.com</span>
           <span>Esta web la diseñé y programé yo.</span>
         </div>

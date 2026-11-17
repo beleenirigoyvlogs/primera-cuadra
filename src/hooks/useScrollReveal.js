@@ -5,6 +5,8 @@ export function useScrollReveal() {
     if (typeof window === 'undefined') return;
 
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const elements = document.querySelectorAll('.pc-reveal-r, .pc-reveal-l, .pc-reveal-u');
+      elements.forEach((el) => el.classList.add('is-visible'));
       return;
     }
 
@@ -18,8 +20,8 @@ export function useScrollReveal() {
         });
       },
       {
-        threshold: 0.12,
-        rootMargin: '0px 0px -30px 0px'
+        threshold: 0.08,
+        rootMargin: '0px 0px -20px 0px'
       }
     );
 

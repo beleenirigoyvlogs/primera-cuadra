@@ -50,11 +50,12 @@ export default function FAQV3({ extraFaqs = [] }) {
         style={{ 
           maxWidth: '1240px', 
           margin: '0 auto', 
-          padding: 'clamp(64px, 8vw, 104px) 24px',
+          padding: 'clamp(64px, 7vw, 96px) 24px',
           boxSizing: 'border-box'
         }}
       >
         <p 
+          className="pc-reveal-l"
           style={{ 
             margin: 0, 
             fontFamily: "'Oswald', sans-serif", 
@@ -67,6 +68,7 @@ export default function FAQV3({ extraFaqs = [] }) {
           Preguntas frecuentes
         </p>
         <h2 
+          className="pc-reveal-u"
           style={{ 
             margin: '10px 0 0', 
             fontFamily: "'Oswald', sans-serif", 
@@ -81,14 +83,23 @@ export default function FAQV3({ extraFaqs = [] }) {
 
         <dl 
           style={{ 
-            margin: '48px 0 0', 
+            margin: '44px 0 0', 
             display: 'grid', 
             gridTemplateColumns: 'repeat(auto-fit, minmax(290px, 1fr))', 
             gap: '0 56px' 
           }}
         >
-          {faqs.map((q) => (
-            <div key={q.q} style={{ padding: '24px 0', borderTop: `2px solid ${line}` }}>
+          {faqs.map((q, idx) => (
+            <div 
+              key={q.q} 
+              className="pc-reveal-u"
+              style={{ 
+                padding: '24px 0', 
+                borderTop: `2px solid ${line}`,
+                '--pc-delay': `${idx * 0.12}s`,
+                transitionDelay: `${idx * 0.12}s`
+              }}
+            >
               <dt style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 600, fontSize: '21px', textTransform: 'uppercase', lineHeight: 1.25 }}>
                 {q.q}
               </dt>

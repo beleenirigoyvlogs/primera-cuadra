@@ -36,7 +36,7 @@ export default function AboutMeV3() {
           position: 'relative', 
           maxWidth: '1240px', 
           margin: '0 auto', 
-          padding: 'clamp(64px, 8vw, 104px) 24px', 
+          padding: 'clamp(64px, 7vw, 96px) 24px', 
           display: 'flex', 
           flexWrap: 'wrap', 
           gap: '48px', 
@@ -44,7 +44,7 @@ export default function AboutMeV3() {
           boxSizing: 'border-box'
         }}
       >
-        {/* Photo Container */}
+        {/* Photo Container - Enters from Left */}
         <figure 
           className="pc-reveal-l" 
           style={{ 
@@ -102,8 +102,8 @@ export default function AboutMeV3() {
           </div>
         </figure>
 
-        {/* Text Column */}
-        <div style={{ flex: '999 1 480px', minWidth: 0 }}>
+        {/* Text Column - Enters from Right */}
+        <div className="pc-reveal-r" style={{ flex: '999 1 480px', minWidth: 0 }}>
           <p 
             style={{ 
               margin: 0, 

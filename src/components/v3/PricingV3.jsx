@@ -78,11 +78,12 @@ export default function PricingV3() {
         style={{ 
           maxWidth: '1240px', 
           margin: '0 auto', 
-          padding: 'clamp(64px, 8vw, 104px) 24px',
+          padding: 'clamp(64px, 7vw, 96px) 24px',
           boxSizing: 'border-box'
         }}
       >
         <p 
+          className="pc-reveal-l"
           style={{ 
             margin: 0, 
             fontFamily: "'Oswald', sans-serif", 
@@ -95,6 +96,7 @@ export default function PricingV3() {
           Precios
         </p>
         <h2 
+          className="pc-reveal-u"
           style={{ 
             margin: '10px 0 0', 
             fontFamily: "'Oswald', sans-serif", 
@@ -107,8 +109,9 @@ export default function PricingV3() {
           Planes de diseño web
         </h2>
         <p 
+          className="pc-reveal-u"
           style={{ 
-            margin: '18px 0 0', 
+            margin: '16px 0 0', 
             maxWidth: '680px', 
             fontSize: '16px',
             lineHeight: 1.6,
@@ -120,17 +123,17 @@ export default function PricingV3() {
 
         <div 
           style={{ 
-            marginTop: '48px', 
+            marginTop: '44px', 
             display: 'grid', 
             gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
             gap: '24px', 
             alignItems: 'stretch' 
           }}
         >
-          {plans.map((pl) => (
+          {plans.map((pl, idx) => (
             <article 
               key={pl.name}
-              className="pc-reveal-u" 
+              className="pc-reveal-u pc-card-hover" 
               style={{ 
                 display: 'flex', 
                 flexDirection: 'column', 
@@ -139,7 +142,9 @@ export default function PricingV3() {
                 borderRadius: '8px', 
                 padding: '34px 28px', 
                 boxShadow: `0 12px 30px ${shadow}`, 
-                borderTop: '6px solid #673DE6' 
+                borderTop: '6px solid #673DE6',
+                '--pc-delay': `${idx * 0.12}s`,
+                transitionDelay: `${idx * 0.12}s`
               }}
             >
               {/* Header with Title and Recommended Badge */}

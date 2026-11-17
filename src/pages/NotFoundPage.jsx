@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import NavbarV3 from '../components/v3/NavbarV3';
+import FooterV3 from '../components/v3/FooterV3';
 import WhatsAppFloatingBtn from '../components/WhatsAppFloatingBtn';
 import { Compass, Home, MessageSquare, ArrowLeft } from 'lucide-react';
 import { trackWhatsAppClick } from '../utils/gtm';
@@ -36,7 +36,7 @@ export default function NotFoundPage() {
 
   return (
     <div className="not-found-page-root">
-      <Navbar />
+      <NavbarV3 />
 
       <main className="not-found-main-content">
         <div className="container">
@@ -77,7 +77,7 @@ export default function NotFoundPage() {
         </div>
       </main>
 
-      <Footer />
+      <FooterV3 />
       <WhatsAppFloatingBtn />
     </div>
   );

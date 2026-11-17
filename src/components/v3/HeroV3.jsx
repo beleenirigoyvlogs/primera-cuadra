@@ -7,6 +7,8 @@ export default function HeroV3({
 }) {
   const words = ['comercios.', 'profesionales.', 'empresas.', 'emprendedores.'];
   const [typed, setTyped] = useState('comercios.');
+  const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -41,7 +43,29 @@ export default function HeroV3({
       setTyped(words[w].slice(0, Math.max(i, 0)));
     }, 85);
 
-    return () => clearInterval(timer);
+    // Desktop 3D mouse tilt (max 8deg)
+    const handleMouseMove = (e) => {
+      if (window.innerWidth < 1024) return;
+      const nx = (e.clientX / window.innerWidth - 0.5) * 2;
+      const ny = (e.clientY / window.innerHeight - 0.5) * 2;
+      const ry = Math.max(-8, Math.min(8, nx * 8));
+      const rx = Math.max(-8, Math.min(8, -ny * 8));
+      setTilt({ rx, ry });
+    };
+
+    // Parallax on scroll for decorative circles
+    const handleScroll = () => {
+      setScrollY(window.scrollY || window.pageYOffset);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      clearInterval(timer);
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return (
@@ -54,7 +78,7 @@ export default function HeroV3({
         overflow: 'hidden' 
       }}
     >
-      {/* Decorative Background Shapes via SVG (Zero layout overflow) */}
+      {/* Decorative Background Shapes via SVG (Zero layout overflow) with subtle scroll parallax */}
       <svg 
         aria-hidden="true" 
         style={{ 
@@ -63,7 +87,9 @@ export default function HeroV3({
           width: '100%', 
           height: '100%', 
           pointerEvents: 'none', 
-          overflow: 'hidden' 
+          overflow: 'hidden',
+          transform: `translateY(${Math.min(scrollY * 0.15, 60)}px)`,
+          transition: 'transform 0.1s linear'
         }}
       >
         <defs>
@@ -252,7 +278,7 @@ export default function HeroV3({
             boxSizing: 'border-box'
           }}
         >
-          {/* Phone Stage Wrapper with absolute anchor for floating sub-cards */}
+          {/* Phone Stage Wrapper with absolute anchor for floating sub-cards and 3D desktop tilt */}
           <div 
             className="pc-hero-phone-stage"
             style={{
@@ -261,7 +287,10 @@ export default function HeroV3({
               maxWidth: '100%',
               minHeight: '530px',
               display: 'flex',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              transform: `perspective(1000px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`,
+              transformStyle: 'preserve-3d',
+              transition: 'transform 0.18s cubic-bezier(0.2, 0.7, 0.2, 1)'
             }}
           >
             {/* Main Floating Phone */}

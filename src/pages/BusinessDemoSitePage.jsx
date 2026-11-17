@@ -21,6 +21,7 @@ import {
 import { getSiteDataBySlug } from '../data/demoSitesData';
 import { PROPOSALS } from '../data/proposalData';
 import { trackWhatsAppClick } from '../utils/gtm';
+import BrandLogo from '../components/BrandLogo';
 
 export default function BusinessDemoSitePage({ slug, isProposal = false }) {
   const belenWhatsapp = '5491128779641';
@@ -125,7 +126,8 @@ export default function BusinessDemoSitePage({ slug, isProposal = false }) {
           =================================================================== */}
       <aside className="demo-top-guarantee-strip" role="banner">
         <div className="demo-strip-container">
-          <div className="demo-strip-info">
+          <div className="demo-strip-info" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <BrandLogo variant="blanco" height={20} />
             <span className="demo-strip-dot"></span>
             <span className="demo-strip-text">
               {isCustomProposal ? (

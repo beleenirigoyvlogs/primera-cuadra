@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTheme } from '../../hooks/useTheme';
+import BrandLogo from '../BrandLogo';
 
 export default function NavbarV3() {
   const { isDark, toggleTheme } = useTheme();
@@ -36,23 +37,15 @@ export default function NavbarV3() {
         {/* Brand Logo */}
         <a 
           href="/#inicio" 
+          aria-label="Primera Cuadra - Inicio"
           style={{ 
             display: 'flex', 
             alignItems: 'center', 
-            gap: '10px', 
             textDecoration: 'none', 
-            color: navInk,
             flexShrink: 0
           }}
         >
-          <svg width="34" height="34" viewBox="0 0 30 30" aria-hidden="true" style={{ flexShrink: 0 }}>
-            <rect x="0" y="0" width="30" height="30" rx="5" fill="#141414" />
-            <rect x="6" y="6" width="18" height="18" rx="1.5" fill="none" stroke="#F4F2EC" strokeWidth="2.2" />
-            <rect x="6" y="6" width="8.5" height="8.5" rx="1" fill="#673DE6" />
-          </svg>
-          <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '19px', fontWeight: 600, letterSpacing: '-0.02em', whiteSpace: 'nowrap' }}>
-            Primera<span style={{ color: brandAccent }}>Cuadra</span>
-          </span>
+          <BrandLogo variant="auto" />
         </a>
 
         {/* Desktop Navigation Links */}

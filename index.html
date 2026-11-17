@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es-AR">
+<html lang="es-AR" class="no-js">
   <head>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -10,11 +10,12 @@
     <!-- End Google Tag Manager -->
 
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/webp" href="/logo-96.webp" />
-    <link rel="alternate icon" type="image/webp" href="/logo-96.webp" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#18161E" />
+    <meta name="theme-color" content="#673DE6" />
     <title>Diseño de páginas web en Tigre, Zona Norte y CABA | Primera Cuadra</title>
     <meta name="description" content="Diseño de páginas web para negocios, profesionales y empresas en Tigre, Zona Norte y CABA. Web propia, Google Maps y WhatsApp. Entrega en 4 días." />
     <link rel="canonical" href="https://primeracuadra.com.ar/" />
@@ -55,6 +56,7 @@
           "name": "Primera Cuadra",
           "description": "Diseño de páginas web para negocios, profesionales y empresas en Tigre, Zona Norte y CABA. Web propia, Google Maps y WhatsApp. Entrega en 4 días.",
           "url": "https://primeracuadra.com.ar",
+          "logo": "https://primeracuadra.com.ar/brand/icono-512.png",
           "telephone": "+5491128779641",
           "email": "primeracuadraweb@gmail.com",
           "image": "https://primeracuadra.com.ar/og-image.png",
@@ -138,10 +140,12 @@
     }
     </script>
 
-    <!-- Theme Preference Initialization: prevent FOUC / theme flicker -->
+    <!-- Theme & Progressive Enhancement Initialization: prevent FOUC / ensure visibility without JS -->
     <script>
       (function() {
         try {
+          document.documentElement.classList.remove('no-js');
+          document.documentElement.classList.add('js');
           var saved = localStorage.getItem('theme');
           var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
           if (saved === 'dark' || (!saved && prefersDark)) {

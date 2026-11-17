@@ -26,8 +26,8 @@ import {
   ZoomOut,
   X
 } from 'lucide-react';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import NavbarV3 from '../components/v3/NavbarV3';
+import FooterV3 from '../components/v3/FooterV3';
 import WhatsAppFloatingBtn from '../components/WhatsAppFloatingBtn';
 import { trackWhatsAppClick } from '../utils/gtm';
 
@@ -275,7 +275,7 @@ export default function CustomDevelopmentPage() {
   return (
     <div className="app-root custom-dev-page">
       {/* 1. Official Global Navbar */}
-      <Navbar />
+      <NavbarV3 />
 
       <main>
         {/* ===================================================================
@@ -650,7 +650,7 @@ export default function CustomDevelopmentPage() {
       </main>
 
       {/* 4. Official Global Footer */}
-      <Footer />
+      <FooterV3 />
 
       {/* 5. Official WhatsApp Floating Button */}
       <WhatsAppFloatingBtn />

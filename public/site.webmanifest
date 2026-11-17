@@ -3,20 +3,19 @@
   "short_name": "Primera Cuadra",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#121217",
-  "theme_color": "#5025c4",
+  "background_color": "#18161E",
+  "theme_color": "#673DE6",
   "description": "Páginas web profesionales, Google Maps y WhatsApp Business para comercios locales.",
   "icons": [
     {
-      "src": "/logo-96.webp",
-      "sizes": "96x96",
-      "type": "image/webp"
+      "src": "/icono-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
     },
     {
-      "src": "/logo.webp",
-      "sizes": "1024x1024",
-      "type": "image/webp"
+      "src": "/icono-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ]
 }
-

@@ -411,6 +411,21 @@ export default function TripodMockup({ niche }) {
     e.preventDefault();
     const errors = {};
 
+    // Anti-spam honeypot check
+    if (postDemoForm._gotcha) {
+      setIsSubmitting(true);
+      setTimeout(() => { setIsSubmitting(false); setIsSubmitted(true); }, 500);
+      return;
+    }
+
+    // Rate-limiting check (30s cooldown)
+    const lastSub = localStorage.getItem('pc_last_sim_submission');
+    if (lastSub && Date.now() - Number(lastSub) < 30000) {
+      errors.whatsapp = 'Por favor aguardá unos instantes antes de enviar otra solicitud.';
+      setFormErrors(errors);
+      return;
+    }
+
     if (!postDemoForm.name.trim()) {
       errors.name = 'Por favor ingresá tu nombre.';
     }
@@ -427,6 +442,7 @@ export default function TripodMockup({ niche }) {
 
     setFormErrors({});
     setIsSubmitting(true);
+    localStorage.setItem('pc_last_sim_submission', String(Date.now()));
 
     const leadPayload = {
       id: `sim_lead_${Date.now()}`,
@@ -1150,6 +1166,18 @@ export default function TripodMockup({ niche }) {
 
             {!isSubmitted ? (
               <form onSubmit={handlePostDemoSubmit} className="sim-modal-form" noValidate>
+                {/* Honeypot field */}
+                <input
+                  type="text"
+                  name="_gotcha"
+                  value={postDemoForm._gotcha || ''}
+                  onChange={(e) => setPostDemoForm({ ...postDemoForm, _gotcha: e.target.value })}
+                  style={{ display: 'none' }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                />
+
                 <div className="sim-modal-header">
                   <div className="sim-modal-badge">
                     <Sparkles size={18} />

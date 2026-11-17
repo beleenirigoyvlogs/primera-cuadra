@@ -23,16 +23,17 @@ export default function StepsV3() {
   ];
 
   return (
-    <section style={{ background: '#18161E', color: '#F4F2EC' }}>
+    <section id="pasos" style={{ background: '#18161E', color: '#F4F2EC' }}>
       <div 
         style={{ 
           maxWidth: '1240px', 
           margin: '0 auto', 
-          padding: 'clamp(64px, 8vw, 104px) 24px',
+          padding: 'clamp(64px, 7vw, 96px) 24px',
           boxSizing: 'border-box'
         }}
       >
         <p 
+          className="pc-reveal-l"
           style={{ 
             margin: 0, 
             fontFamily: "'Oswald', sans-serif", 
@@ -45,6 +46,7 @@ export default function StepsV3() {
           Método de trabajo
         </p>
         <h2 
+          className="pc-reveal-u"
           style={{ 
             margin: '10px 0 0', 
             fontFamily: "'Oswald', sans-serif", 
@@ -60,18 +62,23 @@ export default function StepsV3() {
         <ol 
           style={{ 
             listStyle: 'none', 
-            margin: '56px 0 0', 
+            margin: '44px 0 0', 
             padding: 0, 
             display: 'grid', 
             gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', 
             gap: '40px 48px' 
           }}
         >
-          {steps.map((p) => (
+          {steps.map((p, idx) => (
             <li 
               key={p.n} 
-              className="pc-reveal-r" 
-              style={{ borderTop: '1px solid #34313C', paddingTop: '28px' }}
+              className="pc-reveal-u" 
+              style={{ 
+                borderTop: '1px solid #34313C', 
+                paddingTop: '28px',
+                '--pc-delay': `${idx * 0.12}s`,
+                transitionDelay: `${idx * 0.12}s`
+              }}
             >
               <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '12px' }}>
                 <span 

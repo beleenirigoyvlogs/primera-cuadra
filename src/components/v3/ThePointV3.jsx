@@ -27,7 +27,7 @@ export default function ThePointV3() {
         style={{ 
           maxWidth: '1240px', 
           margin: '0 auto', 
-          padding: 'clamp(64px, 8vw, 104px) 24px', 
+          padding: 'clamp(64px, 7vw, 96px) 24px', 
           display: 'flex', 
           flexWrap: 'wrap', 
           gap: '48px', 
@@ -35,8 +35,8 @@ export default function ThePointV3() {
           boxSizing: 'border-box'
         }}
       >
-        {/* Left Column Description */}
-        <div style={{ flex: '1 1 380px', minWidth: 0 }}>
+        {/* Left Column Description - Enters from Left */}
+        <div className="pc-reveal-l" style={{ flex: '1 1 380px', minWidth: 0 }}>
           <p 
             style={{ 
               margin: 0, 
@@ -98,6 +98,7 @@ export default function ThePointV3() {
           </ul>
           <a 
             href="/desarrollo-a-medida" 
+            className="pc-btn-hover"
             style={{ 
               display: 'inline-block', 
               marginTop: '30px', 
@@ -108,7 +109,7 @@ export default function ThePointV3() {
               color: ink 
             }}
           >
-            Ver el caso completo →
+            Ver el caso completo <span className="pc-arrow" style={{ display: 'inline-block', transition: 'transform 0.25s ease' }}>→</span>
           </a>
         </div>
 

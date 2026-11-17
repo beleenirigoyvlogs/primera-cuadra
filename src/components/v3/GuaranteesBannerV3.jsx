@@ -1,30 +1,52 @@
 import React from 'react';
 
 export default function GuaranteesBannerV3() {
+  const items = [
+    'Entrega en 4 días hábiles',
+    '50% al empezar · 50% al aprobar',
+    'La web es tuya, sin abonos',
+    'Atención directa conmigo'
+  ];
+
   return (
-    <section style={{ background: '#673DE6', color: '#FFFFFF' }}>
+    <section 
+      aria-label="Garantías de servicio"
+      style={{ 
+        background: '#673DE6', 
+        color: '#FFFFFF', 
+        overflow: 'hidden', 
+        position: 'relative' 
+      }}
+    >
       <div 
         style={{ 
-          maxWidth: '1240px', 
-          margin: '0 auto', 
-          padding: '22px 24px', 
-          display: 'flex', 
-          flexWrap: 'wrap', 
-          gap: '16px 40px', 
-          justifyContent: 'space-between', 
-          fontFamily: "'Oswald', sans-serif", 
-          fontSize: 'clamp(15px, 2vw, 18px)', 
-          textTransform: 'uppercase', 
-          letterSpacing: '.03em',
-          boxSizing: 'border-box'
+          padding: '22px 0', 
+          width: '100%', 
+          overflow: 'hidden', 
+          boxSizing: 'border-box' 
         }}
       >
-        <span>Entrega en 4 días hábiles</span>
-        <span>50% al empezar · 50% al aprobar</span>
-        <span>La web es tuya, sin abonos</span>
-        <span>Atención directa conmigo</span>
+        <div className="pc-marquee-track" aria-hidden="false">
+          {/* First loop of 4 items */}
+          <div className="pc-marquee-group">
+            {items.map((item, idx) => (
+              <span key={`a-${idx}`} className="pc-marquee-item">
+                <span>{item}</span>
+                <span className="pc-marquee-sep" aria-hidden="true">✦</span>
+              </span>
+            ))}
+          </div>
+          {/* Second identical loop for seamless infinite marquee */}
+          <div className="pc-marquee-group" aria-hidden="true">
+            {items.map((item, idx) => (
+              <span key={`b-${idx}`} className="pc-marquee-item">
+                <span>{item}</span>
+                <span className="pc-marquee-sep" aria-hidden="true">✦</span>
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
 }
-

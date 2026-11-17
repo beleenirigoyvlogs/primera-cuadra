@@ -84,6 +84,20 @@ export default function ContactSection() {
 
   const validate = () => {
     const newErrors = {};
+
+    // Anti-spam honeypot check
+    if (formData._gotcha) {
+      return false;
+    }
+
+    // Rate-limiting check (30s cooldown)
+    const lastSub = localStorage.getItem('pc_last_submission_time');
+    if (lastSub && Date.now() - Number(lastSub) < 30000) {
+      newErrors.phone = 'Por favor aguardá unos instantes antes de enviar otra consulta.';
+      setErrors(newErrors);
+      return false;
+    }
+
     if (!formData.name.trim()) {
       newErrors.name = 'Por favor, ingresá tu nombre';
     }
@@ -103,9 +117,17 @@ export default function ContactSection() {
     e.preventDefault();
     if (!validate()) return;
 
+    // Drop silently if bot filled honeypot
+    if (formData._gotcha) {
+      setIsSubmitting(true);
+      setTimeout(() => { setIsSubmitting(false); setIsSuccess(true); }, 500);
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
+      localStorage.setItem('pc_last_submission_time', String(Date.now()));
       // 1. Save lead to localStorage
       const currentLeads = JSON.parse(localStorage.getItem('pc_contact_leads') || '[]');
       const newLead = {
@@ -274,6 +296,18 @@ export default function ContactSection() {
                   onFocus={handleInteractionStart}
                   className="contact-actual-form"
                 >
+                  {/* Anti-spam honeypot */}
+                  <input
+                    type="text"
+                    name="_gotcha"
+                    value={formData._gotcha || ''}
+                    onChange={handleChange}
+                    style={{ display: 'none' }}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                  />
+
                   <div className="form-card-header">
                     <h3 className="form-title">Dejame tu consulta</h3>
                     <p className="form-subtitle">Completá este formulario breve y te contacto.</p>

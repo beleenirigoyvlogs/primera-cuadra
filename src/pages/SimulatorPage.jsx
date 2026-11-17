@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { ArrowLeft, Sparkles, MessageSquare, ArrowRight, CheckCircle2, ShieldCheck, Clock } from 'lucide-react';
 import TripodMockup from '../components/TripodMockup';
+import BrandLogo from '../components/BrandLogo';
 
 export default function SimulatorPage() {
   const whatsappNumber = '5491128779641';
@@ -24,21 +25,10 @@ export default function SimulatorPage() {
               <span>Volver a la web</span>
             </a>
             <div className="sim-brand-separator" aria-hidden="true"></div>
-            <a href="/" className="sim-brand-logo-link">
-              <picture className="brand-logo-picture">
-                <source srcSet="/logo-96.webp" type="image/webp" />
-                <img 
-                  src="/logo-96.webp" 
-                  alt="Logo Primera Cuadra" 
-                  className="brand-logo-img" 
-                  loading="eager"
-                  width="38"
-                  height="38"
-                />
-              </picture>
+            <a href="/" className="sim-brand-logo-link" aria-label="Primera Cuadra">
+              <BrandLogo variant="oscuro" height={28} />
               <div className="sim-brand-text">
-                <span className="brand-name">PRIMERA CUADRA</span>
-                <span className="sim-tool-tag">
+                <span className="sim-tool-tag" style={{ marginLeft: '10px' }}>
                   <Sparkles size={11} />
                   <span>SIMULADOR EN VIVO</span>
                 </span>

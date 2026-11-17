@@ -54,13 +54,14 @@ export default function PortfolioV3() {
         style={{ 
           maxWidth: '1240px', 
           margin: '0 auto', 
-          padding: 'clamp(64px, 8vw, 104px) 24px',
+          padding: 'clamp(64px, 7vw, 96px) 24px',
           boxSizing: 'border-box'
         }}
       >
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px 56px', alignItems: 'flex-end', justifyContent: 'space-between' }}>
           <div style={{ flex: '1 1 480px' }}>
             <p 
+              className="pc-reveal-l"
               style={{ 
                 margin: 0, 
                 fontFamily: "'Oswald', sans-serif", 
@@ -73,6 +74,7 @@ export default function PortfolioV3() {
               Portfolio
             </p>
             <h2 
+              className="pc-reveal-u"
               style={{ 
                 margin: '10px 0 0', 
                 fontFamily: "'Oswald', sans-serif", 
@@ -86,6 +88,7 @@ export default function PortfolioV3() {
             </h2>
           </div>
           <p 
+            className="pc-reveal-u"
             style={{ 
               margin: 0, 
               flex: '1 1 380px', 
@@ -101,17 +104,17 @@ export default function PortfolioV3() {
 
         <div 
           style={{ 
-            marginTop: '48px', 
+            marginTop: '44px', 
             display: 'grid', 
             gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', 
             gap: '24px' 
           }}
         >
-          {examples.map((e) => (
+          {examples.map((e, idx) => (
             <a 
               key={e.rubro}
               href={e.href} 
-              className="pc-reveal-u" 
+              className="pc-reveal-u pc-card-hover" 
               style={{ 
                 textDecoration: 'none', 
                 display: 'flex', 
@@ -121,7 +124,8 @@ export default function PortfolioV3() {
                 overflow: 'hidden', 
                 boxShadow: `0 12px 30px ${shadow}`,
                 color: ink,
-                transition: 'transform 0.25s ease, box-shadow 0.25s ease'
+                '--pc-delay': `${idx * 0.12}s`,
+                transitionDelay: `${idx * 0.12}s`
               }}
             >
               <div 
@@ -162,7 +166,7 @@ export default function PortfolioV3() {
                   {e.rubro}
                 </span>
                 <span style={{ fontSize: '14px', fontWeight: 600, color: isDark ? '#A48BFF' : '#5025C4' }}>
-                  Ver web →
+                  Ver web <span className="pc-arrow" style={{ display: 'inline-block', transition: 'transform 0.25s ease' }}>→</span>
                 </span>
               </div>
             </a>
