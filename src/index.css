@@ -15085,30 +15085,46 @@ html.dark .demo-corner-badge {
   color: #C4B5FD !important;
 }
 
-/* 5. QUIÉN ESTÁ DETRÁS: AVATAR BI */
+/* 5. QUIÉN ESTÁ DETRÁS: FOTO REAL DE BELÉN IRIGOY */
 .who-avatar-circle {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #673de6 0%, #9065f6 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 10px 25px rgba(103, 61, 230, 0.35);
-  border: 3px solid #ffffff;
+  width: 130px !important;
+  height: 130px !important;
+  border-radius: 50% !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 12px 30px rgba(103, 61, 230, 0.35) !important;
+  border: 4px solid #ffffff !important;
+  margin: 0 auto 16px auto !important;
+  background: #171524 !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.who-avatar-circle:hover {
+  transform: scale(1.04) !important;
+  box-shadow: 0 16px 36px rgba(124, 58, 237, 0.45) !important;
 }
 
 html.dark .who-avatar-circle {
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(167, 139, 250, 0.45) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(124, 58, 237, 0.35) !important;
 }
 
-.who-initials,
-.who-initials-text {
-  font-family: var(--font-heading);
-  font-size: clamp(1.75rem, 2.8vw, 2.35rem);
-  font-weight: 900;
-  color: #ffffff;
-  letter-spacing: 0.05em;
+.who-avatar-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center 20% !important;
+  display: block !important;
+}
+
+@media (max-width: 640px) {
+  .who-avatar-circle {
+    width: 110px !important;
+    height: 110px !important;
+    margin-bottom: 12px !important;
+  }
 }
 
 /* 6. BARRA FIJA DE WHATSAPP EN CELULAR */

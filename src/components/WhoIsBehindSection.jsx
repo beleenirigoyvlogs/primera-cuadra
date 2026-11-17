@@ -31,8 +31,19 @@ export default function WhoIsBehindSection() {
             {/* Left Col: Photo / Profile Card */}
             <div className="who-profile-col">
               <div className="who-avatar-container">
-                <div className="who-avatar-circle" aria-label="Iniciales de Belén Irigoy">
-                  <span className="who-initials-text">BI</span>
+                <div className="who-avatar-circle" aria-label="Foto de Belén Irigoy">
+                  <picture>
+                    <source type="image/avif" srcSet="/belen-avatar.avif 500w, /belen-avatar-250.avif 250w" sizes="(max-width: 640px) 110px, 130px" />
+                    <source type="image/webp" srcSet="/belen-avatar.webp 500w, /belen-avatar-250.webp 250w" sizes="(max-width: 640px) 110px, 130px" />
+                    <img 
+                      src="/belen-avatar.webp" 
+                      alt="Belén Irigoy, fundadora de Primera Cuadra"
+                      width="500"
+                      height="500"
+                      className="who-avatar-img"
+                      loading="lazy"
+                    />
+                  </picture>
                 </div>
 
                 <div className="who-profile-info">
