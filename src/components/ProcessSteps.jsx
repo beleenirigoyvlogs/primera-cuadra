@@ -52,10 +52,6 @@ export default function ProcessSteps() {
     <section className="process-section-wrapper" id="como-funciona">
       <div className="container">
         <div className="section-header-center reveal">
-          <div className="section-kicker-pill">
-            <Sparkles size={14} />
-            <span>METODOLOGÍA SIMPLE Y ÁGIL</span>
-          </div>
           <h2 className="section-main-title">
             ¿Cómo trabajo? <span className="highlight-purple">3 simples pasos</span> sin vueltas
           </h2>

@@ -15,7 +15,7 @@ import { trackWhatsAppClick } from '../utils/gtm';
 export default function BusinessSituationsSection() {
   const defaultWhatsappNumber = '5491128779641';
   const whatsappConsultMsg = encodeURIComponent(
-    '¡Hola Belén! Estuve viendo las situaciones en la web y me siento identificado con mi negocio. Me gustaría consultar cómo podemos ordenar mi presencia digital.'
+    '¡Hola Belén! Estuve viendo las situaciones en la web y me siento identificado con mi negocio. Me gustaría consultar cómo podés ayudarme a ordenar mi presencia digital.'
   );
 
   const situations = [
@@ -54,12 +54,8 @@ export default function BusinessSituationsSection() {
   return (
     <section className="situations-section-wrapper" id="situaciones">
       <div className="container">
-        {/* Section Header */}
+        {/* Section Header without redundant kicker */}
         <div className="section-header-center reveal">
-          <div className="section-kicker-tag">
-            <HelpCircle size={14} />
-            <span>DIAGNÓSTICO RÁPIDO</span>
-          </div>
           <h2 className="section-title">
             ¿Tu negocio está en alguna de <span className="highlight-purple">estas situaciones</span>?
           </h2>
@@ -68,20 +64,19 @@ export default function BusinessSituationsSection() {
           </p>
         </div>
 
-        {/* Situations Grid */}
-        <div className="situations-cards-grid reveal-group">
+        {/* Situations Editorial List without 'Común' badge */}
+        <div className="situations-editorial-list reveal-group">
           {situations.map((item, idx) => {
             const IconComponent = item.icon;
             return (
-              <div key={idx} className="situation-card reveal">
-                <div className="situation-card-header">
-                  <div className="situation-icon-box">
-                    <IconComponent size={20} />
-                  </div>
-                  <span className="situation-check-badge">Común</span>
+              <div key={idx} className="situation-editorial-row reveal">
+                <div className="situation-editorial-icon">
+                  <IconComponent size={20} />
                 </div>
-                <h3 className="situation-card-title">“{item.text}”</h3>
-                <p className="situation-card-detail">{item.detail}</p>
+                <div className="situation-editorial-body">
+                  <h3 className="situation-editorial-quote">“{item.text}”</h3>
+                  <p className="situation-editorial-desc">{item.detail}</p>
+                </div>
               </div>
             );
           })}

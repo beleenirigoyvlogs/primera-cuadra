@@ -4,7 +4,7 @@ import { trackWhatsAppClick } from '../utils/gtm';
 
 export default function WhatsAppFloatingBtn() {
   const [isVisible, setIsVisible] = useState(false);
-  const [isDismissed, setIsDismissed] = useState(false);
+  const [showBubble, setShowBubble] = useState(false);
   const whatsappNumber = '5491128779641';
 
   useEffect(() => {
@@ -22,6 +22,27 @@ export default function WhatsAppFloatingBtn() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Show text bubble only once after 20 seconds, unless dismissed
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const wasDismissed = sessionStorage.getItem('wa_bubble_dismissed');
+    if (wasDismissed) return;
+
+    const timer = setTimeout(() => {
+      setShowBubble(true);
+    }, 20000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleDismissBubble = (e) => {
+    e.stopPropagation();
+    setShowBubble(false);
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('wa_bubble_dismissed', '1');
+    }
+  };
+
   const msg = encodeURIComponent(
     '¡Hola Belén! Quisiera consultar sobre el servicio de Google Maps, WhatsApp y Página Web para mi negocio.'
   );
@@ -30,7 +51,7 @@ export default function WhatsAppFloatingBtn() {
 
   return (
     <div className="whatsapp-floating-container">
-      {!isDismissed && (
+      {showBubble && (
         <div className="whatsapp-floating-tooltip">
           <div className="tooltip-text">
             <strong>¿Tenés dudas?</strong>
@@ -39,7 +60,7 @@ export default function WhatsAppFloatingBtn() {
           <button 
             type="button" 
             className="btn-tooltip-close" 
-            onClick={() => setIsDismissed(true)}
+            onClick={handleDismissBubble}
             aria-label="Cerrar sugerencia"
           >
             <X size={12} />

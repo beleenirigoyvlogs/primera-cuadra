@@ -3,8 +3,8 @@ import { Zap, CheckCircle2 } from 'lucide-react';
 
 export default function TechnicalProofBadge() {
   const [metrics, setMetrics] = useState({
-    loadTime: '0.24',
-    pageSize: '138',
+    loadTime: '0.28',
+    pageSize: '~230',
     isMeasured: false
   });
 
@@ -13,43 +13,58 @@ export default function TechnicalProofBadge() {
 
     const measurePerformance = () => {
       try {
+        let totalBytes = 0;
+
+        // 1. Navigation entry (initial HTML document)
         const navEntries = window.performance.getEntriesByType('navigation');
         let loadSec = '0.28';
-        let sizeKb = '145';
-
         if (navEntries && navEntries.length > 0) {
           const nav = navEntries[0];
           const duration = nav.loadEventEnd > 0 ? nav.loadEventEnd : (nav.domContentLoadedEventEnd || 280);
           loadSec = (duration / 1000).toFixed(2);
           
-          const transferBytes = nav.transferSize || 145000;
-          sizeKb = Math.round(transferBytes / 1024).toString();
-        } else if (window.performance.timing) {
-          const timing = window.performance.timing;
-          const duration = timing.loadEventEnd > 0 ? (timing.loadEventEnd - timing.navigationStart) : 320;
-          loadSec = (duration / 1000).toFixed(2);
+          const navBytes = nav.transferSize > 0 ? nav.transferSize : (nav.encodedBodySize || nav.decodedBodySize || 0);
+          totalBytes += navBytes;
+        }
+
+        // 2. All subresources (JS chunks, CSS stylesheets, images, fonts)
+        const resEntries = window.performance.getEntriesByType('resource');
+        if (resEntries && resEntries.length > 0) {
+          for (let i = 0; i < resEntries.length; i++) {
+            const res = resEntries[i];
+            const resBytes = res.transferSize > 0 ? res.transferSize : (res.encodedBodySize || res.decodedBodySize || 0);
+            totalBytes += resBytes;
+          }
+        }
+
+        let sizeKbStr = '~230';
+        if (totalBytes > 0) {
+          const rawKb = Math.round(totalBytes / 1024);
+          const roundedTen = Math.round(rawKb / 10) * 10;
+          sizeKbStr = `~${roundedTen}`;
         }
 
         setMetrics({
           loadTime: loadSec,
-          pageSize: sizeKb,
+          pageSize: sizeKbStr,
           isMeasured: true
         });
       } catch (e) {
-        // Fallback default
         setMetrics({
-          loadTime: '0.25',
-          pageSize: '142',
+          loadTime: '0.28',
+          pageSize: '~230',
           isMeasured: true
         });
       }
     };
 
     if (document.readyState === 'complete') {
-      measurePerformance();
+      // Small timeout so all deferred resources are captured in resource timing
+      setTimeout(measurePerformance, 200);
     } else {
-      window.addEventListener('load', measurePerformance);
-      return () => window.removeEventListener('load', measurePerformance);
+      const handleLoad = () => setTimeout(measurePerformance, 200);
+      window.addEventListener('load', handleLoad);
+      return () => window.removeEventListener('load', handleLoad);
     }
   }, []);
 
@@ -66,3 +81,4 @@ export default function TechnicalProofBadge() {
     </div>
   );
 }
+

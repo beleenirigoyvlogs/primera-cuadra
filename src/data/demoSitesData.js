@@ -21,7 +21,7 @@ export const DEMO_SITES = {
       accent: '#fed7aa',
       text: '#fef3c7',
       textMuted: '#a8998d',
-      fontHeading: "'Outfit', Georgia, serif"
+      fontHeading: "'Bricolage Grotesque', Georgia, serif"
     },
     heroImage: '/demos/parrilla/hero.webp',
     heroBadge: 'FUEGOS A LA LEÑA & COCINA DE AUTOR',
@@ -135,7 +135,7 @@ export const DEMO_SITES = {
       accent: '#38bdf8',
       text: '#f8fafc',
       textMuted: '#94a3b8',
-      fontHeading: "'Outfit', sans-serif"
+      fontHeading: "'Bricolage Grotesque', sans-serif"
     },
     heroImage: '/demos/taller/hero.webp',
     heroBadge: 'TECNOLOGÍA & TRANSPARENCIA MECÁNICA',

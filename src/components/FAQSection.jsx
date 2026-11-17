@@ -16,7 +16,7 @@ export default function FAQSection() {
   };
 
   const whatsappDoubtMsg = encodeURIComponent(
-    '¡Hola Primera Cuadra! Estuve leyendo las preguntas frecuentes en la web y tengo algunas dudas sobre mi negocio. ¿Podrían asesorarme?'
+    '¡Hola Belén! Estuve leyendo las preguntas frecuentes en la web y tengo algunas dudas sobre mi negocio. ¿Podrías asesorarme?'
   );
 
   const faqItems = [
@@ -77,10 +77,6 @@ export default function FAQSection() {
       <div className="container">
         {/* Section Header */}
         <div className="section-header-center reveal">
-          <div className="section-kicker-tag">
-            <HelpCircle size={14} />
-            <span>RESPUESTAS CLARAS</span>
-          </div>
           <h2 className="section-title">
             Preguntas frecuentes
           </h2>

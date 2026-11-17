@@ -26,19 +26,19 @@ export default function ThePointCaseStudySection() {
   const screens = [
     {
       id: 'pos',
-      label: 'Punto de Venta (POS)',
+      label: 'POS Mostrador',
       image: '/thepoint/pos.webp',
       caption: 'Botonera táctil con artículos populares y cobro rápido con cálculo de vuelto.'
     },
     {
       id: 'dashboard',
-      label: 'Dashboard General',
+      label: 'Dashboard',
       image: '/thepoint/dashboard.webp',
       caption: 'Panel general con evolución semanal de ventas, estado de caja y alertas.'
     },
     {
       id: 'stock',
-      label: 'Inventario & Stock',
+      label: 'Stock & Precios',
       image: '/thepoint/stock.webp',
       caption: 'Catálogo completo con cálculo automático de margen % y alertas de reposición.'
     },
@@ -50,7 +50,7 @@ export default function ThePointCaseStudySection() {
     },
     {
       id: 'reportes',
-      label: 'Reportes Financieros',
+      label: 'Reportes',
       image: '/thepoint/reportes.webp',
       caption: 'Rentabilidad real diferenciando facturación bruta de ganancia neta comercial.'
     }
@@ -65,56 +65,55 @@ export default function ThePointCaseStudySection() {
         <div className="section-header-left reveal">
           <div className="urban-section-badge">
             <span className="badge-bullet"></span>
-            <span>CASO DE ESTUDIO REAL</span>
+            <span>PROYECTO PROPIO EN DESARROLLO</span>
           </div>
 
           <h2 className="section-urban-title">
-            The Point: Sistema de Punto de Venta & Control de Stock
+            The Point Kiosco • Sistema POS & Control de Stock
           </h2>
 
           <p className="section-urban-subtitle">
-            Un proyecto que diseñé y desarrollé de punta a punta para resolver la operación real de un kiosco comercial con delivery.
+            Lo diseñé y desarrollé completo para un emprendimiento propio de kiosco y delivery que está por abrir sus puertas.
           </p>
         </div>
 
-        {/* 5-Phase Case Study Architecture */}
+        {/* 4-Phase Architecture: Real & Honest */}
         <div className="case-study-grid reveal-group">
-          {/* Phase 1: Problema */}
+          {/* Phase 1: Desafío */}
           <div className="case-step-card reveal">
-            <div className="case-step-tag">1. EL PROBLEMA</div>
-            <h3 className="case-step-title">Descontrol de stock y demoras en el mostrador</h3>
+            <div className="case-step-tag">1. EL DESAFÍO</div>
+            <h3 className="case-step-title">Velocidad de mostrador y operación offline</h3>
             <p className="case-step-text">
-              Un negocio de alta rotación (kiosco 24 hs + delivery) no puede perder tiempo abriendo páginas lentas ni depender de si internet funciona.
-              Había diferencias de caja, mercadería sin auditar y necesidad de cobrar en menos de 5 segundos.
+              Un negocio de alta rotación necesita cobrar en segundos, escanear artículos y cuadrar turnos de caja sin depender de si internet se corta ni atarse a alquileres mensuales obligatorios.
             </p>
           </div>
 
           {/* Phase 2: Solución */}
           <div className="case-step-card reveal">
             <div className="case-step-tag">2. LA SOLUCIÓN</div>
-            <h3 className="case-step-title">Software de escritorio táctil y 100% offline</h3>
+            <h3 className="case-step-title">Software de escritorio táctil y autónomo</h3>
             <p className="case-step-text">
-              Diseñé una interfaz táctil ergonómica con atajos de teclado (F2 cobrar, F3 escanear), lector de código de barras, base de datos local SQLite y panel de rentabilidad real que no confunde facturación con ganancia.
+              Diseñé una interfaz ergonómica con atajos de teclado (F2 cobrar, F3 escanear), lector de código de barras, catálogo con cálculo de margen comercial y arqueo de caja por turnos.
             </p>
           </div>
 
           {/* Phase 3: Tecnología */}
           <div className="case-step-card reveal">
             <div className="case-step-tag">3. TECNOLOGÍA</div>
-            <h3 className="case-step-title">Stack robusto y sin costos mensuales</h3>
+            <h3 className="case-step-title">Stack robusto sin abonos obligatorios</h3>
             <ul className="case-tech-list">
               <li><strong>Electron & Node.js:</strong> Aplicación de escritorio multiplataforma nativa.</li>
               <li><strong>SQLite Persistente:</strong> Base de datos local ultra rápida que no requiere servidores externos.</li>
-              <li><strong>React & CSS Modular:</strong> Interfaz oscura de alto contraste con tipografía legible en mostrador.</li>
+              <li><strong>React & CSS Modular:</strong> Interfaz oscura de alto contraste con botones táctiles legibles en mostrador.</li>
             </ul>
           </div>
 
-          {/* Phase 4: Aprendizajes */}
+          {/* Phase 4: Enfoque */}
           <div className="case-step-card reveal">
-            <div className="case-step-tag">4. APRENDIZAJES</div>
-            <h3 className="case-step-title">Lo que funciona en la trinchera comercial</h3>
+            <div className="case-step-tag">4. ENFOQUE PRÁCTICO</div>
+            <h3 className="case-step-title">Adaptado al ritmo del comerciante</h3>
             <p className="case-step-text">
-              La tecnología tiene que adaptarse al ritmo del comerciante, no al revés. La velocidad de respuesta de la pantalla y la claridad en los números son la diferencia entre una herramienta útil y una molestia.
+              Desarrollar este sistema para un proyecto propio me permitió diseñar cada pantalla pensando en el uso diario: rapidez de respuesta, cálculo exacto de vuelto y reportes simples.
             </p>
           </div>
         </div>
@@ -180,7 +179,7 @@ export default function ThePointCaseStudySection() {
         <div className="case-study-cta-box reveal">
           <div className="cta-text-side">
             <h4>¿Tenés en mente un sistema o app propia para tu negocio?</h4>
-            <p>Contame tu proyecto, lo evaluamos juntos y te digo con qué alcance y tecnología podemos resolverlo.</p>
+            <p>Contame tu proyecto, lo evaluamos juntos y te digo con qué alcance y tecnología puedo resolverlo.</p>
           </div>
           <a 
             href={`https://wa.me/${belenWhatsapp}?text=${whatsappCaseMsg}`}
@@ -197,3 +196,4 @@ export default function ThePointCaseStudySection() {
     </section>
   );
 }
+

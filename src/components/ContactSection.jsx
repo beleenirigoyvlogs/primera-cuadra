@@ -167,7 +167,7 @@ export default function ContactSection() {
           <div className="contact-info-col">
             <div className="section-kicker-pill contact-pill">
               <Sparkles size={14} />
-              <span>EL SIGUIENTE PASO • ASESORAMIENTO DIRECTO</span>
+              <span>ASESORAMIENTO DIRECTO</span>
             </div>
 
             <h2 className="contact-main-title">

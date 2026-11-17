@@ -7,6 +7,7 @@ import ProcessSteps from './components/ProcessSteps';
 import ExampleDesignsSection from './components/ExampleDesignsSection';
 import ThePointCaseStudySection from './components/ThePointCaseStudySection';
 import WhoIsBehindSection from './components/WhoIsBehindSection';
+import EarlyAdoptersSection from './components/EarlyAdoptersSection';
 import PricingPacks from './components/PricingPacks';
 import FAQSection from './components/FAQSection';
 import ContactSection from './components/ContactSection';
@@ -181,7 +182,10 @@ export default function App() {
         {/* 5. Diseños de ejemplo (4 webs ficticias navegables en marco de celular) */}
         <ExampleDesignsSection />
 
-        {/* 6. Precios Transparentes (3 planes consolidados) */}
+        {/* 6. Programa de Primeros Clientes (Lanzamiento 5 cupos) */}
+        <EarlyAdoptersSection />
+
+        {/* 7. Precios Transparentes (3 planes consolidados) */}
         <PricingPacks niche={niche} />
 
         {/* 7. Caso de Estudio Real: The Point (POS & Stock en 5 fases) */}

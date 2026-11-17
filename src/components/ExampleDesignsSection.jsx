@@ -54,7 +54,7 @@ export default function ExampleDesignsSection() {
 
           <div className="honest-samples-pill">
             <Eye size={15} />
-            <span>Ejemplos ficticios navegables · Se abren en pestaña nueva</span>
+            <span>Ejemplos ficticios navegables · En pestaña nueva</span>
           </div>
         </div>
 
@@ -200,7 +200,7 @@ export default function ExampleDesignsSection() {
                     rel="noopener noreferrer"
                     className="btn-hostinger-primary btn-view-full-demo"
                   >
-                    <span>Ver web · {RUBRO_BUTTON_LABELS[demo.slug] || 'Ver ejemplo'}</span>
+                    <span>Ver web de ejemplo</span>
                     <ExternalLink size={15} />
                   </a>
                 </div>

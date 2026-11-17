@@ -35,9 +35,9 @@ const RUBROS = {
     rating: '4.9',
     reviews: '128',
     services: [
-      { name: 'Corte Degradé / Fade Pro', price: '$11.000' },
-      { name: 'Ritual de Barba con Toalla Caliente', price: '$8.500' },
-      { name: 'Combo Completo Corte + Barba', price: '$17.500' }
+      { name: 'Corte Degradé / Fade Pro', price: '$11.000', desc: 'Degradé con navaja, tijera y peinado con producto mate.' },
+      { name: 'Ritual de Barba con Toalla Caliente', price: '$8.500', desc: 'Perfilado al detalle, toalla caliente y aceites esenciales.' },
+      { name: 'Combo Completo Corte + Barba', price: '$17.500', desc: 'Lavado, corte, perfilado de barba y peinado final.' }
     ],
     cover: '/demos/barberia/hero.webp',
     color: '#eab308'
@@ -54,9 +54,9 @@ const RUBROS = {
     rating: '4.9',
     reviews: '240',
     services: [
-      { name: 'Ojo de Bife al Quebracho (500g)', price: '$18.500' },
-      { name: 'Parrillada Completa p/ 2 pers.', price: '$34.000' },
-      { name: 'Empanadas de Lomo al Disco', price: '$4.200' }
+      { name: 'Ojo de Bife al Quebracho (500g)', price: '$18.500', desc: 'Corte premium a la parrilla con papas rústicas o ensalada.' },
+      { name: 'Parrillada Completa p/ 2 pers.', price: '$34.000', desc: 'Asado, vacío, achuras crocantes y provoleta de campo.' },
+      { name: 'Empanadas de Lomo al Disco', price: '$4.200', desc: 'Relleno de lomo cortado a cuchillo con verdeo.' }
     ],
     cover: '/demos/parrilla/hero.webp',
     color: '#ea580c'
@@ -73,9 +73,9 @@ const RUBROS = {
     rating: '4.8',
     reviews: '96',
     services: [
-      { name: 'Diagnóstico & Escaneo OBD2', price: '$22.000' },
-      { name: 'Service Aceite Sintético y 4 Filtros', price: '$85.000' },
-      { name: 'Frenos y Rectificación', price: '$55.000' }
+      { name: 'Diagnóstico & Escaneo OBD2', price: '$22.000', desc: 'Chequeo computarizado de inyección, sensores y reporte de fallas.' },
+      { name: 'Service Aceite Sintético y 4 Filtros', price: '$85.000', desc: 'Aceite sintético homologado, filtros de aire, aceite, habitáculo y nafta.' },
+      { name: 'Frenos y Rectificación', price: '$55.000', desc: 'Pastillas nuevas, rectificación de discos y purgado de líquido.' }
     ],
     cover: '/demos/taller/hero.webp',
     color: '#f59e0b'
@@ -92,12 +92,31 @@ const RUBROS = {
     rating: '5.0',
     reviews: '84',
     services: [
-      { name: 'Limpieza Ultrasonido y Profilaxis', price: '$28.000' },
-      { name: 'Blanqueamiento Dental Láser', price: '$95.000' },
-      { name: 'Consulta Diagnóstica Cámara HD', price: '$15.000' }
+      { name: 'Limpieza Ultrasonido y Profilaxis', price: '$28.000', desc: 'Remoción suave de sarro, placa bacteriana y pulido dental.' },
+      { name: 'Blanqueamiento Dental Láser', price: '$95.000', desc: 'Aclarado visible de varios tonos en 1 sesión de 60 minutos.' },
+      { name: 'Consulta Diagnóstica Cámara HD', price: '$15.000', desc: 'Revisión integral con cámara intraoral y plan de tratamiento.' }
     ],
     cover: '/demos/dental/hero.webp',
     color: '#0284c7'
+  },
+  otro: {
+    id: 'otro',
+    label: 'Otro rubro',
+    icon: Store,
+    nameDefault: 'Mi Comercio Local',
+    tagline: 'Atención personalizada, calidad y confianza',
+    category: 'Comercio & Servicios',
+    address: 'Av. Principal 500, Tigre',
+    hours: 'Abierto · Cierra 20:00 hs',
+    rating: '4.9',
+    reviews: '75',
+    services: [
+      { name: 'Asesoramiento y Presupuesto', price: 'Sin cargo', desc: 'Evaluación rápida de lo que necesitás y respuesta en el día.' },
+      { name: 'Servicio Estándar de Mostrador', price: '$15.000', desc: 'Atención personalizada para particulares y comercios.' },
+      { name: 'Servicio Integral Especializado', price: '$35.000', desc: 'Solución completa con insumos de calidad y garantía.' }
+    ],
+    cover: '/demos/parrilla/hero.webp',
+    color: '#8b5cf6'
   }
 };
 
@@ -107,9 +126,16 @@ export default function Hero() {
   const [businessName, setBusinessName] = useState('Roma Barber Studio');
   const [activeDeviceTab, setActiveDeviceTab] = useState('web'); // 'web' | 'google' | 'whatsapp'
 
-  const currentRubro = RUBROS[selectedRubro];
+  const currentRubro = RUBROS[selectedRubro] || RUBROS.barberia;
   const activeName = businessName.trim() || currentRubro.nameDefault;
-  const activeDomain = `${activeName.toLowerCase().replace(/[^a-z0-9]/g, '') || 'tunegocio'}.com.ar`;
+
+  // Domain normalization: accents stripped, lowercase, alphanumeric only
+  const cleanDomainName = activeName
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, '');
+  const activeDomain = cleanDomainName ? `${cleanDomainName}.com.ar` : 'tunegocio.com.ar';
 
   const heroWaMsg = encodeURIComponent(
     `¡Hola Belén! Estuve probando el simulador en la web para "${activeName}" (${currentRubro.label}) y quiero que armemos mi presencia digital.`
@@ -315,7 +341,7 @@ export default function Hero() {
                             <div key={idx} className="sim-web-service-row">
                               <div className="sim-service-info">
                                 <strong>{item.name}</strong>
-                                <span>Atención profesional personalizada</span>
+                                <span>{item.desc}</span>
                               </div>
                               <span className="sim-service-price">{item.price}</span>
                             </div>
@@ -355,6 +381,7 @@ export default function Hero() {
                               ))}
                             </div>
                             <span className="reviews-count">({currentRubro.reviews})</span>
+                            <span className="google-sample-tag">Ejemplo</span>
                           </div>
 
                           <span className="google-category-tag">{currentRubro.category}</span>

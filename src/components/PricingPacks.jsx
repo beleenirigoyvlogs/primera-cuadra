@@ -33,10 +33,6 @@ export default function PricingPacks({ niche }) {
       <div className="container">
         {/* Section Header */}
         <div className="section-header-center reveal">
-          <div className="section-kicker-tag">
-            <Sparkles size={14} />
-            <span>PRECIOS TRANSPARENTES • SIN COSTOS OCULTOS</span>
-          </div>
           <h2 className="section-title">
             Elegí el plan ideal para tu negocio
           </h2>
@@ -44,7 +40,7 @@ export default function PricingPacks({ niche }) {
             Probá Primera Cuadra con total tranquilidad: 50% al iniciar y 50% contra entrega conforme, con atención directa de Belén Irigoy de principio a fin.
           </p>
 
-          {/* User rule 3 & 8: 1st person singular */}
+          {/* Proof Pill with responsive wrap */}
           <div className="own-page-proof-pill">
             <Sparkles size={15} className="text-purple-icon" />
             <span>Esta página la diseñé yo: así de rápida y clara va a ser la tuya.</span>
@@ -225,7 +221,7 @@ export default function PricingPacks({ niche }) {
                 Completo + Web Propia
               </h3>
               <p className="plan-desc">
-                La solución definitiva: tu propia página web profesional con dominio a tu nombre, Google Maps y WhatsApp integrados.
+                Tu propia página web profesional con dominio a tu nombre, Google Maps y WhatsApp integrados.
               </p>
             </div>
 

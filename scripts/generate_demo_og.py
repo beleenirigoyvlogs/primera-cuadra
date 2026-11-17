@@ -106,3 +106,4 @@ for d in demos:
 
     canvas.save(d['out'], 'JPEG', quality=92)
     print(f"Generated {d['out']} ({os.path.getsize(d['out'])} bytes)")
+
