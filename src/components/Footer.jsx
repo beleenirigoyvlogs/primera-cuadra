@@ -81,9 +81,9 @@ export default function Footer({ niche, onSelectNiche, onOpenAdmin }) {
           <div className="footer-col footer-col-brand">
             <a href="#" className="footer-brand-header" aria-label="Ir al inicio de Primera Cuadra">
               <picture className="footer-brand-logo-picture">
-                <source srcSet="/logo.webp" type="image/webp" />
+                <source srcSet="/logo-96.webp" type="image/webp" />
                 <img 
-                  src="/logo.jpg" 
+                  src="/logo-96.webp" 
                   alt="Logo Primera Cuadra" 
                   className="footer-brand-logo-img" 
                   width="48"

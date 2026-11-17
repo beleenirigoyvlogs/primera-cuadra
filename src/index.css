@@ -843,20 +843,32 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--brand-purple);
-  color: #ffffff;
+  background: #5025c4 !important;
+  color: #ffffff !important;
   padding: 14px 28px;
   border-radius: var(--radius-md);
   font-size: 1rem;
   font-weight: 700;
-  box-shadow: 0 4px 16px var(--brand-purple-glow);
+  box-shadow: 0 4px 16px rgba(80, 37, 196, 0.35);
   transition: all 0.2s ease;
 }
 
 .btn-hostinger-primary:hover {
-  background: var(--brand-purple-hover);
+  background: #3e1b99 !important;
+  color: #ffffff !important;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px var(--brand-purple-glow);
+  box-shadow: 0 8px 24px rgba(80, 37, 196, 0.45);
+}
+
+html.dark .btn-hostinger-primary {
+  background: #6028d9 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(96, 40, 217, 0.4);
+}
+
+html.dark .btn-hostinger-primary:hover {
+  background: #4e1fae !important;
+  color: #ffffff !important;
 }
 
 .btn-hostinger-outline {
@@ -6447,10 +6459,17 @@ html.dark .service-check-icon.pos { color: #34d399; }
 .situation-check-badge {
   font-size: 0.72rem;
   font-weight: 700;
-  color: var(--amber-warning);
-  background: var(--amber-light);
+  color: #78350f !important;
+  background: #fef3c7 !important;
+  border: 1px solid rgba(120, 53, 15, 0.18) !important;
   padding: 3px 10px;
   border-radius: var(--radius-full);
+}
+
+html.dark .situation-check-badge {
+  color: #fbbf24 !important;
+  background: rgba(245, 158, 11, 0.16) !important;
+  border: 1px solid rgba(245, 158, 11, 0.3) !important;
 }
 
 .situation-card-title {
@@ -17146,4 +17165,217 @@ html.dark .demo-site-standalone-root.theme-light-mode .location-data-row p,
 .business-floating-wa-btn:hover {
   transform: scale(1.1) !important;
 }
+
+/* ===================================================================
+   FASE 1: WCAG AA CONTRAST, MOBILE ALIGNMENTS & BRAND 404 PAGE
+   =================================================================== */
+
+/* 1. Header < 430px Zero Overflow */
+@media (max-width: 430px) {
+  .brand-title-tag {
+    display: none !important;
+  }
+  .header-right-actions .theme-toggle-btn {
+    display: none !important;
+  }
+  .btn-nav-wa span {
+    display: none !important;
+  }
+  .btn-nav-wa {
+    padding: 8px 10px !important;
+    min-width: auto !important;
+    gap: 0 !important;
+  }
+  .mobile-nav-toggle {
+    padding: 6px !important;
+    margin-left: 4px !important;
+  }
+  .navbar-content {
+    padding: 0 12px !important;
+  }
+}
+
+/* 2. Hero Kicker Mobile vs Desktop */
+.hero-kicker-text-mobile {
+  display: none;
+}
+.hero-kicker-text-desktop {
+  display: inline;
+}
+
+@media (max-width: 600px) {
+  .hero-kicker-text-desktop {
+    display: none !important;
+  }
+  .hero-kicker-text-mobile {
+    display: inline !important;
+  }
+  .hero-kicker-badge {
+    white-space: normal !important;
+    max-width: 100% !important;
+    text-align: center !important;
+    padding: 6px 12px !important;
+    font-size: 0.72rem !important;
+  }
+}
+
+/* 3. Hero Trust Guarantees */
+.hero-trust-guarantees {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+  margin-top: 24px !important;
+}
+
+@media (max-width: 640px) {
+  .hero-trust-guarantees {
+    flex-direction: column !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+  .hero-trust-guarantees .trust-pill-tag {
+    width: 100% !important;
+    justify-content: flex-start !important;
+  }
+}
+
+/* 4. Pricing Alignment: Badge Slot */
+.plan-badge-slot {
+  height: 28px !important;
+  margin-bottom: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.pricing-card-hostinger.featured .btn-plan-hostinger,
+.btn-plan-featured {
+  background: #5025c4 !important;
+  color: #ffffff !important;
+}
+
+.pricing-card-hostinger.featured .btn-plan-hostinger:hover,
+.btn-plan-featured:hover {
+  background: #3e1b99 !important;
+  color: #ffffff !important;
+}
+
+html.dark .pricing-card-hostinger.featured .btn-plan-hostinger,
+html.dark .btn-plan-featured {
+  background: #6028d9 !important;
+  color: #ffffff !important;
+}
+
+html.dark .pricing-card-hostinger.featured .btn-plan-hostinger:hover,
+html.dark .btn-plan-featured:hover {
+  background: #4e1fae !important;
+  color: #ffffff !important;
+}
+
+/* 5. Custom 404 Page */
+.not-found-page-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-main);
+  color: var(--text-body);
+}
+
+.not-found-main-content {
+  flex: 1 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 0 80px;
+}
+
+.not-found-card {
+  max-width: 580px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 48px 32px;
+  border-radius: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-card);
+}
+
+html.dark .not-found-card {
+  background: #171622;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.not-found-icon-wrap {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(80, 37, 196, 0.1);
+  color: #5025c4;
+}
+
+html.dark .not-found-icon-wrap {
+  background: rgba(167, 139, 250, 0.15);
+  color: #A78BFA;
+}
+
+.not-found-code-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  background: rgba(80, 37, 196, 0.08);
+  color: #5025c4;
+  margin-bottom: 16px;
+}
+
+html.dark .not-found-code-badge {
+  background: rgba(167, 139, 250, 0.15);
+  color: #C4B5FD;
+}
+
+.not-found-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: 0 0 16px;
+  color: var(--text-title);
+}
+
+.not-found-desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0 0 32px;
+}
+
+.not-found-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .not-found-card {
+    padding: 32px 20px;
+  }
+  .not-found-title {
+    font-size: 1.8rem;
+  }
+  .not-found-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .not-found-actions a {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 

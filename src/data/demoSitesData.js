@@ -23,7 +23,7 @@ export const DEMO_SITES = {
       textMuted: '#a8998d',
       fontHeading: "'Outfit', Georgia, serif"
     },
-    heroImage: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=1600&auto=format&fit=crop&q=80',
+    heroImage: '/demos/parrilla/hero.webp',
     heroBadge: 'FUEGOS A LA LEÑA & COCINA DE AUTOR',
     heroDescription: 'Disfrutá de los mejores cortes seleccionados al quebracho colorado, empanadas cortadas a cuchillo y pastas artesanales amasadas en el día.',
     phone: '11 XXXX-XXXX (tu número)',
@@ -60,12 +60,12 @@ export const DEMO_SITES = {
       }
     ],
     gallery: [
-      { url: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&auto=format&fit=crop&q=80', caption: 'Parrilla a la leña encendida' },
-      { url: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800&auto=format&fit=crop&q=80', caption: 'Cortes premium en mesa' },
-      { url: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800&auto=format&fit=crop&q=80', caption: 'Salón principal cálido' },
-      { url: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=800&auto=format&fit=crop&q=80', caption: 'Hamburguesas y minutas' },
-      { url: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=800&auto=format&fit=crop&q=80', caption: 'Postres caseros' },
-      { url: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&auto=format&fit=crop&q=80', caption: 'Cava de vinos seleccionados' }
+      { url: '/demos/parrilla/gallery_1.webp', caption: 'Parrilla a la leña encendida' },
+      { url: '/demos/parrilla/gallery_2.webp', caption: 'Cortes premium en mesa' },
+      { url: '/demos/parrilla/gallery_3.webp', caption: 'Salón principal cálido' },
+      { url: '/demos/parrilla/gallery_4.webp', caption: 'Hamburguesas y minutas' },
+      { url: '/demos/parrilla/gallery_5.webp', caption: 'Postres caseros' },
+      { url: '/demos/parrilla/gallery_6.webp', caption: 'Cava de vinos seleccionados' }
     ]
   },
 
@@ -87,7 +87,7 @@ export const DEMO_SITES = {
       textMuted: '#a1a1aa',
       fontHeading: "'Syne', -apple-system, sans-serif"
     },
-    heroImage: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1600&auto=format&fit=crop&q=80',
+    heroImage: '/demos/barberia/hero.webp',
     heroBadge: 'PRECISIÓN & ESTILO URBANO',
     heroDescription: 'Un espacio pensado para tu cuidado personal: sillones clásicos, música seleccionada, bebidas de cortesía y especialistas en degradé a navaja.',
     phone: '11 XXXX-XXXX (tu número)',
@@ -110,12 +110,12 @@ export const DEMO_SITES = {
       }
     ],
     gallery: [
-      { url: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&auto=format&fit=crop&q=80', caption: 'Sillones clásicos y puesto' },
-      { url: 'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=800&auto=format&fit=crop&q=80', caption: 'Fade degradé a navaja' },
-      { url: 'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=800&auto=format&fit=crop&q=80', caption: 'Cuidado y perfilado de barba' },
-      { url: 'https://images.unsplash.com/photo-1517832606589-7157460866ac?w=800&auto=format&fit=crop&q=80', caption: 'Herramientas esterilizadas' },
-      { url: 'https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=800&auto=format&fit=crop&q=80', caption: 'Ambiente exclusivo' },
-      { url: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=800&auto=format&fit=crop&q=80', caption: 'Pomadas y productos de styling' }
+      { url: '/demos/barberia/gallery_1.webp', caption: 'Sillones clásicos y puesto' },
+      { url: '/demos/barberia/gallery_2.webp', caption: 'Fade degradé a navaja' },
+      { url: '/demos/barberia/gallery_3.webp', caption: 'Cuidado y perfilado de barba' },
+      { url: '/demos/barberia/gallery_4.webp', caption: 'Herramientas esterilizadas' },
+      { url: '/demos/barberia/gallery_5.webp', caption: 'Ambiente exclusivo' },
+      { url: '/demos/barberia/gallery_6.webp', caption: 'Pomadas y productos de styling' }
     ]
   },
 
@@ -137,7 +137,7 @@ export const DEMO_SITES = {
       textMuted: '#94a3b8',
       fontHeading: "'Outfit', sans-serif"
     },
-    heroImage: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1600&auto=format&fit=crop&q=80',
+    heroImage: '/demos/taller/hero.webp',
     heroBadge: 'TECNOLOGÍA & TRANSPARENCIA MECÁNICA',
     heroDescription: 'Más de 20 años en Tigre brindando servicio mecánico de precisión con instrumental de diagnóstico electrónico multimarca y repuestos originales.',
     phone: '11 XXXX-XXXX (tu número)',
@@ -160,12 +160,12 @@ export const DEMO_SITES = {
       }
     ],
     gallery: [
-      { url: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=800&auto=format&fit=crop&q=80', caption: 'Elevadores y boxes de trabajo' },
-      { url: 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?w=800&auto=format&fit=crop&q=80', caption: 'Mecánica de motor pesada' },
-      { url: 'https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?w=800&auto=format&fit=crop&q=80', caption: 'Escaneo y diagnóstico electrónico' },
-      { url: 'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=800&auto=format&fit=crop&q=80', caption: 'Frenos y tren rodante' },
-      { url: 'https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=800&auto=format&fit=crop&q=80', caption: 'Repuestos originales homologados' },
-      { url: 'https://images.unsplash.com/photo-1613214149922-f1809c99b414?w=800&auto=format&fit=crop&q=80', caption: 'Control final en pista' }
+      { url: '/demos/taller/gallery_1.webp', caption: 'Elevadores y boxes de trabajo' },
+      { url: '/demos/taller/gallery_2.webp', caption: 'Mecánica de motor pesada' },
+      { url: '/demos/taller/gallery_3.webp', caption: 'Escaneo y diagnóstico electrónico' },
+      { url: '/demos/taller/gallery_4.webp', caption: 'Frenos y tren rodante' },
+      { url: '/demos/taller/gallery_5.webp', caption: 'Repuestos originales homologados' },
+      { url: '/demos/taller/gallery_6.webp', caption: 'Control final en pista' }
     ]
   },
 
@@ -187,7 +187,7 @@ export const DEMO_SITES = {
       textMuted: '#475569',
       fontHeading: "'Plus Jakarta Sans', sans-serif"
     },
-    heroImage: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1600&auto=format&fit=crop&q=80',
+    heroImage: '/demos/dental/hero.webp',
     heroBadge: 'ATENCIÓN MÉDICA CÁLIDA & SIN DOLOR',
     heroDescription: 'Cuidamos la salud y estética de tu sonrisa con equipamiento de última generación, odontología digital y especialistas certificados.',
     phone: '11 XXXX-XXXX (tu número)',
@@ -210,12 +210,12 @@ export const DEMO_SITES = {
       }
     ],
     gallery: [
-      { url: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&auto=format&fit=crop&q=80', caption: 'Sillón odontológico moderno' },
-      { url: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&auto=format&fit=crop&q=80', caption: 'Blanqueamiento y estética dental' },
-      { url: 'https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=800&auto=format&fit=crop&q=80', caption: 'Diagnóstico radiográfico digital' },
-      { url: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&auto=format&fit=crop&q=80', caption: 'Instrumental esterilizado en autoclave' },
-      { url: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&auto=format&fit=crop&q=80', caption: 'Atención personalizada y cálida' },
-      { url: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&auto=format&fit=crop&q=80', caption: 'Recepción y sala de espera' }
+      { url: '/demos/dental/gallery_1.webp', caption: 'Sillón odontológico moderno' },
+      { url: '/demos/dental/gallery_2.webp', caption: 'Blanqueamiento y estética dental' },
+      { url: '/demos/dental/gallery_3.webp', caption: 'Diagnóstico radiográfico digital' },
+      { url: '/demos/dental/gallery_4.webp', caption: 'Instrumental esterilizado en autoclave' },
+      { url: '/demos/dental/gallery_5.webp', caption: 'Atención personalizada y cálida' },
+      { url: '/demos/dental/gallery_6.webp', caption: 'Recepción y sala de espera' }
     ]
   }
 };

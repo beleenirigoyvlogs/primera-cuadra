@@ -80,13 +80,13 @@ export default function Navbar() {
         {/* Brand Logo */}
         <a href="#" className="brand-logo" onClick={() => setMobileMenuOpen(false)}>
           <picture className="brand-logo-picture">
-            <source srcSet="/logo.webp" type="image/webp" />
+            <source srcSet="/logo-96.webp" type="image/webp" />
             <img 
-              src="/logo.jpg" 
+              src="/logo-96.webp" 
               alt="Logo Primera Cuadra" 
               className="brand-logo-img" 
               loading="eager"
-              fetchpriority="high"
+              fetchPriority="high"
               width="48"
               height="48"
             />

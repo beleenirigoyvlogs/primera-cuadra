@@ -2,42 +2,9 @@ export const OFFICIAL_WHATSAPP_NUMBER = '5491128779641';
 export const DISPLAY_WHATSAPP_NUMBER = '11 2877-9641';
 
 export const RUBROS = {
-  nautica: {
-    id: 'nautica',
-    badge: '⚓ NÁUTICAS, GUARDERÍAS & ASTILLEROS',
-    rubroName: 'Náutica & Guarderías',
-    heroKicker: 'DISEÑO WEB PARA EL RUBRO NÁUTICO',
-    title: 'Páginas Web para Guarderías Náuticas, Alquileres y Astilleros',
-    subtitle: 'Diseñamos la página web de tu guardería o servicio náutico con dominio a tu nombre, fotos de tus instalaciones, tarifas de cunas y botón directo a WhatsApp. Entrega en 4 días.',
-    demoBusinessName: 'Marina & Guardería Náutica Delta',
-    categoryTag: 'Guardería Náutica & Alquiler de Embarcaciones',
-    domainPreview: 'marinadelta.com.ar',
-    typicalMonthlySearches: 4600,
-    averageTicket: 195000,
-    webFeatures: [
-      'Galería fotográfica de marina, cunas techadas y bajada con pluma',
-      'Tarifario descargable por pie y eslora de embarcación',
-      'Botón "Consultar disponibilidad de cuna" directo a tu WhatsApp',
-      'Plano fluvial y terrestre para navegantes con Google Maps'
-    ],
-    googleServices: [
-      'Cunas techadas para lanchas y motos de agua',
-      'Bajada y botado de lanchas con pluma hidráulica',
-      'Alquiler de embarcaciones para pesca y paseo',
-      'Mantenimiento de pata, motor fuera de borda y antifouling'
-    ],
-    whatsappCatalog: [
-      { name: 'Cuna Mensual Techada Lancha (hasta 21 pies)', price: '$195.000 / mes', desc: 'Bajadas ilimitadas, seguridad 24hs y agua dulce.' },
-      { name: 'Alquiler Tracker con Timonel (Día Completo)', price: '$160.000', desc: 'Capacidad 7 tripulantes, habilitado por Prefectura.' },
-      { name: 'Lavado de Casco, Pulido y Antifouling', price: '$90.000', desc: 'Desengrase de pata y protección UV para navegación.' }
-    ],
-    sampleCoverImage: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&auto=format&fit=crop&q=80',
-    sampleAvatar: 'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=400&auto=format&fit=crop&q=80'
-  },
-
   profesional: {
     id: 'profesional',
-    badge: '⚖️ ESTUDIOS, ABOGADOS & CONTADORES',
+    badge: 'ESTUDIOS, ABOGADOS & CONTADORES',
     rubroName: 'Servicios Profesionales',
     heroKicker: 'DISEÑO WEB PARA PROFESIONALES Y ESTUDIOS',
     title: 'Páginas Web para Estudios Jurídicos, Contables y Consultoras',
@@ -70,7 +37,7 @@ export const RUBROS = {
 
   peluqueria: {
     id: 'peluqueria',
-    badge: '✂️ PELUQUERÍAS, BARBERÍAS & ESTÉTICA',
+    badge: 'PELUQUERÍAS, BARBERÍAS & ESTÉTICA',
     rubroName: 'Peluquerías & Barberías',
     heroKicker: 'DISEÑO WEB PARA SALONES Y BARBERÍAS',
     title: 'Páginas Web para Peluquerías, Barberías y Centros de Estética',
@@ -103,7 +70,7 @@ export const RUBROS = {
 
   comercio: {
     id: 'comercio',
-    badge: '🏬 COMERCIOS, TALLERES & FERRETERÍAS',
+    badge: 'COMERCIOS, TALLERES & FERRETERÍAS',
     rubroName: 'Comercios & Talleres',
     heroKicker: 'DISEÑO WEB PARA COMERCIOS Y EMPRESAS',
     title: 'Páginas Web para Talleres Mecánicos, Ferreterías y Locales',
@@ -136,7 +103,7 @@ export const RUBROS = {
 
   salud_estetica: {
     id: 'salud_estetica',
-    badge: '🩺 SALUD, ODONTOLOGÍA & CONSULTORIOS',
+    badge: 'SALUD, ODONTOLOGÍA & CONSULTORIOS',
     rubroName: 'Salud & Clínicas',
     heroKicker: 'DISEÑO WEB PARA CLÍNICAS Y ODONTÓLOGOS',
     title: 'Páginas Web para Clínicas Odontológicas, Médicos y Consultorios',
@@ -169,7 +136,7 @@ export const RUBROS = {
 
   gastronomia: {
     id: 'gastronomia',
-    badge: '☕ GASTRONOMÍA, RESTAURANTES & CAFETERÍAS',
+    badge: 'GASTRONOMÍA, RESTAURANTES & CAFETERÍAS',
     rubroName: 'Gastronomía & Cafeterías',
     heroKicker: 'DISEÑO WEB PARA RESTAURANTES Y CAFÉS',
     title: 'Páginas Web para Cafeterías de Especialidad, Restaurantes y Bares',
@@ -208,7 +175,7 @@ export const PACKS = [
   {
     id: 'pack-completo',
     name: 'PACK COMPLETO',
-    badge: 'TU PÁGINA WEB PROPIA • MÁS ELEGIDO',
+    badge: 'TU PÁGINA WEB PROPIA • RECOMENDADO',
     tagline: 'Tu negocio en la primera cuadra con Web Propia',
     price: 250000,
     currency: '$',
@@ -248,7 +215,7 @@ export const PACKS = [
     deliveryTime: 'Entrega estimada en 48 horas desde que recibo tu material',
     deliveryHours: '48hs',
     isFeatured: false,
-    description: 'Ajustamos y dejamos impecable tu Ficha de Google Maps y configuramos tu WhatsApp Business con lista de servicios para empezar a recibir consultas en 48 horas.',
+    description: 'Ajusto y dejo impecable tu Ficha de Google Maps y configuramos tu WhatsApp Business con lista de servicios para empezar a recibir consultas en 48 horas.',
     features: [
       { text: 'Ficha optimizada para búsquedas de tu zona en Google Maps', highlight: true },
       { text: 'Categoría exacta de tu rubro sumada + subcategorías clave', highlight: false },
@@ -261,7 +228,7 @@ export const PACKS = [
     ],
     ctaText: 'Quiero el Pack Express ($120.000)',
     whatsappMessage: () => 
-      encodeURIComponent('¡Hola Primera Cuadra! Me interesa contratar el PACK EXPRESS ($120.000) con precio de lanzamiento para optimizar la ficha de Google y WhatsApp de mi negocio. ¿Podemos coordinar?')
+      encodeURIComponent('¡Hola Primera Cuadra! Me interesa contratar el PACK EXPRESS ($120.000) con precio de lanzamiento para optimizar la ficha de Google y WhatsApp de mi negocio. ¿Cómo empezamos?')
   },
   {
     id: 'pack-solo-web',
@@ -322,7 +289,7 @@ export const PACKS = [
     ],
     ctaText: 'Consultar por Sistema POS a Medida',
     whatsappMessage: () => 
-      encodeURIComponent('¡Hola Primera Cuadra! Me interesa consultar por el desarrollo de un Sistema de Punto de Venta (POS), control de stock y página web para mi negocio. ¿Podemos coordinar?')
+      encodeURIComponent('¡Hola Primera Cuadra! Me interesa consultar por el desarrollo de un Sistema de Punto de Venta (POS), control de stock y página web para mi negocio. ¿Cómo empezamos?')
   }
 ];
 

@@ -113,7 +113,7 @@ export default function CategoryCardsGrid({ currentNiche, onSelectNiche }) {
             <span className="highlight-purple">tu presencia web tampoco</span>
           </h2>
           <p className="section-subtitle">
-            Diseñamos cada web resolviendo las necesidades reales de tu actividad. Mirá algunos ejemplos frecuentes o probá tu propio negocio en el simulador interactivo:
+            Diseño cada web resolviendo las necesidades reales de tu actividad. Mirá algunos ejemplos frecuentes o probá tu propio negocio en el simulador interactivo:
           </p>
         </div>
 

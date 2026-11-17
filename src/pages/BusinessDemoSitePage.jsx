@@ -332,7 +332,7 @@ export default function BusinessDemoSitePage({ slug, isProposal = false }) {
                         </p>
                         <div className="item-card-action">
                           <a 
-                            href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hola ${businessName}, quisiera consultar sobre el servicio "${item.name}".`)}`}
+                            href={`https://wa.me/${belenWhatsapp}?text=${encodeURIComponent(`Hola Belén, en el ejemplo de ${rubroLabel.toLowerCase()} toqué '${item.name}' y quiero una web así`)}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="item-wa-link"

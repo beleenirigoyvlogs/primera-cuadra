@@ -32,7 +32,8 @@ export default function Hero() {
           <div className="hero-text-col">
             <div className="hero-kicker-badge">
               <Sparkles size={14} />
-              <span>PRESENCIA DIGITAL PARA NEGOCIOS, PROFESIONALES Y EMPRESAS</span>
+              <span className="hero-kicker-text-desktop">PRESENCIA DIGITAL PARA NEGOCIOS, PROFESIONALES Y EMPRESAS</span>
+              <span className="hero-kicker-text-mobile">PRESENCIA DIGITAL</span>
             </div>
 
             {/* Main Action-Oriented Headline (Cambio 1) */}

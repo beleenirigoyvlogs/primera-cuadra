@@ -55,9 +55,9 @@ export default function FacebookFeedSection() {
             <div className="fb-profile-header">
               <div className="fb-avatar-box">
                 <picture className="fb-avatar-picture">
-                  <source srcSet="/logo.webp" type="image/webp" />
+                  <source srcSet="/logo-96.webp" type="image/webp" />
                   <img 
-                    src="/logo.jpg" 
+                    src="/logo-96.webp" 
                     alt="Primera Cuadra" 
                     className="fb-avatar-img" 
                     loading="lazy"

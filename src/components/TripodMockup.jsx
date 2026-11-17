@@ -32,7 +32,7 @@ import { dispatchLeadEmail } from '../utils/emailDispatcher';
 const RUBRO_TEMPLATES = {
   peluqueria: {
     id: 'peluqueria',
-    label: '✂️ Peluquería / Barber',
+    label: 'Peluquería & Barbería',
     nameDefault: 'Juanita Peluquería & Studio',
     cityDefault: 'Palermo, Buenos Aires',
     categoryTag: 'Peluquería de Diseño & Salón de Belleza',
@@ -55,34 +55,10 @@ const RUBRO_TEMPLATES = {
       { name: 'Tratamiento Botox Capilar Reconstituyente', price: '$26.000', desc: 'Eliminación total del frizz y brillo extremo por 60 días.' }
     ]
   },
-  nautica: {
-    id: 'nautica',
-    label: '⚓ Náutica & Guarderías',
-    nameDefault: 'Guardería Náutica Delta',
-    cityDefault: 'Tigre & San Fernando',
-    categoryTag: 'Guardería Náutica & Alquiler de Embarcaciones',
-    coverImageWebp: '/images/mockups/nautica-cover.webp',
-    coverImageJpg: '/images/mockups/nautica-cover.jpg',
-    coverImage: '/images/mockups/nautica-cover.jpg',
-    avatarImageWebp: '/images/mockups/nautica-avatar.webp',
-    avatarImageJpg: '/images/mockups/nautica-avatar.jpg',
-    avatarImage: '/images/mockups/nautica-avatar.jpg',
-    keywords: ['nautica', 'náutica', 'lancha', 'barco', 'bote', 'velero', 'guarderia', 'guardería', 'astillero', 'rio', 'delta', 'marina', 'cuna', 'embarcacion', 'delta'],
-    services: [
-      'Cunas techadas para lanchas y motos de agua',
-      'Bajada y botado con pluma hidráulica',
-      'Alquiler de embarcaciones para pesca y paseo',
-      'Mantenimiento de pata, motor y casco'
-    ],
-    catalog: [
-      { name: 'Cuna Mensual Techada Lancha (hasta 21 pies)', price: '$195.000 / mes', desc: 'Bajadas ilimitadas, seguridad 24hs y agua dulce.' },
-      { name: 'Alquiler Tracker con Timonel (Día Completo)', price: '$160.000', desc: 'Capacidad 7 tripulantes, habilitado por Prefectura.' },
-      { name: 'Lavado de Casco, Pulido y Antifouling', price: '$90.000', desc: 'Desengrase de pata y protección UV para navegación.' }
-    ]
-  },
+
   profesional: {
     id: 'profesional',
-    label: '⚖️ Estudios & Abogados',
+    label: 'Estudios & Profesionales',
     nameDefault: 'Estudio Morales & Asociados',
     cityDefault: 'CABA & Centro',
     categoryTag: 'Estudio Jurídico & Asesoría Corporativa',
@@ -107,7 +83,7 @@ const RUBRO_TEMPLATES = {
   },
   mecanica: {
     id: 'mecanica',
-    label: '🚗 Talleres & Mecánica',
+    label: 'Talleres & Mecánica',
     nameDefault: 'Taller Mecánico San Martín',
     cityDefault: 'San Martín, Bs As',
     categoryTag: 'Taller Mecánico Especializado & Servicios',
@@ -132,7 +108,7 @@ const RUBRO_TEMPLATES = {
   },
   salud: {
     id: 'salud',
-    label: '🩺 Salud & Odontología',
+    label: 'Salud & Odontología',
     nameDefault: 'Centro Odontológico Belgrano',
     cityDefault: 'Belgrano, CABA',
     categoryTag: 'Clínica Odontológica & Consultorios Médicos',
@@ -157,7 +133,7 @@ const RUBRO_TEMPLATES = {
   },
   gastronomia: {
     id: 'gastronomia',
-    label: '🍕 Gastronomía & Bares',
+    label: 'Gastronomía & Bares',
     nameDefault: 'Pizzería & Ristorante Roma',
     cityDefault: 'Recoleta, Buenos Aires',
     categoryTag: 'Restaurante, Bar & Cafetería de Especialidad',
@@ -182,7 +158,7 @@ const RUBRO_TEMPLATES = {
   },
   comercio: {
     id: 'comercio',
-    label: '🏬 Comercios & Locales',
+    label: 'Comercios & Locales',
     nameDefault: 'Tienda & Bazar San Isidro',
     cityDefault: 'San Isidro, Buenos Aires',
     categoryTag: 'Comercio Local, Tienda & Distribución',
@@ -287,12 +263,7 @@ export default function TripodMockup({ niche }) {
   // Sync with global niche switcher (only if user hasn't typed a custom brand)
   useEffect(() => {
     if (!hasUserCustomized && niche) {
-      if (niche.id === 'nautica') {
-        setBrandName('Guardería Náutica Delta');
-        setRubroTag('Guardería Náutica & Alquiler de Lanchas');
-        setCity('Tigre & San Fernando');
-        setManualTemplateId('nautica');
-      } else if (niche.id === 'profesional') {
+      if (niche.id === 'profesional') {
         setBrandName('Estudio Morales & Asociados');
         setRubroTag('Estudio Jurídico & Asesoría Corporativa');
         setCity('Centro, CABA');
@@ -339,14 +310,14 @@ export default function TripodMockup({ niche }) {
 
   // Clean web domain slug from brand name
   const getDomainSlug = (name) => {
-    if (!name) return 'tu-marca.com.ar';
+    if (!name) return 'tunegocio.com.ar';
     const clean = name
       .toLowerCase()
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
       .replace(/[^a-z0-9]/g, '')
       .trim();
-    return clean ? `${clean}.com.ar` : 'tu-marca.com.ar';
+    return clean ? `${clean}.com.ar` : 'tunegocio.com.ar';
   };
 
   const domain = getDomainSlug(brandName);
@@ -354,7 +325,7 @@ export default function TripodMockup({ niche }) {
 
   const getWhatsappUrl = (customMessage) => {
     const defaultText = brandName.trim()
-      ? `¡Hola Primera Cuadra! Estuve viendo el simulador de presencia digital para mi negocio "${brandName}" (${rubroTag} en ${city}). Me gustaría recibir una propuesta comercial y ver cómo podemos arrancar.`
+      ? `¡Hola Belén! Estuve viendo el simulador de presencia digital para mi negocio "${brandName}" (${rubroTag} en ${city}). Me gustaría recibir una propuesta comercial y ver cómo empezamos.`
       : '¡Hola Primera Cuadra! Estuve probando el simulador de presencia digital y me gustaría recibir una propuesta comercial para mi negocio.';
     const text = customMessage || defaultText;
     return `https://wa.me/${defaultWhatsappNumber}?text=${encodeURIComponent(text)}`;
@@ -628,7 +599,7 @@ export default function TripodMockup({ niche }) {
         <div className="sim-reassurance-strip">
           <div className="sim-reassurance-left">
             <CheckCircle2 size={16} className="text-emerald" />
-            <span><strong>Sin límites de rubro:</strong> Diseñamos y adaptamos la web al 100% de lo que vos ofrecés.</span>
+            <span><strong>Sin límites de rubro:</strong> Diseño y adapto la web al 100% de lo que ofrecés.</span>
           </div>
           <div className="sim-reassurance-right">
             <Globe size={14} className="text-purple" />
@@ -806,7 +777,7 @@ export default function TripodMockup({ niche }) {
                     <span className="web-pill-tag">{rubroTag.toUpperCase()} • {city.toUpperCase()}</span>
                     <h4>Bienvenido a {brandName}</h4>
                     <p>
-                      Ofrecemos el mejor servicio de {rubroTag.toLowerCase()} en {city}. Atención personalizada, calidad garantizada y respuesta inmediata.
+                      Diseño tu página web para que muestres tus servicios y recibas mensajes directo a tu WhatsApp.
                     </p>
                     <div className="web-cta-row">
                       <button type="button" className="btn-web-cta">
@@ -1125,7 +1096,7 @@ export default function TripodMockup({ niche }) {
               </div>
               <h3 className="sim-conversion-title">¿Te gustaría tener esto para tu negocio?</h3>
               <p className="sim-conversion-subtitle">
-                Podemos adaptar esta propuesta a tu marca, productos, servicios y forma de trabajar.
+                Puedo adaptar esta propuesta a tu marca, productos, servicios y forma de trabajar.
               </p>
             </div>
 

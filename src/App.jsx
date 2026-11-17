@@ -16,6 +16,7 @@ import AdminLeadsModal from './components/AdminLeadsModal';
 import SimulatorPage from './pages/SimulatorPage';
 import CustomDevelopmentPage from './pages/CustomDevelopmentPage';
 import BusinessDemoSitePage from './pages/BusinessDemoSitePage';
+import NotFoundPage from './pages/NotFoundPage';
 import { NICHES } from './data/nicheData';
 import { useScrollReveal } from './hooks/useScrollReveal';
 import { useMouseParallaxDots } from './hooks/useMouseParallaxDots';
@@ -75,10 +76,17 @@ export default function App() {
     return path === '/desarrollo-a-medida' || path === '/desarrollo-a-medida/' || path.startsWith('/desarrollo-a-medida') || hash === '#desarrollo-a-medida';
   };
 
+  const isHomeRoute = () => {
+    if (typeof window === 'undefined') return true;
+    const path = window.location.pathname.toLowerCase();
+    return path === '/' || path === '/index.html' || path === '' || path.startsWith('/#');
+  };
+
   const [exampleSlug, setExampleSlug] = useState(getExampleSlug);
   const [proposalSlug, setProposalSlug] = useState(getProposalSlug);
   const [isSimulatorPage, setIsSimulatorPage] = useState(isSimulatorRoute);
   const [isCustomDevPage, setIsCustomDevPage] = useState(isCustomDevRoute);
+  const [isHomePage, setIsHomePage] = useState(isHomeRoute);
 
   // Track page visit on mount
   useEffect(() => {
@@ -92,6 +100,7 @@ export default function App() {
       setProposalSlug(getProposalSlug());
       setIsSimulatorPage(isSimulatorRoute());
       setIsCustomDevPage(isCustomDevRoute());
+      setIsHomePage(isHomeRoute());
     };
     const handleKeyDown = (e) => {
       if ((e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') || (e.altKey && e.key.toLowerCase() === 'a')) {
@@ -139,6 +148,11 @@ export default function App() {
   // 4. Dedicated Route: Custom Development (Apps Móviles & Sistemas POS)
   if (isCustomDevPage) {
     return <CustomDevelopmentPage />;
+  }
+
+  // 5. Unknown Route: Not Found (404)
+  if (!isHomePage) {
+    return <NotFoundPage />;
   }
 
   const defaultWhatsappNumber = '5491128779641';

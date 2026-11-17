@@ -55,7 +55,7 @@ export default function FAQSection() {
       q: '¿Podés garantizar que mi negocio aparezca primero en Google?',
       paragraphs: [
         'No. La posición en Google no puede garantizarse, ya que depende de distintos factores del algoritmo y puede cambiar con el tiempo.',
-        'Lo que sí hago es trabajar sobre los elementos de tu presencia digital que podemos optimizar: información del negocio, contenido, enlaces, estructura de la web y ficha local.',
+        'Lo que sí hago es trabajar sobre los elementos de tu presencia digital que puedo optimizar: información del negocio, contenido, enlaces, estructura de la web y ficha local.',
         'Mi objetivo es construirte una presencia sólida y bien organizada, no prometerte una posición que no depende exclusivamente de mí.'
       ]
     },

@@ -66,6 +66,8 @@ export default function PricingPacks({ niche }) {
         <div className="pricing-cards-grid reveal-group">
           {/* Card 1: Pack Express */}
           <div className="pricing-card-hostinger standard reveal">
+            <div className="plan-badge-slot" aria-hidden="true"></div>
+
             <div className="plan-card-header">
               <h3 className="plan-name">Express</h3>
               <p className="plan-desc">
@@ -84,7 +86,7 @@ export default function PricingPacks({ niche }) {
             <button 
               type="button" 
               className="btn-plan-hostinger"
-              onClick={() => handleSelectPack('Express', 120000, '¡Hola Belén! Me interesa el Plan Express ($120.000) para mi negocio. ¿Cómo podemos empezar?')}
+              onClick={() => handleSelectPack('Express', 120000, '¡Hola Belén! Me interesa el Plan Express ($120.000) para mi negocio. ¿Cómo empezamos?')}
             >
               <span>Elegir plan Express</span>
               <ArrowRight size={15} />
@@ -136,6 +138,8 @@ export default function PricingPacks({ niche }) {
 
           {/* Card 2: Pack Solo Web */}
           <div className="pricing-card-hostinger standard reveal">
+            <div className="plan-badge-slot" aria-hidden="true"></div>
+
             <div className="plan-card-header">
               <h3 className="plan-name">Solo Web</h3>
               <p className="plan-desc">
@@ -154,7 +158,7 @@ export default function PricingPacks({ niche }) {
             <button 
               type="button" 
               className="btn-plan-hostinger"
-              onClick={() => handleSelectPack('Solo Web', 150000, '¡Hola Belén! Me interesa el Plan Solo Web ($150.000) para mi negocio. ¿Cómo podemos empezar?')}
+              onClick={() => handleSelectPack('Solo Web', 150000, '¡Hola Belén! Me interesa el Plan Solo Web ($150.000) para mi negocio. ¿Cómo empezamos?')}
             >
               <span>Elegir plan Solo Web</span>
               <ArrowRight size={15} />
@@ -210,8 +214,10 @@ export default function PricingPacks({ niche }) {
 
           {/* Card 3: Pack Completo */}
           <div className="pricing-card-hostinger featured reveal">
-            <div className="card-top-badge featured-badge">
-              ✦ RECOMENDADO
+            <div className="plan-badge-slot">
+              <span className="card-top-badge featured-badge">
+                ✦ RECOMENDADO
+              </span>
             </div>
 
             <div className="plan-card-header">
@@ -234,7 +240,7 @@ export default function PricingPacks({ niche }) {
             <button 
               type="button" 
               className="btn-plan-hostinger btn-plan-featured"
-              onClick={() => handleSelectPack('Completo + Web Propia', 250000, '¡Hola Belén! Me interesa el Plan Completo + Web Propia ($250.000) para mi negocio. ¿Cómo podemos empezar?')}
+              onClick={() => handleSelectPack('Completo + Web Propia', 250000, '¡Hola Belén! Me interesa el Plan Completo + Web Propia ($250.000) para mi negocio. ¿Cómo empezamos?')}
             >
               <span>Elegir plan Completo</span>
               <ArrowRight size={15} />

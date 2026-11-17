@@ -26,9 +26,9 @@ export default function SimulatorPage() {
             <div className="sim-brand-separator" aria-hidden="true"></div>
             <a href="/" className="sim-brand-logo-link">
               <picture className="brand-logo-picture">
-                <source srcSet="/logo.webp" type="image/webp" />
+                <source srcSet="/logo-96.webp" type="image/webp" />
                 <img 
-                  src="/logo.jpg" 
+                  src="/logo-96.webp" 
                   alt="Logo Primera Cuadra" 
                   className="brand-logo-img" 
                   loading="eager"

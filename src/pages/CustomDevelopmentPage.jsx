@@ -51,11 +51,11 @@ export default function CustomDevelopmentPage() {
   const thePointScreens = [
     {
       id: 'pos',
-      tabLabel: 'Punto de Venta',
+      tabLabel: 'POS',
       title: 'Punto de Venta Táctil & Facturación Rápida',
       subtitle: 'Botonera rápida optimizada para mostrador con artículos populares, cobro ágil y lector de código de barras (F3).',
       badge: 'Operaciones Diarias • POS',
-      image: '/thepoint/pos.jpg',
+      image: '/thepoint/pos.webp',
       bullets: [
         'Artículos populares táctiles (aguas, gaseosas, vinos, alfajores, cigarrillos, golosinas)',
         'Múltiples medios de pago: Efectivo con cálculo de vuelto, Mercado Pago / QR, Transferencia, Débito y Crédito',
@@ -64,11 +64,11 @@ export default function CustomDevelopmentPage() {
     },
     {
       id: 'dashboard',
-      tabLabel: 'Panel General',
+      tabLabel: 'Dashboard',
       title: 'Panel General & Control en Tiempo Real',
       subtitle: 'Tablero operativo con evolución semanal de ventas, productos más vendidos, alertas de stock y estado de caja.',
       badge: 'Dashboard Operativo',
-      image: '/thepoint/dashboard.jpg',
+      image: '/thepoint/dashboard.webp',
       bullets: [
         'Ventas acumuladas de hoy, tickets emitidos y resultado neto comercial',
         'Gráfico de evolución semanal de ventas y ranking histórico de artículos con mayor salida',
@@ -77,11 +77,11 @@ export default function CustomDevelopmentPage() {
     },
     {
       id: 'stock',
-      tabLabel: 'Stock & Precios',
+      tabLabel: 'Stock',
       title: 'Catálogo de Productos & Control de Stock',
       subtitle: 'Inventario con código/SKU, costo, precio de venta, remarcación/margen % y alertas automáticas de reposición.',
       badge: 'Catálogo & Inventario',
-      image: '/thepoint/stock.jpg',
+      image: '/thepoint/stock.webp',
       bullets: [
         'Buscador instantáneo por nombre, código de barras o SKU',
         'Cálculo automático de rentabilidad (costo vs. venta vs. porcentaje de margen neto)',
@@ -90,11 +90,11 @@ export default function CustomDevelopmentPage() {
     },
     {
       id: 'caja',
-      tabLabel: 'Caja Diaria',
+      tabLabel: 'Caja',
       title: 'Control de Caja Diaria & Flujo de Dinero',
       subtitle: 'Apertura de turno, retiros de dinero, ingresos y arqueo de caja con historial de sesiones.',
       badge: 'Tesorería & Caja',
-      image: '/thepoint/caja.jpg',
+      image: '/thepoint/caja.webp',
       bullets: [
         'Historial de sesiones con fondo inicial, total esperado vs. contado y cálculo de diferencias',
         'Registro discriminado por medio de pago (Efectivo, Mercado Pago, etc.)',
@@ -107,7 +107,7 @@ export default function CustomDevelopmentPage() {
       title: 'Reportes de Rendimiento & Rentabilidad Real',
       subtitle: 'Cálculos transparentes sin confundir facturación bruta con ganancia neta comercial.',
       badge: 'Auditoría Financiera',
-      image: '/thepoint/reportes.jpg',
+      image: '/thepoint/reportes.webp',
       bullets: [
         'Facturación bruta vs. Costo de mercadería vendida vs. Ganancia bruta estimada y resultado neto',
         'Cobranzas discriminadas por medio de pago y ventas por categoría de producto',
@@ -120,7 +120,7 @@ export default function CustomDevelopmentPage() {
       title: 'Historial & Auditoría Inmutable de Operaciones',
       subtitle: 'Registro cronológico inmutable de cada venta, arqueo, anulación, ajuste de stock y modificación de precios.',
       badge: 'Seguridad & Control',
-      image: '/thepoint/auditoria.jpg',
+      image: '/thepoint/auditoria.webp',
       bullets: [
         'Registro con fecha, hora exacta, módulo, descripción del suceso y usuario responsable',
         'Trazabilidad total de altas, bajas y modificaciones de precios',
@@ -133,7 +133,7 @@ export default function CustomDevelopmentPage() {
       title: 'Base de Datos Local Persistente & Respaldos',
       subtitle: 'Operación 100% independiente de internet con protección de datos y respaldos en un clic.',
       badge: 'Infraestructura & Protección',
-      image: '/thepoint/backups.jpg',
+      image: '/thepoint/backups.webp',
       bullets: [
         'Almacenamiento local SQLite ultra rápido que nunca se cuelga ni depende de la conexión a internet',
         'Creación de respaldos inmediatos (.sqlite) para guardar en pendrive o carpeta externa',

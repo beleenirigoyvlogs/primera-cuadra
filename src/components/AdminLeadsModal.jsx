@@ -51,7 +51,10 @@ export default function AdminLeadsModal({ isOpen, onClose }) {
   const [pinInput, setPinInput] = useState('');
   const [pinError, setPinError] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    return sessionStorage.getItem('pc_admin_auth') === 'true';
+    if (typeof sessionStorage !== 'undefined') {
+      return sessionStorage.getItem('pc_admin_auth') === 'true';
+    }
+    return false;
   });
 
   const [activeTab, setActiveTab] = useState('leads'); // 'leads' | 'traffic'
