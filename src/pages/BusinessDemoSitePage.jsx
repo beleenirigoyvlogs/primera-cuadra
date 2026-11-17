@@ -296,10 +296,10 @@ export default function BusinessDemoSitePage({ slug, isProposal = false }) {
               <span className="business-kicker" style={{ color: theme.primary }}>
                 {site.rubro === 'parrilla' ? 'CARTA DE CORTES & ESPECIALIDADES' : 'SERVICIOS & TARIFAS DE REFERENCIA'}
               </span>
-              <h2 className="business-section-title" style={{ fontFamily: theme.fontHeading, color: theme.text }}>
+              <h2 className="business-section-title" style={{ fontFamily: theme.fontHeading, color: theme.isLight ? '#0f172a' : theme.text }}>
                 {site.rubro === 'parrilla' ? 'Platos y Cortes Recomendados' : 'Servicios Destacados'}
               </h2>
-              <p className="business-section-subtitle" style={{ color: theme.textMuted }}>
+              <p className="business-section-subtitle" style={{ color: theme.isLight ? '#334155' : theme.textMuted }}>
                 Precios claros y actualizados. Atención personalizada con reserva previa o por orden de llegada.
               </p>
             </div>
@@ -307,7 +307,7 @@ export default function BusinessDemoSitePage({ slug, isProposal = false }) {
             <div className="business-categories-stack">
               {site.menuCategories.map((cat, cIdx) => (
                 <div key={cIdx} className="business-category-block">
-                  <h3 className="business-category-title" style={{ color: theme.isLight ? theme.text : theme.accent, borderBottomColor: theme.cardBorder }}>
+                  <h3 className="business-category-title" style={{ color: theme.isLight ? '#0f172a' : theme.accent, borderBottomColor: theme.cardBorder }}>
                     {cat.category}
                   </h3>
 
@@ -322,12 +322,12 @@ export default function BusinessDemoSitePage({ slug, isProposal = false }) {
                         }}
                       >
                         <div className="item-card-top">
-                          <h4 className="item-name" style={{ color: theme.text }}>{item.name}</h4>
+                          <h4 className="item-name" style={{ color: theme.isLight ? '#0f172a' : theme.text }}>{item.name}</h4>
                           <span className="item-price" style={{ color: theme.primary }}>
                             {item.price}
                           </span>
                         </div>
-                        <p className="item-description" style={{ color: theme.textMuted }}>
+                        <p className="item-description" style={{ color: theme.isLight ? '#334155' : theme.textMuted }}>
                           {item.desc}
                         </p>
                         <div className="item-card-action">
@@ -384,7 +384,7 @@ export default function BusinessDemoSitePage({ slug, isProposal = false }) {
                     />
                   </div>
                   <div className="gallery-caption-bar" style={{ backgroundColor: theme.card }}>
-                    <span className="gallery-caption-text" style={{ color: theme.text }}>{photo.caption}</span>
+                    <span className="gallery-caption-text" style={{ color: theme.isLight ? '#0f172a' : theme.text }}>{photo.caption}</span>
                   </div>
                 </div>
               ))}
@@ -406,7 +406,7 @@ export default function BusinessDemoSitePage({ slug, isProposal = false }) {
                 <span className="business-kicker" style={{ color: theme.primary }}>
                   DÓNDE ESTAMOS
                 </span>
-                <h3 className="location-heading" style={{ fontFamily: theme.fontHeading, color: theme.text }}>
+                <h3 className="location-heading" style={{ fontFamily: theme.fontHeading, color: theme.isLight ? '#0f172a' : theme.text }}>
                   Vení a visitarnos
                 </h3>
 
@@ -414,24 +414,24 @@ export default function BusinessDemoSitePage({ slug, isProposal = false }) {
                   <div className="location-data-row">
                     <MapPin size={20} className="loc-icon" style={{ color: theme.primary }} />
                     <div>
-                      <strong style={{ color: theme.textMuted }}>Dirección:</strong>
-                      <p style={{ color: theme.text }}>{address}</p>
+                      <strong style={{ color: theme.isLight ? '#64748b' : theme.textMuted }}>Dirección:</strong>
+                      <p style={{ color: theme.isLight ? '#0f172a' : theme.text }}>{address}</p>
                     </div>
                   </div>
 
                   <div className="location-data-row">
                     <Clock size={20} className="loc-icon" style={{ color: theme.primary }} />
                     <div>
-                      <strong style={{ color: theme.textMuted }}>Horarios de atención:</strong>
-                      <p style={{ color: theme.text }}>{hours}</p>
+                      <strong style={{ color: theme.isLight ? '#64748b' : theme.textMuted }}>Horarios de atención:</strong>
+                      <p style={{ color: theme.isLight ? '#0f172a' : theme.text }}>{hours}</p>
                     </div>
                   </div>
 
                   <div className="location-data-row">
                     <Phone size={20} className="loc-icon" style={{ color: theme.primary }} />
                     <div>
-                      <strong style={{ color: theme.textMuted }}>Teléfono / WhatsApp:</strong>
-                      <p style={{ color: theme.text }}>{phone}</p>
+                      <strong style={{ color: theme.isLight ? '#64748b' : theme.textMuted }}>Teléfono / WhatsApp:</strong>
+                      <p style={{ color: theme.isLight ? '#0f172a' : theme.text }}>{phone}</p>
                     </div>
                   </div>
                 </div>

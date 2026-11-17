@@ -1,0 +1,21 @@
+{
+  "name": "Primera Cuadra - Presencia Digital para Comercios",
+  "short_name": "Primera Cuadra",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121217",
+  "theme_color": "#5025c4",
+  "description": "Páginas web profesionales, Google Maps y WhatsApp Business para comercios locales.",
+  "icons": [
+    {
+      "src": "/logo-96.webp",
+      "sizes": "96x96",
+      "type": "image/webp"
+    },
+    {
+      "src": "/logo.webp",
+      "sizes": "1024x1024",
+      "type": "image/webp"
+    }
+  ]
+}

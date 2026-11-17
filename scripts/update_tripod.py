@@ -40,3 +40,4 @@ with open('src/components/TripodMockup.jsx', 'w', encoding='utf-8') as f:
     f.write(content)
 
 print("TripodMockup.jsx updated successfully!")
+

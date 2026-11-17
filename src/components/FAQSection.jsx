@@ -21,104 +21,53 @@ export default function FAQSection() {
 
   const faqItems = [
     {
-      q: '¿Qué incluye el servicio de Primera Cuadra?',
+      q: '¿Qué incluye el servicio y cómo funciona?',
       paragraphs: [
-        'Me ocupo de crear y organizar la presencia digital de tu negocio. Según el proyecto, incluyo página web, dominio, optimización de tu presencia en Google, configuración de WhatsApp Business y catálogo de productos o servicios.',
-        'Mi propuesta se adapta a las necesidades de cada negocio, para que no pagues por herramientas que no necesitás.'
-      ]
-    },
-    {
-      q: '¿Para qué rubros trabajás?',
-      paragraphs: [
-        'Trabajo con negocios, profesionales y empresas de prácticamente cualquier rubro: comercios, gastronomía, talleres, inmobiliarias, servicios, salud, profesionales y mucho más.',
-        'La estructura, los textos y las funcionalidades se adaptan a cada proyecto.',
-        'No necesitás adaptar tu negocio a una plantilla. Yo adapto la solución a tu negocio.'
-      ]
-    },
-    {
-      q: '¿Ya tengo Instagram o Facebook. Necesito una página web?',
-      paragraphs: [
-        'No es obligatorio, pero cumplen funciones diferentes.',
-        'Las redes sociales ayudan a mostrar y comunicar tu negocio, mientras que una página web te permite tener un espacio propio donde presentar tus servicios, productos, información y formas de contacto de manera ordenada y profesional.',
-        'Además, funciona como un punto central al que enviar a las personas desde Google, Instagram y WhatsApp.'
-      ]
-    },
-    {
-      q: '¿También trabajás con Google y WhatsApp Business?',
-      paragraphs: [
-        'Sí. Te ayudo a mejorar y organizar tu presencia en Google y configuro tu WhatsApp Business para que tus clientes tengan un canal de contacto claro.',
-        'También puedo organizar tu catálogo de productos o servicios y conectar estos canales con tu página web.',
-        'La idea es que Google, tu web y WhatsApp trabajen como parte de una misma presencia digital.'
-      ]
-    },
-    {
-      q: '¿Podés garantizar que mi negocio aparezca primero en Google?',
-      paragraphs: [
-        'No. La posición en Google no puede garantizarse, ya que depende de distintos factores del algoritmo y puede cambiar con el tiempo.',
-        'Lo que sí hago es trabajar sobre los elementos de tu presencia digital que puedo optimizar: información del negocio, contenido, enlaces, estructura de la web y ficha local.',
-        'Mi objetivo es construirte una presencia sólida y bien organizada, no prometerte una posición que no depende exclusivamente de mí.'
+        'Me ocupo personalmente de crear y organizar la presencia digital de tu negocio. Según el plan, incluyo tu página web mobile-first a medida, dominio propio (.com o .com.ar), optimización de tu ficha en Google Maps y configuración de WhatsApp Business con catálogo de servicios y tarifas.',
+        'Todo conectado para que tus clientes te encuentren en Google, vean tus precios y te escriban directamente.'
       ]
     },
     {
       q: '¿Cuánto tarda en estar lista mi página?',
       paragraphs: [
-        'El tiempo depende del proyecto y de la cantidad de contenido necesario.',
-        'En los planes estándar, mi entrega estimada es de 4 días hábiles desde que recibo tu material.',
-        'Si el proyecto requiere funcionalidades especiales, te indico previamente el plazo estimado.'
-      ]
-    },
-    {
-      q: '¿Tengo que preparar yo todo el contenido?',
-      paragraphs: [
-        'Te pido la información y el material que tengas disponible: logo, fotos, productos, servicios, horarios o datos de contacto.',
-        'Yo me encargo de organizarlo y adaptarlo a la estructura de la página.',
-        'Si todavía no tenés todo preparado, lo vemos juntos y te oriento sobre qué necesitamos.'
-      ]
-    },
-    {
-      q: '¿La página funciona bien en celulares?',
-      paragraphs: [
-        'Sí. Diseño las páginas pensando especialmente en dispositivos móviles, ya que la mayoría de las consultas se hacen desde el celular.',
-        'La información, botones, imágenes y formularios se adaptan a distintos tamaños de pantalla para ofrecer una navegación cómoda.'
+        'En los planes estándar (Express, Solo Web y Completo), mi tiempo de entrega estimado es de 4 días hábiles (48 horas para Express) desde que recibo tu material básico.',
+        'Cero demoras burocráticas: trabajo de forma directa con vos.'
       ]
     },
     {
       q: '¿Cuánto cuesta y cómo se paga?',
       paragraphs: [
-        'Tengo precios de lanzamiento claros para los primeros 5 negocios: Pack Express ($120.000), Pack Solo Web ($150.000) y Pack Completo con Web Propia ($250.000).',
-        'La condición de pago es 50% al iniciar / 50% contra entrega conforme una vez que revisás que todo funciona a la perfección.',
+        'Precios de lanzamiento transparentes para los primeros 5 negocios: Plan Express ($120.000), Solo Web ($150.000) y Completo ($250.000).',
+        'La condición de pago es 50% al iniciar y 50% contra entrega conforme, una vez que revisás la web y confirmás que todo funciona a la perfección.',
         'Acepto transferencia bancaria, Mercado Pago o efectivo.'
       ]
     },
     {
-      q: '¿Qué pasa después del primer año?',
+      q: '¿Qué pasa después del primer año con el dominio y el hosting?',
       paragraphs: [
-        'Tu página web y tu dominio son 100% de tu propiedad. Durante el primer año el hosting y el dominio están incluidos en el precio del pack.',
-        'A partir del segundo año, solo abonás la renovación anual del dominio y el hosting para que tu sitio continúe online (el valor de la renovación anual se informa al momento de contratar).',
-        'No hay contratos de permanencia, ni alquileres forzados, ni sorpresas.',
-        'Además, si querés que yo me ocupe de hacer cambios, subir fotos o actualizar novedades mes a mes, ofrezco un servicio de mantenimiento mensual opcional por $50.000/mes (totalmente a tu elección).'
+        'Tu página web y tu dominio son 100% de tu propiedad. Durante el primer año, tanto el hosting de alta velocidad como el dominio están incluidos en el costo del plan.',
+        'A partir del segundo año, solo abonás la renovación anual básica de dominio y hosting para mantenerla online (el valor se informa al momento de contratar). Sin abonos mensuales obligatorios ni costos ocultos.'
       ]
     },
     {
-      q: '¿Puedo ver cómo podría quedar mi negocio antes de decidir?',
+      q: '¿Tengo que preparar yo todo el contenido y las fotos?',
       paragraphs: [
-        'Sí. Te muestro una propuesta base gratis antes de que decidas para que tengas una idea concreta de cómo podría verse tu negocio online antes de avanzar.',
-        'No necesitás imaginarlo: te lo muestro.'
+        'Me mandás lo que tengas a mano por WhatsApp: fotos del local o trabajos, lista de precios o servicios y datos de contacto.',
+        'Yo me encargo de redactar los textos, estructurar las secciones y optimizar las imágenes para celular. Si no tenés fotos profesionales, te oriento y seleccionamos imágenes representativas de tu rubro.'
+      ]
+    },
+    {
+      q: '¿Podés garantizar que mi negocio aparezca primero en Google?',
+      paragraphs: [
+        'No. La posición exacta en Google depende de su algoritmo y nadie honesto puede garantizarte el puesto #1.',
+        'Lo que sí hago es trabajar sobre los factores técnicos y comerciales que puedo optimizar: categoría exacta, palabras clave de tu zona, ficha verificada, fotos, reseñas y una web que cargue en menos de 1 segundo en celulares.'
       ]
     },
     {
       q: '¿Por qué se llama "Primera Cuadra"?',
       paragraphs: [
-        'Porque en un negocio físico, estar en la primera cuadra significa estar donde más fácilmente te encuentran.',
-        'Yo llevo esa idea a Internet: ayudo a que tu negocio tenga una presencia digital profesional, fácil de encontrar y simple de contactar.',
-        'Google + Página Web + WhatsApp Business. Esa es tu Primera Cuadra digital.'
-      ]
-    },
-    {
-      q: '¿También desarrollás aplicaciones móviles o sistemas?',
-      paragraphs: [
-        'Contame tu proyecto y te digo si puedo ayudarte y con qué alcance.',
-        'Desarrollo soluciones a medida según los requerimientos técnicos y comerciales de cada caso.'
+        'Porque en el comercio tradicional, estar en la primera cuadra significa estar donde la gente camina, mira las vidrieras y entra a comprar.',
+        'Llevo esa misma ventaja a Internet: que tu negocio tenga su vidriera principal conectando Google, Web y WhatsApp.'
       ]
     }
   ];

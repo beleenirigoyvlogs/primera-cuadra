@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import TechnicalProofBadge from './components/TechnicalProofBadge';
 import BusinessSituationsSection from './components/BusinessSituationsSection';
-import DigitalPresenceSection from './components/DigitalPresenceSection';
 import ProcessSteps from './components/ProcessSteps';
 import ExampleDesignsSection from './components/ExampleDesignsSection';
+import ThePointCaseStudySection from './components/ThePointCaseStudySection';
 import WhoIsBehindSection from './components/WhoIsBehindSection';
-import EarlyAdoptersSection from './components/EarlyAdoptersSection';
 import PricingPacks from './components/PricingPacks';
 import FAQSection from './components/FAQSection';
 import ContactSection from './components/ContactSection';
@@ -21,8 +21,8 @@ import { NICHES } from './data/nicheData';
 import { useScrollReveal } from './hooks/useScrollReveal';
 import { useMouseParallaxDots } from './hooks/useMouseParallaxDots';
 import { recordPageView } from './utils/visitorTracker';
-import { trackWhatsAppClick, trackSimulatorOpen } from './utils/gtm';
-import { Sparkles, Eye, ExternalLink, MessageCircle } from 'lucide-react';
+import { trackWhatsAppClick } from './utils/gtm';
+import { MessageCircle } from 'lucide-react';
 
 export default function App() {
   useScrollReveal();
@@ -166,68 +166,34 @@ export default function App() {
       <Navbar />
 
       <main>
-        {/* 1. Hero with Action-Oriented Headline, CTAs & 3-in-1 Mockup */}
+        {/* 1. Hero with Urban Storefront, Signage & Integrated Live Simulator */}
         <Hero />
 
-        {/* 2. ¿Tu negocio está en alguna de estas situaciones? */}
+        {/* 2. Technical Proof Badge: Live metrics from Performance API */}
+        <TechnicalProofBadge />
+
+        {/* 3. ¿Tu negocio está en alguna de estas situaciones? */}
         <BusinessSituationsSection />
 
-        {/* 3. Servicios Profesionales (3): Web Propia, Google Maps y WhatsApp */}
-        <DigitalPresenceSection />
-
-        {/* 4. ¿Cómo trabajamos? 3 simples pasos */}
+        {/* 4. ¿Cómo trabajamos? 3 simples pasos con ritmo editorial de 8px */}
         <ProcessSteps />
 
-        {/* 5. Diseños de ejemplo (4 demos ficticias) */}
+        {/* 5. Diseños de ejemplo (4 webs ficticias navegables en marco de celular) */}
         <ExampleDesignsSection />
 
-        {/* 6. Simulador interactivo en vivo (única sección de llamado) */}
-        <section className="simulator-callout-section" id="demostracion-en-vivo">
-          <div className="container">
-            <div className="simulator-callout-card reveal">
-              <div className="callout-content-left">
-                <div className="callout-kicker-tag">
-                  <Sparkles size={14} />
-                  <span>SIMULADOR INTERACTIVO EN VIVO</span>
-                </div>
-                <h2 className="callout-heading">
-                  ¿Querés ver cómo podría <span className="highlight-purple">quedar tu negocio</span>?
-                </h2>
-                <p className="callout-description">
-                  Probá el simulador interactivo para previsualizar tu página web, ficha de Google Maps y WhatsApp Business con el nombre y rubro de tu empresa.
-                </p>
-              </div>
-              <div className="callout-action-right">
-                <a 
-                  href="/simulador" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="btn-hostinger-primary btn-launch-simulator"
-                  onClick={() => trackSimulatorOpen('home_callout_button')}
-                >
-                  <Eye size={17} />
-                  <span>ABRIR SIMULADOR EN VIVO</span>
-                  <ExternalLink size={16} />
-                </a>
-                <span className="callout-footnote">Se abre en una pestaña aparte, fuera de la web</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 7. Quién está detrás de Primera Cuadra (Belén Irigoy, Tigre) */}
-        <WhoIsBehindSection />
-
-        {/* 8. Programa de Primeros Clientes: 5 lugares con precio de lanzamiento */}
-        <EarlyAdoptersSection />
-
-        {/* 9. Precios: 3 Planes Transparentes */}
+        {/* 6. Precios Transparentes (3 planes consolidados) */}
         <PricingPacks niche={niche} />
 
-        {/* 10. Preguntas frecuentes */}
+        {/* 7. Caso de Estudio Real: The Point (POS & Stock en 5 fases) */}
+        <ThePointCaseStudySection />
+
+        {/* 8. Quién está detrás de Primera Cuadra (Belén Irigoy, Tigre) */}
+        <WhoIsBehindSection />
+
+        {/* 9. Preguntas frecuentes (7 vitales) */}
         <FAQSection niche={niche} />
 
-        {/* 11. Sección unificada de Contacto (El siguiente paso + dudas + formulario + WhatsApp) */}
+        {/* 10. Sección unificada de Contacto (Formulario + WhatsApp directo) */}
         <ContactSection />
       </main>
 

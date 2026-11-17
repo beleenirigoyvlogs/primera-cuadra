@@ -55,3 +55,4 @@ with open('src/data/demoSitesData.js', 'w', encoding='utf-8') as f:
     f.write(content)
 
 print("Updated demoSitesData.js successfully!")
+
