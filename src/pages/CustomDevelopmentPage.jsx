@@ -30,8 +30,10 @@ import NavbarV3 from '../components/v3/NavbarV3';
 import FooterV3 from '../components/v3/FooterV3';
 import WhatsAppFloatingBtn from '../components/WhatsAppFloatingBtn';
 import { trackWhatsAppClick } from '../utils/gtm';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export default function CustomDevelopmentPage() {
+  useScrollReveal();
   const whatsappNumber = '5491128779641';
   const whatsappMsgGeneral = encodeURIComponent(
     '¡Hola Belén! Llegué desde la sección de Desarrollo a Medida en Primera Cuadra. Tengo un proyecto/idea de software y me gustaría consultarte para evaluar el alcance.'
@@ -291,7 +293,7 @@ export default function CustomDevelopmentPage() {
               </a>
             </div>
 
-            <div className="custom-dev-hero-center reveal">
+            <div className="custom-dev-hero-center pc-reveal-u reveal">
               <div className="section-kicker-pill">
                 <Sparkles size={14} />
                 <span>DESARROLLO DE SOFTWARE A MEDIDA</span>
@@ -344,7 +346,7 @@ export default function CustomDevelopmentPage() {
             =================================================================== */}
         <section className="the-point-showcase-section" id="caso-real">
           <div className="container">
-            <div className="section-header-center reveal">
+            <div className="section-header-center pc-reveal-u reveal">
               <div className="section-kicker-pill case-kicker">
                 <Store size={14} />
                 <span>UN PROYECTO QUE YA DESARROLLÉ</span>
@@ -360,7 +362,7 @@ export default function CustomDevelopmentPage() {
             </div>
 
             {/* Showcase Main Layout */}
-            <div className="the-point-card-box reveal">
+            <div className="the-point-card-box pc-reveal-u reveal">
               {/* Top Selector Tabs */}
               <div className="the-point-tabs-bar" role="tablist" aria-label="Módulos del sistema The Point">
                 {thePointScreens.map((screen, sIdx) => (
@@ -542,7 +544,7 @@ export default function CustomDevelopmentPage() {
             =================================================================== */}
         <section className="custom-dev-apps-section" id="apps-moviles">
           <div className="container">
-            <div className="section-header-center reveal">
+            <div className="section-header-center pc-reveal-u reveal">
               <div className="section-kicker-pill">
                 <Smartphone size={14} />
                 <span>DESARROLLO DE SOFTWARE • APPS MÓVILES</span>
@@ -562,7 +564,7 @@ export default function CustomDevelopmentPage() {
               {appCapabilities.map((cap, cIdx) => {
                 const IconComp = cap.icon;
                 return (
-                  <div key={cIdx} className="dev-feature-card reveal">
+                  <div key={cIdx} className="dev-feature-card pc-reveal-u reveal">
                     <div className="dev-card-top-row">
                       <div className="dev-icon-circle">
                         <IconComp size={20} />
@@ -584,7 +586,7 @@ export default function CustomDevelopmentPage() {
             =================================================================== */}
         <section className="custom-dev-pos-section" id="sistemas-pos">
           <div className="container">
-            <div className="section-header-center reveal">
+            <div className="section-header-center pc-reveal-u reveal">
               <div className="section-kicker-pill">
                 <Boxes size={14} />
                 <span>GESTIÓN COMERCIAL & MOSTRADOR</span>
@@ -603,7 +605,7 @@ export default function CustomDevelopmentPage() {
               {posFeatures.map((feat, fIdx) => {
                 const IconComp = feat.icon;
                 return (
-                  <div key={fIdx} className="dev-feature-card reveal">
+                  <div key={fIdx} className="dev-feature-card pc-reveal-u reveal">
                     <div className="dev-card-top-row">
                       <div className="dev-icon-circle">
                         <IconComp size={20} />
@@ -618,7 +620,7 @@ export default function CustomDevelopmentPage() {
             </div>
 
             {/* Presupuesto a medida reassurance card */}
-            <div className="dev-quote-reassurance-card reveal">
+            <div className="dev-quote-reassurance-card pc-reveal-u reveal">
               <div className="reassurance-content-left">
                 <div className="reassurance-icon-box">
                   <ShieldCheck size={28} />

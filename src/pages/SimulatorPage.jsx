@@ -2,8 +2,10 @@ import React, { useEffect } from 'react';
 import { ArrowLeft, Sparkles, MessageSquare, ArrowRight, CheckCircle2, ShieldCheck, Clock } from 'lucide-react';
 import TripodMockup from '../components/TripodMockup';
 import BrandLogo from '../components/BrandLogo';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export default function SimulatorPage() {
+  useScrollReveal();
   const whatsappNumber = '5491128779641';
   const whatsappMsg = encodeURIComponent(
     '¡Hola Primera Cuadra! Estuve probando el simulador de diseño web en su página y me gustaría consultar por el desarrollo de mi web y Google Maps. ¿Podemos coordinar?'

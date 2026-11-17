@@ -96,8 +96,8 @@ export default function FAQV3({ extraFaqs = [] }) {
               style={{ 
                 padding: '24px 0', 
                 borderTop: `2px solid ${line}`,
-                '--pc-delay': `${idx * 0.12}s`,
-                transitionDelay: `${idx * 0.12}s`
+                '--pc-delay': `${Math.min(idx * 0.08, 0.36)}s`,
+                transitionDelay: `${Math.min(idx * 0.08, 0.36)}s`
               }}
             >
               <dt style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 600, fontSize: '21px', textTransform: 'uppercase', lineHeight: 1.25 }}>

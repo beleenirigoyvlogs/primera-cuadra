@@ -492,7 +492,7 @@ export default function TripodMockup({ niche }) {
   return (
     <section className="container tripod-section" id="demostracion-en-vivo">
       {/* Section Header */}
-      <div className="section-header-center reveal">
+      <div className="section-header-center pc-reveal-u reveal">
         <div className="section-kicker-tag">
           <Sparkles size={14} />
           <span>SIMULADOR INTERACTIVO</span>
@@ -506,7 +506,7 @@ export default function TripodMockup({ niche }) {
       </div>
 
       {/* Simulator Control Card (Universal Customizer) */}
-      <div className="simulator-controls-card reveal">
+      <div className="simulator-controls-card pc-reveal-u reveal">
         <div className="sim-controls-top-row">
           <div className="sim-title-group">
             <div className="sim-icon-badge">
@@ -736,7 +736,7 @@ export default function TripodMockup({ niche }) {
         </div>
 
         {/* Viewport Frame */}
-        <div className="mockup-viewport-container reveal">
+        <div className="mockup-viewport-container pc-reveal-u reveal">
           {/* TAB 1: WEBPAGE WITH DOMAIN (FLAGSHIP) */}
           {activeTab === 'web' && (
             <div className="web-mockup-wrapper">

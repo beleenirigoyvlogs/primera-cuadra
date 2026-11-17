@@ -24,7 +24,6 @@ import { useScrollReveal } from './hooks/useScrollReveal';
 import { recordPageView } from './utils/visitorTracker';
 
 export default function App({ initialPath = null }) {
-  useScrollReveal();
   const [isAdminOpen, setIsAdminOpen] = useState(false);
 
   // Route resolvers
@@ -67,6 +66,8 @@ export default function App({ initialPath = null }) {
   const [currentPath, setCurrentPath] = useState(getPath);
   const [exampleSlug, setExampleSlug] = useState(getExampleSlug);
   const [proposalSlug, setProposalSlug] = useState(getProposalSlug);
+
+  useScrollReveal(currentPath);
 
   useEffect(() => {
     recordPageView();

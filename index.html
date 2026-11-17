@@ -153,6 +153,18 @@
           } else {
             document.documentElement.classList.remove('dark');
           }
+
+          // 1.5s safety fallback: if observer stalls or JS errors occur, force reveal all elements
+          setTimeout(function() {
+            try {
+              document.documentElement.classList.add('pc-revealed-fallback');
+              var targets = document.querySelectorAll('.reveal, .pc-reveal-r, .pc-reveal-l, .pc-reveal-u');
+              for (var i = 0; i < targets.length; i++) {
+                targets[i].classList.add('is-visible', 'visible', 'revealed');
+                targets[i].setAttribute('data-revealed', 'true');
+              }
+            } catch (err) {}
+          }, 1500);
         } catch (e) {}
       })();
     </script>

@@ -214,8 +214,8 @@ html.dark {
 }
 
 /* IntersectionObserver reveal system (all browsers) */
-/* When JS is present, prepare for smooth 100px entry transition */
-.js .pc-reveal-r {
+/* When JS is present and fallback timer has not fired, prepare for smooth entry transition */
+html.js:not(.pc-revealed-fallback) .pc-reveal-r {
   opacity: 0;
   transform: translateX(100px);
   transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
@@ -223,7 +223,7 @@ html.dark {
   will-change: opacity, transform;
 }
 
-.js .pc-reveal-l {
+html.js:not(.pc-revealed-fallback) .pc-reveal-l {
   opacity: 0;
   transform: translateX(-100px);
   transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
@@ -231,7 +231,7 @@ html.dark {
   will-change: opacity, transform;
 }
 
-.js .pc-reveal-u {
+html.js:not(.pc-revealed-fallback) .pc-reveal-u {
   opacity: 0;
   transform: translateY(50px);
   transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
@@ -245,17 +245,31 @@ html.dark {
 .pc-reveal-u.is-visible,
 .js .pc-reveal-r.is-visible,
 .js .pc-reveal-l.is-visible,
-.js .pc-reveal-u.is-visible {
+.js .pc-reveal-u.is-visible,
+.pc-reveal-r.visible,
+.pc-reveal-l.visible,
+.pc-reveal-u.visible,
+.pc-reveal-r.revealed,
+.pc-reveal-l.revealed,
+.pc-reveal-u.revealed,
+[data-revealed="true"] {
   opacity: 1 !important;
   transform: translate(0, 0) !important;
 }
 
-/* Fallback: if no-js or reduced-motion, ensure everything is fully visible */
-.no-js .pc-reveal-r,
-.no-js .pc-reveal-l,
-.no-js .pc-reveal-u {
+/* Fallback: if no-js or fallback timer active, ensure everything is fully visible immediately */
+html.no-js .pc-reveal-r,
+html.no-js .pc-reveal-l,
+html.no-js .pc-reveal-u,
+html.no-js .reveal,
+html.pc-revealed-fallback .pc-reveal-r,
+html.pc-revealed-fallback .pc-reveal-l,
+html.pc-revealed-fallback .pc-reveal-u,
+html.pc-revealed-fallback .reveal {
   opacity: 1 !important;
   transform: none !important;
+  transition: none !important;
+  animation: none !important;
 }
 
 /* Continuous Horizontal Marquee Loop */
@@ -8477,7 +8491,8 @@ html.dark .btn-tooltip-close:hover {
    SCROLL REVEAL ANIMATIONS (INTERSECTION OBSERVER)
    ========================================================================== */
 
-.reveal:not(.visible):not(.revealed):not([data-revealed="true"]) {
+/* Only hide if JS is loaded AND fallback timer has not fired */
+html.js:not(.pc-revealed-fallback) .reveal:not(.visible):not(.revealed):not(.is-visible):not([data-revealed="true"]) {
   opacity: 0;
   transform: translateY(30px);
   transition-property: opacity, transform;
@@ -8490,14 +8505,24 @@ html.dark .btn-tooltip-close:hover {
 :where(.reveal.visible),
 .reveal.visible,
 .reveal.revealed,
+.reveal.is-visible,
 .reveal[data-revealed="true"],
-[data-revealed="true"] {
+[data-revealed="true"],
+html.no-js .reveal {
   opacity: 1 !important;
   transform: translateY(0) !important;
 }
 
+html.pc-revealed-fallback .reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
 /* Cleanup GPU will-change once transition finishes */
 .reveal.revealed,
+.reveal.is-visible,
 [data-revealed="true"] {
   will-change: auto;
 }
@@ -8516,6 +8541,7 @@ html.dark .btn-tooltip-close:hover {
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .reveal.visible,
+  .reveal.is-visible,
   .reveal:not(.visible) {
     opacity: 1 !important;
     transform: none !important;
