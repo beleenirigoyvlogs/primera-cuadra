@@ -192,7 +192,7 @@ export default function AdminLeadsModal({ isOpen, onClose }) {
       id: `sample_${Date.now()}`,
       name: 'Carlos Benítez',
       businessName: 'Ferretería & Pinturería El Triángulo',
-      phone: '11 5566-7788',
+      phone: '11 2345-6789',
       service: 'Todo lo anterior (Web + Google + WhatsApp)',
       message: 'Hola! Quiero renovar la ficha de Google y armar una web con catálogo de herramientas.',
       submittedAt: new Date().toISOString(),

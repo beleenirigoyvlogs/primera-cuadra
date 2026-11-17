@@ -82,7 +82,7 @@ export default function SimulatorPage() {
             <div className="sim-hero-trust-bar">
               <div className="sim-trust-item">
                 <Clock size={15} className="text-purple-icon" />
-                <span>Entrega estimada en 4 días hábiles desde que recibimos tu material</span>
+                <span>Entrega estimada en 4 días hábiles desde que recibo tu material</span>
               </div>
               <div className="sim-trust-item">
                 <ShieldCheck size={15} className="text-purple-icon" />
@@ -110,7 +110,7 @@ export default function SimulatorPage() {
               <span className="sim-bottom-badge">¿TE GUSTÓ LO QUE VISTE?</span>
               <h2 className="sim-bottom-title">Hacé realidad la presencia digital de tu negocio</h2>
               <p className="sim-bottom-desc">
-                Desarrollamos tu web profesional, configuramos tu Ficha optimizada para búsquedas de tu zona en Google Maps y tu catálogo de WhatsApp oficial llave en mano. Sin alquileres mensuales abusivos: la web y el dominio son 100% de tu propiedad.
+                Desarrollo tu web profesional, configuro tu Ficha optimizada para búsquedas de tu zona en Google Maps y tu catálogo de WhatsApp oficial llave en mano. Sin alquileres mensuales forzados: la web y el dominio son 100% de tu propiedad.
               </p>
             </div>
             <div className="sim-bottom-cta-actions">

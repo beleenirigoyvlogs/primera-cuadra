@@ -78,7 +78,7 @@ export default function FAQSection() {
     {
       q: '¿La página funciona bien en celulares?',
       paragraphs: [
-        'Sí. Diseño las páginas pensando especialmente en dispositivos móviles, ya que más del 80% de las consultas se realizan desde el teléfono.',
+        'Sí. Diseño las páginas pensando especialmente en dispositivos móviles, ya que la mayoría de las consultas se hacen desde el celular.',
         'La información, botones, imágenes y formularios se adaptan a distintos tamaños de pantalla para ofrecer una navegación cómoda.'
       ]
     },

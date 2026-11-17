@@ -81,13 +81,13 @@ export default function DigitalPresenceSection() {
         <div className="section-header-center reveal">
           <div className="section-kicker-tag">
             <Sparkles size={14} />
-            <span>NUESTROS SERVICIOS PROFESIONALES</span>
+            <span>MIS SERVICIOS</span>
           </div>
           <h2 className="section-title">
             Servicios a medida para <span className="highlight-purple">impulsar tu negocio</span>
           </h2>
           <p className="section-subtitle">
-            Ofrecemos servicios individuales y soluciones integradas de diseño web, ficha optimizada para búsquedas de tu zona y configuración de canales directos para que consigas más clientes.
+            Ofrezco servicios individuales y soluciones integradas de diseño web, ficha optimizada para búsquedas de tu zona y configuración de canales directos para que consigas más clientes.
           </p>
         </div>
 
@@ -160,7 +160,7 @@ export default function DigitalPresenceSection() {
             ¿Buscás soluciones avanzadas como <strong>Aplicaciones Móviles para iOS/Android</strong> o <strong>Sistemas POS con Control de Stock</strong> para tu local?
           </p>
           <a href="/desarrollo-a-medida" className="btn-custom-dev-link">
-            <span>Conocé nuestros desarrollos a medida</span>
+            <span>Conocé mis desarrollos a medida</span>
             <ExternalLink size={14} />
           </a>
         </div>

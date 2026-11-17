@@ -19,6 +19,13 @@ const RUBRO_ICONS = {
   dental: Stethoscope
 };
 
+const RUBRO_BUTTON_LABELS = {
+  parrilla: 'Reservar mesa',
+  barberia: 'Pedir turno',
+  taller: 'Pedir presupuesto',
+  dental: 'Pedir turno'
+};
+
 export default function ExampleDesignsSection() {
   const demos = [
     DEMO_SITES.parrilla,
@@ -178,7 +185,7 @@ export default function ExampleDesignsSection() {
                       <div className="phone-mini-wa-bar">
                         <div className="phone-mini-wa-button">
                           <MessageCircle size={12} />
-                          <span>Pedir turno / Consultar</span>
+                          <span>{RUBRO_BUTTON_LABELS[demo.slug] || 'Pedir turno'}</span>
                         </div>
                       </div>
                     </div>
@@ -193,7 +200,7 @@ export default function ExampleDesignsSection() {
                     rel="noopener noreferrer"
                     className="btn-hostinger-primary btn-view-full-demo"
                   >
-                    <span>Ver web de ejemplo</span>
+                    <span>Ver web · {RUBRO_BUTTON_LABELS[demo.slug] || 'Ver ejemplo'}</span>
                     <ExternalLink size={15} />
                   </a>
                 </div>

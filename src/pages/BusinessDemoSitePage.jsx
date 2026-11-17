@@ -72,6 +72,25 @@ export default function BusinessDemoSitePage({ slug, isProposal = false }) {
     };
   }, [businessName, tagline, isCustomProposal]);
 
+  // Isolate standalone demo page from global site dark mode when demo theme is light
+  useEffect(() => {
+    const htmlEl = document.documentElement;
+    const previouslyHadDark = htmlEl.classList.contains('dark');
+    if (site.theme.isLight) {
+      htmlEl.classList.remove('dark');
+    } else {
+      htmlEl.classList.add('dark');
+    }
+
+    return () => {
+      if (previouslyHadDark) {
+        htmlEl.classList.add('dark');
+      } else {
+        htmlEl.classList.remove('dark');
+      }
+    };
+  }, [site.theme.isLight]);
+
   const belenCtaMsg = isCustomProposal
     ? encodeURIComponent(`¡Hola Belén! Vi la propuesta de diseño para "${businessName}" y me interesa avanzar con mi negocio.`)
     : encodeURIComponent(`Hola Belén, vi el ejemplo de ${rubroLabel.toLowerCase()} y quiero una para mi negocio.`);
@@ -275,7 +294,7 @@ export default function BusinessDemoSitePage({ slug, isProposal = false }) {
           <div className="business-container">
             <div className="business-section-header">
               <span className="business-kicker" style={{ color: theme.primary }}>
-                {site.rubro === 'parrilla' ? 'NUESTRA CARTA & ESPECIALIDADES' : 'SERVICIOS & TARIFAS DE REFERENCIA'}
+                {site.rubro === 'parrilla' ? 'CARTA DE CORTES & ESPECIALIDADES' : 'SERVICIOS & TARIFAS DE REFERENCIA'}
               </span>
               <h2 className="business-section-title" style={{ fontFamily: theme.fontHeading, color: theme.text }}>
                 {site.rubro === 'parrilla' ? 'Platos y Cortes Recomendados' : 'Servicios Destacados'}
@@ -342,10 +361,10 @@ export default function BusinessDemoSitePage({ slug, isProposal = false }) {
                 GALERÍA VISUAL
               </span>
               <h2 className="business-section-title" style={{ fontFamily: theme.fontHeading, color: theme.text }}>
-                {site.rubro === 'parrilla' ? 'Nuestro Espacio & Cocina' : 'Trabajos Realizados & Instalaciones'}
+                {site.rubro === 'parrilla' ? 'Espacio & Cocina a las Brasas' : 'Trabajos Realizados & Instalaciones'}
               </h2>
               <p className="business-section-subtitle" style={{ color: theme.textMuted }}>
-                Conocé nuestras instalaciones, equipamiento y la calidad de nuestro trabajo cotidiano.
+                Fotos de las instalaciones, equipamiento y la atención cotidiana.
               </p>
             </div>
 

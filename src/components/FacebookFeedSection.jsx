@@ -41,10 +41,10 @@ export default function FacebookFeedSection() {
             <span>NOVEDADES & TRABAJOS EN VIVO</span>
           </div>
           <h2 className="section-title">
-            Seguinos en Facebook para ver nuestros <span className="highlight-purple">últimos trabajos</span>
+            Seguinos en Facebook para ver mis <span className="highlight-purple">últimos trabajos</span>
           </h2>
           <p className="section-subtitle">
-            Mirá las últimas páginas web entregadas, casos de éxito de comercios locales y consejos de posicionamiento en tiempo real directamente desde nuestra página oficial.
+            Mirá las últimas páginas web entregadas, casos de comercios locales y consejos de posicionamiento en tiempo real directamente desde mi página oficial.
           </p>
         </div>
 
@@ -83,7 +83,7 @@ export default function FacebookFeedSection() {
             </div>
 
             <p className="fb-brand-intro">
-              En nuestra comunidad de Facebook compartimos el detrás de escena de cada web entregada en 4 días, tips para sumar reseñas en Google Maps y lanzamientos exclusivos para negocios locales.
+              En mi página de Facebook comparto el detrás de escena de cada web entregada en 4 días, tips para sumar reseñas en Google Maps y novedades para negocios locales.
             </p>
 
             <ul className="fb-benefits-list">
@@ -101,8 +101,8 @@ export default function FacebookFeedSection() {
                   <ThumbsUp size={16} />
                 </div>
                 <div>
-                  <strong>Casos de éxito y testimonios</strong>
-                  <p>Comercios que ya reciben consultas diarias de Google y WhatsApp.</p>
+                  <strong>Casos de comercios locales</strong>
+                  <p>Negocios que ya reciben consultas diarias de Google y WhatsApp.</p>
                 </div>
               </li>
               <li>
@@ -111,7 +111,7 @@ export default function FacebookFeedSection() {
                 </div>
                 <div>
                   <strong>Atención y mensajes directos</strong>
-                  <p>Podés consultarnos tus dudas también por Messenger o dejar tu reseña.</p>
+                  <p>Podés consultarme tus dudas también por Messenger o dejar tu consulta.</p>
                 </div>
               </li>
             </ul>
@@ -124,7 +124,7 @@ export default function FacebookFeedSection() {
                 className="btn-facebook-official"
               >
                 <FacebookIcon size={18} />
-                <span>Ir a Nuestra Página de Facebook</span>
+                <span>Ir a la Página de Facebook</span>
                 <ExternalLink size={16} />
               </a>
 

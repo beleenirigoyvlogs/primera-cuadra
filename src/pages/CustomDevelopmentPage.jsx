@@ -21,7 +21,9 @@ import {
   Printer,
   ShoppingBag,
   Bell,
-  Lock
+  Lock,
+  ZoomIn,
+  X
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -44,103 +46,99 @@ export default function CustomDevelopmentPage() {
 
   // Tabs for "The Point Kiosco" real project interactive carousel
   const [activeScreenIdx, setActiveScreenIdx] = useState(0);
+  const [zoomedImg, setZoomedImg] = useState(null);
 
   const thePointScreens = [
     {
       id: 'pos',
-      tabLabel: 'Punto de Venta Táctil',
-      title: 'Mostrador & Cobro Rápido',
-      subtitle: 'Catálogo táctil con categorías, buscador instantáneo y carrito en vivo.',
-      badge: 'Pantalla de Ventas',
+      tabLabel: 'Punto de Venta (POS)',
+      title: 'Punto de Venta Táctil & Facturación Rápida',
+      subtitle: 'Botonera rápida optimizada para mostrador con artículos populares, cobro ágil y lector de código de barras (F3).',
+      badge: 'Operaciones Diarias • POS',
+      image: '/thepoint/pos.jpg',
       bullets: [
-        'Grilla de artículos frecuentes con fotos y precios',
-        'Cálculo de vuelto automático y múltiples medios de pago (Efectivo, QR / Mercado Pago, Débito)',
-        'Ticket digital y compatibilidad con impresora térmica'
-      ],
-      mockupData: {
-        headerTitle: 'The Point • Caja Mostrador',
-        categoryPill: 'Golosinas & Kiosco',
-        items: [
-          { name: 'Alfajor Triple Chocolate', price: '$1.400', stock: '24 un.' },
-          { name: 'Gaseosa 500ml Cola', price: '$2.100', stock: '18 un.' },
-          { name: 'Chicles Menta Extra (caja)', price: '$900', stock: '32 un.' },
-          { name: 'Cigarrillos Box 20', price: '$3.800', stock: '12 un.' }
-        ],
-        cartTotal: '$8.200',
-        paymentMethod: 'Mercado Pago QR'
-      }
+        'Artículos populares táctiles (aguas, gaseosas, vinos, alfajores, cigarrillos, golosinas)',
+        'Múltiples medios de pago: Efectivo con cálculo de vuelto, Mercado Pago / QR, Transferencia, Débito y Crédito',
+        'Cobro y confirmación con atajos de teclado (F2 vender, F3 escanear) para despachar sin demoras'
+      ]
+    },
+    {
+      id: 'dashboard',
+      tabLabel: 'Panel General',
+      title: 'Panel General & Control en Tiempo Real',
+      subtitle: 'Tablero operativo con evolución semanal de ventas, productos más vendidos, alertas de stock y estado de caja.',
+      badge: 'Dashboard Operativo',
+      image: '/thepoint/dashboard.jpg',
+      bullets: [
+        'Ventas acumuladas de hoy, tickets emitidos y resultado neto comercial',
+        'Gráfico de evolución semanal de ventas y ranking histórico de artículos con mayor salida',
+        'Monitoreo del estado de caja y centro de alertas activas'
+      ]
     },
     {
       id: 'stock',
-      tabLabel: 'Control de Stock',
-      title: 'Inventario & Alertas en Tiempo Real',
-      subtitle: 'Seguimiento exacto de mercadería, precios de costo y reposición.',
-      badge: 'Módulo de Inventario',
+      tabLabel: 'Productos & Stock',
+      title: 'Catálogo de Productos & Control de Stock',
+      subtitle: 'Inventario con código/SKU, costo, precio de venta, remarcación/margen % y alertas automáticas de reposición.',
+      badge: 'Catálogo & Inventario',
+      image: '/thepoint/stock.jpg',
       bullets: [
-        'Alertas visuales automáticas cuando un producto llega al stock mínimo',
-        'Registro ágil de ingreso de mercadería de distribuidores',
-        'Actualización masiva de precios por porcentaje o rubro'
-      ],
-      mockupData: {
-        headerTitle: 'The Point • Stock & Depósito',
-        categoryPill: 'Alertas de Reposición',
-        items: [
-          { name: 'Yerba Mate Suave 500g', price: 'Stock: 3 (Crítico)', stock: 'Mín: 10' },
-          { name: 'Galletitas Rellenas Vainilla', price: 'Stock: 6 (Bajo)', stock: 'Mín: 15' },
-          { name: 'Agua Mineral s/ Gas 500ml', price: 'Stock: 48 (Óptimo)', stock: 'Mín: 24' },
-          { name: 'Caramelos Surtidos x bolsa', price: 'Stock: 4 (Bajo)', stock: 'Mín: 8' }
-        ],
-        cartTotal: '14 productos críticos',
-        paymentMethod: 'Alerta automática'
-      }
+        'Buscador instantáneo por nombre, código de barras o SKU',
+        'Cálculo automático de rentabilidad (costo vs. venta vs. porcentaje de margen neto)',
+        'Importación masiva y exportación de listas completas a Excel / CSV'
+      ]
     },
     {
       id: 'caja',
-      tabLabel: 'Arqueo de Caja',
-      title: 'Cierre Diario & Balances',
-      subtitle: 'Resumen discriminado de ventas por método de pago sin diferencias.',
-      badge: 'Cierre de Turno',
+      tabLabel: 'Caja Diaria & Arqueo',
+      title: 'Control de Caja Diaria & Flujo de Dinero',
+      subtitle: 'Apertura de turno, retiros de dinero, ingresos y arqueo de caja con historial de sesiones.',
+      badge: 'Tesorería & Caja',
+      image: '/thepoint/caja.jpg',
       bullets: [
-        'Registro de apertura de caja, retiros parciales y fondo fijo',
-        'Discriminación de ingresos: Efectivo, Transferencias, Tarjetas y Apps',
-        'Reporte de ventas diario exportable con horario de cierre'
-      ],
-      mockupData: {
-        headerTitle: 'The Point • Balance de Turno',
-        categoryPill: 'Turno Tarde - Caja 01',
-        items: [
-          { name: 'Ventas en Efectivo en Caja', price: '$184.500', stock: '38 tickets' },
-          { name: 'Cobros con QR / Transferencias', price: '$126.800', stock: '26 tickets' },
-          { name: 'Tarjetas de Débito / Crédito', price: '$74.200', stock: '14 tickets' },
-          { name: 'Retiros para proveedores (-)', price: '-$45.000', stock: 'Comprobante #102' }
-        ],
-        cartTotal: 'Total Neto: $340.500',
-        paymentMethod: 'Caja Cuadrada OK'
-      }
+        'Historial de sesiones con fondo inicial, total esperado vs. contado y cálculo de diferencias',
+        'Registro discriminado por medio de pago (Efectivo, Mercado Pago, etc.)',
+        'Control seguro para evitar faltantes y cuadrar turnos con exactitud'
+      ]
     },
     {
-      id: 'roles',
-      tabLabel: 'Usuarios & Roles',
-      title: 'Permisos & Seguridad',
-      subtitle: 'Cuentas diferenciadas para administradores y cajeros.',
-      badge: 'Control de Acceso',
+      id: 'reportes',
+      tabLabel: 'Reportes & Rentabilidad',
+      title: 'Reportes de Rendimiento & Rentabilidad Real',
+      subtitle: 'Cálculos transparentes sin confundir facturación bruta con ganancia neta comercial.',
+      badge: 'Auditoría Financiera',
+      image: '/thepoint/reportes.jpg',
       bullets: [
-        'Rol Cajero/Vendedor: solo despacho de ventas y cobro en mostrador',
-        'Rol Administrador/Dueño: acceso a costos, márgenes, balances y stock',
-        'Registro con fecha y hora de cada anulación o movimiento de caja'
-      ],
-      mockupData: {
-        headerTitle: 'The Point • Seguridad y Roles',
-        categoryPill: 'Permisos de Personal',
-        items: [
-          { name: 'Belén (Administradora)', price: 'Acceso Total', stock: 'Activo' },
-          { name: 'Cajero Turno Mañana', price: 'Solo Ventas', stock: 'En mostrador' },
-          { name: 'Cajero Turno Tarde', price: 'Solo Ventas', stock: 'En mostrador' },
-          { name: 'Supervisor de Depósito', price: 'Stock e Ingresos', stock: 'Sin ventas' }
-        ],
-        cartTotal: '4 usuarios asignados',
-        paymentMethod: 'PIN de acceso'
-      }
+        'Facturación bruta vs. Costo de mercadería vendida vs. Ganancia bruta estimada y resultado neto',
+        'Cobranzas discriminadas por medio de pago y ventas por categoría de producto',
+        'Filtros por Hoy, Últimos 7 días, Este mes o Fechas personalizadas con exportación a CSV'
+      ]
+    },
+    {
+      id: 'auditoria',
+      tabLabel: 'Historial & Auditoría',
+      title: 'Historial & Auditoría Inmutable de Operaciones',
+      subtitle: 'Registro cronológico inmutable de cada venta, arqueo, anulación, ajuste de stock y modificación de precios.',
+      badge: 'Seguridad & Control',
+      image: '/thepoint/auditoria.jpg',
+      bullets: [
+        'Registro con fecha, hora exacta, módulo, descripción del suceso y usuario responsable',
+        'Trazabilidad total de altas, bajas y modificaciones de precios',
+        'Seguridad ante discrepancias y control antifraude en el local'
+      ]
+    },
+    {
+      id: 'backups',
+      tabLabel: 'Respaldos SQLite',
+      title: 'Base de Datos Local Persistente & Respaldos',
+      subtitle: 'Operación 100% independiente de internet con protección de datos y respaldos en un clic.',
+      badge: 'Infraestructura & Protección',
+      image: '/thepoint/backups.jpg',
+      bullets: [
+        'Almacenamiento local SQLite ultra rápido que nunca se cuelga ni depende de la conexión a internet',
+        'Creación de respaldos inmediatos (.sqlite) para guardar en pendrive o carpeta externa',
+        'Restauración de emergencia en caso de cambio o renovación de la computadora del local'
+      ]
     }
   ];
 
@@ -349,19 +347,19 @@ export default function CustomDevelopmentPage() {
                     <div className="stack-chips-list">
                       <span className="stack-chip">
                         <Code2 size={13} />
-                        <span>React Native</span>
+                        <span>Electron & Node.js</span>
+                      </span>
+                      <span className="stack-chip">
+                        <Code2 size={13} />
+                        <span>React</span>
                       </span>
                       <span className="stack-chip">
                         <Database size={13} />
-                        <span>Firebase Firestore</span>
+                        <span>SQLite Local Persistente</span>
                       </span>
                       <span className="stack-chip">
                         <Printer size={13} />
-                        <span>Impresión Térmica</span>
-                      </span>
-                      <span className="stack-chip">
-                        <ShieldCheck size={13} />
-                        <span>Node.js</span>
+                        <span>Impresión Térmica & Escáner F3</span>
                       </span>
                     </div>
                   </div>
@@ -382,7 +380,7 @@ export default function CustomDevelopmentPage() {
                   </div>
                 </div>
 
-                {/* Right Side: Realistic Device UI Mockup */}
+                {/* Right Side: Realistic Software Window Frame with Real Screenshots */}
                 <div className="the-point-mockup-col">
                   {/* Navigation arrows for carousel */}
                   <div className="mockup-carousel-controls">
@@ -395,7 +393,7 @@ export default function CustomDevelopmentPage() {
                       <ChevronLeft size={18} />
                     </button>
                     <span className="carousel-step-counter">
-                      Pantalla {activeScreenIdx + 1} de {thePointScreens.length}
+                      Módulo {activeScreenIdx + 1} de {thePointScreens.length}: <strong>{currentScreen.tabLabel}</strong>
                     </span>
                     <button
                       type="button"
@@ -407,42 +405,53 @@ export default function CustomDevelopmentPage() {
                     </button>
                   </div>
 
-                  {/* Device Chassis Frame */}
-                  <div className="pos-device-tablet-frame">
-                    <div className="tablet-screen-header">
-                      <div className="tablet-brand-wrap">
-                        <div className="tablet-logo-pill">TP</div>
-                        <span className="tablet-header-title">{currentScreen.mockupData.headerTitle}</span>
+                  {/* Real App Window Frame */}
+                  <div className="pos-app-window-frame">
+                    <div className="pos-app-window-header">
+                      <div className="window-dots-row">
+                        <span className="w-dot w-dot-red"></span>
+                        <span className="w-dot w-dot-yellow"></span>
+                        <span className="w-dot w-dot-green"></span>
                       </div>
-                      <span className="tablet-category-tag">{currentScreen.mockupData.categoryPill}</span>
+                      <div className="window-title-bar">
+                        <span className="window-app-name">THE POINT KIOSCO • POS v1.0</span>
+                      </div>
+                      <span className="window-real-badge">Captura real del sistema</span>
                     </div>
 
-                    {/* Virtual Tablet Screen Rows */}
-                    <div className="tablet-screen-content">
-                      <div className="tablet-items-grid">
-                        {currentScreen.mockupData.items.map((it, itIdx) => (
-                          <div key={itIdx} className="tablet-item-row">
-                            <div className="t-item-info">
-                              <span className="t-item-name">{it.name}</span>
-                              <span className="t-item-stock">{it.stock}</span>
-                            </div>
-                            <span className="t-item-price">{it.price}</span>
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Mockup Action Bar */}
-                      <div className="tablet-screen-footer-bar">
-                        <div className="tablet-total-info">
-                          <span className="t-total-label">Estado / Total:</span>
-                          <strong className="t-total-val">{currentScreen.mockupData.cartTotal}</strong>
-                        </div>
-                        <div className="tablet-payment-pill">
-                          <ShoppingBag size={13} />
-                          <span>{currentScreen.mockupData.paymentMethod}</span>
-                        </div>
+                    <div 
+                      className="pos-app-screenshot-viewport" 
+                      onClick={() => setZoomedImg(currentScreen.image)}
+                      title="Clic para ampliar imagen"
+                    >
+                      <img 
+                        src={currentScreen.image} 
+                        alt={`Captura real del sistema: ${currentScreen.title}`} 
+                        className="the-point-screenshot-img"
+                        loading="lazy"
+                      />
+                      <div className="screenshot-zoom-overlay">
+                        <ZoomIn size={15} />
+                        <span>Clic para ampliar</span>
                       </div>
                     </div>
+                  </div>
+
+                  {/* Thumbnail Row */}
+                  <div className="the-point-thumbnails-row">
+                    {thePointScreens.map((s, idx) => (
+                      <button
+                        key={s.id}
+                        type="button"
+                        className={`the-point-thumb-btn ${activeScreenIdx === idx ? 'active' : ''}`}
+                        onClick={() => setActiveScreenIdx(idx)}
+                        aria-label={`Ver captura de ${s.tabLabel}`}
+                        title={s.tabLabel}
+                      >
+                        <img src={s.image} alt={s.tabLabel} className="thumb-preview-img" />
+                        <span className="thumb-caption">{s.tabLabel}</span>
+                      </button>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -567,6 +576,23 @@ export default function CustomDevelopmentPage() {
 
       {/* 5. Official WhatsApp Floating Button */}
       <WhatsAppFloatingBtn />
+
+      {/* 6. Fullscreen Zoom Lightbox Modal */}
+      {zoomedImg && (
+        <div className="screenshot-lightbox-overlay" onClick={() => setZoomedImg(null)}>
+          <div className="screenshot-lightbox-content" onClick={(e) => e.stopPropagation()}>
+            <button 
+              type="button" 
+              className="btn-close-lightbox"
+              onClick={() => setZoomedImg(null)}
+              aria-label="Cerrar imagen"
+            >
+              <X size={20} />
+            </button>
+            <img src={zoomedImg} alt="Captura ampliada en alta resolución" className="lightbox-full-img" />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

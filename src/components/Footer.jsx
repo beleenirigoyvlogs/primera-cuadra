@@ -102,7 +102,7 @@ export default function Footer({ niche, onSelectNiche, onOpenAdmin }) {
             </p>
 
             <p className="footer-brand-desc">
-              Creemos páginas web y conectamos Google y WhatsApp para que tu negocio tenga una presencia digital profesional.
+              Creo páginas web y conecto Google y WhatsApp para que tu negocio tenga una presencia digital profesional.
             </p>
 
             <div className="footer-brand-cta-wrap">

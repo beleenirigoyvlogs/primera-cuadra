@@ -215,7 +215,7 @@ export const PACKS = [
     formattedPrice: '$250.000',
     initialPayment: '$125.000',
     finalPayment: '$125.000',
-    deliveryTime: 'Entrega estimada en 4 días hábiles desde que recibimos tu material',
+    deliveryTime: 'Entrega estimada en 4 días hábiles desde que recibo tu material',
     deliveryHours: '4 días',
     isFeatured: true,
     description: 'El servicio integral para tener tu presencia web completa: Tu propia Página Web mobile-first con dominio a tu nombre + Ficha optimizada para búsquedas de tu zona en Google Maps + WhatsApp Business configurado.',
@@ -228,7 +228,7 @@ export const PACKS = [
       { text: 'Servicios, tarifas y publicaciones iniciales cargadas en Google', highlight: false },
       { text: 'WhatsApp Business configurado con catálogo oficial de servicios y precios', highlight: true },
       { text: 'Botón directo en la web y en WhatsApp para recibir consultas al instante', highlight: true },
-      { text: 'Entrega estimada en 4 días hábiles desde que recibimos tu material', highlight: true },
+      { text: 'Entrega estimada en 4 días hábiles desde que recibo tu material', highlight: true },
       { text: '100% de tu propiedad (sin alquileres forzados; renovación anual transparente)', highlight: true }
     ],
     ctaText: 'Quiero mi Página Web + Google + WhatsApp ($250.000)',
@@ -245,7 +245,7 @@ export const PACKS = [
     formattedPrice: '$120.000',
     initialPayment: '$60.000',
     finalPayment: '$60.000',
-    deliveryTime: 'Entrega estimada en 48 horas desde que recibimos tu material',
+    deliveryTime: 'Entrega estimada en 48 horas desde que recibo tu material',
     deliveryHours: '48hs',
     isFeatured: false,
     description: 'Ajustamos y dejamos impecable tu Ficha de Google Maps y configuramos tu WhatsApp Business con lista de servicios para empezar a recibir consultas en 48 horas.',
@@ -256,7 +256,7 @@ export const PACKS = [
       { text: 'Novedades publicadas por vos optimizadas para SEO de cercanía', highlight: false },
       { text: 'WhatsApp Business con la lista de servicios y catálogo cargado', highlight: true },
       { text: 'Botón directo configurado para consultar o reservar lugar', highlight: false },
-      { text: 'Entrega estimada en 48 horas desde que recibimos tu material', highlight: true },
+      { text: 'Entrega estimada en 48 horas desde que recibo tu material', highlight: true },
       { text: 'Página web propia con dominio', included: false }
     ],
     ctaText: 'Quiero el Pack Express ($120.000)',
@@ -273,7 +273,7 @@ export const PACKS = [
     formattedPrice: '$150.000',
     initialPayment: '$75.000',
     finalPayment: '$75.000',
-    deliveryTime: 'Entrega estimada en 4 días hábiles desde que recibimos tu material',
+    deliveryTime: 'Entrega estimada en 4 días hábiles desde que recibo tu material',
     deliveryHours: '4 días',
     isFeatured: false,
     description: 'Página web moderna mobile-first diseñada para tu rubro, con dominio registrado 100% a tu nombre (.com o .com.ar incluido), lista de servicios, tarifas y botón directo de WhatsApp.',
@@ -285,7 +285,7 @@ export const PACKS = [
       { text: 'Galería de fotos de tus trabajos, local o productos', highlight: false },
       { text: 'Velocidad de carga ultra rápida optimizada para celulares', highlight: false },
       { text: 'Botón flotante y directo en la web para consultas a tu WhatsApp', highlight: true },
-      { text: 'Entrega estimada en 4 días hábiles desde que recibimos tu material', highlight: true },
+      { text: 'Entrega estimada en 4 días hábiles desde que recibo tu material', highlight: true },
       { text: '100% de tu propiedad (sin alquileres forzados)', highlight: true },
       { text: 'Ficha de Google Maps optimizada', included: false },
       { text: 'Configuración de WhatsApp Business con catálogo', included: false }
@@ -330,7 +330,7 @@ export const AGENCY_COMPARISON = [
   {
     aspect: 'Tiempo de Entrega',
     traditional: 'Entre 45 y 90 días con demoras eternas',
-    primeraCuadra: 'Entrega estimada en 4 días hábiles (Pack Completo y Solo Web) o 48hs (Express) desde que recibimos tu material'
+    primeraCuadra: 'Entrega estimada en 4 días hábiles (Pack Completo y Solo Web) o 48hs (Express) desde que recibo tu material'
   },
   {
     aspect: 'Propiedad del Dominio y Web',
@@ -356,8 +356,8 @@ export const AGENCY_COMPARISON = [
 
 export const FAQS = [
   {
-    q: '¿Para qué rubros hacen páginas web?',
-    a: '¡Trabajamos con cualquier rubro comercial o profesional! Comercios locales, talleres mecánicos, peluquerías, barberías, estudios profesionales, consultorios médicos, odontología, ferreterías, gastronomía, estética y emprendimientos. La estructura y los textos se adaptan 100% a lo que ofrecés.'
+    q: '¿Para qué rubros hacés páginas web?',
+    a: '¡Trabajo con cualquier rubro comercial o profesional! Comercios locales, talleres mecánicos, peluquerías, barberías, estudios profesionales, consultorios médicos, odontología, ferreterías, gastronomía, estética y emprendimientos. La estructura y los textos se adaptan 100% a lo que ofrecés.'
   },
   {
     q: '¿Por qué el servicio se llama "Primera Cuadra"?',
@@ -365,7 +365,7 @@ export const FAQS = [
   },
   {
     q: '¿Qué diferencia hay entre los planes de Primera Cuadra?',
-    a: 'Ofrecemos 3 soluciones transparentes: 1) Pack Completo ($250.000): Tu Página Web con dominio propio + Ficha de Google optimizada para búsquedas de tu zona + WhatsApp Business en 4 días hábiles. 2) Pack Solo Web ($150.000): Tu web con dominio propio a tu nombre. 3) Pack Express ($120.000): Ficha de Google y WhatsApp Business en 48 horas sin página web. Además realizamos desarrollos a medida (aplicaciones móviles y sistemas POS) para proyectos específicos.'
+    a: 'Ofrezco 3 soluciones transparentes: 1) Pack Completo ($250.000): Tu Página Web con dominio propio + Ficha de Google optimizada para búsquedas de tu zona + WhatsApp Business en 4 días hábiles. 2) Pack Solo Web ($150.000): Tu web con dominio propio a tu nombre. 3) Pack Express ($120.000): Ficha de Google y WhatsApp Business en 48 horas sin página web. Además realizo desarrollos a medida (aplicaciones móviles y sistemas POS) para proyectos específicos.'
   },
   {
     q: '¿El dominio y la web son míos?',
@@ -373,11 +373,11 @@ export const FAQS = [
   },
   {
     q: '¿Qué pasa después del primer año?',
-    a: 'Tu página web y tu dominio son 100% de tu propiedad. Durante el primer año el dominio y el hosting están incluidos. A partir del segundo año, solo abonás la renovación anual de dominio y hosting para mantener tu web online (son valores que se actualizan año a año; para el año 2026 el costo de renovación anual es de $8.500). No hay contratos de permanencia ni costos ocultos. Y si querés que nos ocupemos de hacer cambios o actualizaciones mensuales, podés contratar nuestro servicio de mantenimiento mensual opcional por $50.000/mes, completamente optativo.'
+    a: 'Tu página web y tu dominio son 100% de tu propiedad. Durante el primer año el dominio y el hosting están incluidos. A partir del segundo año, solo abonás la renovación anual de dominio y hosting para mantener tu web online (el valor de la renovación anual se informa al momento de contratar). No hay contratos de permanencia ni costos ocultos. Y si querés que me ocupe de hacer cambios o actualizaciones mensuales, podés contratar mi servicio de mantenimiento mensual opcional por $50.000/mes, completamente optativo.'
   },
   {
-    q: '¿Qué necesitan de mí para comenzar?',
-    a: 'Cero complicaciones técnicas para vos. Te enviamos un cuestionario express de 4 preguntas por WhatsApp para que nos pases: las fotos que tengas de tu local o trabajos, tu lista de servicios/productos con tarifas y tus datos de contacto. Nosotros nos ocupamos de la redacción comercial, el diseño y la configuración.'
+    q: '¿Qué necesitás de mí para comenzar?',
+    a: 'Cero complicaciones técnicas para vos. Te mando un cuestionario express de 4 preguntas por WhatsApp para que me pases: las fotos que tengas de tu local o trabajos, tu lista de servicios/productos con tarifas y tus datos de contacto. Yo me ocupo de la redacción comercial, el diseño y la configuración.'
   },
   {
     q: '¿Cuáles son los medios y condiciones de pago?',

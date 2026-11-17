@@ -90,7 +90,7 @@ export default function StreetComparison({ niche }) {
                 <tr>
                   <th>Aspecto clave</th>
                   <th className="th-trad">Agencia Web Tradicional</th>
-                  <th className="th-primera">Primera Cuadra (Nuestra Propuesta)</th>
+                  <th className="th-primera">Primera Cuadra (Mi Propuesta)</th>
                 </tr>
               </thead>
               <tbody>

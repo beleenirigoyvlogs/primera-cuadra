@@ -125,7 +125,7 @@ export default function PricingPacks({ niche }) {
               </li>
               <li className="plan-feature-item">
                 <Check size={18} className="feature-check-icon" />
-                <span>Entrega estimada en 48 horas desde que recibimos tu material</span>
+                <span>Entrega estimada en 48 horas desde que recibo tu material</span>
               </li>
               <li className="plan-feature-item excluded">
                 <X size={18} className="feature-x-icon" />
@@ -191,7 +191,7 @@ export default function PricingPacks({ niche }) {
               </li>
               <li className="plan-feature-item">
                 <Check size={18} className="feature-check-icon" />
-                <span>Entrega estimada en 4 días hábiles desde que recibimos tu material</span>
+                <span>Entrega estimada en 4 días hábiles desde que recibo tu material</span>
               </li>
               <li className="plan-feature-item">
                 <Check size={18} className="feature-check-icon" />

@@ -197,7 +197,7 @@ export default function CategoryCardsGrid({ currentNiche, onSelectNiche }) {
             <div className="guarantee-kicker">PROMESA 100% CUBIERTA PARA CUALQUIER ACTIVIDAD</div>
             <h4 className="guarantee-title">¿Tu rubro o comercio no figura en estos ejemplos?</h4>
             <p className="guarantee-desc">
-              Estos 6 son solo casos de muestra. <strong>Creamos páginas web y posicionamiento en Google Maps y WhatsApp para absolutamente cualquier tipo de negocio, oficio o servicio:</strong> veterinarias, inmobiliarias, ferreterías, gimnasios, colegios, contadores, concesionarias, construcción y más. Si ofrecés un producto o servicio, lo adaptamos a medida.
+              Estos 6 son solo casos de muestra. <strong>Creo páginas web y posicionamiento en Google Maps y WhatsApp para absolutamente cualquier tipo de negocio, oficio o servicio:</strong> veterinarias, inmobiliarias, ferreterías, gimnasios, colegios, contadores, concesionarias, construcción y más. Si ofrecés un producto o servicio, lo adapto a medida.
             </p>
           </div>
           <div className="guarantee-action">

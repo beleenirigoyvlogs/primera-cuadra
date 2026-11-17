@@ -29,7 +29,7 @@ export default function MobileAppsSection() {
     },
     {
       title: 'Apps de cualquier tipo, idea o temática',
-      desc: 'Creamos desde herramientas de utilidad y startups hasta apps de reservas, comunidades, gestión o entretenimiento.',
+      desc: 'Desarrollo desde herramientas de utilidad y startups hasta apps de reservas, comunidades, gestión o entretenimiento.',
       icon: Rocket,
       tag: 'Cualquier Rubro'
     },
@@ -67,12 +67,12 @@ export default function MobileAppsSection() {
           </div>
 
           <h2 className="section-title">
-            Desarrollamos la app que{' '}
+            Desarrollo la app que{' '}
             <span className="highlight-purple">tenés en mente</span>
           </h2>
 
           <p className="section-subtitle">
-            Damos vida a cualquier idea con aplicaciones móviles a medida para Android y iOS. Desarrollamos apps para todo tipo de proyectos: startups, utilidades, herramientas digitales, plataformas de gestión, servicios, comunidades o nuevas experiencias interactivas.
+            Doy vida a cualquier idea con aplicaciones móviles a medida para Android y iOS. Desarrollo apps para todo tipo de proyectos: startups, utilidades, herramientas digitales, plataformas de gestión, servicios, comunidades o nuevas experiencias interactivas.
           </p>
         </div>
 

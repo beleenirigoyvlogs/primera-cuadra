@@ -1183,9 +1183,9 @@ export default function TripodMockup({ niche }) {
                   <div className="sim-modal-badge">
                     <Sparkles size={18} />
                   </div>
-                  <h3 id="sim-modal-title" className="sim-modal-title">Contanos cómo podemos ayudarte</h3>
+                  <h3 id="sim-modal-title" className="sim-modal-title">Contame cómo puedo ayudarte</h3>
                   <p className="sim-modal-subtitle">
-                    Te preparamos una propuesta adaptada a <strong>{brandName || 'tu negocio'}</strong> sin ningún compromiso.
+                    Te preparo una propuesta adaptada a <strong>{brandName || 'tu negocio'}</strong> sin ningún compromiso.
                   </p>
                 </div>
 
@@ -1298,7 +1298,7 @@ export default function TripodMockup({ niche }) {
                     )}
                   </button>
                   <span className="sim-modal-security-note">
-                    🔒 No compartimos tus datos con nadie. Respuesta rápida por WhatsApp.
+                    🔒 No comparto tus datos con nadie. Cero spam.
                   </span>
                 </div>
               </form>
@@ -1308,15 +1308,15 @@ export default function TripodMockup({ niche }) {
                 <div className="sim-success-icon-badge">
                   <CheckCircle2 size={46} color="#10b981" />
                 </div>
-                <h3 className="sim-success-title">¡Listo! Recibimos tu consulta.</h3>
+                <h3 className="sim-success-title">¡Listo! Recibí tu consulta.</h3>
                 <p className="sim-success-message">
-                  Vamos a revisar la información de tu negocio y te contactaremos para mostrarte las opciones disponibles.
+                  Voy a revisar la información de tu negocio y te contacto para mostrarte las opciones disponibles.
                 </p>
 
                 <div className="sim-success-divider"></div>
 
                 <p className="sim-success-alt-prompt">
-                  Si preferís resolver dudas al instante, podés escribirnos directo:
+                  Si preferís resolver dudas al instante, podés escribirme directo:
                 </p>
 
                 <a 

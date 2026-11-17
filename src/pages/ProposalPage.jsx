@@ -286,7 +286,7 @@ export default function ProposalPage({ slug }) {
                 <strong>Condición de pago:</strong> 50% al iniciar y 50% contra entrega conforme cuando la web esté terminada y aprobada por vos.
               </div>
               <div className="guarantee-line">
-                <strong>Tiempo de entrega:</strong> 4 días hábiles desde que recibimos las fotos y datos de tu negocio.
+                <strong>Tiempo de entrega:</strong> 4 días hábiles desde que recibo las fotos y datos de tu negocio.
               </div>
             </div>
 
