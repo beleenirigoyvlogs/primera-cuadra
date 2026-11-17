@@ -13917,49 +13917,80 @@ html.dark .the-point-card-box {
   border-color: rgba(255, 255, 255, 0.08) !important;
 }
 
-/* Tabs Bar */
+/* Tabs Bar (Capsule Segmented Control - Zero Overlap, No scrollbar clutter) */
 .the-point-tabs-bar {
   display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 10px 14px !important;
   border-bottom: 1px solid var(--border-light) !important;
-  background: rgba(0, 0, 0, 0.02) !important;
+  background: rgba(0, 0, 0, 0.03) !important;
   overflow-x: auto !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  box-sizing: border-box !important;
+}
+
+.the-point-tabs-bar::-webkit-scrollbar {
+  display: none !important;
+  height: 0 !important;
 }
 
 html.dark .the-point-tabs-bar {
-  background: rgba(0, 0, 0, 0.25) !important;
+  background: rgba(15, 13, 25, 0.6) !important;
   border-bottom-color: rgba(255, 255, 255, 0.08) !important;
 }
 
 .the-point-tab-btn {
-  flex: 1 !important;
-  min-width: 170px !important;
-  padding: 16px 14px !important;
-  background: transparent !important;
-  border: none !important;
-  border-bottom: 3px solid transparent !important;
-  font-size: 0.88rem !important;
-  font-weight: 700 !important;
+  flex: 0 0 auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 7px 14px !important;
+  border-radius: 20px !important;
+  background: rgba(0, 0, 0, 0.04) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
   color: var(--text-muted) !important;
   cursor: pointer !important;
   transition: all 0.2s ease !important;
   white-space: nowrap !important;
-  text-align: center !important;
+  line-height: 1.2 !important;
+  user-select: none !important;
 }
 
 .the-point-tab-btn:hover {
-  color: var(--brand-purple) !important;
+  color: var(--text-title) !important;
+  background: rgba(103, 61, 230, 0.08) !important;
+  border-color: rgba(103, 61, 230, 0.2) !important;
+}
+
+html.dark .the-point-tab-btn {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: #94a3b8 !important;
+}
+
+html.dark .the-point-tab-btn:hover {
+  color: #f8fafc !important;
+  background: rgba(167, 139, 250, 0.12) !important;
+  border-color: rgba(167, 139, 250, 0.3) !important;
 }
 
 .the-point-tab-btn.active {
-  color: var(--brand-purple) !important;
-  border-bottom-color: var(--brand-purple) !important;
-  background: var(--bg-card) !important;
+  color: #ffffff !important;
+  background: #673de6 !important;
+  border-color: #673de6 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 12px rgba(103, 61, 230, 0.35) !important;
 }
 
 html.dark .the-point-tab-btn.active {
-  color: #A78BFA !important;
-  border-bottom-color: #A78BFA !important;
-  background: #171622 !important;
+  color: #ffffff !important;
+  background: #7c3aed !important;
+  border-color: #8b5cf6 !important;
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.45) !important;
 }
 
 /* Split Body */

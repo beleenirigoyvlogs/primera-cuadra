@@ -51,7 +51,7 @@ export default function CustomDevelopmentPage() {
   const thePointScreens = [
     {
       id: 'pos',
-      tabLabel: 'Punto de Venta (POS)',
+      tabLabel: 'Punto de Venta',
       title: 'Punto de Venta Táctil & Facturación Rápida',
       subtitle: 'Botonera rápida optimizada para mostrador con artículos populares, cobro ágil y lector de código de barras (F3).',
       badge: 'Operaciones Diarias • POS',
@@ -77,7 +77,7 @@ export default function CustomDevelopmentPage() {
     },
     {
       id: 'stock',
-      tabLabel: 'Productos & Stock',
+      tabLabel: 'Stock & Precios',
       title: 'Catálogo de Productos & Control de Stock',
       subtitle: 'Inventario con código/SKU, costo, precio de venta, remarcación/margen % y alertas automáticas de reposición.',
       badge: 'Catálogo & Inventario',
@@ -90,7 +90,7 @@ export default function CustomDevelopmentPage() {
     },
     {
       id: 'caja',
-      tabLabel: 'Caja Diaria & Arqueo',
+      tabLabel: 'Caja Diaria',
       title: 'Control de Caja Diaria & Flujo de Dinero',
       subtitle: 'Apertura de turno, retiros de dinero, ingresos y arqueo de caja con historial de sesiones.',
       badge: 'Tesorería & Caja',
@@ -103,7 +103,7 @@ export default function CustomDevelopmentPage() {
     },
     {
       id: 'reportes',
-      tabLabel: 'Reportes & Rentabilidad',
+      tabLabel: 'Reportes',
       title: 'Reportes de Rendimiento & Rentabilidad Real',
       subtitle: 'Cálculos transparentes sin confundir facturación bruta con ganancia neta comercial.',
       badge: 'Auditoría Financiera',
@@ -116,7 +116,7 @@ export default function CustomDevelopmentPage() {
     },
     {
       id: 'auditoria',
-      tabLabel: 'Historial & Auditoría',
+      tabLabel: 'Auditoría',
       title: 'Historial & Auditoría Inmutable de Operaciones',
       subtitle: 'Registro cronológico inmutable de cada venta, arqueo, anulación, ajuste de stock y modificación de precios.',
       badge: 'Seguridad & Control',
@@ -129,7 +129,7 @@ export default function CustomDevelopmentPage() {
     },
     {
       id: 'backups',
-      tabLabel: 'Respaldos SQLite',
+      tabLabel: 'Respaldos',
       title: 'Base de Datos Local Persistente & Respaldos',
       subtitle: 'Operación 100% independiente de internet con protección de datos y respaldos en un clic.',
       badge: 'Infraestructura & Protección',
@@ -306,7 +306,7 @@ export default function CustomDevelopmentPage() {
             {/* Showcase Main Layout */}
             <div className="the-point-card-box reveal">
               {/* Top Selector Tabs */}
-              <div className="the-point-tabs-bar" role="tablist">
+              <div className="the-point-tabs-bar" role="tablist" aria-label="Módulos del sistema The Point">
                 {thePointScreens.map((screen, sIdx) => (
                   <button
                     key={screen.id}
@@ -316,7 +316,7 @@ export default function CustomDevelopmentPage() {
                     className={`the-point-tab-btn ${activeScreenIdx === sIdx ? 'active' : ''}`}
                     onClick={() => setActiveScreenIdx(sIdx)}
                   >
-                    <span>{sIdx + 1}. {screen.tabLabel}</span>
+                    <span>{screen.tabLabel}</span>
                   </button>
                 ))}
               </div>
