@@ -5,7 +5,7 @@ import TripodMockup from '../components/TripodMockup';
 export default function SimulatorPage() {
   const whatsappNumber = '5491128779641';
   const whatsappMsg = encodeURIComponent(
-    '¡Hola Primera Cuadra! Estuve probando el simulador de presencia digital en su página y me gustaría consultar por el desarrollo de mi web y Google Maps. ¿Podemos coordinar?'
+    '¡Hola Primera Cuadra! Estuve probando el simulador de diseño web en su página y me gustaría consultar por el desarrollo de mi web y Google Maps. ¿Podemos coordinar?'
   );
 
   useEffect(() => {
@@ -73,7 +73,7 @@ export default function SimulatorPage() {
               <span>HERRAMIENTA INTERACTIVA INDEPENDIENTE</span>
             </div>
             <h1 className="sim-hero-title">
-              Simulador de <span className="highlight-purple">Presencia Digital</span>
+              Simulador de <span className="highlight-purple">Diseño Web</span>
             </h1>
             <p className="sim-hero-subtitle">
               Escribí el nombre y rubro de tu negocio a continuación. Podés previsualizar en tiempo real tu <strong>Página Web mobile-first</strong>, tu <strong>Ficha de Google Maps</strong> y tu <strong>WhatsApp Business</strong> antes de contratar.
@@ -108,7 +108,7 @@ export default function SimulatorPage() {
           <div className="sim-bottom-cta-card">
             <div className="sim-bottom-cta-info">
               <span className="sim-bottom-badge">¿TE GUSTÓ LO QUE VISTE?</span>
-              <h2 className="sim-bottom-title">Hacé realidad la presencia digital de tu negocio</h2>
+              <h2 className="sim-bottom-title">Hacé realidad la página web de tu negocio</h2>
               <p className="sim-bottom-desc">
                 Desarrollo tu web profesional, configuro tu Ficha optimizada para búsquedas de tu zona en Google Maps y tu catálogo de WhatsApp oficial llave en mano. Sin alquileres mensuales forzados: la web y el dominio son 100% de tu propiedad.
               </p>
@@ -121,7 +121,7 @@ export default function SimulatorPage() {
                 className="btn-hostinger-primary btn-sim-bottom-main"
               >
                 <MessageSquare size={18} />
-                <span>Quiero mi presencia digital</span>
+                <span>Quiero mi página web</span>
                 <ArrowRight size={18} />
               </a>
               <a href="/" className="btn-sim-bottom-back">
@@ -136,7 +136,7 @@ export default function SimulatorPage() {
       {/* Dedicated Standalone Footer */}
       <footer className="sim-standalone-footer">
         <div className="container sim-footer-inner">
-          <p>© {new Date().getFullYear()} Primera Cuadra. Presencia digital profesional para comercios y desarrollo de apps.</p>
+          <p>© {new Date().getFullYear()} Primera Cuadra. Diseño web profesional para comercios y desarrollo de apps.</p>
           <div className="sim-footer-links">
             <a href="/">Inicio</a>
             <a href="/#servicios">Servicios</a>

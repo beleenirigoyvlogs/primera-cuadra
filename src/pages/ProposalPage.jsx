@@ -130,7 +130,7 @@ export default function ProposalPage({ slug }) {
               <span>PREPARADA POR BELÉN IRIGOY • PRIMERA CUADRA</span>
             </div>
             <h2 className="proposal-main-heading">
-              Cómo se vería la presencia digital de <span className="highlight-purple">{proposal.businessName}</span>
+              Cómo se vería la página web de <span className="highlight-purple">{proposal.businessName}</span>
             </h2>
             <p className="proposal-summary-text">
               {proposal.description}

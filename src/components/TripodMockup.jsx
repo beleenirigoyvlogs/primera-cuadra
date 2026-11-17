@@ -325,8 +325,8 @@ export default function TripodMockup({ niche }) {
 
   const getWhatsappUrl = (customMessage) => {
     const defaultText = brandName.trim()
-      ? `¡Hola Belén! Estuve viendo el simulador de presencia digital para mi negocio "${brandName}" (${rubroTag} en ${city}). Me gustaría recibir una propuesta comercial y ver cómo empezamos.`
-      : '¡Hola Primera Cuadra! Estuve probando el simulador de presencia digital y me gustaría recibir una propuesta comercial para mi negocio.';
+      ? `¡Hola Belén! Estuve viendo el simulador de diseño web para mi negocio "${brandName}" (${rubroTag} en ${city}). Me gustaría recibir una propuesta comercial y ver cómo empezamos.`
+      : '¡Hola Primera Cuadra! Estuve probando el simulador de diseño web y me gustaría recibir una propuesta comercial para mi negocio.';
     const text = customMessage || defaultText;
     return `https://wa.me/${defaultWhatsappNumber}?text=${encodeURIComponent(text)}`;
   };
@@ -1011,7 +1011,7 @@ export default function TripodMockup({ niche }) {
         <div className="sim-flow-explanation-card">
           <div className="sim-flow-header">
             <Sparkles size={16} className="text-purple" />
-            <h4 className="sim-flow-title">Así podría funcionar tu presencia digital</h4>
+            <h4 className="sim-flow-title">Así podría funcionar la web de tu negocio</h4>
           </div>
 
           <div className="sim-flow-steps-row">

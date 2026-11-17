@@ -121,3 +121,4 @@ print(f"{'Módulo':<12} | {'Versión':<10} | {'Formato':<6} | {'Dimensiones':<12
 print("-" * 75)
 for r in results:
     print(f"{r['screen']:<12} | {r['variant']:<10} | {r['format']:<6} | {r['dims']:<12} | {r['size_kb']:<10.1f} | {r['file']}")
+

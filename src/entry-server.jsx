@@ -5,12 +5,13 @@ import NotFoundPage from './pages/NotFoundPage';
 import CustomDevelopmentPage from './pages/CustomDevelopmentPage';
 import SimulatorPage from './pages/SimulatorPage';
 import BusinessDemoSitePage from './pages/BusinessDemoSitePage';
+import LocalLandingPage, { LOCAL_ZONES } from './pages/LocalLandingPage';
 
 export function render(url) {
   let appHtml = '';
   let meta = {
-    title: 'Páginas web, Google Maps y WhatsApp para comercios | Primera Cuadra',
-    description: 'Páginas web profesionales, Google Maps y WhatsApp Business para comercios locales. Que te encuentren, te conozcan y te contacten.',
+    title: 'Diseño de páginas web en Tigre, Zona Norte y CABA | Primera Cuadra',
+    description: 'Diseño de páginas web para negocios, profesionales y empresas en Tigre, Zona Norte y CABA. Web propia, Google Maps y WhatsApp. Entrega en 4 días.',
     canonical: 'https://primeracuadra.com.ar/',
     ogImage: 'https://primeracuadra.com.ar/og-image.png'
   };
@@ -18,7 +19,22 @@ export function render(url) {
   const cleanUrl = url.split('?')[0].split('#')[0];
 
   if (cleanUrl === '/' || cleanUrl === '/index.html' || cleanUrl === '') {
-    appHtml = renderToString(<App />);
+    appHtml = renderToString(<App initialPath="/" />);
+  } else if (cleanUrl === '/diseno-web-tigre') {
+    appHtml = renderToString(<LocalLandingPage zoneKey="tigre" />);
+    meta.title = LOCAL_ZONES.tigre.title;
+    meta.description = LOCAL_ZONES.tigre.description;
+    meta.canonical = 'https://primeracuadra.com.ar/diseno-web-tigre';
+  } else if (cleanUrl === '/diseno-web-zona-norte') {
+    appHtml = renderToString(<LocalLandingPage zoneKey="zona-norte" />);
+    meta.title = LOCAL_ZONES['zona-norte'].title;
+    meta.description = LOCAL_ZONES['zona-norte'].description;
+    meta.canonical = 'https://primeracuadra.com.ar/diseno-web-zona-norte';
+  } else if (cleanUrl === '/diseno-web-caba') {
+    appHtml = renderToString(<LocalLandingPage zoneKey="caba" />);
+    meta.title = LOCAL_ZONES.caba.title;
+    meta.description = LOCAL_ZONES.caba.description;
+    meta.canonical = 'https://primeracuadra.com.ar/diseno-web-caba';
   } else if (cleanUrl.startsWith('/desarrollo-a-medida')) {
     appHtml = renderToString(<CustomDevelopmentPage />);
     meta.title = 'Desarrollo a medida: apps y sistemas de venta | Primera Cuadra';
@@ -26,7 +42,7 @@ export function render(url) {
     meta.canonical = 'https://primeracuadra.com.ar/desarrollo-a-medida';
   } else if (cleanUrl.startsWith('/simulador')) {
     appHtml = renderToString(<SimulatorPage />);
-    meta.title = 'Simulador de Presencia Digital | Primera Cuadra';
+    meta.title = 'Simulador de Diseño Web | Primera Cuadra';
     meta.description = 'Probá en tiempo real cómo se vería tu negocio en una página web mobile-first, ficha de Google Maps y WhatsApp Business.';
     meta.canonical = 'https://primeracuadra.com.ar/simulador';
   } else if (cleanUrl.startsWith('/ejemplos/parrilla')) {
@@ -62,4 +78,3 @@ export function render(url) {
 
   return { html: appHtml, meta };
 }
-

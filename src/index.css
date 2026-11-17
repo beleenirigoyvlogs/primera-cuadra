@@ -1,21 +1,48 @@
+@import './fonts.css';
+
 /* ==========================================================================
-   PRIMERA CUADRA - WEB DESIGN & DIGITAL PRESENCE
-   Hostinger SaaS Aesthetic Master Design System (Complete & Comprehensive)
+   PRIMERA CUADRA - REDISEÑO V3
+   Diseño de páginas web en Tigre, Zona Norte y CABA
    ========================================================================== */
 
 :root {
-  /* Premium Light Mode Background & Base */
-  --bg-base: #F8F7FC;
-  --bg-page: #F8F7FC;
-  --bg-white: #ffffff;
-  --bg-card: #ffffff;
-  --bg-card-subtle: #f9fafb;
-  --bg-alt: rgba(248, 247, 252, 0.75);
-  --bg-alt-subtle: rgba(248, 247, 252, 0.5);
-  --bg-dark-card: #140d2b;
-  --bg-dark-card-elevated: #1e133d;
+  /* V3 Master Palette - Light Mode */
+  --pc-light: #EFEDE8;
+  --pc-alt: #E5E2DB;
+  --pc-card: #F6F5F1;
+  --pc-nav: #F6F5F1;
+  --pc-nav-ink: #1B1B1B;
+  --pc-nav-line: #DAD6CD;
+  --pc-brand-accent: #5B33D6;
+  --pc-ink: #1B1B1B;
+  --pc-muted: #55524C;
+  --pc-number: #1B1B1B;
+  --pc-line: #D4CFC4;
+  --pc-shadow: rgba(0, 0, 0, 0.08);
 
-  /* Hostinger Purples */
+  /* Constant Brand Purples & Dark Sections */
+  --pc-violet: #673DE6;
+  --pc-violet-light: #A48BFF;
+  --pc-dark-section: #18161E;
+  --pc-dark-sub: #121117;
+  --pc-dark-ink: #F4F2EC;
+
+  /* Typography: Oswald (Headings/Tags/Numbers) & Poppins (Body text) */
+  --font-heading: 'Oswald', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Premium Base mappings for sub-pages */
+  --bg-base: #EFEDE8;
+  --bg-page: #EFEDE8;
+  --bg-white: #F6F5F1;
+  --bg-card: #F6F5F1;
+  --bg-card-subtle: #E5E2DB;
+  --bg-alt: #E5E2DB;
+  --bg-alt-subtle: #EFEDE8;
+  --bg-dark-card: #18161E;
+  --bg-dark-card-elevated: #26232E;
+
+  /* Purples */
   --brand-purple: #673de6;
   --brand-purple-hover: #5025d1;
   --brand-purple-light: #ece8fd;
@@ -23,44 +50,40 @@
   --brand-purple-soft: #f5f3ff;
   --purple-accent: #673de6;
 
-  /* Neutrals & Text */
-  --text-dark: #18181b;
-  --text-title: #201e27;
-  --text-body: #4b5563;
-  --text-muted: #6b7280;
-  --text-light: #9ca3af;
-  --text-white: #ffffff;
+  /* Neutrals & Text (WCAG AA Compliant) */
+  --text-dark: #1B1B1B;
+  --text-title: #1B1B1B;
+  --text-body: #1B1B1B;
+  --text-muted: #55524C;
+  --text-light: #55524C;
+  --text-white: #F4F2EC;
 
   /* Borders & Shadows */
-  --border-light: #e5e7eb;
-  --border-subtle: #f0f2f5;
-  --border-purple-focus: #c4b5fd;
-  --border-dark-card: rgba(255, 255, 255, 0.12);
+  --border-light: #D4CFC4;
+  --border-subtle: #DAD6CD;
+  --border-purple-focus: #A48BFF;
+  --border-dark-card: #34313C;
 
   /* Conversion Accents */
-  --green-success: #00b074;
-  --green-light: #e6f7f0;
-  --amber-warning: #f59e0b;
-  --amber-light: #fef3c7;
-  --rose-danger: #ef4444;
-  --rose-light: #fee2e2;
+  --green-success: #1E6B3A;
+  --green-light: #DCF5E3;
+  --amber-warning: #B45309;
+  --amber-light: #FEF3C7;
+  --rose-danger: #B91C1C;
+  --rose-light: #FEE2E2;
 
-  /* Typography */
-  --font-heading: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-
-  /* Radii */
+  /* Radii: 6px buttons, 8px cards */
   --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
+  --radius-md: 8px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
   --radius-full: 9999px;
 
   /* Elevation */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
-  --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
-  --shadow-hover: 0 16px 32px -4px rgba(103, 61, 230, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
-  --shadow-dropdown: 0 20px 45px -8px rgba(0, 0, 0, 0.12), 0 6px 16px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 12px 30px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 16px 36px rgba(103, 61, 230, 0.12);
+  --shadow-dropdown: 0 20px 45px rgba(0, 0, 0, 0.12);
   --shadow-featured: 0 20px 40px -10px rgba(103, 61, 230, 0.35);
 }
 
@@ -68,46 +91,199 @@
    DARK MODE SYSTEM
    ========================================================================== */
 html.dark {
-  /* Fondo principal: #0F0E17 */
-  --bg-base: #0F0E17;
-  --bg-page: #0F0E17;
-  /* Cards y superficies: #1A1825 */
-  --bg-white: #1A1825;
-  --bg-card: #1A1825;
-  --bg-card-subtle: #221f32;
-  --bg-alt: #161422;
-  --bg-alt-subtle: #14121f;
-  --bg-dark-card: #141224;
-  --bg-dark-card-elevated: #1e1a33;
+  /* V3 Master Palette - Dark Mode */
+  --pc-light: #1E1C24;
+  --pc-alt: #19171F;
+  --pc-card: #26232E;
+  --pc-nav: #121117;
+  --pc-nav-ink: #F4F2EC;
+  --pc-nav-line: #2E2B36;
+  --pc-brand-accent: #A48BFF;
+  --pc-ink: #F1EEE7;
+  --pc-muted: #B3AFA6;
+  --pc-number: #F1EEE7;
+  --pc-line: #34313C;
+  --pc-shadow: rgba(0, 0, 0, 0.35);
 
-  /* Acento violeta: #A78BFA */
-  --brand-purple: #A78BFA;
+  /* Sub-pages dark mappings */
+  --bg-base: #1E1C24;
+  --bg-page: #1E1C24;
+  --bg-white: #26232E;
+  --bg-card: #26232E;
+  --bg-card-subtle: #19171F;
+  --bg-alt: #19171F;
+  --bg-alt-subtle: #18161E;
+  --bg-dark-card: #18161E;
+  --bg-dark-card-elevated: #26232E;
+
+  /* Acento violeta: #A48BFF */
+  --brand-purple: #A48BFF;
   --brand-purple-hover: #9065f6;
-  --brand-purple-light: rgba(167, 139, 250, 0.15);
-  --brand-purple-glow: rgba(167, 139, 250, 0.25);
-  --brand-purple-soft: rgba(167, 139, 250, 0.1);
-  --purple-accent: #A78BFA;
+  --brand-purple-light: rgba(164, 139, 255, 0.15);
+  --brand-purple-glow: rgba(164, 139, 255, 0.25);
+  --brand-purple-soft: rgba(164, 139, 255, 0.1);
+  --purple-accent: #A48BFF;
 
-  /* Texto principal: #F1F0F5, Texto secundario: #A1A0B0 */
-  --text-dark: #F1F0F5;
-  --text-title: #F1F0F5;
-  --text-body: #A1A0B0;
-  --text-muted: #8e8d9e;
-  --text-light: #6f6e80;
-  --text-white: #ffffff;
+  /* Text on dark (WCAG AA Compliant) */
+  --text-dark: #F1EEE7;
+  --text-title: #F1EEE7;
+  --text-body: #F1EEE7;
+  --text-muted: #B3AFA6;
+  --text-light: #B3AFA6;
+  --text-white: #FFFFFF;
 
-  /* Bordes: rgba(255, 255, 255, 0.08) */
-  --border-light: rgba(255, 255, 255, 0.08);
-  --border-subtle: rgba(255, 255, 255, 0.05);
-  --border-purple-focus: rgba(167, 139, 250, 0.4);
-  --border-dark-card: rgba(255, 255, 255, 0.12);
+  /* Bordes */
+  --border-light: #34313C;
+  --border-subtle: #2E2B36;
+  --border-purple-focus: #A48BFF;
+  --border-dark-card: #34313C;
 
   /* Shadows for dark mode */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35);
-  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.45);
-  --shadow-hover: 0 16px 32px rgba(0, 0, 0, 0.6), 0 0 25px rgba(167, 139, 250, 0.14);
+  --shadow-card: 0 12px 30px rgba(0, 0, 0, 0.35);
+  --shadow-hover: 0 16px 36px rgba(0, 0, 0, 0.6);
   --shadow-dropdown: 0 20px 45px rgba(0, 0, 0, 0.7);
-  --shadow-featured: 0 20px 45px -10px rgba(167, 139, 250, 0.35);
+  --shadow-featured: 0 20px 45px -10px rgba(164, 139, 255, 0.35);
+}
+
+/* ==========================================================================
+   V3 ANIMATION KEYFRAMES & UTILITIES
+   ========================================================================== */
+@keyframes pcFloat {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-16px) rotate(-1deg); }
+}
+
+@keyframes pcFloatB {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pcInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 768px) {
+  @keyframes pcInRight {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+@keyframes pcInLeft {
+  from { opacity: 0; transform: translateX(-60px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes pcUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes pcCaret {
+  50% { opacity: 0; }
+}
+
+.pc-float {
+  animation: pcFloat 6s ease-in-out infinite;
+}
+
+.pc-float-b {
+  animation: pcFloatB 5s ease-in-out infinite;
+}
+
+.pc-float-c {
+  animation: pcFloatB 6.5s ease-in-out infinite 0.8s;
+}
+
+.pc-caret {
+  display: inline-block;
+  width: 0.08em;
+  height: 0.9em;
+  margin-left: 0.06em;
+  background: currentColor;
+  vertical-align: -0.08em;
+  animation: pcCaret 1s steps(1) infinite;
+}
+
+.pc-in-right {
+  animation: pcInRight 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.pc-in-left {
+  animation: pcInLeft 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.pc-reveal-r.is-visible {
+  animation: pcInRight 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.pc-reveal-l.is-visible {
+  animation: pcInLeft 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.pc-reveal-u.is-visible {
+  animation: pcUp 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@supports (animation-timeline: view()) {
+  .pc-reveal-r {
+    animation: pcInRight linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 28%;
+  }
+  .pc-reveal-l {
+    animation: pcInLeft linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 28%;
+  }
+  .pc-reveal-u {
+    animation: pcUp linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 25%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 768px) {
+  .pc-desktop-nav {
+    display: none !important;
+  }
+  .pc-mobile-nav {
+    display: flex !important;
+  }
+  .pc-hero-phone-container {
+    min-height: 480px !important;
+  }
+  .pc-subcard-maps {
+    top: 20px !important;
+    left: 4px !important;
+    width: 165px !important;
+  }
+  .pc-subcard-wa {
+    bottom: 20px !important;
+    right: 4px !important;
+    width: 175px !important;
+  }
 }
 
 /* Global Reset & Base */
@@ -16463,11 +16639,12 @@ html.dark .demo-site-standalone-root.theme-light-mode .location-data-row p,
   position: sticky !important;
   top: 0 !important;
   z-index: 9999 !important;
-  background: #0f0d19 !important;
-  color: #ffffff !important;
-  border-bottom: 1.5px solid rgba(103, 61, 230, 0.45) !important;
-  padding: 9px 16px !important;
+  background: #18161E !important;
+  color: #F4F2EC !important;
+  border-bottom: 2px solid #673DE6 !important;
+  padding: 10px 16px !important;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+  font-family: 'Poppins', sans-serif !important;
 }
 
 .demo-strip-container {
@@ -16504,15 +16681,16 @@ html.dark .demo-site-standalone-root.theme-light-mode .location-data-row p,
   display: inline-flex !important;
   align-items: center !important;
   gap: 7px !important;
-  background: #673de6 !important;
-  color: #ffffff !important;
-  padding: 6px 14px !important;
-  border-radius: 30px !important;
-  font-size: 0.875rem!important;
-  font-weight: 700 !important;
+  background: #673DE6 !important;
+  color: #FFFFFF !important;
+  padding: 8px 16px !important;
+  border-radius: 6px !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  font-family: 'Poppins', sans-serif !important;
   text-decoration: none !important;
   transition: all 0.2s ease !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border: none !important;
   white-space: nowrap !important;
 }
 

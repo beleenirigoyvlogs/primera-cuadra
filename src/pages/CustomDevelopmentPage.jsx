@@ -302,7 +302,7 @@ export default function CustomDevelopmentPage() {
               </h1>
 
               <p className="custom-dev-main-subtitle">
-                Además de las páginas web y presencia digital para comercios, desarrollo <strong>aplicaciones móviles para Android y iOS</strong> y <strong>sistemas de punto de venta (POS) con control de stock</strong> adaptados a lo que realmente necesita tu negocio.
+                Además de las páginas web para comercios, desarrollo <strong>aplicaciones móviles para Android y iOS</strong> y <strong>sistemas de punto de venta (POS) con control de stock</strong> adaptados a lo que realmente necesita tu negocio.
               </p>
 
               {/* Badges / Chips in single line */}

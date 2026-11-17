@@ -1,38 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import TechnicalProofBadge from './components/TechnicalProofBadge';
-import BusinessSituationsSection from './components/BusinessSituationsSection';
-import ProcessSteps from './components/ProcessSteps';
-import ExampleDesignsSection from './components/ExampleDesignsSection';
-import ThePointCaseStudySection from './components/ThePointCaseStudySection';
-import WhoIsBehindSection from './components/WhoIsBehindSection';
-import EarlyAdoptersSection from './components/EarlyAdoptersSection';
-import PricingPacks from './components/PricingPacks';
-import FAQSection from './components/FAQSection';
-import ContactSection from './components/ContactSection';
-import Footer from './components/Footer';
-import WhatsAppFloatingBtn from './components/WhatsAppFloatingBtn';
-import AdminLeadsModal from './components/AdminLeadsModal';
+import NavbarV3 from './components/v3/NavbarV3';
+import HeroV3 from './components/v3/HeroV3';
+import StaggeredStripV3 from './components/v3/StaggeredStripV3';
+import GuaranteesBannerV3 from './components/v3/GuaranteesBannerV3';
+import ServicesV3 from './components/v3/ServicesV3';
+import PortfolioV3 from './components/v3/PortfolioV3';
+import StepsV3 from './components/v3/StepsV3';
+import ThePointV3 from './components/v3/ThePointV3';
+import EarlyAdoptersV3 from './components/v3/EarlyAdoptersV3';
+import PricingV3 from './components/v3/PricingV3';
+import AboutMeV3 from './components/v3/AboutMeV3';
+import FAQV3 from './components/v3/FAQV3';
+import FooterV3 from './components/v3/FooterV3';
+
 import SimulatorPage from './pages/SimulatorPage';
 import CustomDevelopmentPage from './pages/CustomDevelopmentPage';
 import BusinessDemoSitePage from './pages/BusinessDemoSitePage';
 import NotFoundPage from './pages/NotFoundPage';
-import { NICHES } from './data/nicheData';
-import { useScrollReveal } from './hooks/useScrollReveal';
-import { useMouseParallaxDots } from './hooks/useMouseParallaxDots';
-import { recordPageView } from './utils/visitorTracker';
-import { trackWhatsAppClick } from './utils/gtm';
-import { MessageCircle } from 'lucide-react';
+import LocalLandingPage from './pages/LocalLandingPage';
+import AdminLeadsModal from './components/AdminLeadsModal';
 
-export default function App() {
+import { useScrollReveal } from './hooks/useScrollReveal';
+import { recordPageView } from './utils/visitorTracker';
+
+export default function App({ initialPath = null }) {
   useScrollReveal();
-  useMouseParallaxDots();
-  const [currentNiche, setCurrentNiche] = useState('peluqueria');
   const [isAdminOpen, setIsAdminOpen] = useState(false);
-  const niche = NICHES[currentNiche] || NICHES.peluqueria;
 
   // Route resolvers
+  const getPath = () => {
+    if (initialPath) return initialPath;
+    if (typeof window === 'undefined') return '/';
+    return window.location.pathname.toLowerCase();
+  };
+
   const getExampleSlug = () => {
     if (typeof window === 'undefined') return null;
     const path = window.location.pathname.toLowerCase();
@@ -63,52 +64,28 @@ export default function App() {
     return null;
   };
 
-  const isSimulatorRoute = () => {
-    if (typeof window === 'undefined') return false;
-    const path = window.location.pathname.toLowerCase();
-    const hash = window.location.hash.toLowerCase();
-    return path === '/simulador' || path === '/simulador/' || path.startsWith('/simulador') || hash === '#simulador';
-  };
-
-  const isCustomDevRoute = () => {
-    if (typeof window === 'undefined') return false;
-    const path = window.location.pathname.toLowerCase();
-    const hash = window.location.hash.toLowerCase();
-    return path === '/desarrollo-a-medida' || path === '/desarrollo-a-medida/' || path.startsWith('/desarrollo-a-medida') || hash === '#desarrollo-a-medida';
-  };
-
-  const isHomeRoute = () => {
-    if (typeof window === 'undefined') return true;
-    const path = window.location.pathname.toLowerCase();
-    return path === '/' || path === '/index.html' || path === '' || path.startsWith('/#');
-  };
-
+  const [currentPath, setCurrentPath] = useState(getPath);
   const [exampleSlug, setExampleSlug] = useState(getExampleSlug);
   const [proposalSlug, setProposalSlug] = useState(getProposalSlug);
-  const [isSimulatorPage, setIsSimulatorPage] = useState(isSimulatorRoute);
-  const [isCustomDevPage, setIsCustomDevPage] = useState(isCustomDevRoute);
-  const [isHomePage, setIsHomePage] = useState(isHomeRoute);
 
-  // Track page visit on mount
   useEffect(() => {
     recordPageView();
   }, []);
 
-  // Shortcuts: Ctrl+Shift+A, Alt+A or #admin in URL; handle routing
   useEffect(() => {
     const handleRouteChange = () => {
+      setCurrentPath(window.location.pathname.toLowerCase());
       setExampleSlug(getExampleSlug());
       setProposalSlug(getProposalSlug());
-      setIsSimulatorPage(isSimulatorRoute());
-      setIsCustomDevPage(isCustomDevRoute());
-      setIsHomePage(isHomeRoute());
     };
+
     const handleKeyDown = (e) => {
       if ((e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') || (e.altKey && e.key.toLowerCase() === 'a')) {
         e.preventDefault();
-        setIsAdminOpen(prev => !prev);
+        setIsAdminOpen((prev) => !prev);
       }
     };
+
     const handleHash = () => {
       if (window.location.hash === '#admin') {
         setIsAdminOpen(true);
@@ -141,91 +118,62 @@ export default function App() {
     return <BusinessDemoSitePage slug={proposalSlug} isProposal={true} />;
   }
 
-  // 3. Dedicated Route: Full-Page Simulator
-  if (isSimulatorPage) {
+  // 3. Dedicated Route: Local SEO Landing Pages
+  if (currentPath === '/diseno-web-tigre' || currentPath === '/diseno-web-tigre/') {
+    return <LocalLandingPage zoneKey="tigre" />;
+  }
+  if (currentPath === '/diseno-web-zona-norte' || currentPath === '/diseno-web-zona-norte/') {
+    return <LocalLandingPage zoneKey="zona-norte" />;
+  }
+  if (currentPath === '/diseno-web-caba' || currentPath === '/diseno-web-caba/') {
+    return <LocalLandingPage zoneKey="caba" />;
+  }
+
+  // 4. Dedicated Route: Full-Page Simulator
+  if (currentPath.startsWith('/simulador')) {
     return <SimulatorPage />;
   }
 
-  // 4. Dedicated Route: Custom Development (Apps Móviles & Sistemas POS)
-  if (isCustomDevPage) {
+  // 5. Dedicated Route: Custom Development (Apps Móviles & Sistemas POS)
+  if (currentPath.startsWith('/desarrollo-a-medida')) {
     return <CustomDevelopmentPage />;
   }
 
-  // 5. Unknown Route: Not Found (404)
-  if (!isHomePage) {
+  // 6. Unknown Route: Not Found (404)
+  const isHome = currentPath === '/' || currentPath === '/index.html' || currentPath === '' || currentPath.startsWith('/#');
+  if (!isHome) {
     return <NotFoundPage />;
   }
 
-  const defaultWhatsappNumber = '5491128779641';
-  const stickyMobileMsg = encodeURIComponent(
-    '¡Hola Belén! Quiero consultar para mejorar la presencia digital de mi negocio en Primera Cuadra.'
-  );
-
   return (
-    <div className="app-root">
-      {/* Top Navigation */}
-      <Navbar />
-
+    <div 
+      className="primera-cuadra-v3-root" 
+      style={{ 
+        width: '100%', 
+        minHeight: '100vh', 
+        fontFamily: "'Poppins', system-ui, sans-serif",
+        background: 'var(--pc-light)',
+        color: 'var(--pc-ink)',
+        transition: 'background 0.3s ease, color 0.3s ease'
+      }}
+    >
+      <NavbarV3 />
       <main>
-        {/* 1. Hero with Urban Storefront, Signage & Integrated Live Simulator */}
-        <Hero />
-
-        {/* 2. Technical Proof Badge: Live metrics from Performance API */}
-        <TechnicalProofBadge />
-
-        {/* 3. ¿Tu negocio está en alguna de estas situaciones? */}
-        <BusinessSituationsSection />
-
-        {/* 4. ¿Cómo trabajamos? 3 simples pasos con ritmo editorial de 8px */}
-        <ProcessSteps />
-
-        {/* 5. Diseños de ejemplo (4 webs ficticias navegables en marco de celular) */}
-        <ExampleDesignsSection />
-
-        {/* 6. Programa de Primeros Clientes (Lanzamiento 5 cupos) */}
-        <EarlyAdoptersSection />
-
-        {/* 7. Precios Transparentes (3 planes consolidados) */}
-        <PricingPacks niche={niche} />
-
-        {/* 7. Caso de Estudio Real: The Point (POS & Stock en 5 fases) */}
-        <ThePointCaseStudySection />
-
-        {/* 8. Quién está detrás de Primera Cuadra (Belén Irigoy, Tigre) */}
-        <WhoIsBehindSection />
-
-        {/* 9. Preguntas frecuentes (7 vitales) */}
-        <FAQSection niche={niche} />
-
-        {/* 10. Sección unificada de Contacto (Formulario + WhatsApp directo) */}
-        <ContactSection />
+        <HeroV3 />
+        <StaggeredStripV3 />
+        <GuaranteesBannerV3 />
+        <ServicesV3 />
+        <PortfolioV3 />
+        <StepsV3 />
+        <ThePointV3 />
+        <EarlyAdoptersV3 />
+        <PricingV3 />
+        <AboutMeV3 />
+        <FAQV3 />
       </main>
+      <FooterV3 />
 
-      {/* Footer */}
-      <Footer 
-        niche={niche} 
-        onSelectNiche={setCurrentNiche} 
-        onOpenAdmin={() => setIsAdminOpen(true)}
-      />
-
-      {/* Persistent Floating WhatsApp Action Button (desktop) */}
-      <WhatsAppFloatingBtn niche={niche} />
-
-      {/* Mobile Sticky WhatsApp Action Bar (Clean and prominent on mobile screens) */}
-      <div className="mobile-sticky-wa-bar">
-        <a 
-          href={`https://wa.me/${defaultWhatsappNumber}?text=${stickyMobileMsg}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-mobile-sticky-wa"
-          onClick={() => trackWhatsAppClick('mobile_sticky_bar', 'Escribime_por_WhatsApp')}
-        >
-          <MessageCircle size={20} />
-          <span>Escribime por WhatsApp</span>
-        </a>
-      </div>
-
-      {/* Hidden Admin Leads Panel Modal */}
+      {/* Hidden Admin Modal accessible via Ctrl+Shift+A or #admin */}
       <AdminLeadsModal 
         isOpen={isAdminOpen} 
         onClose={() => setIsAdminOpen(false)} 

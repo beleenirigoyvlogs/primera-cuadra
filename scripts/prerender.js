@@ -26,6 +26,9 @@ async function prerender() {
 
   const routes = [
     { url: '/', file: 'dist/index.html' },
+    { url: '/diseno-web-tigre', file: 'dist/diseno-web-tigre/index.html' },
+    { url: '/diseno-web-zona-norte', file: 'dist/diseno-web-zona-norte/index.html' },
+    { url: '/diseno-web-caba', file: 'dist/diseno-web-caba/index.html' },
     { url: '/desarrollo-a-medida', file: 'dist/desarrollo-a-medida/index.html' },
     { url: '/simulador', file: 'dist/simulador/index.html' },
     { url: '/ejemplos/parrilla', file: 'dist/ejemplos/parrilla/index.html' },
@@ -93,4 +96,3 @@ async function prerender() {
 }
 
 prerender();
-
