@@ -16072,10 +16072,170 @@ html.dark .demo-business-title {
   flex-direction: column !important;
   box-sizing: border-box !important;
   scroll-behavior: smooth !important;
+  color: var(--site-text) !important;
+  background-color: var(--site-bg) !important;
 }
 
 .demo-site-standalone-root * {
   box-sizing: border-box !important;
+}
+
+/* Ensure global html.dark h1..h6, p, etc. NEVER override demo site colors */
+html.dark .demo-site-standalone-root h1:not(.business-hero-title),
+html.dark .demo-site-standalone-root h2,
+html.dark .demo-site-standalone-root h3,
+html.dark .demo-site-standalone-root h4,
+html.dark .demo-site-standalone-root h5,
+html.dark .demo-site-standalone-root h6,
+.demo-site-standalone-root h1:not(.business-hero-title),
+.demo-site-standalone-root h2,
+.demo-site-standalone-root h3,
+.demo-site-standalone-root h4,
+.demo-site-standalone-root h5,
+.demo-site-standalone-root h6,
+.demo-site-standalone-root .business-section-title,
+.demo-site-standalone-root .business-category-title,
+.demo-site-standalone-root .item-name,
+.demo-site-standalone-root .location-heading,
+.demo-site-standalone-root .proposal-title,
+.demo-site-standalone-root .footer-name,
+.demo-site-standalone-root .gallery-caption-text {
+  color: var(--site-text) !important;
+}
+
+html.dark .demo-site-standalone-root p:not(.business-hero-tagline):not(.business-hero-desc),
+.demo-site-standalone-root p:not(.business-hero-tagline):not(.business-hero-desc),
+.demo-site-standalone-root .business-section-subtitle,
+.demo-site-standalone-root .item-description,
+.demo-site-standalone-root .location-data-row p,
+.demo-site-standalone-root .proposal-summary,
+.demo-site-standalone-root .footer-desc,
+.demo-site-standalone-root .footer-links-side span,
+.demo-site-standalone-root .b-nav-link {
+  color: var(--site-text-muted) !important;
+}
+
+/* Specific Light Mode overrides for medical / dental / light demos */
+.demo-site-standalone-root.theme-light-mode {
+  background-color: var(--site-bg, #f8fafc) !important;
+  color: var(--site-text, #0f172a) !important;
+}
+
+.demo-site-standalone-root.theme-light-mode .business-nav-header {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+.demo-site-standalone-root.theme-light-mode .business-brand-name {
+  color: #0f172a !important;
+}
+
+.demo-site-standalone-root.theme-light-mode .b-nav-link {
+  color: #475569 !important;
+}
+
+.demo-site-standalone-root.theme-light-mode .b-nav-link:hover {
+  color: var(--site-primary, #0284c7) !important;
+}
+
+.demo-site-standalone-root.theme-light-mode .business-section-title {
+  color: #0f172a !important;
+}
+
+.demo-site-standalone-root.theme-light-mode .business-section-subtitle {
+  color: #475569 !important;
+}
+
+.demo-site-standalone-root.theme-light-mode .business-category-title {
+  color: #0f172a !important;
+  border-bottom-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.demo-site-standalone-root.theme-light-mode .business-item-card {
+  background-color: #ffffff !important;
+  border-color: rgba(2, 132, 199, 0.2) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04) !important;
+}
+
+.demo-site-standalone-root.theme-light-mode .item-name {
+  color: #0f172a !important;
+}
+
+.demo-site-standalone-root.theme-light-mode .item-description {
+  color: #475569 !important;
+}
+
+.demo-site-standalone-root.theme-light-mode .gallery-item-card {
+  background-color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04) !important;
+}
+
+.demo-site-standalone-root.theme-light-mode .gallery-caption-bar {
+  background-color: #ffffff !important;
+}
+
+.demo-site-standalone-root.theme-light-mode .gallery-caption-text {
+  color: #0f172a !important;
+}
+
+.demo-site-standalone-root.theme-light-mode .location-info-card {
+  background-color: #ffffff !important;
+  border-color: rgba(2, 132, 199, 0.2) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04) !important;
+}
+
+.demo-site-standalone-root.theme-light-mode .location-heading {
+  color: #0f172a !important;
+}
+
+.demo-site-standalone-root.theme-light-mode .location-data-row strong {
+  color: #64748b !important;
+}
+
+.demo-site-standalone-root.theme-light-mode .location-data-row p {
+  color: #0f172a !important;
+}
+
+.demo-site-standalone-root.theme-light-mode .business-proposal-card {
+  background-color: #ffffff !important;
+  border-color: var(--site-primary, #0284c7) !important;
+  box-shadow: 0 8px 24px rgba(2, 132, 199, 0.08) !important;
+}
+
+.demo-site-standalone-root.theme-light-mode .proposal-title {
+  color: #0f172a !important;
+}
+
+.demo-site-standalone-root.theme-light-mode .proposal-summary {
+  color: #475569 !important;
+}
+
+.demo-site-standalone-root.theme-light-mode .prop-benefit span {
+  color: #0f172a !important;
+}
+
+.demo-site-standalone-root.theme-light-mode .business-footer {
+  background-color: #ffffff !important;
+  border-top-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+.demo-site-standalone-root.theme-light-mode .footer-name {
+  color: #0f172a !important;
+}
+
+.demo-site-standalone-root.theme-light-mode .footer-desc,
+.demo-site-standalone-root.theme-light-mode .footer-links-side span {
+  color: #64748b !important;
+}
+
+.demo-site-standalone-root.theme-light-mode .business-sub-footer {
+  border-top-color: rgba(0, 0, 0, 0.06) !important;
+  color: #64748b !important;
+}
+
+.demo-site-standalone-root.theme-light-mode .business-gallery-section {
+  background: rgba(0, 0, 0, 0.03) !important;
 }
 
 .demo-top-guarantee-strip {

@@ -142,7 +142,7 @@ export default function BusinessDemoSitePage({ slug, isProposal = false }) {
       <header className="business-nav-header">
         <div className="business-nav-container">
           <a href="#inicio" className="business-brand-link">
-            <span className="business-brand-name" style={{ fontFamily: theme.fontHeading }}>
+            <span className="business-brand-name" style={{ fontFamily: theme.fontHeading, color: theme.text }}>
               {businessName}
             </span>
             <span className="business-brand-rubro" style={{ color: theme.primary }}>
@@ -151,9 +151,9 @@ export default function BusinessDemoSitePage({ slug, isProposal = false }) {
           </a>
 
           <nav className="business-desktop-nav">
-            <a href="#servicios" className="b-nav-link">Servicios y Precios</a>
-            <a href="#galeria" className="b-nav-link">Galería</a>
-            <a href="#ubicacion" className="b-nav-link">Horarios & Ubicación</a>
+            <a href="#servicios" className="b-nav-link" style={{ color: theme.textMuted }}>Servicios y Precios</a>
+            <a href="#galeria" className="b-nav-link" style={{ color: theme.textMuted }}>Galería</a>
+            <a href="#ubicacion" className="b-nav-link" style={{ color: theme.textMuted }}>Horarios & Ubicación</a>
           </nav>
 
           <div className="business-header-cta-wrap">
@@ -277,10 +277,10 @@ export default function BusinessDemoSitePage({ slug, isProposal = false }) {
               <span className="business-kicker" style={{ color: theme.primary }}>
                 {site.rubro === 'parrilla' ? 'NUESTRA CARTA & ESPECIALIDADES' : 'SERVICIOS & TARIFAS DE REFERENCIA'}
               </span>
-              <h2 className="business-section-title" style={{ fontFamily: theme.fontHeading }}>
+              <h2 className="business-section-title" style={{ fontFamily: theme.fontHeading, color: theme.text }}>
                 {site.rubro === 'parrilla' ? 'Platos y Cortes Recomendados' : 'Servicios Destacados'}
               </h2>
-              <p className="business-section-subtitle">
+              <p className="business-section-subtitle" style={{ color: theme.textMuted }}>
                 Precios claros y actualizados. Atención personalizada con reserva previa o por orden de llegada.
               </p>
             </div>
@@ -288,7 +288,7 @@ export default function BusinessDemoSitePage({ slug, isProposal = false }) {
             <div className="business-categories-stack">
               {site.menuCategories.map((cat, cIdx) => (
                 <div key={cIdx} className="business-category-block">
-                  <h3 className="business-category-title" style={{ color: theme.accent, borderBottomColor: theme.cardBorder }}>
+                  <h3 className="business-category-title" style={{ color: theme.isLight ? theme.text : theme.accent, borderBottomColor: theme.cardBorder }}>
                     {cat.category}
                   </h3>
 
@@ -303,12 +303,12 @@ export default function BusinessDemoSitePage({ slug, isProposal = false }) {
                         }}
                       >
                         <div className="item-card-top">
-                          <h4 className="item-name">{item.name}</h4>
+                          <h4 className="item-name" style={{ color: theme.text }}>{item.name}</h4>
                           <span className="item-price" style={{ color: theme.primary }}>
                             {item.price}
                           </span>
                         </div>
-                        <p className="item-description">
+                        <p className="item-description" style={{ color: theme.textMuted }}>
                           {item.desc}
                         </p>
                         <div className="item-card-action">
@@ -341,10 +341,10 @@ export default function BusinessDemoSitePage({ slug, isProposal = false }) {
               <span className="business-kicker" style={{ color: theme.primary }}>
                 GALERÍA VISUAL
               </span>
-              <h2 className="business-section-title" style={{ fontFamily: theme.fontHeading }}>
+              <h2 className="business-section-title" style={{ fontFamily: theme.fontHeading, color: theme.text }}>
                 {site.rubro === 'parrilla' ? 'Nuestro Espacio & Cocina' : 'Trabajos Realizados & Instalaciones'}
               </h2>
-              <p className="business-section-subtitle">
+              <p className="business-section-subtitle" style={{ color: theme.textMuted }}>
                 Conocé nuestras instalaciones, equipamiento y la calidad de nuestro trabajo cotidiano.
               </p>
             </div>
@@ -364,8 +364,8 @@ export default function BusinessDemoSitePage({ slug, isProposal = false }) {
                       className="gallery-img"
                     />
                   </div>
-                  <div className="gallery-caption-bar">
-                    <span className="gallery-caption-text">{photo.caption}</span>
+                  <div className="gallery-caption-bar" style={{ backgroundColor: theme.card }}>
+                    <span className="gallery-caption-text" style={{ color: theme.text }}>{photo.caption}</span>
                   </div>
                 </div>
               ))}
@@ -387,7 +387,7 @@ export default function BusinessDemoSitePage({ slug, isProposal = false }) {
                 <span className="business-kicker" style={{ color: theme.primary }}>
                   DÓNDE ESTAMOS
                 </span>
-                <h3 className="location-heading" style={{ fontFamily: theme.fontHeading }}>
+                <h3 className="location-heading" style={{ fontFamily: theme.fontHeading, color: theme.text }}>
                   Vení a visitarnos
                 </h3>
 
@@ -395,24 +395,24 @@ export default function BusinessDemoSitePage({ slug, isProposal = false }) {
                   <div className="location-data-row">
                     <MapPin size={20} className="loc-icon" style={{ color: theme.primary }} />
                     <div>
-                      <strong>Dirección:</strong>
-                      <p>{address}</p>
+                      <strong style={{ color: theme.textMuted }}>Dirección:</strong>
+                      <p style={{ color: theme.text }}>{address}</p>
                     </div>
                   </div>
 
                   <div className="location-data-row">
                     <Clock size={20} className="loc-icon" style={{ color: theme.primary }} />
                     <div>
-                      <strong>Horarios de atención:</strong>
-                      <p>{hours}</p>
+                      <strong style={{ color: theme.textMuted }}>Horarios de atención:</strong>
+                      <p style={{ color: theme.text }}>{hours}</p>
                     </div>
                   </div>
 
                   <div className="location-data-row">
                     <Phone size={20} className="loc-icon" style={{ color: theme.primary }} />
                     <div>
-                      <strong>Teléfono / WhatsApp:</strong>
-                      <p>{phone}</p>
+                      <strong style={{ color: theme.textMuted }}>Teléfono / WhatsApp:</strong>
+                      <p style={{ color: theme.text }}>{phone}</p>
                     </div>
                   </div>
                 </div>
@@ -465,29 +465,29 @@ export default function BusinessDemoSitePage({ slug, isProposal = false }) {
                   <ShieldCheck size={16} style={{ color: theme.primary }} />
                   <span>PLAN RECOMENDADO: {recommendedPlan}</span>
                 </div>
-                <h3 className="proposal-title" style={{ fontFamily: theme.fontHeading }}>
+                <h3 className="proposal-title" style={{ fontFamily: theme.fontHeading, color: theme.text }}>
                   Presupuesto & Condiciones para {businessName}
                 </h3>
-                <p className="proposal-summary">
+                <p className="proposal-summary" style={{ color: theme.textMuted }}>
                   Esta web de demostración refleja cómo se vería tu negocio online. Incluye tu dominio propio, ficha de Google Maps optimizada y WhatsApp Business integrado.
                 </p>
 
                 <div className="proposal-benefits-grid">
                   <div className="prop-benefit">
                     <CheckCircle2 size={16} style={{ color: theme.primary }} />
-                    <span>50% al iniciar y 50% contra entrega conforme cuando la web esté lista</span>
+                    <span style={{ color: theme.text }}>50% al iniciar y 50% contra entrega conforme cuando la web esté lista</span>
                   </div>
                   <div className="prop-benefit">
                     <CheckCircle2 size={16} style={{ color: theme.primary }} />
-                    <span>Entrega estimada en 4 días hábiles desde que recibo tus datos</span>
+                    <span style={{ color: theme.text }}>Entrega estimada en 4 días hábiles desde que recibo tus datos</span>
                   </div>
                   <div className="prop-benefit">
                     <CheckCircle2 size={16} style={{ color: theme.primary }} />
-                    <span>Dominio propio y hosting incluido durante el primer año</span>
+                    <span style={{ color: theme.text }}>Dominio propio y hosting incluido durante el primer año</span>
                   </div>
                   <div className="prop-benefit">
                     <CheckCircle2 size={16} style={{ color: theme.primary }} />
-                    <span>Atención y diseño directo con Belén Irigoy</span>
+                    <span style={{ color: theme.text }}>Atención y diseño directo con Belén Irigoy</span>
                   </div>
                 </div>
 
@@ -517,17 +517,17 @@ export default function BusinessDemoSitePage({ slug, isProposal = false }) {
       <footer className="business-footer" style={{ borderTopColor: theme.cardBorder }}>
         <div className="business-container business-footer-content">
           <div className="footer-brand-side">
-            <span className="footer-name" style={{ fontFamily: theme.fontHeading }}>{businessName}</span>
-            <span className="footer-desc">{tagline}</span>
+            <span className="footer-name" style={{ fontFamily: theme.fontHeading, color: theme.text }}>{businessName}</span>
+            <span className="footer-desc" style={{ color: theme.textMuted }}>{tagline}</span>
           </div>
           <div className="footer-links-side">
-            <span>{address}</span>
-            <span>Tel: {phone}</span>
+            <span style={{ color: theme.textMuted }}>{address}</span>
+            <span style={{ color: theme.textMuted }}>Tel: {phone}</span>
           </div>
         </div>
         <div className="business-sub-footer">
           <div className="business-container">
-            <p>© 2026 {businessName} • Diseño web profesional por <a href="/" target="_blank" rel="noopener noreferrer">Primera Cuadra</a></p>
+            <p style={{ color: theme.textMuted }}>© 2026 {businessName} • Diseño web profesional por <a href="/" target="_blank" rel="noopener noreferrer">Primera Cuadra</a></p>
           </div>
         </div>
       </footer>
@@ -548,3 +548,4 @@ export default function BusinessDemoSitePage({ slug, isProposal = false }) {
     </div>
   );
 }
+

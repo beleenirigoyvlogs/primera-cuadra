@@ -184,7 +184,7 @@ export const DEMO_SITES = {
       primaryHover: '#0369a1',
       accent: '#0d9488',
       text: '#0f172a',
-      textMuted: '#64748b',
+      textMuted: '#475569',
       fontHeading: "'Plus Jakarta Sans', sans-serif"
     },
     heroImage: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1600&auto=format&fit=crop&q=80',
@@ -238,3 +238,4 @@ export function getSiteDataBySlug(slug) {
 
   return DEMO_SITES.parrilla;
 }
+
