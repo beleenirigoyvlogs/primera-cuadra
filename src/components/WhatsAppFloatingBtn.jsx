@@ -91,6 +91,7 @@ export default function WhatsAppFloatingBtn() {
         href={`https://wa.me/${whatsappNumber}?text=${msg}`}
         target="_blank"
         rel="noopener noreferrer"
+        data-wa="floating"
         className="whatsapp-floating-button"
         aria-label="Contactar a Belén por WhatsApp"
         onClick={() => trackWhatsAppClick('desktop_floating_bubble', 'Presencia_digital')}

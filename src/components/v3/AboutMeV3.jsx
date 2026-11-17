@@ -136,7 +136,7 @@ export default function AboutMeV3() {
               lineHeight: 1.6 
             }}
           >
-            Diseño y programo páginas web desde Tigre para negocios de todo el país. Creé Primera Cuadra para que cualquier negocio, del rubro y el tamaño que sea, tenga una web a la altura de lo que hace.
+            Diseño y programo páginas web desde Tigre para negocios de Tigre, Zona Norte y CABA. Creé Primera Cuadra para que cualquier negocio, del rubro y el tamaño que sea, tenga una web a la altura de lo que hace.
           </p>
           <p 
             style={{ 
@@ -152,6 +152,7 @@ export default function AboutMeV3() {
             href="https://wa.me/5491128779641?text=%C2%A1Hola%20Bel%C3%A9n!%20Le%C3%AD%20tu%20presentaci%C3%B3n%20en%20Primera%20Cuadra%20y%20quer%C3%ADa%20hacerte%20una%20consulta." 
             target="_blank" 
             rel="noopener noreferrer" 
+            data-wa="sobre-mi"
             style={{ 
               display: 'inline-block', 
               marginTop: '30px', 

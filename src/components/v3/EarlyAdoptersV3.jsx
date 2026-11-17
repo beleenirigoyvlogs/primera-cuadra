@@ -53,6 +53,7 @@ export default function EarlyAdoptersV3() {
             href="https://wa.me/5491128779641?text=%C2%A1Hola%20Bel%C3%A9n!%20Quiero%20uno%20de%20los%205%20lugares%20de%20lanzamiento%20de%20Primera%20Cuadra." 
             target="_blank" 
             rel="noopener noreferrer" 
+            data-wa="early-adopters"
             style={{ 
               textDecoration: 'none', 
               background: '#FFFFFF', 

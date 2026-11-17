@@ -49,8 +49,9 @@ export default function PricingV3() {
     {
       name: 'Completo',
       desc: 'Página web, Google Maps y WhatsApp Business, todo conectado.',
-      price: '$250.000',
-      split: '$125.000 al empezar · $125.000 al aprobar',
+      price: '$220.000',
+      split: '$110.000 al empezar · $110.000 al aprobar',
+      savings: 'Ahorrás $50.000 frente a contratar Express + Solo web por separado',
       items: [
         'Todo lo del plan Solo web',
         'Ficha de Google Maps completa',
@@ -118,7 +119,7 @@ export default function PricingV3() {
             color: muted 
           }}
         >
-          Pago único, precio de lanzamiento para los primeros cinco negocios. Después pasan a $200.000, $250.000 y $450.000.
+          Pago único, precio de lanzamiento para los primeros cinco negocios. Después pasan a $200.000, $250.000 y $400.000.
         </p>
 
         <div 
@@ -171,6 +172,11 @@ export default function PricingV3() {
               <div style={{ marginTop: '6px', fontSize: '14px', opacity: .8 }}>
                 {pl.split}
               </div>
+              {pl.savings && (
+                <div style={{ marginTop: '8px', fontSize: '13px', color: '#A48BFF', fontWeight: 500, lineHeight: 1.4 }}>
+                  {pl.savings}
+                </div>
+              )}
 
               {/* Items List */}
               <ul style={{ margin: '26px 0 0', padding: '22px 0 0', listStyle: 'none', borderTop: `1px solid ${pl.line}`, display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '15px', flex: 1 }}>
@@ -189,6 +195,7 @@ export default function PricingV3() {
                 href={`https://wa.me/5491128779641?text=${encodeURIComponent(`¡Hola Belén! Me interesa contratar el plan ${pl.name} de Primera Cuadra.`)}`} 
                 target="_blank" 
                 rel="noopener noreferrer" 
+                data-wa={pl.name === 'Express' ? 'precios-express' : pl.name === 'Solo web' ? 'precios-solo-web' : 'precios-completo'}
                 style={{ 
                   marginTop: '28px', 
                   textAlign: 'center', 
@@ -207,8 +214,26 @@ export default function PricingV3() {
           ))}
         </div>
 
+        {/* Link to Free Audit */}
+        <div style={{ marginTop: '28px', textAlign: 'center' }}>
+          <a 
+            href="#revision" 
+            style={{ 
+              color: isDark ? '#A48BFF' : '#5B33D6', 
+              textDecoration: 'none', 
+              fontSize: '15px', 
+              fontWeight: 600,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px'
+            }}
+          >
+            ¿No sabés qué plan necesitás? Pedí la revisión gratis →
+          </a>
+        </div>
+
         <p style={{ margin: '26px 0 0', fontSize: '14px', color: muted, maxWidth: '780px', lineHeight: 1.6 }}>
-          Dominio y hosting incluidos el primer año; después pagás solo la renovación, que te informo al contratar. Mantenimiento mensual opcional. Transferencia, Mercado Pago o efectivo.
+          <strong>Incluido el primer año:</strong> dominio .com.ar y hosting. <strong>Desde el segundo año:</strong> renovación aproximada de [COMPLETAR: monto] por año, que pagás directo a tu nombre. <strong>Mantenimiento mensual opcional:</strong> [COMPLETAR: monto] por mes. Incluye cambios de textos, precios y fotos, y revisión de que todo funcione. Transferencia, Mercado Pago o efectivo.
         </p>
       </div>
     </section>

@@ -181,27 +181,31 @@ export default function HeroV3({
               zoneH1
             ) : (
               <>
-                <span style={{ display: 'block' }}>Diseño de páginas web</span>
-                <span style={{ display: 'inline-flex', alignItems: 'baseline', minHeight: '1.15em' }}>
-                  <span style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0, color: '#A9A6B4', marginRight: '0.35ch' }}>
-                    para
-                  </span>
-                  <span 
-                    style={{ 
-                      display: 'inline-block', 
-                      minWidth: '15ch', 
-                      textAlign: 'left', 
-                      verticalAlign: 'baseline',
-                      whiteSpace: 'nowrap'
-                    }}
-                  >
-                    <span style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0, color: '#FFFFFF' }} aria-live="off">
-                      {typed}
+                <span className="sr-only">
+                  Diseño de páginas web para comercios, profesionales, empresas y emprendedores
+                </span>
+                <span aria-hidden="true">
+                  <span style={{ display: 'block' }}>Diseño de páginas web</span>
+                  <span style={{ display: 'inline-flex', alignItems: 'baseline', minHeight: '1.15em' }}>
+                    <span style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0, color: '#A9A6B4', marginRight: '0.35ch' }}>
+                      para
                     </span>
-                    <span className="pc-caret" aria-hidden="true" style={{ color: '#A48BFF' }} />
+                    <span 
+                      style={{ 
+                        display: 'inline-block', 
+                        minWidth: '15ch', 
+                        textAlign: 'left', 
+                        verticalAlign: 'baseline',
+                        whiteSpace: 'nowrap'
+                      }}
+                    >
+                      <span style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0, color: '#FFFFFF' }}>
+                        {typed}
+                      </span>
+                      <span className="pc-caret" style={{ color: '#A48BFF' }} />
+                    </span>
                   </span>
                 </span>
-                <span className="sr-only">para comercios, profesionales, empresas y emprendedores.</span>
               </>
             )}
           </h1>
@@ -231,6 +235,7 @@ export default function HeroV3({
               href="https://wa.me/5491128779641" 
               target="_blank" 
               rel="noopener noreferrer" 
+              data-wa="hero"
               style={{ 
                 textDecoration: 'none', 
                 background: '#673DE6', 
@@ -355,15 +360,15 @@ export default function HeroV3({
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', padding: '7px 10px', background: '#FFFFFF', borderRadius: '6px' }}>
                     <span>Servicio principal</span>
-                    <b>$ —</b>
+                    <b>$ 18.000</b>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', padding: '7px 10px', background: '#FFFFFF', borderRadius: '6px' }}>
                     <span>Otro servicio</span>
-                    <b>$ —</b>
+                    <b>$ 25.000</b>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', padding: '7px 10px', background: '#FFFFFF', borderRadius: '6px' }}>
                     <span>Combo</span>
-                    <b>$ —</b>
+                    <b>$ 38.000</b>
                   </div>
                   <div style={{ fontWeight: 600, fontSize: '11px', textTransform: 'uppercase', letterSpacing: '.08em', color: '#55524C', marginTop: '4px' }}>
                     Dónde estamos

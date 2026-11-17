@@ -356,6 +356,7 @@ export default function CustomDevelopmentPage() {
                   href={`https://wa.me/${whatsappNumber}?text=${whatsappMsgGeneral}`}
                   target="_blank" 
                   rel="noopener noreferrer" 
+                  data-wa="desarrollo-a-medida-hero"
                   onClick={() => trackWhatsAppClick('custom_dev_hero', 'Contame_tu_idea')}
                   style={{ 
                     textDecoration: 'none', 
@@ -1067,6 +1068,7 @@ export default function CustomDevelopmentPage() {
                 href={`https://wa.me/${whatsappNumber}?text=${whatsappMsgGeneral}`}
                 target="_blank" 
                 rel="noopener noreferrer" 
+                data-wa="desarrollo-a-medida-cta"
                 onClick={() => trackWhatsAppClick('custom_dev_cta_final', 'Escribime_por_WhatsApp')}
                 style={{ 
                   textDecoration: 'none', 

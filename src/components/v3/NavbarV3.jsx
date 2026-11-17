@@ -65,6 +65,7 @@ export default function NavbarV3() {
           <a href="/#servicios" style={{ textDecoration: 'none', color: navInk }}>Diseño web</a>
           <a href="/#ejemplos" style={{ textDecoration: 'none', color: navInk }}>Portfolio</a>
           <a href="/#precios" style={{ textDecoration: 'none', color: navInk }}>Precios</a>
+          <a href="/blog" style={{ textDecoration: 'none', color: navInk }}>Blog</a>
           <a href="/#sobre-mi" style={{ textDecoration: 'none', color: navInk }}>Sobre mí</a>
           
           {/* Theme Switcher Button */}
@@ -103,6 +104,7 @@ export default function NavbarV3() {
             href="https://wa.me/5491128779641" 
             target="_blank" 
             rel="noopener noreferrer" 
+            data-wa="navbar"
             style={{ 
               textDecoration: 'none', 
               background: '#673DE6', 
@@ -167,6 +169,7 @@ export default function NavbarV3() {
             href="https://wa.me/5491128779641" 
             target="_blank" 
             rel="noopener noreferrer" 
+            data-wa="navbar-mobile"
             aria-label="Contactar por WhatsApp"
             style={{ 
               width: '38px', 
@@ -257,6 +260,13 @@ export default function NavbarV3() {
             style={{ textDecoration: 'none', color: navInk, padding: '6px 0' }}
           >
             Precios
+          </a>
+          <a 
+            href="/blog" 
+            onClick={() => setMobileMenuOpen(false)} 
+            style={{ textDecoration: 'none', color: navInk, padding: '6px 0' }}
+          >
+            Blog
           </a>
           <a 
             href="/#sobre-mi" 

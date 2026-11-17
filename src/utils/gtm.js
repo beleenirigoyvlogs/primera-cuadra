@@ -38,9 +38,29 @@ export function pushGtmEvent(eventName, payload = {}) {
 export const trackWhatsAppClick = (buttonOrigin, packOrDetails = '') => {
   pushGtmEvent('whatsapp_click', {
     button_origin: buttonOrigin,
+    wa_location: buttonOrigin,
     pack_name: packOrDetails
   });
 };
+
+let isWaTrackingInit = false;
+export function initWhatsAppTracking() {
+  if (typeof window === 'undefined' || isWaTrackingInit) return;
+  isWaTrackingInit = true;
+
+  document.addEventListener('click', (e) => {
+    const el = e.target && e.target.closest ? e.target.closest('a[href*="wa.me"]') : null;
+    if (el) {
+      const waLocation = el.getAttribute('data-wa') || 'general';
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'whatsapp_click',
+        wa_location: waLocation,
+        page_path: window.location.pathname
+      });
+    }
+  }, { passive: true });
+}
 
 export const trackContactFormSubmit = (formData) => {
   pushGtmEvent('contact_form_submit', {

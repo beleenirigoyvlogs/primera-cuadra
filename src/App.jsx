@@ -6,6 +6,7 @@ import GuaranteesBannerV3 from './components/v3/GuaranteesBannerV3';
 import ServicesV3 from './components/v3/ServicesV3';
 import PortfolioV3 from './components/v3/PortfolioV3';
 import StepsV3 from './components/v3/StepsV3';
+import FreeAuditV3 from './components/v3/FreeAuditV3';
 import ThePointV3 from './components/v3/ThePointV3';
 import EarlyAdoptersV3 from './components/v3/EarlyAdoptersV3';
 import PricingV3 from './components/v3/PricingV3';
@@ -18,6 +19,10 @@ import CustomDevelopmentPage from './pages/CustomDevelopmentPage';
 import BusinessDemoSitePage from './pages/BusinessDemoSitePage';
 import NotFoundPage from './pages/NotFoundPage';
 import LocalLandingPage from './pages/LocalLandingPage';
+import NicheLandingPage from './pages/NicheLandingPage';
+import BlogIndexPage from './pages/BlogIndexPage';
+import BlogPostPage from './pages/BlogPostPage';
+import PrivacyPage from './pages/PrivacyPage';
 import AdminLeadsModal from './components/AdminLeadsModal';
 
 import { useScrollReveal } from './hooks/useScrollReveal';
@@ -130,17 +135,45 @@ export default function App({ initialPath = null }) {
     return <LocalLandingPage zoneKey="caba" />;
   }
 
-  // 4. Dedicated Route: Full-Page Simulator
+  // 4. Dedicated Route: Pages by Niche / Rubro
+  if (currentPath === '/pagina-web-para-peluquerias' || currentPath === '/pagina-web-para-peluquerias/') {
+    return <NicheLandingPage rubroKey="peluquerias" />;
+  }
+  if (currentPath === '/pagina-web-para-talleres-mecanicos' || currentPath === '/pagina-web-para-talleres-mecanicos/') {
+    return <NicheLandingPage rubroKey="talleres-mecanicos" />;
+  }
+  if (currentPath === '/pagina-web-para-restaurantes' || currentPath === '/pagina-web-para-restaurantes/') {
+    return <NicheLandingPage rubroKey="restaurantes" />;
+  }
+  if (currentPath === '/pagina-web-para-consultorios' || currentPath === '/pagina-web-para-consultorios/') {
+    return <NicheLandingPage rubroKey="consultorios" />;
+  }
+
+  // 5. Dedicated Route: Blog
+  if (currentPath === '/blog' || currentPath === '/blog/') {
+    return <BlogIndexPage />;
+  }
+  if (currentPath.startsWith('/blog/')) {
+    const postSlug = currentPath.replace('/blog/', '').replace(/\/$/, '');
+    return <BlogPostPage slug={postSlug} />;
+  }
+
+  // 6. Dedicated Route: Privacy Policy
+  if (currentPath === '/privacidad' || currentPath === '/privacidad/') {
+    return <PrivacyPage />;
+  }
+
+  // 7. Dedicated Route: Full-Page Simulator
   if (currentPath.startsWith('/simulador')) {
     return <SimulatorPage />;
   }
 
-  // 5. Dedicated Route: Custom Development (Apps Móviles & Sistemas POS)
+  // 8. Dedicated Route: Custom Development (Apps Móviles & Sistemas POS)
   if (currentPath.startsWith('/desarrollo-a-medida')) {
     return <CustomDevelopmentPage />;
   }
 
-  // 6. Unknown Route: Not Found (404)
+  // 9. Unknown Route: Not Found (404)
   const isHome = currentPath === '/' || currentPath === '/index.html' || currentPath === '' || currentPath.startsWith('/#');
   if (!isHome) {
     return <NotFoundPage />;
@@ -166,6 +199,7 @@ export default function App({ initialPath = null }) {
         <ServicesV3 />
         <PortfolioV3 />
         <StepsV3 />
+        <FreeAuditV3 />
         <ThePointV3 />
         <EarlyAdoptersV3 />
         <PricingV3 />

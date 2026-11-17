@@ -24,7 +24,7 @@ export default function FAQV3({ extraFaqs = [] }) {
     },
     { 
       q: '¿Qué pasa después del primer año?', 
-      a: 'La web es tuya. Solo pagás la renovación del dominio y el hosting, que te informo al contratar.' 
+      a: 'Dominio .com.ar y hosting están incluidos el primer año. Desde el segundo año pagás la renovación aproximada de [COMPLETAR: monto] por año directamente a tu nombre. El mantenimiento mensual opcional es de [COMPLETAR: monto] por mes e incluye cambios de textos, precios y fotos, y revisión de que todo funcione.' 
     },
     { 
       q: '¿Cómo se paga?', 

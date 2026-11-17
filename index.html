@@ -8,6 +8,20 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-KLLXLVJ8');</script>
     <!-- End Google Tag Manager -->
+    <script>
+      document.addEventListener('click', function(e) {
+        var el = e.target && e.target.closest ? e.target.closest('a[href*="wa.me"]') : null;
+        if (el) {
+          var locationTag = el.getAttribute('data-wa') || 'general';
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'whatsapp_click',
+            wa_location: locationTag,
+            page_path: window.location.pathname
+          });
+        }
+      }, { passive: true });
+    </script>
 
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -59,6 +73,9 @@
           "logo": "https://primeracuadra.com.ar/brand/icono-512.png",
           "telephone": "+5491128779641",
           "email": "primeracuadraweb@gmail.com",
+          "sameAs": [
+            "https://www.facebook.com/profile.php?id=61594410424409"
+          ],
           "image": "https://primeracuadra.com.ar/og-image.png",
           "founder": {
             "@type": "Person",
@@ -115,7 +132,7 @@
               "name": "¿Qué pasa después del primer año?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "La web es tuya. Solo pagás la renovación del dominio y el hosting, que te informo al contratar."
+                "text": "Dominio .com.ar y hosting están incluidos el primer año. Desde el segundo año pagás la renovación aproximada de [COMPLETAR: monto] por año directamente a tu nombre. El mantenimiento mensual opcional es de [COMPLETAR: monto] por mes e incluye cambios de textos, precios y fotos, y revisión de que todo funcione."
               }
             },
             {

@@ -16,28 +16,36 @@ export default function PortfolioV3() {
       kicker: 'Parrilla & bodegón', 
       name: 'El Fogón de Tigre', 
       href: '/ejemplos/parrilla',
-      image: '/demos/parrilla/cover.webp'
+      image: '/demos/parrilla/cover.webp',
+      rubroHref: '/pagina-web-para-restaurantes',
+      rubroLinkText: 'Página web para restaurantes →'
     },
     { 
       rubro: 'Barbería', 
       kicker: 'Barbería urbana', 
       name: 'Barber Studio 96', 
       href: '/ejemplos/barberia',
-      image: '/demos/barberia/cover.webp'
+      image: '/demos/barberia/cover.webp',
+      rubroHref: '/pagina-web-para-peluquerias',
+      rubroLinkText: 'Página web para peluquerías →'
     },
     { 
       rubro: 'Taller', 
       kicker: 'Mecánica integral', 
       name: 'Mecánica Álvarez', 
       href: '/ejemplos/taller',
-      image: '/demos/taller/cover.webp'
+      image: '/demos/taller/cover.webp',
+      rubroHref: '/pagina-web-para-talleres-mecanicos',
+      rubroLinkText: 'Página web para talleres mecánicos →'
     },
     { 
       rubro: 'Dental', 
       kicker: 'Odontología', 
       name: 'Centro Delta', 
       href: '/ejemplos/dental',
-      image: '/demos/dental/cover.webp'
+      image: '/demos/dental/cover.webp',
+      rubroHref: '/pagina-web-para-consultorios',
+      rubroLinkText: 'Página web para consultorios →'
     }
   ];
 
@@ -111,65 +119,88 @@ export default function PortfolioV3() {
           }}
         >
           {examples.map((e, idx) => (
-            <a 
+            <div 
               key={e.rubro}
-              href={e.href} 
-              className="pc-reveal-u pc-card-hover" 
+              className="pc-reveal-u" 
               style={{ 
-                textDecoration: 'none', 
                 display: 'flex', 
                 flexDirection: 'column', 
-                background: cardBg, 
-                borderRadius: '8px', 
-                overflow: 'hidden', 
-                boxShadow: `0 12px 30px ${shadow}`,
-                color: ink,
                 '--pc-delay': `${idx * 0.12}s`,
                 transitionDelay: `${idx * 0.12}s`
               }}
             >
-              <div 
+              <a 
+                href={e.href} 
+                className="pc-card-hover" 
                 style={{ 
-                  aspectRatio: '4 / 3', 
-                  width: '100%', 
-                  overflow: 'hidden', 
-                  position: 'relative',
-                  background: '#151515'
-                }}
-              >
-                <img 
-                  src={e.image} 
-                  alt={`Captura real de la página web de ejemplo: ${e.name} (${e.rubro})`} 
-                  width="800" 
-                  height="600" 
-                  loading="lazy" 
-                  decoding="async" 
-                  style={{ 
-                    width: '100%', 
-                    height: '100%', 
-                    objectFit: 'cover', 
-                    display: 'block' 
-                  }} 
-                />
-              </div>
-              <div 
-                style={{ 
-                  padding: '18px 20px', 
+                  textDecoration: 'none', 
                   display: 'flex', 
-                  justifyContent: 'space-between', 
-                  alignItems: 'center', 
-                  gap: '12px', 
-                  borderTop: '5px solid #673DE6' 
+                  flexDirection: 'column', 
+                  background: cardBg, 
+                  borderRadius: '8px', 
+                  overflow: 'hidden', 
+                  boxShadow: `0 12px 30px ${shadow}`,
+                  color: ink,
+                  flex: 1
                 }}
               >
-                <span style={{ fontFamily: "'Oswald', sans-serif", fontSize: '20px', textTransform: 'uppercase' }}>
-                  {e.rubro}
-                </span>
-                <span style={{ fontSize: '14px', fontWeight: 600, color: isDark ? '#A48BFF' : '#5025C4' }}>
-                  Ver web <span className="pc-arrow" style={{ display: 'inline-block', transition: 'transform 0.25s ease' }}>→</span>
-                </span>
-              </div>
-            </a>
+                <div 
+                  style={{ 
+                    aspectRatio: '4 / 3', 
+                    width: '100%', 
+                    overflow: 'hidden', 
+                    position: 'relative',
+                    background: '#151515'
+                  }}
+                >
+                  <img 
+                    src={e.image} 
+                    alt={`Captura real de la página web de ejemplo: ${e.name} (${e.rubro})`} 
+                    width="800" 
+                    height="600" 
+                    loading="lazy" 
+                    decoding="async" 
+                    style={{ 
+                      width: '100%', 
+                      height: '100%', 
+                      objectFit: 'cover', 
+                      display: 'block' 
+                    }} 
+                  />
+                </div>
+                <div 
+                  style={{ 
+                    padding: '18px 20px', 
+                    display: 'flex', 
+                    justifyContent: 'space-between', 
+                    alignItems: 'center', 
+                    gap: '12px', 
+                    borderTop: '5px solid #673DE6' 
+                  }}
+                >
+                  <span style={{ fontFamily: "'Oswald', sans-serif", fontSize: '20px', textTransform: 'uppercase' }}>
+                    {e.rubro}
+                  </span>
+                  <span style={{ fontSize: '14px', fontWeight: 600, color: isDark ? '#A48BFF' : '#5025C4' }}>
+                    Ver web <span className="pc-arrow" style={{ display: 'inline-block', transition: 'transform 0.25s ease' }}>→</span>
+                  </span>
+                </div>
+              </a>
+
+              <a 
+                href={e.rubroHref}
+                style={{ 
+                  marginTop: '10px', 
+                  fontSize: '13px', 
+                  fontWeight: 600, 
+                  color: isDark ? '#A48BFF' : '#5B33D6', 
+                  textDecoration: 'none',
+                  paddingLeft: '4px'
+                }}
+              >
+                {e.rubroLinkText}
+              </a>
+            </div>
           ))}
         </div>
       </div>
