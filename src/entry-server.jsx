@@ -38,7 +38,7 @@ export function render(url) {
   } else if (cleanUrl.startsWith('/desarrollo-a-medida')) {
     appHtml = renderToString(<CustomDevelopmentPage />);
     meta.title = 'Desarrollo a medida: apps y sistemas de venta | Primera Cuadra';
-    meta.description = 'Desarrollo de aplicaciones móviles y sistemas de punto de venta (POS) con inventario y facturación local.';
+    meta.description = 'Programo sistemas de punto de venta (POS), control de stock y aplicaciones móviles pensados para tu negocio. Sin abonos mensuales y con presupuesto cerrado.';
     meta.canonical = 'https://primeracuadra.com.ar/desarrollo-a-medida';
   } else if (cleanUrl.startsWith('/simulador')) {
     appHtml = renderToString(<SimulatorPage />);

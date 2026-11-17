@@ -1,45 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  ArrowLeft, 
-  Smartphone, 
-  Boxes, 
-  Sparkles, 
-  MessageSquare, 
-  ArrowRight, 
-  ShieldCheck, 
-  Store, 
-  QrCode, 
-  Users, 
-  Receipt,
-  CheckCircle2,
-  Cpu,
-  Layers,
-  ChevronLeft,
-  ChevronRight,
-  Code2,
-  Database,
-  Printer,
-  ShoppingBag,
-  Bell,
-  Lock,
-  ZoomIn,
-  ZoomOut,
-  X
-} from 'lucide-react';
 import NavbarV3 from '../components/v3/NavbarV3';
 import FooterV3 from '../components/v3/FooterV3';
+import ThePointLightbox from '../components/v3/ThePointLightbox';
 import WhatsAppFloatingBtn from '../components/WhatsAppFloatingBtn';
-import { trackWhatsAppClick } from '../utils/gtm';
+import { useTheme } from '../hooks/useTheme';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { trackWhatsAppClick } from '../utils/gtm';
+import { 
+  ArrowLeft, 
+  ArrowRight, 
+  MessageSquare, 
+  Check, 
+  ZoomIn, 
+  ChevronRight,
+  Store,
+  Smartphone,
+  Cpu,
+  Layers,
+  Boxes,
+  ShieldCheck,
+  Receipt
+} from 'lucide-react';
 
 export default function CustomDevelopmentPage() {
+  const { isDark } = useTheme();
   useScrollReveal();
+
   const whatsappNumber = '5491128779641';
   const whatsappMsgGeneral = encodeURIComponent(
-    '¡Hola Belén! Llegué desde la sección de Desarrollo a Medida en Primera Cuadra. Tengo un proyecto/idea de software y me gustaría consultarte para evaluar el alcance.'
-  );
-  const whatsappMsgThePoint = encodeURIComponent(
-    'Hola Belén, vi tu proyecto de app y quiero consultarte'
+    '¡Hola Belén! Llegué desde la sección de Desarrollo a Medida en Primera Cuadra. Tengo una idea de sistema o app y me gustaría consultarte para evaluar el alcance.'
   );
 
   useEffect(() => {
@@ -47,293 +36,363 @@ export default function CustomDevelopmentPage() {
     document.title = 'Desarrollo a medida: apps y sistemas de venta | Primera Cuadra';
   }, []);
 
-  // Tabs for "The Point Kiosco" real project interactive carousel
+  // 7 Tabs for "The Point" real case study
   const [activeScreenIdx, setActiveScreenIdx] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-  const [isZoomed, setIsZoomed] = useState(false);
 
   const thePointScreens = [
     {
       id: 'pos',
       tabLabel: 'POS',
-      title: 'Punto de Venta Táctil & Facturación Rápida',
-      subtitle: 'Botonera rápida optimizada para mostrador con artículos populares, cobro ágil y lector de código de barras (F3).',
-      badge: 'Operaciones Diarias • POS',
+      title: 'Punto de venta táctil y facturación rápida',
+      subtitle: 'Botonera rápida con artículos populares, cobro ágil y lector de código de barras.',
+      badge: '01 · Punto de Venta',
       base: '/thepoint/pos',
-      origWidth: 1916,
-      origHeight: 1004,
-      image: '/thepoint/pos-full.webp',
       bullets: [
-        'Artículos populares táctiles (aguas, gaseosas, vinos, alfajores, cigarrillos, golosinas)',
-        'Múltiples medios de pago: Efectivo con cálculo de vuelto, Mercado Pago / QR, Transferencia, Débito y Crédito',
-        'Cobro y confirmación con atajos de teclado (F2 vender, F3 escanear) para despachar sin demoras'
+        'Artículos populares táctiles para despachar rápido en mostrador',
+        'Medios de pago combinados: efectivo con cálculo de vuelto, Mercado Pago QR y tarjetas',
+        'Atajos de teclado y lector de código de barras para cobrar sin demoras'
       ]
     },
     {
       id: 'dashboard',
       tabLabel: 'Dashboard',
-      title: 'Panel General & Control en Tiempo Real',
-      subtitle: 'Tablero operativo con evolución semanal de ventas, productos más vendidos, alertas de stock y estado de caja.',
-      badge: 'Dashboard Operativo',
+      title: 'Panel general y control operativo',
+      subtitle: 'Tablero diario con ventas acumuladas, tickets emitidos, productos con mayor salida y alertas de stock.',
+      badge: '02 · Panel General',
       base: '/thepoint/dashboard',
-      origWidth: 1915,
-      origHeight: 1011,
-      image: '/thepoint/dashboard-full.webp',
       bullets: [
-        'Ventas acumuladas de hoy, tickets emitidos y resultado neto comercial',
-        'Gráfico de evolución semanal de ventas y ranking histórico de artículos con mayor salida',
-        'Monitoreo del estado de caja y centro de alertas activas'
+        'Ventas acumuladas del día, tickets emitidos y resultado neto comercial',
+        'Gráfico de evolución semanal de ventas y artículos más vendidos',
+        'Monitoreo del estado de caja y avisos de stock bajo'
       ]
     },
     {
       id: 'stock',
       tabLabel: 'Stock',
-      title: 'Catálogo de Productos & Control de Stock',
-      subtitle: 'Inventario con código/SKU, costo, precio de venta, remarcación/margen % y alertas automáticas de reposición.',
-      badge: 'Catálogo & Inventario',
+      title: 'Productos y control de stock',
+      subtitle: 'Inventario con código o SKU, costo, precio de venta, margen y avisos automáticos de reposición.',
+      badge: '03 · Catálogo y Stock',
       base: '/thepoint/stock',
-      origWidth: 1917,
-      origHeight: 1011,
-      image: '/thepoint/stock-full.webp',
       bullets: [
-        'Buscador instantáneo por nombre, código de barras o SKU',
-        'Cálculo automático de rentabilidad (costo vs. venta vs. porcentaje de margen neto)',
-        'Importación masiva y exportación de listas completas a Excel / CSV'
+        'Buscador rápido por nombre, código de barras o código interno',
+        'Cálculo de rentabilidad por producto: costo, venta y margen de ganancia',
+        'Importación masiva y exportación de listas a Excel o CSV'
       ]
     },
     {
       id: 'caja',
       tabLabel: 'Caja',
-      title: 'Control de Caja Diaria & Flujo de Dinero',
+      title: 'Caja diaria y arqueo de turnos',
       subtitle: 'Apertura de turno, retiros de dinero, ingresos y arqueo de caja con historial de sesiones.',
-      badge: 'Tesorería & Caja',
+      badge: '04 · Caja Diaria',
       base: '/thepoint/caja',
-      origWidth: 1919,
-      origHeight: 1009,
-      image: '/thepoint/caja-full.webp',
       bullets: [
-        'Historial de sesiones con fondo inicial, total esperado vs. contado y cálculo de diferencias',
-        'Registro discriminado por medio de pago (Efectivo, Mercado Pago, etc.)',
-        'Control seguro para evitar faltantes y cuadrar turnos con exactitud'
+        'Historial de sesiones con fondo inicial, total esperado y cálculo de diferencias',
+        'Discriminación por medio de pago (efectivo, Mercado Pago, transferencias)',
+        'Control de retiros y cierre seguro para evitar faltantes en el local'
+      ]
+    },
+    {
+      id: 'gastos',
+      tabLabel: 'Gastos',
+      title: 'Gastos operativos del negocio',
+      subtitle: 'Registro de egresos por rubro para controlar los costos fijos y variables del local.',
+      badge: '05 · Gastos Operativos',
+      base: '/thepoint/gastos',
+      bullets: [
+        'Registro de egresos por rubro: alquiler, mercadería, fletes y servicios',
+        'Impacto directo en el balance financiero y ganancia neta',
+        'Historial de comprobantes y pagos a proveedores'
       ]
     },
     {
       id: 'reportes',
       tabLabel: 'Reportes',
-      title: 'Reportes de Rendimiento & Rentabilidad Real',
-      subtitle: 'Cálculos transparentes sin confundir facturación bruta con ganancia neta comercial.',
-      badge: 'Auditoría Financiera',
+      title: 'Reportes y rentabilidad neta',
+      subtitle: 'Cálculo de ganancia neta deduciendo el costo de mercadería y gastos operativos.',
+      badge: '06 · Reportes y Finanzas',
       base: '/thepoint/reportes',
-      origWidth: 1919,
-      origHeight: 1003,
-      image: '/thepoint/reportes-full.webp',
       bullets: [
-        'Facturación bruta vs. Costo de mercadería vendida vs. Ganancia bruta estimada y resultado neto',
-        'Cobranzas discriminadas por medio de pago y ventas por categoría de producto',
-        'Filtros por Hoy, Últimos 7 días, Este mes o Fechas personalizadas con exportación a CSV'
+        'Facturación bruta frente a costo de mercadería y ganancia estimada',
+        'Cobranzas discriminadas por medio de pago y ventas por categoría',
+        'Filtros por día, semana, mes o fechas personalizadas'
       ]
     },
     {
       id: 'auditoria',
       tabLabel: 'Auditoría',
-      title: 'Historial & Auditoría Inmutable de Operaciones',
-      subtitle: 'Registro cronológico inmutable de cada venta, arqueo, anulación, ajuste de stock y modificación de precios.',
-      badge: 'Seguridad & Control',
+      title: 'Historial y auditoría de operaciones',
+      subtitle: 'Registro cronológico de cada venta, arqueo, anulación, ajuste de stock y modificación de precios.',
+      badge: '07 · Historial y Auditoría',
       base: '/thepoint/auditoria',
-      origWidth: 1919,
-      origHeight: 1012,
-      image: '/thepoint/auditoria-full.webp',
       bullets: [
-        'Registro con fecha, hora exacta, módulo, descripción del suceso y usuario responsable',
-        'Trazabilidad total de altas, bajas y modificaciones de precios',
-        'Seguridad ante discrepancias y control antifraude en el local'
-      ]
-    },
-    {
-      id: 'backups',
-      tabLabel: 'Respaldos',
-      title: 'Base de Datos Local Persistente & Respaldos',
-      subtitle: 'Operación 100% independiente de internet con protección de datos y respaldos en un clic.',
-      badge: 'Infraestructura & Protección',
-      base: '/thepoint/backups',
-      origWidth: 1919,
-      origHeight: 1015,
-      image: '/thepoint/backups-full.webp',
-      bullets: [
-        'Almacenamiento local SQLite ultra rápido que nunca se cuelga ni depende de la conexión a internet',
-        'Creación de respaldos inmediatos (.sqlite) para guardar en pendrive o carpeta externa',
-        'Restauración de emergencia en caso de cambio o renovación de la computadora del local'
+        'Registro con fecha, hora exacta, módulo y acción realizada',
+        'Trazabilidad de altas, bajas y modificaciones de precios',
+        'Respaldo de operaciones para auditar movimientos del local'
       ]
     }
   ];
-
-  // Manage body scroll & keyboard shortcuts when lightbox is open
-  useEffect(() => {
-    if (typeof document === 'undefined') return;
-
-    if (isLightboxOpen) {
-      document.body.classList.add('lightbox-open');
-    } else {
-      document.body.classList.remove('lightbox-open');
-      setIsZoomed(false);
-    }
-
-    const handleKeyDown = (e) => {
-      if (!isLightboxOpen) return;
-      if (e.key === 'Escape') {
-        setIsLightboxOpen(false);
-      } else if (e.key === 'ArrowLeft') {
-        setIsZoomed(false);
-        setActiveScreenIdx((prev) => (prev > 0 ? prev - 1 : thePointScreens.length - 1));
-      } else if (e.key === 'ArrowRight') {
-        setIsZoomed(false);
-        setActiveScreenIdx((prev) => (prev < thePointScreens.length - 1 ? prev + 1 : 0));
-      } else if (e.key === 'z' || e.key === 'Z') {
-        setIsZoomed((prev) => !prev);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      document.body.classList.remove('lightbox-open');
-    };
-  }, [isLightboxOpen, thePointScreens.length]);
 
   const currentScreen = thePointScreens[activeScreenIdx];
 
-  const posFeatures = [
+  // Theme color tokens
+  const bgLight = isDark ? '#1E1C24' : '#EFEDE8';
+  const bgAlt = isDark ? '#19171F' : '#E5E2DB';
+  const cardBg = isDark ? '#26232E' : '#F6F5F1';
+  const ink = isDark ? '#F1EEE7' : '#1B1B1B';
+  const muted = isDark ? '#B3AFA6' : '#55524C';
+  const line = isDark ? '#34313C' : '#D4CFC4';
+
+  const services = [
     {
-      title: 'Sistema POS táctil para PC, Tablet o Celular',
-      desc: 'Interfaz ágil diseñada para despachar ventas rápido en mostrador sin complicaciones técnicas.',
-      icon: Store
+      n: '01',
+      title: 'Sistemas de venta y stock',
+      summary: 'POS táctil, stock, caja, reportes, usuarios.',
+      desc: 'Puntos de venta rápidos para mostrador, control de inventario con alertas de reposición, arqueos de caja por turno y balances para saber exactamente cuánto ingresa.'
     },
     {
-      title: 'Control de Stock e Inventario en tiempo real',
-      desc: 'Entrada y salida de mercadería, alertas automáticas de reposición y control de mermas.',
-      icon: Boxes
+      n: '02',
+      title: 'Apps para Android e iOS',
+      summary: 'Turnos, pedidos, avisos al celular, Mercado Pago.',
+      desc: 'Aplicaciones móviles para que tus clientes reserven turnos, pidan productos o sigan el estado de sus pedidos desde el teléfono, con avisos directos y cobro integrado.'
     },
     {
-      title: 'Catálogo digital interactivo con QR para mostrador',
-      desc: 'Código QR listo para exhibir e imprimir: tus clientes escanean en el local y ven tus productos actualizados.',
-      icon: QrCode
-    },
-    {
-      title: 'Gestión de Empleados, Turnos y Permisos',
-      desc: 'Roles diferenciados para cajeros, vendedores y administradores, con registro de operaciones.',
-      icon: Users
-    },
-    {
-      title: 'Arqueo de caja diaria y balances de ventas',
-      desc: 'Cierres de turno automáticos, reportes descargables y control de métodos de pago (efectivo, transferencias, tarjetas).',
-      icon: Receipt
-    },
-    {
-      title: 'Software 100% tuyo sin abonos mensuales obligatorios',
-      desc: 'Desarrollo propio adaptado a tu negocio, sin ataduras a alquileres mensuales obligatorios.',
-      icon: ShieldCheck
+      n: '03',
+      title: 'Integraciones',
+      summary: 'Mercado Pago, QR, facturación, lo que ya uses.',
+      desc: 'Conecto tu sistema con lectores de código de barras, cobro por QR de Mercado Pago, impresoras térmicas de tickets y los programas que ya tengas en funcionamiento.'
     }
   ];
 
-  const appCapabilities = [
+  const steps = [
     {
-      title: 'Desarrollo para Android y iOS',
-      desc: 'Tu aplicación optimizada y lista para las tiendas oficiales de Google Play y App Store.',
-      icon: Smartphone,
-      tag: 'Multiplataforma'
+      n: '01',
+      time: 'Paso 1',
+      title: 'Charla por WhatsApp',
+      desc: 'Me contás qué necesitás resolver y cómo trabaja tu negocio hoy: qué tareas te llevan más tiempo y qué funciones son indispensables para arrancar.'
     },
     {
-      title: 'Diseño UX/UI moderno y fluido',
-      desc: 'Interfaces pensadas para que tus clientes o equipo usen la herramienta con naturalidad desde el primer segundo.',
-      icon: Layers,
-      tag: 'Diseño Intuitivo'
+      n: '02',
+      time: 'Paso 2',
+      title: 'Propuesta cerrada con precio y plazo',
+      desc: 'Te paso una propuesta detallada con el alcance exacto de lo que voy a programar, el presupuesto total cerrado y la fecha cierta de entrega, sin costos ocultos.'
     },
     {
-      title: 'Autenticación y perfiles seguros',
-      desc: 'Inicio de sesión con email, teléfono o Google, y almacenamiento seguro de datos de usuario.',
-      icon: Lock,
-      tag: 'Seguridad'
-    },
-    {
-      title: 'Notificaciones push y mensajes en vivo',
-      desc: 'Avisos directos al celular para recordar turnos, pedidos listos, promociones o novedades.',
-      icon: Bell,
-      tag: 'Notificaciones'
-    },
-    {
-      title: 'Base de datos en la nube y sincronización',
-      desc: 'Información centralizada y respaldada en tiempo real para que accedas desde cualquier dispositivo.',
-      icon: Database,
-      tag: 'Cloud & Offline'
-    },
-    {
-      title: 'Integración con pasarelas de pago y APIs',
-      desc: 'Conexión con Mercado Pago, facturación electrónica o sistemas que tu negocio ya utilice.',
-      icon: Cpu,
-      tag: 'Integraciones'
+      n: '03',
+      time: 'Paso 3',
+      title: '50% al empezar, 50% al aprobar',
+      desc: 'Empezamos a trabajar con el 50% de anticipo. El 50% restante lo abonás recién cuando probás el sistema, funciona como esperabas y te entrego los accesos.'
     }
+  ];
+
+  const marqueeItems = [
+    'Punto de venta táctil',
+    'Apps para Android e iOS',
+    'Sin abonos mensuales',
+    'Código propio para tu negocio',
+    'Cobros con Mercado Pago y QR',
+    '50% al empezar · 50% al aprobar'
   ];
 
   return (
-    <div className="app-root custom-dev-page">
-      {/* 1. Official Global Navbar */}
+    <div 
+      className="primera-cuadra-v3-root custom-dev-page-v3"
+      style={{ 
+        width: '100%', 
+        minHeight: '100vh', 
+        fontFamily: "'Poppins', system-ui, sans-serif",
+        background: bgLight,
+        color: ink,
+        transition: 'background 0.3s ease, color 0.3s ease'
+      }}
+    >
       <NavbarV3 />
 
       <main>
         {/* ===================================================================
-            HERO: TITLES WITH STANDARD COLOR TOKENS (LIGHT & DARK COMPLIANT)
+            01 HERO: DESARROLLO A MEDIDA
             =================================================================== */}
-        <section className="custom-dev-hero-section">
-          <div className="container">
-            {/* Back link */}
-            <div className="back-home-wrap">
-              <a href="/" className="btn-back-home-link" title="Volver al inicio de Primera Cuadra">
+        <section 
+          id="hero"
+          style={{ 
+            background: '#18161E', 
+            color: '#F4F2EC', 
+            position: 'relative', 
+            overflow: 'hidden' 
+          }}
+        >
+          {/* Decorative SVG Shapes (Zero overflow) */}
+          <svg 
+            aria-hidden="true" 
+            style={{ 
+              position: 'absolute', 
+              inset: 0, 
+              width: '100%', 
+              height: '100%', 
+              pointerEvents: 'none', 
+              overflow: 'hidden'
+            }}
+          >
+            <defs>
+              <pattern id="dev-hero-stripes" width="12" height="12" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="0" x2="0" y2="12" stroke="rgba(164,139,255,0.28)" strokeWidth="3" />
+              </pattern>
+            </defs>
+            <circle cx="calc(100% + 80px)" cy="80" r="260" fill="#673DE6" />
+            <circle cx="50%" cy="100%" r="140" fill="url(#dev-hero-stripes)" />
+          </svg>
+
+          {/* Dot Grid */}
+          <div 
+            aria-hidden="true" 
+            style={{ 
+              position: 'absolute', 
+              left: '24px', 
+              top: '48px', 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(5, 8px)', 
+              gap: '14px',
+              pointerEvents: 'none',
+              opacity: 0.7
+            }}
+          >
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#A48BFF' }} />
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#A48BFF' }} />
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#A48BFF' }} />
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#A48BFF' }} />
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#A48BFF' }} />
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#A48BFF' }} />
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#A48BFF' }} />
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#A48BFF' }} />
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#A48BFF' }} />
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#A48BFF' }} />
+          </div>
+
+          <div 
+            style={{ 
+              position: 'relative', 
+              maxWidth: '1240px', 
+              margin: '0 auto', 
+              padding: 'clamp(56px, 7vw, 96px) 24px clamp(56px, 7vw, 96px)',
+              boxSizing: 'border-box'
+            }}
+          >
+            {/* Back to Home Link */}
+            <div style={{ marginBottom: '28px' }}>
+              <a 
+                href="/" 
+                style={{ 
+                  display: 'inline-flex', 
+                  alignItems: 'center', 
+                  gap: '8px', 
+                  color: '#B3AFA6', 
+                  textDecoration: 'none', 
+                  fontSize: '14px', 
+                  fontFamily: "'Oswald', sans-serif", 
+                  letterSpacing: '.06em', 
+                  textTransform: 'uppercase',
+                  transition: 'color 0.2s ease'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.color = '#FFFFFF'}
+                onMouseLeave={(e) => e.currentTarget.style.color = '#B3AFA6'}
+              >
                 <ArrowLeft size={16} />
                 <span>Volver al inicio</span>
               </a>
             </div>
 
-            <div className="custom-dev-hero-center pc-reveal-u reveal">
-              <div className="section-kicker-pill">
-                <Sparkles size={14} />
-                <span>DESARROLLO DE SOFTWARE A MEDIDA</span>
-              </div>
-
-              <h1 className="custom-dev-main-title">
-                Desarrollo de software y <span className="highlight-purple">soluciones a medida</span>
-              </h1>
-
-              <p className="custom-dev-main-subtitle">
-                Además de las páginas web para comercios, desarrollo <strong>aplicaciones móviles para Android y iOS</strong> y <strong>sistemas de punto de venta (POS) con control de stock</strong> adaptados a lo que realmente necesita tu negocio.
+            <div className="pc-reveal-u" style={{ maxWidth: '820px' }}>
+              <p 
+                style={{ 
+                  margin: 0, 
+                  fontFamily: "'Oswald', sans-serif", 
+                  fontSize: '15px', 
+                  letterSpacing: '.14em', 
+                  textTransform: 'uppercase', 
+                  color: '#A48BFF' 
+                }}
+              >
+                DESARROLLO A MEDIDA
               </p>
 
-              {/* Badges / Chips in single line */}
-              <div className="custom-dev-pills-row">
-                <span className="dev-pill-tag">
-                  <Smartphone size={14} />
-                  <span>Apps Android & iOS</span>
-                </span>
-                <span className="dev-pill-tag">
-                  <Boxes size={14} />
-                  <span>Sistemas POS & Stock</span>
-                </span>
-                <span className="dev-pill-tag">
-                  <ShieldCheck size={14} />
-                  <span>Sin abonos mensuales obligatorios</span>
-                </span>
-              </div>
+              <h1 
+                style={{ 
+                  margin: '12px 0 0', 
+                  fontFamily: "'Oswald', sans-serif", 
+                  fontWeight: 600, 
+                  fontSize: 'clamp(38px, 5.2vw, 64px)', 
+                  lineHeight: 1.05, 
+                  textTransform: 'uppercase', 
+                  letterSpacing: '-0.01em', 
+                  color: '#FFFFFF' 
+                }}
+              >
+                SISTEMAS Y APPS PARA TU NEGOCIO
+              </h1>
 
-              {/* Hero CTA action: single line button */}
-              <div className="custom-dev-hero-cta">
+              <p 
+                style={{ 
+                  margin: '22px 0 0', 
+                  fontSize: 'clamp(16px, 1.9vw, 19px)', 
+                  lineHeight: 1.6, 
+                  color: '#CFCBD8',
+                  maxWidth: '720px'
+                }}
+              >
+                Además de páginas web, programo sistemas de venta y stock, y apps, pensados para cómo trabaja tu negocio.
+              </p>
+
+              <div 
+                style={{ 
+                  marginTop: '36px', 
+                  display: 'flex', 
+                  flexWrap: 'wrap', 
+                  gap: '14px', 
+                  alignItems: 'center' 
+                }}
+              >
                 <a 
                   href={`https://wa.me/${whatsappNumber}?text=${whatsappMsgGeneral}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-hostinger-primary btn-hero-single-line"
-                  onClick={() => trackWhatsAppClick('custom_dev_hero_button', 'Consulta_general')}
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  onClick={() => trackWhatsAppClick('custom_dev_hero', 'Contame_tu_idea')}
+                  style={{ 
+                    textDecoration: 'none', 
+                    background: '#673DE6', 
+                    color: '#FFFFFF', 
+                    padding: '15px 28px', 
+                    borderRadius: '6px', 
+                    fontWeight: 600, 
+                    fontSize: '16px', 
+                    textAlign: 'center', 
+                    display: 'inline-flex', 
+                    alignItems: 'center', 
+                    gap: '8px' 
+                  }}
                 >
                   <MessageSquare size={17} />
-                  <span>Contame tu idea de proyecto</span>
+                  <span>Contame tu idea</span>
+                </a>
+
+                <a 
+                  href="#caso-the-point" 
+                  style={{ 
+                    textDecoration: 'none', 
+                    background: 'transparent', 
+                    color: '#FFFFFF', 
+                    padding: '15px 24px', 
+                    borderRadius: '6px', 
+                    fontWeight: 600, 
+                    border: '2px solid rgba(255,255,255,.3)', 
+                    fontSize: '16px', 
+                    textAlign: 'center', 
+                    display: 'inline-flex', 
+                    alignItems: 'center', 
+                    gap: '8px' 
+                  }}
+                >
+                  <span>Ver caso real The Point</span>
                   <ArrowRight size={16} />
                 </a>
               </div>
@@ -341,197 +400,349 @@ export default function CustomDevelopmentPage() {
           </div>
         </section>
 
-        {/* ===================================================================
-            CASO REAL: UN PROYECTO QUE YA DESARROLLÉ ("The Point Kiosco")
-            =================================================================== */}
-        <section className="the-point-showcase-section" id="caso-real">
-          <div className="container">
-            <div className="section-header-center pc-reveal-u reveal">
-              <div className="section-kicker-pill case-kicker">
-                <Store size={14} />
-                <span>UN PROYECTO QUE YA DESARROLLÉ</span>
-              </div>
-
-              <h2 className="section-title">
-                The Point Kiosco • <span className="highlight-purple">Sistema POS & Stock</span>
-              </h2>
-
-              <p className="honest-declaration-line">
-                Lo diseñé y desarrollé completo para un emprendimiento propio que está por lanzarse.
-              </p>
-            </div>
-
-            {/* Showcase Main Layout */}
-            <div className="the-point-card-box pc-reveal-u reveal">
-              {/* Top Selector Tabs */}
-              <div className="the-point-tabs-bar" role="tablist" aria-label="Módulos del sistema The Point">
-                {thePointScreens.map((screen, sIdx) => (
-                  <button
-                    key={screen.id}
-                    type="button"
-                    role="tab"
-                    aria-selected={activeScreenIdx === sIdx}
-                    className={`the-point-tab-btn ${activeScreenIdx === sIdx ? 'active' : ''}`}
-                    onClick={() => setActiveScreenIdx(sIdx)}
-                  >
-                    <span>{screen.tabLabel}</span>
-                  </button>
+        {/* Marquee Banner */}
+        <section 
+          aria-label="Puntos clave del servicio" 
+          style={{ background: '#673DE6', color: '#FFFFFF', overflow: 'hidden' }}
+        >
+          <div style={{ padding: '20px 0', width: '100%', overflow: 'hidden' }}>
+            <div className="pc-marquee-track">
+              <div className="pc-marquee-group">
+                {marqueeItems.map((item, idx) => (
+                  <span key={`a-${idx}`} className="pc-marquee-item">
+                    <span>{item}</span>
+                    <span className="pc-marquee-sep" aria-hidden="true">✦</span>
+                  </span>
                 ))}
               </div>
+              <div className="pc-marquee-group" aria-hidden="true">
+                {marqueeItems.map((item, idx) => (
+                  <span key={`b-${idx}`} className="pc-marquee-item">
+                    <span>{item}</span>
+                    <span className="pc-marquee-sep" aria-hidden="true">✦</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
 
-              {/* Split Content: Left Details, Right Device Frame */}
-              <div className="the-point-split-body">
-                {/* Left Side: Real Screen Features & Stack */}
-                <div className="the-point-info-col">
-                  <div className="screen-badge-label">
-                    <span>{currentScreen.badge}</span>
-                  </div>
+        {/* ===================================================================
+            02 CASO REAL THE POINT (7 PESTAÑAS Y LIGHTBOX CON ZOOM)
+            =================================================================== */}
+        <section 
+          id="caso-the-point" 
+          style={{ 
+            background: bgLight, 
+            color: ink, 
+            transition: 'background 0.3s ease, color 0.3s ease' 
+          }}
+        >
+          <div 
+            style={{ 
+              maxWidth: '1240px', 
+              margin: '0 auto', 
+              padding: 'clamp(64px, 7vw, 96px) 24px',
+              boxSizing: 'border-box'
+            }}
+          >
+            <p 
+              className="pc-reveal-l"
+              style={{ 
+                margin: 0, 
+                fontFamily: "'Oswald', sans-serif", 
+                fontSize: '15px', 
+                letterSpacing: '.14em', 
+                textTransform: 'uppercase', 
+                color: muted 
+              }}
+            >
+              01 / Caso real
+            </p>
 
-                  <h3 className="the-point-screen-title">{currentScreen.title}</h3>
-                  <p className="the-point-screen-desc">{currentScreen.subtitle}</p>
+            <h2 
+              className="pc-reveal-u"
+              style={{ 
+                margin: '10px 0 0', 
+                fontFamily: "'Oswald', sans-serif", 
+                fontWeight: 600, 
+                fontSize: 'clamp(32px, 3.8vw, 50px)', 
+                lineHeight: 1.08, 
+                textTransform: 'uppercase' 
+              }}
+            >
+              The Point: sistema de caja y stock
+            </h2>
 
-                  <ul className="the-point-bullets-list">
-                    {currentScreen.bullets.map((b, bIdx) => (
-                      <li key={bIdx}>
-                        <CheckCircle2 size={16} className="step-check-icon" />
-                        <span>{b}</span>
+            <p 
+              className="pc-reveal-u"
+              style={{ 
+                margin: '18px 0 0', 
+                maxWidth: '780px', 
+                color: muted, 
+                fontSize: 'clamp(16px, 1.8vw, 17px)', 
+                lineHeight: 1.6 
+              }}
+            >
+              Lo diseñé y programé para un emprendimiento propio: punto de venta táctil, stock, caja diaria, reportes y respaldos. Funciona sin internet y sin abonos mensuales.
+            </p>
+
+            {/* Tech Chips */}
+            <ul 
+              className="pc-reveal-u"
+              style={{ 
+                margin: '24px 0 0', 
+                padding: 0, 
+                listStyle: 'none', 
+                display: 'flex', 
+                flexWrap: 'wrap', 
+                gap: '10px' 
+              }}
+            >
+              {['Electron', 'Node.js', 'React', 'SQLite', 'Tailwind CSS'].map((tech) => (
+                <li 
+                  key={tech} 
+                  style={{ 
+                    fontSize: '14px', 
+                    fontWeight: 600, 
+                    padding: '6px 14px', 
+                    border: `2px solid ${ink}`, 
+                    borderRadius: '4px',
+                    fontFamily: "'Oswald', sans-serif",
+                    textTransform: 'uppercase',
+                    letterSpacing: '.05em'
+                  }}
+                >
+                  {tech}
+                </li>
+              ))}
+            </ul>
+
+            {/* Showcase Card */}
+            <div 
+              className="pc-reveal-u"
+              style={{ 
+                marginTop: '44px', 
+                background: cardBg, 
+                border: `1px solid ${line}`, 
+                borderRadius: '8px', 
+                overflow: 'hidden',
+                boxShadow: isDark ? '0 16px 36px rgba(0,0,0,0.35)' : '0 12px 28px rgba(0,0,0,0.06)'
+              }}
+            >
+              {/* 7 Tabs Bar */}
+              <div 
+                role="tablist" 
+                aria-label="Módulos de The Point"
+                style={{ 
+                  display: 'flex', 
+                  flexWrap: 'wrap', 
+                  gap: '8px', 
+                  padding: '16px 20px', 
+                  borderBottom: `1px solid ${line}`, 
+                  background: isDark ? '#1F1C26' : '#EBE8E1'
+                }}
+              >
+                {thePointScreens.map((screen, sIdx) => {
+                  const isActive = activeScreenIdx === sIdx;
+                  return (
+                    <button
+                      key={screen.id}
+                      type="button"
+                      role="tab"
+                      aria-selected={isActive}
+                      onClick={() => setActiveScreenIdx(sIdx)}
+                      style={{
+                        background: isActive ? '#673DE6' : 'transparent',
+                        color: isActive ? '#FFFFFF' : ink,
+                        border: isActive ? '1px solid #673DE6' : `1px solid ${line}`,
+                        borderRadius: '4px',
+                        padding: '8px 16px',
+                        fontFamily: "'Oswald', sans-serif",
+                        fontSize: '14px',
+                        fontWeight: 600,
+                        textTransform: 'uppercase',
+                        letterSpacing: '.05em',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                    >
+                      {screen.tabLabel}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Split Content Body */}
+              <div 
+                style={{ 
+                  display: 'grid', 
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
+                  gap: '36px', 
+                  padding: 'clamp(24px, 4vw, 36px)',
+                  alignItems: 'center'
+                }}
+              >
+                {/* Left Column: Screen Info */}
+                <div>
+                  <span 
+                    style={{ 
+                      fontFamily: "'Oswald', sans-serif", 
+                      fontSize: '13px', 
+                      fontWeight: 600, 
+                      letterSpacing: '.12em', 
+                      textTransform: 'uppercase', 
+                      color: '#A48BFF',
+                      display: 'inline-block',
+                      marginBottom: '8px'
+                    }}
+                  >
+                    {currentScreen.badge}
+                  </span>
+
+                  <h3 
+                    style={{ 
+                      margin: '0 0 10px', 
+                      fontFamily: "'Oswald', sans-serif", 
+                      fontSize: '24px', 
+                      fontWeight: 600, 
+                      textTransform: 'uppercase', 
+                      lineHeight: 1.2 
+                    }}
+                  >
+                    {currentScreen.title}
+                  </h3>
+
+                  <p style={{ margin: '0 0 20px', color: muted, fontSize: '15px', lineHeight: 1.6 }}>
+                    {currentScreen.subtitle}
+                  </p>
+
+                  <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    {currentScreen.bullets.map((bullet, bIdx) => (
+                      <li key={bIdx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '14px', lineHeight: 1.5 }}>
+                        <span 
+                          style={{ 
+                            display: 'inline-flex', 
+                            alignItems: 'center', 
+                            justifyContent: 'center', 
+                            width: '18px', 
+                            height: '18px', 
+                            borderRadius: '50%', 
+                            background: '#673DE6', 
+                            color: '#FFFFFF', 
+                            flexShrink: 0, 
+                            marginTop: '2px' 
+                          }}
+                        >
+                          <Check size={12} strokeWidth={3} />
+                        </span>
+                        <span>{bullet}</span>
                       </li>
                     ))}
                   </ul>
 
-                  {/* Tech Stack Chips */}
-                  <div className="the-point-stack-box">
-                    <span className="stack-label">Tecnologías usadas:</span>
-                    <div className="stack-chips-list">
-                      <span className="stack-chip">
-                        <Code2 size={13} />
-                        <span>Electron & Node.js</span>
-                      </span>
-                      <span className="stack-chip">
-                        <Code2 size={13} />
-                        <span>React</span>
-                      </span>
-                      <span className="stack-chip">
-                        <Database size={13} />
-                        <span>SQLite Local Persistente</span>
-                      </span>
-                      <span className="stack-chip">
-                        <Printer size={13} />
-                        <span>Impresión Térmica & Escáner F3</span>
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Direct WhatsApp Callout */}
-                  <div className="the-point-wa-action">
-                    <a
-                      href={`https://wa.me/${whatsappNumber}?text=${whatsappMsgThePoint}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-hostinger-primary btn-the-point-wa"
-                      onClick={() => trackWhatsAppClick('the_point_showcase_button', currentScreen.title)}
-                    >
-                      <MessageSquare size={16} />
-                      <span>¿Querés algo así para tu negocio? Contame tu idea</span>
-                      <ArrowRight size={15} />
-                    </a>
-                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setIsLightboxOpen(true)}
+                    style={{
+                      marginTop: '28px',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      background: 'transparent',
+                      border: 'none',
+                      color: isDark ? '#A48BFF' : '#5B33D6',
+                      fontFamily: "'Oswald', sans-serif",
+                      fontSize: '15px',
+                      fontWeight: 600,
+                      textTransform: 'uppercase',
+                      letterSpacing: '.05em',
+                      cursor: 'pointer',
+                      padding: 0
+                    }}
+                  >
+                    <ZoomIn size={16} />
+                    <span>Ver en pantalla completa con zoom →</span>
+                  </button>
                 </div>
 
-                {/* Right Side: Realistic Software Window Frame with Real Screenshots */}
-                <div className="the-point-mockup-col">
-                  {/* Navigation arrows for carousel */}
-                  <div className="mockup-carousel-controls">
-                    <button
-                      type="button"
-                      className="btn-carousel-nav"
-                      onClick={() => setActiveScreenIdx((prev) => (prev > 0 ? prev - 1 : thePointScreens.length - 1))}
-                      aria-label="Pantalla anterior"
+                {/* Right Column: Desktop Window Frame */}
+                <div>
+                  <div 
+                    onClick={() => setIsLightboxOpen(true)}
+                    title="Clic para ampliar en pantalla completa con zoom"
+                    style={{
+                      background: isDark ? '#1B1822' : '#E8E5DD',
+                      borderRadius: '8px',
+                      border: `1px solid ${line}`,
+                      overflow: 'hidden',
+                      boxShadow: '0 14px 32px rgba(0,0,0,0.2)',
+                      cursor: 'zoom-in',
+                      transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.boxShadow = '0 18px 40px rgba(0,0,0,0.25)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = '0 14px 32px rgba(0,0,0,0.2)';
+                    }}
+                  >
+                    {/* Window Title Bar */}
+                    <div 
+                      style={{
+                        padding: '10px 14px',
+                        background: isDark ? '#14121A' : '#DCD8CE',
+                        borderBottom: `1px solid ${line}`,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between'
+                      }}
                     >
-                      <ChevronLeft size={18} />
-                    </button>
-                    <span className="carousel-step-counter">
-                      Módulo {activeScreenIdx + 1} de {thePointScreens.length}: <strong>{currentScreen.tabLabel}</strong>
-                    </span>
-                    <button
-                      type="button"
-                      className="btn-carousel-nav"
-                      onClick={() => setActiveScreenIdx((prev) => (prev < thePointScreens.length - 1 ? prev + 1 : 0))}
-                      aria-label="Siguiente pantalla"
-                    >
-                      <ChevronRight size={18} />
-                    </button>
-                  </div>
-
-                  {/* Real App Window Frame */}
-                  <div className="pos-app-window-frame">
-                    <div className="pos-app-window-header">
-                      <div className="window-dots-row">
-                        <span className="w-dot w-dot-red"></span>
-                        <span className="w-dot w-dot-yellow"></span>
-                        <span className="w-dot w-dot-green"></span>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#EF4444', display: 'inline-block' }} />
+                        <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#EAB308', display: 'inline-block' }} />
+                        <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#22C55E', display: 'inline-block' }} />
                       </div>
-                      <div className="window-title-bar">
-                        <span className="window-app-name">THE POINT KIOSCO • POS v1.0</span>
+                      <span style={{ fontFamily: "'Oswald', sans-serif", fontSize: '13px', letterSpacing: '.08em', textTransform: 'uppercase', color: muted }}>
+                        The Point — POS
+                      </span>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: muted, fontSize: '12px' }}>
+                        <ZoomIn size={13} />
+                        <span>Ampliar</span>
                       </div>
-                      <span className="window-real-badge">Captura real del sistema</span>
                     </div>
 
-                    <div 
-                      className="pos-app-screenshot-viewport" 
-                      onClick={() => setIsLightboxOpen(true)}
-                      title="Clic para ver en pantalla completa con zoom"
-                    >
+                    {/* Screenshot Preview */}
+                    <div style={{ position: 'relative', width: '100%', aspectRatio: '16 / 10', overflow: 'hidden', background: '#000000' }}>
                       <picture>
                         <source 
                           type="image/avif" 
-                          srcSet={`
-                            ${currentScreen.base}-1200.avif 1200w,
-                            ${currentScreen.base}-1800.avif 1800w,
-                            ${currentScreen.base}-full.avif ${currentScreen.origWidth}w
-                          `}
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
+                          srcSet={`${currentScreen.base}-1200.avif 1200w, ${currentScreen.base}-1800.avif 1800w, ${currentScreen.base}-full.avif 2400w`} 
+                          sizes="(max-width: 768px) 100vw, 650px" 
                         />
                         <source 
                           type="image/webp" 
-                          srcSet={`
-                            ${currentScreen.base}-1200.webp 1200w,
-                            ${currentScreen.base}-1800.webp 1800w,
-                            ${currentScreen.base}-full.webp ${currentScreen.origWidth}w
-                          `}
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
+                          srcSet={`${currentScreen.base}-1200.webp 1200w, ${currentScreen.base}-1800.webp 1800w, ${currentScreen.base}-full.webp 2400w`} 
+                          sizes="(max-width: 768px) 100vw, 650px" 
                         />
                         <img 
                           src={`${currentScreen.base}-1200.webp`} 
-                          alt={`Captura real del sistema: ${currentScreen.title}`} 
-                          className="the-point-screenshot-img"
-                          width={currentScreen.origWidth}
-                          height={currentScreen.origHeight}
-                          loading="lazy"
+                          alt={`The Point - ${currentScreen.title}`} 
+                          width="1200" 
+                          height="750" 
+                          loading="lazy" 
+                          decoding="async" 
+                          style={{ 
+                            width: '100%', 
+                            height: '100%', 
+                            objectFit: 'cover', 
+                            display: 'block' 
+                          }} 
                         />
                       </picture>
-                      <div className="screenshot-zoom-overlay">
-                        <ZoomIn size={15} />
-                        <span>Clic para ampliar</span>
-                      </div>
                     </div>
-                  </div>
-
-                  {/* Thumbnail Row */}
-                  <div className="the-point-thumbnails-row">
-                    {thePointScreens.map((s, idx) => (
-                      <button
-                        key={s.id}
-                        type="button"
-                        className={`the-point-thumb-btn ${activeScreenIdx === idx ? 'active' : ''}`}
-                        onClick={() => setActiveScreenIdx(idx)}
-                        aria-label={`Ver captura de ${s.tabLabel}`}
-                        title={s.tabLabel}
-                      >
-                        <img src={s.image} alt={s.tabLabel} className="thumb-preview-img" />
-                        <span className="thumb-caption">{s.tabLabel}</span>
-                      </button>
-                    ))}
                   </div>
                 </div>
               </div>
@@ -540,221 +751,354 @@ export default function CustomDevelopmentPage() {
         </section>
 
         {/* ===================================================================
-            SECTION 2: APPS MÓVILES PARA ANDROID & IOS
+            03 QUÉ PUEDO HACER (SOLO 3 TARJETAS)
             =================================================================== */}
-        <section className="custom-dev-apps-section" id="apps-moviles">
-          <div className="container">
-            <div className="section-header-center pc-reveal-u reveal">
-              <div className="section-kicker-pill">
-                <Smartphone size={14} />
-                <span>DESARROLLO DE SOFTWARE • APPS MÓVILES</span>
-              </div>
+        <section 
+          id="servicios-desarrollo" 
+          style={{ 
+            background: bgAlt, 
+            color: ink, 
+            transition: 'background 0.3s ease, color 0.3s ease' 
+          }}
+        >
+          <div 
+            style={{ 
+              maxWidth: '1240px', 
+              margin: '0 auto', 
+              padding: 'clamp(64px, 7vw, 96px) 24px',
+              boxSizing: 'border-box'
+            }}
+          >
+            <p 
+              className="pc-reveal-l"
+              style={{ 
+                margin: 0, 
+                fontFamily: "'Oswald', sans-serif", 
+                fontSize: '15px', 
+                letterSpacing: '.14em', 
+                textTransform: 'uppercase', 
+                color: muted 
+              }}
+            >
+              02 / Qué puedo hacer
+            </p>
 
-              <h2 className="section-title">
-                Desarrollo la app que <span className="highlight-purple">tenés en mente</span>
-              </h2>
+            <h2 
+              className="pc-reveal-u"
+              style={{ 
+                margin: '10px 0 0', 
+                fontFamily: "'Oswald', sans-serif", 
+                fontWeight: 600, 
+                fontSize: 'clamp(32px, 3.8vw, 50px)', 
+                lineHeight: 1.08, 
+                textTransform: 'uppercase' 
+              }}
+            >
+              Qué puedo programar para tu negocio
+            </h2>
 
-              <p className="section-subtitle">
-                Doy vida a tu proyecto con aplicaciones para Android y iOS. Según el alcance de lo que quieras armar, puedo incluir:
-              </p>
-            </div>
+            <p 
+              className="pc-reveal-u"
+              style={{ 
+                margin: '18px 0 0', 
+                maxWidth: '680px', 
+                color: muted, 
+                fontSize: 'clamp(16px, 1.8vw, 17px)', 
+                lineHeight: 1.6 
+              }}
+            >
+              Tres tipos de soluciones de software adaptadas a cómo trabaja tu comercio, local o empresa:
+            </p>
 
-            {/* Capabilities 6 Grid */}
-            <div className="dev-cards-grid reveal-group">
-              {appCapabilities.map((cap, cIdx) => {
-                const IconComp = cap.icon;
-                return (
-                  <div key={cIdx} className="dev-feature-card pc-reveal-u reveal">
-                    <div className="dev-card-top-row">
-                      <div className="dev-icon-circle">
-                        <IconComp size={20} />
-                      </div>
-                      <span className="dev-card-tag">{cap.tag}</span>
-                    </div>
-
-                    <h3 className="dev-card-title">{cap.title}</h3>
-                    <p className="dev-card-desc">{cap.desc}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* ===================================================================
-            SECTION 3: SISTEMAS POS & CONTROL DE STOCK
-            =================================================================== */}
-        <section className="custom-dev-pos-section" id="sistemas-pos">
-          <div className="container">
-            <div className="section-header-center pc-reveal-u reveal">
-              <div className="section-kicker-pill">
-                <Boxes size={14} />
-                <span>GESTIÓN COMERCIAL & MOSTRADOR</span>
-              </div>
-
-              <h2 className="section-title">
-                Sistemas POS & <span className="highlight-purple">Control de Stock</span>
-              </h2>
-
-              <p className="section-subtitle">
-                Software pensado para agilizar la atención en tu local, tener el inventario al día y controlar tu caja sin depender de sistemas lentos ni pagar alquileres mensuales obligatorios.
-              </p>
-            </div>
-
-            <div className="dev-cards-grid reveal-group">
-              {posFeatures.map((feat, fIdx) => {
-                const IconComp = feat.icon;
-                return (
-                  <div key={fIdx} className="dev-feature-card pc-reveal-u reveal">
-                    <div className="dev-card-top-row">
-                      <div className="dev-icon-circle">
-                        <IconComp size={20} />
-                      </div>
-                    </div>
-
-                    <h3 className="dev-card-title">{feat.title}</h3>
-                    <p className="dev-card-desc">{feat.desc}</p>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Presupuesto a medida reassurance card */}
-            <div className="dev-quote-reassurance-card pc-reveal-u reveal">
-              <div className="reassurance-content-left">
-                <div className="reassurance-icon-box">
-                  <ShieldCheck size={28} />
-                </div>
-                <div>
-                  <h3 className="reassurance-title">¿Cómo presupuesto un desarrollo a medida?</h3>
-                  <p className="reassurance-desc">
-                    Lo evaluamos juntos: según las pantallas, funciones, bases de datos y dispositivos que necesites, te armo una propuesta transparente y cerrada antes de empezar, sin costos ocultos ni mensualidades forzadas.
-                  </p>
-                </div>
-              </div>
-
-              <div className="reassurance-action-right">
-                <a
-                  href={`https://wa.me/${whatsappNumber}?text=${whatsappMsgGeneral}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-hostinger-primary btn-quote-action"
-                  onClick={() => trackWhatsAppClick('custom_dev_quote_box', 'Presupuesto_medida')}
+            <div 
+              style={{ 
+                marginTop: '44px', 
+                display: 'grid', 
+                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+                gap: '28px' 
+              }}
+            >
+              {services.map((item, idx) => (
+                <article 
+                  key={item.n} 
+                  className="pc-reveal-u"
+                  style={{
+                    background: cardBg,
+                    border: `1px solid ${line}`,
+                    borderRadius: '8px',
+                    padding: '32px 28px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    '--pc-delay': `${idx * 0.12}s`,
+                    transitionDelay: `${idx * 0.12}s`
+                  }}
                 >
-                  <MessageSquare size={17} />
-                  <span>Consultame tu proyecto</span>
-                  <ArrowRight size={16} />
-                </a>
-              </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    <span 
+                      style={{ 
+                        fontFamily: "'Oswald', sans-serif", 
+                        fontSize: '48px', 
+                        fontWeight: 600, 
+                        lineHeight: 1, 
+                        color: ink 
+                      }}
+                    >
+                      {item.n}
+                    </span>
+                    <span style={{ flex: 1, height: '5px', background: '#673DE6', maxWidth: '64px' }} />
+                  </div>
+
+                  <h3 
+                    style={{ 
+                      margin: '18px 0 8px', 
+                      fontFamily: "'Oswald', sans-serif", 
+                      fontSize: '24px', 
+                      fontWeight: 600, 
+                      textTransform: 'uppercase', 
+                      lineHeight: 1.15 
+                    }}
+                  >
+                    {item.title}
+                  </h3>
+
+                  <p 
+                    style={{ 
+                      margin: '0 0 14px', 
+                      color: isDark ? '#A48BFF' : '#5B33D6', 
+                      fontSize: '13px', 
+                      fontWeight: 600, 
+                      fontFamily: "'Oswald', sans-serif", 
+                      letterSpacing: '.05em', 
+                      textTransform: 'uppercase' 
+                    }}
+                  >
+                    {item.summary}
+                  </p>
+
+                  <p style={{ margin: 0, color: muted, fontSize: '15px', lineHeight: 1.6 }}>
+                    {item.desc}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ===================================================================
+            04 CÓMO LO COTIZO (3 PASOS ESTILO STEPS DE LA HOME)
+            =================================================================== */}
+        <section 
+          id="como-lo-cotizo" 
+          style={{ 
+            background: '#18161E', 
+            color: '#F4F2EC' 
+          }}
+        >
+          <div 
+            style={{ 
+              maxWidth: '1240px', 
+              margin: '0 auto', 
+              padding: 'clamp(64px, 7vw, 96px) 24px',
+              boxSizing: 'border-box'
+            }}
+          >
+            <p 
+              className="pc-reveal-l"
+              style={{ 
+                margin: 0, 
+                fontFamily: "'Oswald', sans-serif", 
+                fontSize: '15px', 
+                letterSpacing: '.14em', 
+                textTransform: 'uppercase', 
+                color: '#A48BFF' 
+              }}
+            >
+              03 / Forma de trabajo
+            </p>
+
+            <h2 
+              className="pc-reveal-u"
+              style={{ 
+                margin: '10px 0 0', 
+                fontFamily: "'Oswald', sans-serif", 
+                fontWeight: 600, 
+                fontSize: 'clamp(32px, 3.8vw, 50px)', 
+                lineHeight: 1.08, 
+                textTransform: 'uppercase' 
+              }}
+            >
+              Cómo cotizo tu proyecto
+            </h2>
+
+            <p 
+              className="pc-reveal-u"
+              style={{ 
+                margin: '18px 0 0', 
+                maxWidth: '680px', 
+                color: '#B3AFA6', 
+                fontSize: 'clamp(16px, 1.8vw, 17px)', 
+                lineHeight: 1.6 
+              }}
+            >
+              Sin reuniones eternas ni presupuestos que cambian a mitad de camino. Tres pasos transparentes:
+            </p>
+
+            <ol 
+              style={{ 
+                listStyle: 'none', 
+                margin: '44px 0 0', 
+                padding: 0, 
+                display: 'grid', 
+                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
+                gap: '40px 48px' 
+              }}
+            >
+              {steps.map((st, idx) => (
+                <li 
+                  key={st.n} 
+                  className="pc-reveal-u" 
+                  style={{ 
+                    borderTop: '1px solid #34313C', 
+                    paddingTop: '28px',
+                    '--pc-delay': `${idx * 0.12}s`,
+                    transitionDelay: `${idx * 0.12}s`
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '12px' }}>
+                    <span 
+                      style={{ 
+                        fontFamily: "'Oswald', sans-serif", 
+                        fontSize: '60px', 
+                        fontWeight: 600, 
+                        lineHeight: 1, 
+                        color: '#A48BFF' 
+                      }}
+                    >
+                      {st.n}
+                    </span>
+                    <span 
+                      style={{ 
+                        fontFamily: "'Oswald', sans-serif", 
+                        fontSize: '13px', 
+                        letterSpacing: '.12em', 
+                        textTransform: 'uppercase', 
+                        color: '#B3AFA6' 
+                      }}
+                    >
+                      {st.time}
+                    </span>
+                  </div>
+
+                  <h3 
+                    style={{ 
+                      margin: '16px 0 10px', 
+                      fontFamily: "'Oswald', sans-serif", 
+                      fontSize: '22px', 
+                      fontWeight: 600, 
+                      textTransform: 'uppercase', 
+                      lineHeight: 1.15 
+                    }}
+                  >
+                    {st.title}
+                  </h3>
+
+                  <p style={{ margin: 0, color: '#B3AFA6', fontSize: '15px', lineHeight: 1.6 }}>
+                    {st.desc}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        {/* ===================================================================
+            05 CTA FINAL: ¿TENÉS UNA IDEA? CONTAMELA
+            =================================================================== */}
+        <section 
+          id="contacto"
+          style={{ 
+            background: '#673DE6', 
+            color: '#FFFFFF' 
+          }}
+        >
+          <div 
+            style={{ 
+              maxWidth: '1240px', 
+              margin: '0 auto', 
+              padding: 'clamp(56px, 6vw, 72px) 24px', 
+              display: 'flex', 
+              flexWrap: 'wrap', 
+              gap: '32px 56px', 
+              alignItems: 'center', 
+              justifyContent: 'space-between', 
+              boxSizing: 'border-box' 
+            }}
+          >
+            <div style={{ flex: '999 1 520px', minWidth: 0 }}>
+              <h2 
+                style={{ 
+                  margin: 0, 
+                  fontFamily: "'Oswald', sans-serif", 
+                  fontWeight: 600, 
+                  fontSize: 'clamp(30px, 3.4vw, 46px)', 
+                  lineHeight: 1.05, 
+                  textTransform: 'uppercase', 
+                  color: '#FFFFFF' 
+                }}
+              >
+                ¿Tenés una idea? Contamela.
+              </h2>
+              <p 
+                style={{ 
+                  margin: '14px 0 0', 
+                  maxWidth: '640px', 
+                  fontSize: 'clamp(15px, 1.8vw, 17px)', 
+                  lineHeight: 1.6, 
+                  color: '#FFFFFF', 
+                  fontWeight: 500 
+                }}
+              >
+                Escribime por WhatsApp, contame qué tiene que hacer tu sistema o app y te digo con sinceridad si te conviene encararlo y cuánto te saldría.
+              </p>
+            </div>
+
+            <div style={{ flex: '1 1 240px', display: 'flex', flexDirection: 'column', gap: '14px', alignItems: 'flex-start' }}>
+              <a 
+                href={`https://wa.me/${whatsappNumber}?text=${whatsappMsgGeneral}`}
+                target="_blank" 
+                rel="noopener noreferrer" 
+                onClick={() => trackWhatsAppClick('custom_dev_cta_final', 'Escribime_por_WhatsApp')}
+                style={{ 
+                  textDecoration: 'none', 
+                  background: '#FFFFFF', 
+                  color: '#4B25C4', 
+                  padding: '16px 28px', 
+                  borderRadius: '6px', 
+                  fontWeight: 600, 
+                  fontSize: '15px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  boxShadow: '0 8px 20px rgba(0,0,0,0.15)'
+                }}
+              >
+                <MessageSquare size={17} />
+                <span>Escribime por WhatsApp</span>
+              </a>
             </div>
           </div>
         </section>
       </main>
 
-      {/* 4. Official Global Footer */}
       <FooterV3 />
-
-      {/* 5. Official WhatsApp Floating Button */}
       <WhatsAppFloatingBtn />
 
-      {/* 6. Fullscreen High-Resolution Lightbox Modal with Zoom & Keyboard Navigation */}
-      {isLightboxOpen && (
-        <div 
-          className="thepoint-lightbox-overlay" 
-          onClick={() => { setIsLightboxOpen(false); setIsZoomed(false); }}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Visor a pantalla completa de The Point"
-        >
-          {/* Lightbox Top Control Bar */}
-          <div className="lightbox-top-bar" onClick={(e) => e.stopPropagation()}>
-            <div className="lightbox-title-info">
-              <span className="lightbox-counter">
-                {activeScreenIdx + 1} / {thePointScreens.length}
-              </span>
-              <span className="lightbox-screen-title">{currentScreen.title}</span>
-            </div>
-
-            <div className="lightbox-actions-group">
-              <button
-                type="button"
-                className={`btn-lightbox-action ${isZoomed ? 'active' : ''}`}
-                onClick={() => setIsZoomed(!isZoomed)}
-                title={isZoomed ? "Restablecer tamaño (Z)" : "Ampliar al 100% (Z)"}
-                aria-label={isZoomed ? "Restablecer zoom" : "Ampliar zoom"}
-              >
-                {isZoomed ? <ZoomOut size={17} /> : <ZoomIn size={17} />}
-                <span>{isZoomed ? 'Ajustar a pantalla' : 'Zoom 100%'}</span>
-              </button>
-
-              <button
-                type="button"
-                className="btn-lightbox-close"
-                onClick={() => { setIsLightboxOpen(false); setIsZoomed(false); }}
-                title="Cerrar (Esc)"
-                aria-label="Cerrar visor"
-              >
-                <X size={20} />
-              </button>
-            </div>
-          </div>
-
-          {/* Left / Right Arrow Navigation */}
-          <button
-            type="button"
-            className="btn-lightbox-nav prev"
-            onClick={(e) => {
-              e.stopPropagation();
-              setIsZoomed(false);
-              setActiveScreenIdx((prev) => (prev > 0 ? prev - 1 : thePointScreens.length - 1));
-            }}
-            aria-label="Captura anterior"
-          >
-            <ChevronLeft size={28} />
-          </button>
-
-          <button
-            type="button"
-            className="btn-lightbox-nav next"
-            onClick={(e) => {
-              e.stopPropagation();
-              setIsZoomed(false);
-              setActiveScreenIdx((prev) => (prev < thePointScreens.length - 1 ? prev + 1 : 0));
-            }}
-            aria-label="Captura siguiente"
-          >
-            <ChevronRight size={28} />
-          </button>
-
-          {/* Lightbox Image Stage */}
-          <div 
-            className={`lightbox-image-stage ${isZoomed ? 'zoomed' : ''}`}
-            onClick={(e) => {
-              e.stopPropagation();
-              setIsZoomed(!isZoomed);
-            }}
-          >
-            <picture>
-              <source type="image/avif" srcSet={`${currentScreen.base}-full.avif`} />
-              <source type="image/webp" srcSet={`${currentScreen.base}-full.webp`} />
-              <img
-                src={`${currentScreen.base}-full.webp`}
-                alt={currentScreen.title}
-                className={`lightbox-full-img ${isZoomed ? 'is-zoomed' : ''}`}
-                loading="eager"
-              />
-            </picture>
-          </div>
-
-          {/* Lightbox Bottom Info Bar */}
-          <div className="lightbox-bottom-caption" onClick={(e) => e.stopPropagation()}>
-            <p className="lightbox-caption-text">{currentScreen.subtitle}</p>
-            <span className="lightbox-hint-text">
-              Hacé clic en la imagen o presioná <strong>Z</strong> para hacer zoom · Flechas <strong>← →</strong> para cambiar de captura · <strong>Esc</strong> para salir
-            </span>
-          </div>
-        </div>
-      )}
+      {/* Lightbox for The Point POS Screens */}
+      <ThePointLightbox 
+        isOpen={isLightboxOpen} 
+        onClose={() => setIsLightboxOpen(false)} 
+        initialIndex={activeScreenIdx} 
+      />
     </div>
   );
 }
