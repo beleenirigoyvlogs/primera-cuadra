@@ -64,6 +64,9 @@ async function prerender() {
       }
       if (meta.ogImage) {
         pageHtml = pageHtml.replace(/<meta property="og:image" content="[\s\S]*?" \/>/, `<meta property="og:image" content="${meta.ogImage}" />`);
+        pageHtml = pageHtml.replace(/<meta property="og:image:secure_url" content="[\s\S]*?" \/>/, `<meta property="og:image:secure_url" content="${meta.ogImage}" />`);
+        const mimeType = meta.ogImage.endsWith('.jpg') || meta.ogImage.endsWith('.jpeg') ? 'image/jpeg' : 'image/png';
+        pageHtml = pageHtml.replace(/<meta property="og:image:type" content="[\s\S]*?" \/>/, `<meta property="og:image:type" content="${mimeType}" />`);
         pageHtml = pageHtml.replace(/<meta name="twitter:image" content="[\s\S]*?" \/>/, `<meta name="twitter:image" content="${meta.ogImage}" />`);
       }
 

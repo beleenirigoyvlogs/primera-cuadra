@@ -214,10 +214,10 @@ export default function App() {
           target="_blank"
           rel="noopener noreferrer"
           className="btn-mobile-sticky-wa"
-          onClick={() => trackWhatsAppClick('mobile_sticky_bar', 'Escribinos_por_WhatsApp')}
+          onClick={() => trackWhatsAppClick('mobile_sticky_bar', 'Escribime_por_WhatsApp')}
         >
           <MessageCircle size={20} />
-          <span>Escribinos por WhatsApp</span>
+          <span>Escribime por WhatsApp</span>
         </a>
       </div>
 

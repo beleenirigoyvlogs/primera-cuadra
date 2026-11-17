@@ -34,25 +34,25 @@ export function render(url) {
     meta.title = 'El Fogón de Tigre • Cortes a las brasas y pastas caseras';
     meta.description = 'Ejemplo navegable de página web para parrillas y bodegones diseñado por Primera Cuadra.';
     meta.canonical = 'https://primeracuadra.com.ar/ejemplos/parrilla';
-    meta.ogImage = 'https://primeracuadra.com.ar/demos/parrilla/hero.webp';
+    meta.ogImage = 'https://primeracuadra.com.ar/demos/parrilla/og-image.jpg';
   } else if (cleanUrl.startsWith('/ejemplos/barberia')) {
     appHtml = renderToString(<BusinessDemoSitePage slug="barberia" isProposal={false} />);
     meta.title = 'Barber Studio 96 • Cortes clásicos y degradé moderno';
     meta.description = 'Ejemplo navegable de página web para barberías y salones diseñado por Primera Cuadra.';
     meta.canonical = 'https://primeracuadra.com.ar/ejemplos/barberia';
-    meta.ogImage = 'https://primeracuadra.com.ar/demos/barberia/hero.webp';
+    meta.ogImage = 'https://primeracuadra.com.ar/demos/barberia/og-image.jpg';
   } else if (cleanUrl.startsWith('/ejemplos/taller')) {
     appHtml = renderToString(<BusinessDemoSitePage slug="taller" isProposal={false} />);
     meta.title = 'Mecánica Integral Álvarez • Diagnóstico computarizado e inyección';
     meta.description = 'Ejemplo navegable de página web para talleres mecánicos diseñado por Primera Cuadra.';
     meta.canonical = 'https://primeracuadra.com.ar/ejemplos/taller';
-    meta.ogImage = 'https://primeracuadra.com.ar/demos/taller/hero.webp';
+    meta.ogImage = 'https://primeracuadra.com.ar/demos/taller/og-image.jpg';
   } else if (cleanUrl.startsWith('/ejemplos/dental')) {
     appHtml = renderToString(<BusinessDemoSitePage slug="dental" isProposal={false} />);
     meta.title = 'Centro Odontológico Delta • Odontología integral e implantes';
     meta.description = 'Ejemplo navegable de página web para consultorios odontológicos diseñado por Primera Cuadra.';
     meta.canonical = 'https://primeracuadra.com.ar/ejemplos/dental';
-    meta.ogImage = 'https://primeracuadra.com.ar/demos/dental/hero.webp';
+    meta.ogImage = 'https://primeracuadra.com.ar/demos/dental/og-image.jpg';
   } else {
     appHtml = renderToString(<NotFoundPage />);
     meta.title = 'Página no encontrada (404) | Primera Cuadra';
