@@ -27,3 +27,4 @@ export default function GuaranteesBannerV3() {
     </section>
   );
 }
+

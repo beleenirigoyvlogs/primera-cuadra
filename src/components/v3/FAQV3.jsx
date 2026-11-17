@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTheme } from '../../hooks/useTheme';
 
-export default function FAQV3() {
+export default function FAQV3({ extraFaqs = [] }) {
   const { isDark } = useTheme();
 
   const lightBg = isDark ? '#1E1C24' : '#EFEDE8';
@@ -9,7 +9,7 @@ export default function FAQV3() {
   const muted = isDark ? '#B3AFA6' : '#55524C';
   const line = isDark ? '#34313C' : '#D4CFC4';
 
-  const faqs = [
+  const baseFaqs = [
     { 
       q: '¿Cuánto tarda mi página web?', 
       a: 'Cuatro días hábiles desde que recibo tu material; 48 horas en el plan Express.' 
@@ -35,6 +35,8 @@ export default function FAQV3() {
       a: 'Sí. Te armo una propuesta base sin costo para que veas cómo quedaría tu web antes de decidir.' 
     }
   ];
+
+  const faqs = [...extraFaqs, ...baseFaqs];
 
   return (
     <section 
@@ -100,3 +102,4 @@ export default function FAQV3() {
     </section>
   );
 }
+

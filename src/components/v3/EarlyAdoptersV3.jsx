@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function EarlyAdoptersV3() {
   return (
-    <section style={{ background: '#673DE6', color: '#FFFFFF' }}>
+    <section className="pc-early-adopters" style={{ background: '#673DE6', color: '#FFFFFF' }}>
       <div 
         style={{ 
           maxWidth: '1240px', 
@@ -24,7 +24,8 @@ export default function EarlyAdoptersV3() {
               fontWeight: 600, 
               fontSize: 'clamp(30px, 3.4vw, 46px)', 
               lineHeight: 1.05, 
-              textTransform: 'uppercase' 
+              textTransform: 'uppercase',
+              color: '#FFFFFF'
             }}
           >
             Busco mis primeros 5 negocios
@@ -34,7 +35,10 @@ export default function EarlyAdoptersV3() {
               margin: '14px 0 0', 
               maxWidth: '640px', 
               fontSize: 'clamp(15px, 1.8vw, 17px)', 
-              lineHeight: 1.6 
+              lineHeight: 1.6,
+              color: '#FFFFFF',
+              opacity: 1,
+              fontWeight: 500
             }}
           >
             Primera Cuadra es un proyecto nuevo. Los primeros cinco acceden al precio de lanzamiento; a cambio, te pido tu opinión sincera y permiso para mostrar el trabajo terminado.
@@ -42,8 +46,8 @@ export default function EarlyAdoptersV3() {
         </div>
 
         <div style={{ flex: '1 1 240px', display: 'flex', flexDirection: 'column', gap: '14px', alignItems: 'flex-start' }}>
-          <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: '56px', fontWeight: 600, lineHeight: 1 }}>
-            5 <span style={{ fontSize: '20px', textTransform: 'uppercase' }}>lugares libres</span>
+          <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: '56px', fontWeight: 600, lineHeight: 1, color: '#FFFFFF' }}>
+            5 <span style={{ fontSize: '20px', textTransform: 'uppercase', color: '#FFFFFF' }}>lugares libres</span>
           </div>
           <a 
             href="https://wa.me/5491128779641?text=%C2%A1Hola%20Bel%C3%A9n!%20Quiero%20uno%20de%20los%205%20lugares%20de%20lanzamiento%20de%20Primera%20Cuadra." 
@@ -66,3 +70,4 @@ export default function EarlyAdoptersV3() {
     </section>
   );
 }
+

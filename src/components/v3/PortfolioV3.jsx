@@ -161,7 +161,7 @@ export default function PortfolioV3() {
                 <span style={{ fontFamily: "'Oswald', sans-serif", fontSize: '20px', textTransform: 'uppercase' }}>
                   {e.rubro}
                 </span>
-                <span style={{ fontSize: '14px', fontWeight: 600, color: '#673DE6' }}>
+                <span style={{ fontSize: '14px', fontWeight: 600, color: isDark ? '#A48BFF' : '#5025C4' }}>
                   Ver web →
                 </span>
               </div>
@@ -172,3 +172,4 @@ export default function PortfolioV3() {
     </section>
   );
 }
+

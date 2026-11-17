@@ -155,14 +155,26 @@ export default function HeroV3({
               zoneH1
             ) : (
               <>
-                Diseño de páginas web<br />
-                <span style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0, color: '#A9A6B4' }}>
-                  para{' '}
+                <span style={{ display: 'block' }}>Diseño de páginas web</span>
+                <span style={{ display: 'inline-flex', alignItems: 'baseline', minHeight: '1.15em' }}>
+                  <span style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0, color: '#A9A6B4', marginRight: '0.35ch' }}>
+                    para
+                  </span>
+                  <span 
+                    style={{ 
+                      display: 'inline-block', 
+                      minWidth: '15ch', 
+                      textAlign: 'left', 
+                      verticalAlign: 'baseline',
+                      whiteSpace: 'nowrap'
+                    }}
+                  >
+                    <span style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0, color: '#FFFFFF' }} aria-live="off">
+                      {typed}
+                    </span>
+                    <span className="pc-caret" aria-hidden="true" style={{ color: '#A48BFF' }} />
+                  </span>
                 </span>
-                <span style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0, color: '#FFFFFF' }} aria-live="off">
-                  {typed}
-                </span>
-                <span className="pc-caret" aria-hidden="true" style={{ color: '#A48BFF' }} />
                 <span className="sr-only">para comercios, profesionales, empresas y emprendedores.</span>
               </>
             )}
@@ -240,159 +252,168 @@ export default function HeroV3({
             boxSizing: 'border-box'
           }}
         >
-          {/* Main Floating Phone */}
+          {/* Phone Stage Wrapper with absolute anchor for floating sub-cards */}
           <div 
-            className="pc-float" 
-            style={{ 
-              width: '268px', 
-              maxWidth: '85vw',
-              height: '530px', 
-              borderRadius: '40px', 
-              background: '#0E0D12', 
-              padding: '10px', 
-              boxShadow: '0 40px 80px rgba(0,0,0,.45)', 
-              border: '1px solid #2E2B36',
-              boxSizing: 'border-box',
+            className="pc-hero-phone-stage"
+            style={{
               position: 'relative',
-              zIndex: 2
+              width: '268px',
+              maxWidth: '100%',
+              minHeight: '530px',
+              display: 'flex',
+              justifyContent: 'center'
             }}
           >
+            {/* Main Floating Phone */}
             <div 
+              className="pc-float" 
               style={{ 
-                width: '100%', 
-                height: '100%', 
-                borderRadius: '31px', 
-                overflow: 'hidden', 
-                background: '#F7F6F2', 
-                color: '#1B1B1B', 
-                display: 'flex', 
-                flexDirection: 'column', 
-                fontSize: '12px', 
-                lineHeight: 1.4 
+                width: '268px', 
+                maxWidth: '85vw',
+                height: '530px', 
+                borderRadius: '40px', 
+                background: '#0E0D12', 
+                padding: '10px', 
+                boxShadow: '0 40px 80px rgba(0,0,0,.45)', 
+                border: '1px solid #2E2B36',
+                boxSizing: 'border-box',
+                position: 'relative',
+                zIndex: 2
               }}
             >
-              {/* Speaker notch */}
-              <div style={{ height: '26px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <span style={{ width: '70px', height: '6px', borderRadius: '99px', background: '#18161E' }} />
-              </div>
+              <div 
+                style={{ 
+                  width: '100%', 
+                  height: '100%', 
+                  borderRadius: '31px', 
+                  overflow: 'hidden', 
+                  background: '#F7F6F2', 
+                  color: '#1B1B1B', 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  fontSize: '12px', 
+                  lineHeight: 1.4 
+                }}
+              >
+                {/* Speaker notch */}
+                <div style={{ height: '26px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <span style={{ width: '70px', height: '6px', borderRadius: '99px', background: '#18161E' }} />
+                </div>
 
-              {/* Phone app header */}
-              <div style={{ padding: '8px 14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #E3E0D9' }}>
-                <b style={{ fontSize: '13px' }}>Tu negocio</b>
-                <span style={{ fontSize: '10px', color: '#55524C' }}>Menú</span>
-              </div>
+                {/* Phone app header */}
+                <div style={{ padding: '8px 14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #E3E0D9' }}>
+                  <b style={{ fontSize: '13px' }}>Tu negocio</b>
+                  <span style={{ fontSize: '10px', color: '#55524C' }}>Menú</span>
+                </div>
 
-              {/* Phone hero card */}
-              <div style={{ background: '#673DE6', color: '#FFFFFF', padding: '20px 14px' }}>
-                <div style={{ fontSize: '10px', letterSpacing: '.12em', textTransform: 'uppercase', opacity: .85 }}>
-                  Tu rubro · Tu zona
+                {/* Phone hero card */}
+                <div style={{ background: '#673DE6', color: '#FFFFFF', padding: '20px 14px' }}>
+                  <div style={{ fontSize: '10px', letterSpacing: '.12em', textTransform: 'uppercase', opacity: .85 }}>
+                    Tu rubro · Tu zona
+                  </div>
+                  <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: '21px', textTransform: 'uppercase', lineHeight: 1.1, marginTop: '6px' }}>
+                    Lo que hacés, bien explicado
+                  </div>
+                  <div style={{ marginTop: '12px', display: 'inline-block', background: '#FFFFFF', color: '#4B25C4', fontWeight: 600, padding: '6px 12px', borderRadius: '4px', fontSize: '11px' }}>
+                    Consultar por WhatsApp
+                  </div>
                 </div>
-                <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: '21px', textTransform: 'uppercase', lineHeight: 1.1, marginTop: '6px' }}>
-                  Lo que hacés, bien explicado
-                </div>
-                <div style={{ marginTop: '12px', display: 'inline-block', background: '#FFFFFF', color: '#4B25C4', fontWeight: 600, padding: '6px 12px', borderRadius: '4px', fontSize: '11px' }}>
-                  Consultar por WhatsApp
-                </div>
-              </div>
 
-              {/* Phone content list */}
-              <div style={{ padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <div style={{ fontWeight: 600, fontSize: '11px', textTransform: 'uppercase', letterSpacing: '.08em', color: '#55524C' }}>
-                  Servicios y precios
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '7px 10px', background: '#FFFFFF', borderRadius: '6px' }}>
-                  <span>Servicio principal</span>
-                  <b>$ —</b>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '7px 10px', background: '#FFFFFF', borderRadius: '6px' }}>
-                  <span>Otro servicio</span>
-                  <b>$ —</b>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '7px 10px', background: '#FFFFFF', borderRadius: '6px' }}>
-                  <span>Combo</span>
-                  <b>$ —</b>
-                </div>
-                <div style={{ fontWeight: 600, fontSize: '11px', textTransform: 'uppercase', letterSpacing: '.08em', color: '#55524C', marginTop: '4px' }}>
-                  Dónde estamos
-                </div>
-                <div 
-                  style={{ 
-                    height: '56px', 
-                    borderRadius: '6px', 
-                    background: 'repeating-linear-gradient(0deg, #E6E3DC 0 1px, transparent 1px 16px), repeating-linear-gradient(90deg, #E6E3DC 0 1px, #EFEDE8 1px 16px)', 
-                    position: 'relative' 
-                  }}
-                >
-                  <span 
+                {/* Phone content list */}
+                <div style={{ padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <div style={{ fontWeight: 600, fontSize: '11px', textTransform: 'uppercase', letterSpacing: '.08em', color: '#55524C' }}>
+                    Servicios y precios
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', padding: '7px 10px', background: '#FFFFFF', borderRadius: '6px' }}>
+                    <span>Servicio principal</span>
+                    <b>$ —</b>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', padding: '7px 10px', background: '#FFFFFF', borderRadius: '6px' }}>
+                    <span>Otro servicio</span>
+                    <b>$ —</b>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', padding: '7px 10px', background: '#FFFFFF', borderRadius: '6px' }}>
+                    <span>Combo</span>
+                    <b>$ —</b>
+                  </div>
+                  <div style={{ fontWeight: 600, fontSize: '11px', textTransform: 'uppercase', letterSpacing: '.08em', color: '#55524C', marginTop: '4px' }}>
+                    Dónde estamos
+                  </div>
+                  <div 
                     style={{ 
-                      position: 'absolute', 
-                      left: '50%', 
-                      top: '38%', 
-                      width: '12px', 
-                      height: '12px', 
-                      borderRadius: '50% 50% 50% 0', 
-                      transform: 'rotate(-45deg)', 
-                      background: '#673DE6' 
-                    }} 
-                  />
+                      height: '56px', 
+                      borderRadius: '6px', 
+                      background: 'repeating-linear-gradient(0deg, #E6E3DC 0 1px, transparent 1px 16px), repeating-linear-gradient(90deg, #E6E3DC 0 1px, #EFEDE8 1px 16px)', 
+                      position: 'relative' 
+                    }}
+                  >
+                    <span 
+                      style={{ 
+                        position: 'absolute', 
+                        left: '50%', 
+                        top: '38%', 
+                        width: '12px', 
+                        height: '12px', 
+                        borderRadius: '50% 50% 50% 0', 
+                        transform: 'rotate(-45deg)', 
+                        background: '#673DE6' 
+                      }} 
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Floating Card: Google Maps */}
-          <div 
-            className="pc-float-b pc-subcard-maps" 
-            style={{ 
-              position: 'absolute', 
-              left: 'clamp(-10px, 2vw, 10px)', 
-              top: '60px', 
-              background: '#F7F6F2', 
-              color: '#1B1B1B', 
-              borderRadius: '10px', 
-              padding: '12px 14px', 
-              width: '190px', 
-              maxWidth: '85%',
-              boxShadow: '0 18px 40px rgba(0,0,0,.35)', 
-              fontSize: '13px',
-              zIndex: 3
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#673DE6" strokeWidth="2.2" aria-hidden="true" style={{ flexShrink: 0 }}>
-                <path d="M12 22s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z" />
-                <circle cx="12" cy="10" r="2.5" />
-              </svg>
-              <b>Google Maps</b>
+            {/* Floating Card: Google Maps */}
+            <div 
+              className="pc-float-b pc-subcard-maps" 
+              style={{ 
+                position: 'absolute', 
+                background: '#F7F6F2', 
+                color: '#1B1B1B', 
+                borderRadius: '10px', 
+                padding: '12px 14px', 
+                width: '190px', 
+                maxWidth: '85%',
+                boxShadow: '0 18px 40px rgba(0,0,0,.35)', 
+                fontSize: '13px',
+                zIndex: 3
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#673DE6" strokeWidth="2.2" aria-hidden="true" style={{ flexShrink: 0 }}>
+                  <path d="M12 22s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z" />
+                  <circle cx="12" cy="10" r="2.5" />
+                </svg>
+                <b>Google Maps</b>
+              </div>
+              <div style={{ marginTop: '6px', color: '#55524C', fontSize: '12px', lineHeight: 1.35 }}>
+                Tu ficha completa: horarios, fotos y cómo llegar.
+              </div>
             </div>
-            <div style={{ marginTop: '6px', color: '#55524C', fontSize: '12px', lineHeight: 1.35 }}>
-              Tu ficha completa: horarios, fotos y cómo llegar.
-            </div>
-          </div>
 
-          {/* Floating Card: WhatsApp Message */}
-          <div 
-            className="pc-float-c pc-subcard-wa" 
-            style={{ 
-              position: 'absolute', 
-              right: 'clamp(-10px, 2vw, 10px)', 
-              bottom: '60px', 
-              background: '#DCF5E3', 
-              color: '#10301C', 
-              borderRadius: '12px 12px 2px 12px', 
-              padding: '12px 14px', 
-              width: '200px', 
-              maxWidth: '85%',
-              boxShadow: '0 18px 40px rgba(0,0,0,.35)', 
-              fontSize: '13px',
-              zIndex: 3
-            }}
-          >
-            <b style={{ display: 'block', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '.08em', color: '#1E6B3A' }}>
-              WhatsApp · nuevo mensaje
-            </b>
-            <div style={{ marginTop: '4px', fontSize: '12px', lineHeight: 1.35 }}>
-              ¡Hola! Vi tu web y quería consultar por un presupuesto.
+            {/* Floating Card: WhatsApp Message */}
+            <div 
+              className="pc-float-c pc-subcard-wa" 
+              style={{ 
+                position: 'absolute', 
+                background: '#DCF5E3', 
+                color: '#10301C', 
+                borderRadius: '12px 12px 2px 12px', 
+                padding: '12px 14px', 
+                width: '200px', 
+                maxWidth: '85%',
+                boxShadow: '0 18px 40px rgba(0,0,0,.35)', 
+                fontSize: '13px',
+                zIndex: 3
+              }}
+            >
+              <b style={{ display: 'block', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '.08em', color: '#1E6B3A' }}>
+                WhatsApp · nuevo mensaje
+              </b>
+              <div style={{ marginTop: '4px', fontSize: '12px', lineHeight: 1.35 }}>
+                ¡Hola! Vi tu web y quería consultar por un presupuesto.
+              </div>
             </div>
           </div>
         </div>

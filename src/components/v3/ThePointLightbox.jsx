@@ -270,3 +270,4 @@ export default function ThePointLightbox({ isOpen, onClose, initialIndex = 0 }) 
     </div>
   );
 }
+

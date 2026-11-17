@@ -264,6 +264,27 @@ html.dark {
   border: 0;
 }
 
+.pc-early-adopters p,
+html.dark .pc-early-adopters p {
+  color: #FFFFFF !important;
+  opacity: 1 !important;
+}
+
+@media (min-width: 769px) {
+  .pc-subcard-maps {
+    right: calc(100% - 2px) !important;
+    left: auto !important;
+    top: 50px !important;
+    width: 195px !important;
+  }
+  .pc-subcard-wa {
+    left: calc(100% - 2px) !important;
+    right: auto !important;
+    bottom: 70px !important;
+    width: 205px !important;
+  }
+}
+
 @media (max-width: 768px) {
   .pc-desktop-nav {
     display: none !important;
@@ -274,14 +295,19 @@ html.dark {
   .pc-hero-phone-container {
     min-height: 480px !important;
   }
+  .pc-hero-phone-stage {
+    width: 100% !important;
+  }
   .pc-subcard-maps {
     top: 20px !important;
     left: 4px !important;
+    right: auto !important;
     width: 165px !important;
   }
   .pc-subcard-wa {
     bottom: 20px !important;
     right: 4px !important;
+    left: auto !important;
     width: 175px !important;
   }
 }

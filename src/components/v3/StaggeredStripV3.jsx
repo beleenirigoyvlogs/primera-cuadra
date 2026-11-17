@@ -39,3 +39,4 @@ export default function StaggeredStripV3() {
     </section>
   );
 }
+
