@@ -14908,20 +14908,34 @@ html.dark .pricing-card-hostinger .plan-sub-guarantee {
   margin: 0 !important;
 }
 
+.demo-card-top-bar {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  margin-bottom: 14px !important;
+}
+
+.demo-card-headings {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  margin-bottom: 8px !important;
+}
+
 .demo-corner-badge {
-  position: absolute !important;
-  top: 14px !important;
-  right: 14px !important;
+  position: static !important;
   font-size: 0.68rem !important;
   font-weight: 700 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.04em !important;
-  padding: 3px 8px !important;
-  border-radius: 4px !important;
+  padding: 4px 9px !important;
+  border-radius: 6px !important;
   background: rgba(103, 61, 230, 0.08) !important;
   border: 1px solid rgba(103, 61, 230, 0.18) !important;
   color: var(--brand-purple) !important;
   white-space: nowrap !important;
+  flex-shrink: 0 !important;
 }
 
 html.dark .demo-corner-badge {

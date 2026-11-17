@@ -60,21 +60,21 @@ export default function ExampleDesignsSection() {
 
             return (
               <div key={demo.slug} className="demo-showcase-card reveal">
-                {/* Discrete Corner Tag */}
-                <span className="demo-corner-badge">Ejemplo ficticio</span>
-
-                {/* Card Top Rubro & Icon */}
-                <div className="demo-card-top">
+                {/* Card Top Bar: Icon on Left, Pill Badge on Right */}
+                <div className="demo-card-top-bar">
                   <div 
                     className="demo-rubro-icon-circle" 
                     style={{ backgroundColor: `${demo.theme.primary}18`, color: demo.theme.primary }}
                   >
                     <IconComp size={20} />
                   </div>
-                  <div className="demo-rubro-headings">
-                    <span className="demo-rubro-tag">{demo.rubroLabel}</span>
-                    <h3 className="demo-business-title">{demo.businessName}</h3>
-                  </div>
+                  <span className="demo-corner-badge">Ejemplo ficticio</span>
+                </div>
+
+                {/* Card Headings: full width below top bar, zero chance of overlap */}
+                <div className="demo-card-headings">
+                  <span className="demo-rubro-tag">{demo.rubroLabel}</span>
+                  <h3 className="demo-business-title">{demo.businessName}</h3>
                 </div>
 
                 <p className="demo-tagline-text">{demo.tagline}</p>
