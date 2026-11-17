@@ -143,7 +143,7 @@ export default function PrivacyPage() {
                 Quién es responsable de tus datos
               </h2>
               <p style={{ margin: 0, color: muted }}>
-                Belén Irigoy, titular de Primera Cuadra, con domicilio en Tigre, provincia de Buenos Aires. Contacto: {CONTACT_EMAIL} [COMPLETAR: mail con dominio, ej. hola@primeracuadra.com.ar].
+                Belén Irigoy, titular de Primera Cuadra, con domicilio en Tigre, provincia de Buenos Aires. Contacto: {CONTACT_EMAIL}.
               </p>
             </div>
 
@@ -199,3 +199,4 @@ export default function PrivacyPage() {
     </div>
   );
 }
+

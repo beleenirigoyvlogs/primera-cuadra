@@ -84,3 +84,4 @@ export const RUBROS_DATA = {
     waLocation: 'rubro-consultorios'
   }
 };
+

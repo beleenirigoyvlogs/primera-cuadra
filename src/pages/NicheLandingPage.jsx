@@ -635,3 +635,4 @@ export default function NicheLandingPage({ rubroKey }) {
     </div>
   );
 }
+

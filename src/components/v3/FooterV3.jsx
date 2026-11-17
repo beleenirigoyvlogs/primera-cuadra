@@ -2,14 +2,12 @@ import React from 'react';
 import BrandLogo from '../BrandLogo';
 
 // Constante de configuración de redes sociales
-// [COMPLETAR]: Completar las URLs vacías de Instagram y Google Maps cuando estén disponibles
 export const SOCIAL_LINKS = {
-  instagram: '', // [COMPLETAR]
-  facebook: 'https://www.facebook.com/profile.php?id=61594410424409', // [COMPLETAR]
-  googleMaps: '' // [COMPLETAR]
+  instagram: '',
+  facebook: 'https://www.facebook.com/profile.php?id=61594410424409',
+  googleMaps: ''
 };
 
-// [COMPLETAR: mail con dominio, ej. hola@primeracuadra.com.ar]
 export const CONTACT_EMAIL = 'primeracuadraweb@gmail.com';
 
 const InstagramIcon = ({ size = 18 }) => (
@@ -45,7 +43,7 @@ export default function FooterV3() {
       name: 'Facebook',
       url: SOCIAL_LINKS.facebook,
       icon: FacebookIcon,
-      label: 'Seguinos en Facebook'
+      label: 'Seguime en Facebook'
     },
     {
       name: 'Google Maps',

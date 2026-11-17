@@ -78,6 +78,19 @@ export default function App({ initialPath = null }) {
     recordPageView();
   }, []);
 
+  // Ensure FAQPage JSON-LD is only active on the home page ('/')
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+    const faqScript = document.getElementById('schema-faq');
+    if (faqScript) {
+      if (currentPath !== '/') {
+        faqScript.setAttribute('type', 'application/json-disabled');
+      } else {
+        faqScript.setAttribute('type', 'application/ld+json');
+      }
+    }
+  }, [currentPath]);
+
   useEffect(() => {
     const handleRouteChange = () => {
       setCurrentPath(window.location.pathname.toLowerCase());

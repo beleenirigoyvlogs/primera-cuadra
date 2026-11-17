@@ -49,7 +49,7 @@ export const BLOG_POSTS = {
       },
       {
         type: 'p',
-        text: 'Trabajo con tres planes de pago único. Los precios de lanzamiento están en la sección de precios. El primer año de dominio y hosting está incluido, y después pagás solo la renovación aproximada de [COMPLETAR: monto] por año, que te informo antes de empezar. El pago es mitad al empezar y mitad cuando revisás todo y estás conforme.'
+        text: 'Trabajo con tres planes de pago único. Los precios de lanzamiento están en la sección de precios. El primer año de dominio y hosting está incluido, y después pagás solo la renovación aproximada de $10.000 por año, que te informo antes de empezar. El pago es mitad al empezar y mitad cuando revisás todo y estás conforme.'
       },
       {
         type: 'h2',
@@ -195,3 +195,4 @@ export const BLOG_POSTS = {
     ]
   }
 };
+

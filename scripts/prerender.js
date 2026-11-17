@@ -82,6 +82,11 @@ async function prerender() {
         pageHtml = pageHtml.replace(/<meta name="twitter:image" content="[\s\S]*?" \/>/, `<meta name="twitter:image" content="${meta.ogImage}" />`);
       }
 
+      // FAQPage schema must ONLY exist on the home page ('/')
+      if (url !== '/') {
+        pageHtml = pageHtml.replace(/<!-- FAQ JSON-LD Structured Data \(Only for Home Page\) -->\s*<script id="schema-faq"[\s\S]*?<\/script>\s*/, '');
+      }
+
       const outFilePath = path.resolve(rootDir, file);
       const outDir = path.dirname(outFilePath);
       if (!fs.existsSync(outDir)) {
