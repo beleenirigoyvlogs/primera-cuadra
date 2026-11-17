@@ -23,6 +23,7 @@ import {
   Bell,
   Lock,
   ZoomIn,
+  ZoomOut,
   X
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
@@ -46,7 +47,8 @@ export default function CustomDevelopmentPage() {
 
   // Tabs for "The Point Kiosco" real project interactive carousel
   const [activeScreenIdx, setActiveScreenIdx] = useState(0);
-  const [zoomedImg, setZoomedImg] = useState(null);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [isZoomed, setIsZoomed] = useState(false);
 
   const thePointScreens = [
     {
@@ -55,7 +57,10 @@ export default function CustomDevelopmentPage() {
       title: 'Punto de Venta Táctil & Facturación Rápida',
       subtitle: 'Botonera rápida optimizada para mostrador con artículos populares, cobro ágil y lector de código de barras (F3).',
       badge: 'Operaciones Diarias • POS',
-      image: '/thepoint/pos.webp',
+      base: '/thepoint/pos',
+      origWidth: 1916,
+      origHeight: 1004,
+      image: '/thepoint/pos-full.webp',
       bullets: [
         'Artículos populares táctiles (aguas, gaseosas, vinos, alfajores, cigarrillos, golosinas)',
         'Múltiples medios de pago: Efectivo con cálculo de vuelto, Mercado Pago / QR, Transferencia, Débito y Crédito',
@@ -68,7 +73,10 @@ export default function CustomDevelopmentPage() {
       title: 'Panel General & Control en Tiempo Real',
       subtitle: 'Tablero operativo con evolución semanal de ventas, productos más vendidos, alertas de stock y estado de caja.',
       badge: 'Dashboard Operativo',
-      image: '/thepoint/dashboard.webp',
+      base: '/thepoint/dashboard',
+      origWidth: 1915,
+      origHeight: 1011,
+      image: '/thepoint/dashboard-full.webp',
       bullets: [
         'Ventas acumuladas de hoy, tickets emitidos y resultado neto comercial',
         'Gráfico de evolución semanal de ventas y ranking histórico de artículos con mayor salida',
@@ -81,7 +89,10 @@ export default function CustomDevelopmentPage() {
       title: 'Catálogo de Productos & Control de Stock',
       subtitle: 'Inventario con código/SKU, costo, precio de venta, remarcación/margen % y alertas automáticas de reposición.',
       badge: 'Catálogo & Inventario',
-      image: '/thepoint/stock.webp',
+      base: '/thepoint/stock',
+      origWidth: 1917,
+      origHeight: 1011,
+      image: '/thepoint/stock-full.webp',
       bullets: [
         'Buscador instantáneo por nombre, código de barras o SKU',
         'Cálculo automático de rentabilidad (costo vs. venta vs. porcentaje de margen neto)',
@@ -94,7 +105,10 @@ export default function CustomDevelopmentPage() {
       title: 'Control de Caja Diaria & Flujo de Dinero',
       subtitle: 'Apertura de turno, retiros de dinero, ingresos y arqueo de caja con historial de sesiones.',
       badge: 'Tesorería & Caja',
-      image: '/thepoint/caja.webp',
+      base: '/thepoint/caja',
+      origWidth: 1919,
+      origHeight: 1009,
+      image: '/thepoint/caja-full.webp',
       bullets: [
         'Historial de sesiones con fondo inicial, total esperado vs. contado y cálculo de diferencias',
         'Registro discriminado por medio de pago (Efectivo, Mercado Pago, etc.)',
@@ -107,7 +121,10 @@ export default function CustomDevelopmentPage() {
       title: 'Reportes de Rendimiento & Rentabilidad Real',
       subtitle: 'Cálculos transparentes sin confundir facturación bruta con ganancia neta comercial.',
       badge: 'Auditoría Financiera',
-      image: '/thepoint/reportes.webp',
+      base: '/thepoint/reportes',
+      origWidth: 1919,
+      origHeight: 1003,
+      image: '/thepoint/reportes-full.webp',
       bullets: [
         'Facturación bruta vs. Costo de mercadería vendida vs. Ganancia bruta estimada y resultado neto',
         'Cobranzas discriminadas por medio de pago y ventas por categoría de producto',
@@ -120,7 +137,10 @@ export default function CustomDevelopmentPage() {
       title: 'Historial & Auditoría Inmutable de Operaciones',
       subtitle: 'Registro cronológico inmutable de cada venta, arqueo, anulación, ajuste de stock y modificación de precios.',
       badge: 'Seguridad & Control',
-      image: '/thepoint/auditoria.webp',
+      base: '/thepoint/auditoria',
+      origWidth: 1919,
+      origHeight: 1012,
+      image: '/thepoint/auditoria-full.webp',
       bullets: [
         'Registro con fecha, hora exacta, módulo, descripción del suceso y usuario responsable',
         'Trazabilidad total de altas, bajas y modificaciones de precios',
@@ -133,7 +153,10 @@ export default function CustomDevelopmentPage() {
       title: 'Base de Datos Local Persistente & Respaldos',
       subtitle: 'Operación 100% independiente de internet con protección de datos y respaldos en un clic.',
       badge: 'Infraestructura & Protección',
-      image: '/thepoint/backups.webp',
+      base: '/thepoint/backups',
+      origWidth: 1919,
+      origHeight: 1015,
+      image: '/thepoint/backups-full.webp',
       bullets: [
         'Almacenamiento local SQLite ultra rápido que nunca se cuelga ni depende de la conexión a internet',
         'Creación de respaldos inmediatos (.sqlite) para guardar en pendrive o carpeta externa',
@@ -141,6 +164,39 @@ export default function CustomDevelopmentPage() {
       ]
     }
   ];
+
+  // Manage body scroll & keyboard shortcuts when lightbox is open
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+
+    if (isLightboxOpen) {
+      document.body.classList.add('lightbox-open');
+    } else {
+      document.body.classList.remove('lightbox-open');
+      setIsZoomed(false);
+    }
+
+    const handleKeyDown = (e) => {
+      if (!isLightboxOpen) return;
+      if (e.key === 'Escape') {
+        setIsLightboxOpen(false);
+      } else if (e.key === 'ArrowLeft') {
+        setIsZoomed(false);
+        setActiveScreenIdx((prev) => (prev > 0 ? prev - 1 : thePointScreens.length - 1));
+      } else if (e.key === 'ArrowRight') {
+        setIsZoomed(false);
+        setActiveScreenIdx((prev) => (prev < thePointScreens.length - 1 ? prev + 1 : 0));
+      } else if (e.key === 'z' || e.key === 'Z') {
+        setIsZoomed((prev) => !prev);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.classList.remove('lightbox-open');
+    };
+  }, [isLightboxOpen, thePointScreens.length]);
 
   const currentScreen = thePointScreens[activeScreenIdx];
 
@@ -421,15 +477,37 @@ export default function CustomDevelopmentPage() {
 
                     <div 
                       className="pos-app-screenshot-viewport" 
-                      onClick={() => setZoomedImg(currentScreen.image)}
-                      title="Clic para ampliar imagen"
+                      onClick={() => setIsLightboxOpen(true)}
+                      title="Clic para ver en pantalla completa con zoom"
                     >
-                      <img 
-                        src={currentScreen.image} 
-                        alt={`Captura real del sistema: ${currentScreen.title}`} 
-                        className="the-point-screenshot-img"
-                        loading="lazy"
-                      />
+                      <picture>
+                        <source 
+                          type="image/avif" 
+                          srcSet={`
+                            ${currentScreen.base}-1200.avif 1200w,
+                            ${currentScreen.base}-1800.avif 1800w,
+                            ${currentScreen.base}-full.avif ${currentScreen.origWidth}w
+                          `}
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
+                        />
+                        <source 
+                          type="image/webp" 
+                          srcSet={`
+                            ${currentScreen.base}-1200.webp 1200w,
+                            ${currentScreen.base}-1800.webp 1800w,
+                            ${currentScreen.base}-full.webp ${currentScreen.origWidth}w
+                          `}
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
+                        />
+                        <img 
+                          src={`${currentScreen.base}-1200.webp`} 
+                          alt={`Captura real del sistema: ${currentScreen.title}`} 
+                          className="the-point-screenshot-img"
+                          width={currentScreen.origWidth}
+                          height={currentScreen.origHeight}
+                          loading="lazy"
+                        />
+                      </picture>
                       <div className="screenshot-zoom-overlay">
                         <ZoomIn size={15} />
                         <span>Clic para ampliar</span>
@@ -577,19 +655,101 @@ export default function CustomDevelopmentPage() {
       {/* 5. Official WhatsApp Floating Button */}
       <WhatsAppFloatingBtn />
 
-      {/* 6. Fullscreen Zoom Lightbox Modal */}
-      {zoomedImg && (
-        <div className="screenshot-lightbox-overlay" onClick={() => setZoomedImg(null)}>
-          <div className="screenshot-lightbox-content" onClick={(e) => e.stopPropagation()}>
-            <button 
-              type="button" 
-              className="btn-close-lightbox"
-              onClick={() => setZoomedImg(null)}
-              aria-label="Cerrar imagen"
-            >
-              <X size={20} />
-            </button>
-            <img src={zoomedImg} alt="Captura ampliada en alta resolución" className="lightbox-full-img" />
+      {/* 6. Fullscreen High-Resolution Lightbox Modal with Zoom & Keyboard Navigation */}
+      {isLightboxOpen && (
+        <div 
+          className="thepoint-lightbox-overlay" 
+          onClick={() => { setIsLightboxOpen(false); setIsZoomed(false); }}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Visor a pantalla completa de The Point"
+        >
+          {/* Lightbox Top Control Bar */}
+          <div className="lightbox-top-bar" onClick={(e) => e.stopPropagation()}>
+            <div className="lightbox-title-info">
+              <span className="lightbox-counter">
+                {activeScreenIdx + 1} / {thePointScreens.length}
+              </span>
+              <span className="lightbox-screen-title">{currentScreen.title}</span>
+            </div>
+
+            <div className="lightbox-actions-group">
+              <button
+                type="button"
+                className={`btn-lightbox-action ${isZoomed ? 'active' : ''}`}
+                onClick={() => setIsZoomed(!isZoomed)}
+                title={isZoomed ? "Restablecer tamaño (Z)" : "Ampliar al 100% (Z)"}
+                aria-label={isZoomed ? "Restablecer zoom" : "Ampliar zoom"}
+              >
+                {isZoomed ? <ZoomOut size={17} /> : <ZoomIn size={17} />}
+                <span>{isZoomed ? 'Ajustar a pantalla' : 'Zoom 100%'}</span>
+              </button>
+
+              <button
+                type="button"
+                className="btn-lightbox-close"
+                onClick={() => { setIsLightboxOpen(false); setIsZoomed(false); }}
+                title="Cerrar (Esc)"
+                aria-label="Cerrar visor"
+              >
+                <X size={20} />
+              </button>
+            </div>
+          </div>
+
+          {/* Left / Right Arrow Navigation */}
+          <button
+            type="button"
+            className="btn-lightbox-nav prev"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsZoomed(false);
+              setActiveScreenIdx((prev) => (prev > 0 ? prev - 1 : thePointScreens.length - 1));
+            }}
+            aria-label="Captura anterior"
+          >
+            <ChevronLeft size={28} />
+          </button>
+
+          <button
+            type="button"
+            className="btn-lightbox-nav next"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsZoomed(false);
+              setActiveScreenIdx((prev) => (prev < thePointScreens.length - 1 ? prev + 1 : 0));
+            }}
+            aria-label="Captura siguiente"
+          >
+            <ChevronRight size={28} />
+          </button>
+
+          {/* Lightbox Image Stage */}
+          <div 
+            className={`lightbox-image-stage ${isZoomed ? 'zoomed' : ''}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsZoomed(!isZoomed);
+            }}
+          >
+            <picture>
+              <source type="image/avif" srcSet={`${currentScreen.base}-full.avif`} />
+              <source type="image/webp" srcSet={`${currentScreen.base}-full.webp`} />
+              <img
+                src={`${currentScreen.base}-full.webp`}
+                alt={currentScreen.title}
+                className={`lightbox-full-img ${isZoomed ? 'is-zoomed' : ''}`}
+                loading="eager"
+              />
+            </picture>
+          </div>
+
+          {/* Lightbox Bottom Info Bar */}
+          <div className="lightbox-bottom-caption" onClick={(e) => e.stopPropagation()}>
+            <p className="lightbox-caption-text">{currentScreen.subtitle}</p>
+            <span className="lightbox-hint-text">
+              Hacé clic en la imagen o presioná <strong>Z</strong> para hacer zoom · Flechas <strong>← →</strong> para cambiar de captura · <strong>Esc</strong> para salir
+            </span>
           </div>
         </div>
       )}

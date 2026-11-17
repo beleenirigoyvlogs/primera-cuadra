@@ -5,6 +5,7 @@ import { trackWhatsAppClick } from '../utils/gtm';
 export default function WhatsAppFloatingBtn() {
   const [isVisible, setIsVisible] = useState(false);
   const [showBubble, setShowBubble] = useState(false);
+  const [isOverCaseStudy, setIsOverCaseStudy] = useState(false);
   const whatsappNumber = '5491128779641';
 
   useEffect(() => {
@@ -35,6 +36,24 @@ export default function WhatsAppFloatingBtn() {
     return () => clearTimeout(timer);
   }, []);
 
+  // Do not let bubble overlap The Point case study or bespoke software section
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const targets = document.querySelectorAll('#caso-the-point, .the-point-showcase-section, .case-showcase-box');
+    if (!targets || targets.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const isAnyIntersecting = entries.some(e => e.isIntersecting);
+        setIsOverCaseStudy(isAnyIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    targets.forEach(t => observer.observe(t));
+    return () => observer.disconnect();
+  }, []);
+
   const handleDismissBubble = (e) => {
     e.stopPropagation();
     setShowBubble(false);
@@ -51,7 +70,7 @@ export default function WhatsAppFloatingBtn() {
 
   return (
     <div className="whatsapp-floating-container">
-      {showBubble && (
+      {showBubble && !isOverCaseStudy && (
         <div className="whatsapp-floating-tooltip">
           <div className="tooltip-text">
             <strong>¿Tenés dudas?</strong>
