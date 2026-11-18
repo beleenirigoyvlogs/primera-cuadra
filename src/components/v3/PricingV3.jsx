@@ -233,7 +233,7 @@ export default function PricingV3() {
         </div>
 
         <p style={{ margin: '26px 0 0', fontSize: '14px', color: muted, maxWidth: '780px', lineHeight: 1.6 }}>
-          <strong>Incluido el primer año:</strong> dominio .com.ar y hosting. <strong>Desde el segundo año:</strong> renovación aproximada de $10.000 por año, que pagás directo a tu nombre. <strong>Mantenimiento mensual opcional:</strong> $10.000 por mes. Incluye cambios de textos, precios y fotos, y revisión de que todo funcione. Transferencia, Mercado Pago o efectivo.
+          <strong>Incluido el primer año:</strong> dominio .com.ar y hosting. <strong>Desde el segundo año:</strong> renovación aproximada de $10.000 por año, que pagás directo a tu nombre. <strong>Mantenimiento mensual opcional:</strong> $50.000 por mes. Incluye cambios de textos, precios y fotos, y revisión de que todo funcione. Transferencia, Mercado Pago o efectivo.
         </p>
       </div>
     </section>
