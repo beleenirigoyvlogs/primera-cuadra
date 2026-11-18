@@ -1,4 +1,6 @@
 import React from 'react';
+import SectionCornerStamp from './SectionCornerStamp';
+import MaskRevealH2 from './MaskRevealH2';
 
 export default function StepsV3() {
   const steps = [
@@ -40,24 +42,27 @@ export default function StepsV3() {
             fontSize: '15px', 
             letterSpacing: '.14em', 
             textTransform: 'uppercase', 
-            color: '#A48BFF' 
+            color: '#A48BFF',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px'
           }}
         >
-          Método de trabajo
+          <SectionCornerStamp stroke="#A48BFF" size={16} />
+          <span>Método de trabajo</span>
         </p>
-        <h2 
-          className="pc-reveal-u"
+        <MaskRevealH2 
+          text="Tu web lista en tres pasos" 
           style={{ 
             margin: '10px 0 0', 
             fontFamily: "'Oswald', sans-serif", 
             fontWeight: 600, 
             fontSize: 'clamp(34px, 4vw, 54px)', 
             lineHeight: 1.05, 
-            textTransform: 'uppercase' 
+            textTransform: 'uppercase',
+            color: '#F4F2EC'
           }}
-        >
-          Tu web lista en tres pasos
-        </h2>
+        />
 
         <ol 
           style={{ 

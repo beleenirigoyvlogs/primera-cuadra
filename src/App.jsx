@@ -92,10 +92,24 @@ export default function App({ initialPath = null }) {
   }, [currentPath]);
 
   useEffect(() => {
-    const handleRouteChange = () => {
+    const updateRoute = () => {
       setCurrentPath(window.location.pathname.toLowerCase());
       setExampleSlug(getExampleSlug());
       setProposalSlug(getProposalSlug());
+    };
+
+    const handleRouteChange = () => {
+      if (
+        typeof document !== 'undefined' &&
+        document.startViewTransition &&
+        !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      ) {
+        document.startViewTransition(() => {
+          updateRoute();
+        });
+      } else {
+        updateRoute();
+      }
     };
 
     const handleKeyDown = (e) => {
@@ -112,6 +126,44 @@ export default function App({ initialPath = null }) {
       handleRouteChange();
     };
 
+    // View Transitions for internal page navigation (250ms crossfade)
+    const handleLinkClick = (e) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const anchor = e.target.closest('a');
+      if (!anchor) return;
+      const href = anchor.getAttribute('href');
+      if (!href) return;
+      if (
+        href.startsWith('http') || 
+        href.startsWith('mailto:') || 
+        href.startsWith('tel:') || 
+        href.startsWith('//') || 
+        anchor.hasAttribute('download') || 
+        anchor.getAttribute('target') === '_blank'
+      ) return;
+      if (href.startsWith('#')) return;
+
+      if (href.startsWith('/')) {
+        e.preventDefault();
+        if (
+          typeof document !== 'undefined' &&
+          document.startViewTransition &&
+          !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        ) {
+          document.startViewTransition(() => {
+            window.history.pushState({}, '', href);
+            updateRoute();
+            window.scrollTo({ top: 0, behavior: 'instant' });
+          });
+        } else {
+          window.history.pushState({}, '', href);
+          updateRoute();
+          window.scrollTo({ top: 0, behavior: 'instant' });
+        }
+      }
+    };
+
+    document.addEventListener('click', handleLinkClick);
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('hashchange', handleHash);
     window.addEventListener('popstate', handleRouteChange);
@@ -121,6 +173,7 @@ export default function App({ initialPath = null }) {
     }
 
     return () => {
+      document.removeEventListener('click', handleLinkClick);
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('hashchange', handleHash);
       window.removeEventListener('popstate', handleRouteChange);

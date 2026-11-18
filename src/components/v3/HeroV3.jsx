@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useMagneticButton } from '../../hooks/useMagneticButton';
 
 export default function HeroV3({ 
   zoneKicker = 'Diseño web en Tigre, Zona Norte y CABA',
@@ -9,6 +10,68 @@ export default function HeroV3({
   const [typed, setTyped] = useState('comercios.');
   const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
   const [scrollY, setScrollY] = useState(0);
+
+  // Hero Mini-Demo State (loop ~6s, max 3 repeats, pauses offscreen)
+  const heroRef = useRef(null);
+  const heroBtnRef = useMagneticButton(6);
+  const [demoCycle, setDemoCycle] = useState(0);
+  const [demoStep, setDemoStep] = useState(1); // 0: pin drop & typing, 1: cursor enters & message reveals, 2: click & ripple, 3: rest
+  const [isHeroVisible, setIsHeroVisible] = useState(true);
+
+  // IntersectionObserver for Hero visibility
+  useEffect(() => {
+    if (typeof window === 'undefined' || !heroRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsHeroVisible(entry.isIntersecting);
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(heroRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // Mini-Demo Timer Loop
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setDemoCycle(3);
+      setDemoStep(3);
+      return;
+    }
+
+    if (demoCycle >= 3 || !isHeroVisible) return;
+
+    // Timeline inside each 6s cycle (with gentle initial delay to keep hydration smooth)
+    const startDelay = demoCycle === 0 ? 800 : 0;
+    const t0 = setTimeout(() => {
+      setDemoStep(0);
+    }, startDelay);
+
+    const t1 = setTimeout(() => {
+      setDemoStep(1); // Message reveals, cursor moves in
+    }, startDelay + 1100);
+
+    const t2 = setTimeout(() => {
+      setDemoStep(2); // Click + purple ripple
+    }, startDelay + 2300);
+
+    const t3 = setTimeout(() => {
+      setDemoStep(3); // Cursor recedes, message stays
+    }, startDelay + 3200);
+
+    const tCycle = setTimeout(() => {
+      setDemoCycle((c) => c + 1);
+    }, startDelay + 6000);
+
+    return () => {
+      clearTimeout(t0);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      clearTimeout(tCycle);
+    };
+  }, [demoCycle, isHeroVisible]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -71,6 +134,7 @@ export default function HeroV3({
   return (
     <section 
       id="inicio" 
+      ref={heroRef}
       style={{ 
         background: '#18161E', 
         color: '#F4F2EC', 
@@ -232,10 +296,12 @@ export default function HeroV3({
             }}
           >
             <a 
+              ref={heroBtnRef}
               href="https://wa.me/5491128779641" 
               target="_blank" 
               rel="noopener noreferrer" 
               data-wa="hero"
+              className="pc-btn-sheen pc-btn-magnetic"
               style={{ 
                 textDecoration: 'none', 
                 background: '#673DE6', 
@@ -298,6 +364,39 @@ export default function HeroV3({
               transition: 'transform 0.18s cubic-bezier(0.2, 0.7, 0.2, 1)'
             }}
           >
+            {/* Desktop Brand Cursor for Mini Demo */}
+            <div 
+              className="pc-hero-demo-cursor"
+              aria-hidden="true"
+              style={{
+                top: 0,
+                left: 0,
+                transform: demoStep === 0 
+                  ? 'translate(225px, 280px)' 
+                  : demoStep === 1 
+                    ? 'translate(108px, 168px) scale(1)' 
+                    : demoStep === 2 
+                      ? 'translate(108px, 168px) scale(0.88)' 
+                      : 'translate(180px, 240px)',
+                opacity: (demoStep === 1 || demoStep === 2) && demoCycle < 3 ? 1 : 0,
+                transition: demoStep === 0 
+                  ? 'none' 
+                  : demoStep === 2 
+                    ? 'transform 0.12s ease' 
+                    : 'transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease'
+              }}
+            >
+              <svg width="28" height="34" viewBox="24 22 28 36" fill="none">
+                <path 
+                  d="M25 23l0 30 8-8 6 12 6-3-6-12h11z" 
+                  fill="#673DE6" 
+                  stroke="#FFFFFF" 
+                  strokeWidth="2" 
+                  strokeLinejoin="round" 
+                />
+              </svg>
+            </div>
+
             {/* Main Floating Phone */}
             <div 
               className="pc-float" 
@@ -341,15 +440,46 @@ export default function HeroV3({
                 </div>
 
                 {/* Phone hero card */}
-                <div style={{ background: '#673DE6', color: '#FFFFFF', padding: '20px 14px' }}>
+                <div style={{ background: '#673DE6', color: '#FFFFFF', padding: '20px 14px', position: 'relative' }}>
                   <div style={{ fontSize: '10px', letterSpacing: '.12em', textTransform: 'uppercase', opacity: .85 }}>
                     Tu rubro · Tu zona
                   </div>
                   <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: '21px', textTransform: 'uppercase', lineHeight: 1.1, marginTop: '6px' }}>
                     Lo que hacés, bien explicado
                   </div>
-                  <div style={{ marginTop: '12px', display: 'inline-block', background: '#FFFFFF', color: '#4B25C4', fontWeight: 600, padding: '6px 12px', borderRadius: '4px', fontSize: '11px' }}>
+                  <div 
+                    style={{ 
+                      marginTop: '12px', 
+                      display: 'inline-block', 
+                      background: '#FFFFFF', 
+                      color: '#4B25C4', 
+                      fontWeight: 600, 
+                      padding: '6px 12px', 
+                      borderRadius: '4px', 
+                      fontSize: '11px',
+                      position: 'relative',
+                      transform: demoStep === 2 && demoCycle < 3 ? 'scale(0.95)' : 'scale(1)',
+                      transition: 'transform 0.15s ease'
+                    }}
+                  >
                     Consultar por WhatsApp
+                    {/* Purple Click Ripple */}
+                    {demoStep === 2 && demoCycle < 3 && (
+                      <span 
+                        aria-hidden="true"
+                        style={{
+                          position: 'absolute',
+                          top: '50%',
+                          left: '50%',
+                          width: '28px',
+                          height: '28px',
+                          borderRadius: '50%',
+                          background: 'rgba(103, 61, 230, 0.45)',
+                          pointerEvents: 'none',
+                          animation: 'pc-click-ripple 0.65s ease-out forwards'
+                        }}
+                      />
+                    )}
                   </div>
                 </div>
 
@@ -414,11 +544,35 @@ export default function HeroV3({
                 zIndex: 3
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#673DE6" strokeWidth="2.2" aria-hidden="true" style={{ flexShrink: 0 }}>
-                  <path d="M12 22s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z" />
-                  <circle cx="12" cy="10" r="2.5" />
-                </svg>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', position: 'relative' }}>
+                <span 
+                  style={{ 
+                    display: 'inline-flex',
+                    position: 'relative',
+                    animation: demoStep === 0 && demoCycle < 3 ? 'pc-pin-drop 0.75s cubic-bezier(0.34, 1.56, 0.64, 1) forwards' : 'none'
+                  }}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#673DE6" strokeWidth="2.2" aria-hidden="true" style={{ flexShrink: 0 }}>
+                    <path d="M12 22s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z" />
+                    <circle cx="12" cy="10" r="2.5" />
+                  </svg>
+                  {demoStep === 0 && demoCycle < 3 && (
+                    <span 
+                      aria-hidden="true"
+                      style={{
+                        position: 'absolute',
+                        bottom: '-2px',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        width: '14px',
+                        height: '6px',
+                        borderRadius: '50%',
+                        background: 'rgba(103, 61, 230, 0.35)',
+                        animation: 'pc-pin-ripple 0.75s ease-out forwards'
+                      }}
+                    />
+                  )}
+                </span>
                 <b>Google Maps</b>
               </div>
               <div style={{ marginTop: '6px', color: '#55524C', fontSize: '12px', lineHeight: 1.35 }}>
@@ -439,15 +593,27 @@ export default function HeroV3({
                 maxWidth: '85%',
                 boxShadow: '0 18px 40px rgba(0,0,0,.35)', 
                 fontSize: '13px',
-                zIndex: 3
+                zIndex: 3,
+                minHeight: '62px'
               }}
             >
               <b style={{ display: 'block', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '.08em', color: '#1E6B3A' }}>
                 WhatsApp · nuevo mensaje
               </b>
-              <div style={{ marginTop: '4px', fontSize: '12px', lineHeight: 1.35 }}>
-                ¡Hola! Vi tu web y quería consultar por un presupuesto.
-              </div>
+              {demoStep === 0 && demoCycle < 3 ? (
+                <div style={{ marginTop: '6px', fontSize: '12px', lineHeight: 1.35, display: 'flex', alignItems: 'center', gap: '6px', color: '#1E6B3A' }}>
+                  <span>escribiendo</span>
+                  <span className="pc-typing-dots">
+                    <span />
+                    <span />
+                    <span />
+                  </span>
+                </div>
+              ) : (
+                <div style={{ marginTop: '4px', fontSize: '12px', lineHeight: 1.35, opacity: 1, transition: 'opacity 0.35s ease' }}>
+                  ¡Hola! Vi tu web y quería consultar por un presupuesto.
+                </div>
+              )}
             </div>
           </div>
         </div>

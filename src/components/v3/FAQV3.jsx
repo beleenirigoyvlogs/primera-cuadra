@@ -1,5 +1,7 @@
 import React from 'react';
 import { useTheme } from '../../hooks/useTheme';
+import SectionCornerStamp from './SectionCornerStamp';
+import MaskRevealH2 from './MaskRevealH2';
 
 export default function FAQV3({ extraFaqs = [] }) {
   const { isDark } = useTheme();
@@ -62,24 +64,27 @@ export default function FAQV3({ extraFaqs = [] }) {
             fontSize: '15px', 
             letterSpacing: '.14em', 
             textTransform: 'uppercase', 
-            color: muted 
+            color: muted,
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px'
           }}
         >
-          Preguntas frecuentes
+          <SectionCornerStamp stroke={isDark ? '#A48BFF' : '#673DE6'} size={16} />
+          <span>Preguntas frecuentes</span>
         </p>
-        <h2 
-          className="pc-reveal-u"
+        <MaskRevealH2 
+          text="Antes de empezar"
           style={{ 
             margin: '10px 0 0', 
             fontFamily: "'Oswald', sans-serif", 
             fontWeight: 600, 
             fontSize: 'clamp(34px, 4vw, 54px)', 
             lineHeight: 1.05, 
-            textTransform: 'uppercase' 
+            textTransform: 'uppercase',
+            color: ink
           }}
-        >
-          Antes de empezar
-        </h2>
+        />
 
         <dl 
           style={{ 

@@ -1,10 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTheme } from '../../hooks/useTheme';
 import BrandLogo from '../BrandLogo';
 
 export default function NavbarV3() {
   const { isDark, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    let ticking = false;
+
+    const updateProgress = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollHeight > 0 ? Math.min(1, Math.max(0, scrollTop / scrollHeight)) : 0;
+      document.documentElement.style.setProperty('--scroll-progress', progress.toFixed(4));
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(updateProgress);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    if (window.scrollY > 0) {
+      updateProgress();
+    }
+
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const navBg = isDark ? '#121117' : '#F6F5F1';
   const navInk = isDark ? '#F4F2EC' : '#1B1B1B';
@@ -277,6 +304,9 @@ export default function NavbarV3() {
           </a>
         </div>
       )}
+
+      {/* 2px purple scroll progress bar */}
+      <div className="pc-scroll-progress-bar" aria-hidden="true" />
     </header>
   );
 }

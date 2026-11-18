@@ -1,5 +1,8 @@
 import React from 'react';
 import { useTheme } from '../../hooks/useTheme';
+import SectionCornerStamp from './SectionCornerStamp';
+import MaskRevealH2 from './MaskRevealH2';
+import DotGridFlashlight from './DotGridFlashlight';
 
 export default function ServicesV3() {
   const { isDark } = useTheme();
@@ -38,56 +41,60 @@ export default function ServicesV3() {
       style={{ 
         background: lightBg, 
         color: ink, 
-        transition: 'background 0.3s ease, color 0.3s ease' 
+        transition: 'background 0.3s ease, color 0.3s ease',
+        position: 'relative'
       }}
     >
-      <div 
-        style={{ 
-          maxWidth: '1240px', 
-          margin: '0 auto', 
-          padding: 'clamp(64px, 7vw, 96px) 24px',
-          boxSizing: 'border-box'
-        }}
-      >
-        <p 
-          className="pc-reveal-l"
+      <DotGridFlashlight>
+        <div 
           style={{ 
-            margin: 0, 
-            fontFamily: "'Oswald', sans-serif", 
-            fontSize: '15px', 
-            letterSpacing: '.14em', 
-            textTransform: 'uppercase', 
-            color: muted 
+            maxWidth: '1240px', 
+            margin: '0 auto', 
+            padding: 'clamp(64px, 7vw, 96px) 24px',
+            boxSizing: 'border-box'
           }}
         >
-          Qué hago
-        </p>
-        <h2 
-          className="pc-reveal-u"
-          style={{ 
-            margin: '10px 0 0', 
-            fontFamily: "'Oswald', sans-serif", 
-            fontWeight: 600, 
-            fontSize: 'clamp(34px, 4vw, 54px)', 
-            lineHeight: 1.05, 
-            textTransform: 'uppercase', 
-            letterSpacing: '-0.005em' 
-          }}
-        >
-          Servicios de diseño web
-        </h2>
-        <p 
-          className="pc-reveal-u"
-          style={{ 
-            margin: '16px 0 0', 
-            maxWidth: '680px', 
-            fontSize: 'clamp(16px, 1.8vw, 17px)', 
-            lineHeight: 1.6,
-            color: muted 
-          }}
-        >
-          Una web profesional sola no alcanza: tiene que aparecer en Google y llevar al cliente a escribirte. Por eso armo las cuatro piezas juntas.
-        </p>
+          <p 
+            className="pc-reveal-l"
+            style={{ 
+              margin: 0, 
+              fontFamily: "'Oswald', sans-serif", 
+              fontSize: '15px', 
+              letterSpacing: '.14em', 
+              textTransform: 'uppercase', 
+              color: muted,
+              display: 'flex',
+              alignItems: 'center'
+            }}
+          >
+            <SectionCornerStamp color="#673DE6" size={15} />
+            Qué hago
+          </p>
+          <MaskRevealH2 
+            style={{ 
+              margin: '10px 0 0', 
+              fontFamily: "'Oswald', sans-serif", 
+              fontWeight: 600, 
+              fontSize: 'clamp(34px, 4vw, 54px)', 
+              lineHeight: 1.05, 
+              textTransform: 'uppercase', 
+              letterSpacing: '-0.005em' 
+            }}
+          >
+            Servicios de diseño web
+          </MaskRevealH2>
+          <p 
+            className="pc-reveal-u"
+            style={{ 
+              margin: '16px 0 0', 
+              maxWidth: '680px', 
+              fontSize: 'clamp(16px, 1.8vw, 17px)', 
+              lineHeight: 1.6,
+              color: muted 
+            }}
+          >
+            Una web profesional sola no alcanza: tiene que aparecer en Google y llevar al cliente a escribirte. Por eso armo las cuatro piezas juntas.
+          </p>
 
         <div 
           style={{ 
@@ -139,6 +146,7 @@ export default function ServicesV3() {
           ))}
         </div>
       </div>
+      </DotGridFlashlight>
     </section>
   );
 }

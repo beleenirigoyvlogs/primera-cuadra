@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useTheme } from '../../hooks/useTheme';
 import ThePointLightbox from './ThePointLightbox';
+import SectionCornerStamp from './SectionCornerStamp';
+import MaskRevealH2 from './MaskRevealH2';
 
 export default function ThePointV3() {
   const { isDark } = useTheme();
@@ -44,23 +46,27 @@ export default function ThePointV3() {
               fontSize: '15px', 
               letterSpacing: '.14em', 
               textTransform: 'uppercase', 
-              color: muted 
+              color: muted,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px'
             }}
           >
-            Desarrollo a medida
+            <SectionCornerStamp stroke={isDark ? '#A48BFF' : '#673DE6'} size={16} />
+            <span>Desarrollo a medida</span>
           </p>
-          <h2 
+          <MaskRevealH2 
+            text="The Point: sistema de caja y stock"
             style={{ 
               margin: '10px 0 0', 
               fontFamily: "'Oswald', sans-serif", 
               fontWeight: 600, 
               fontSize: 'clamp(30px, 3.4vw, 46px)', 
               lineHeight: 1.08, 
-              textTransform: 'uppercase' 
+              textTransform: 'uppercase',
+              color: ink
             }}
-          >
-            The Point: sistema de caja y stock
-          </h2>
+          />
           <p 
             style={{ 
               margin: '20px 0 0', 

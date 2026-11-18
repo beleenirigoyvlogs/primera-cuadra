@@ -40,14 +40,8 @@ export function useScrollReveal(dependency) {
       const elements = document.querySelectorAll(REVEAL_SELECTOR);
       elements.forEach((el) => {
         if (!observedSet.has(el)) {
-          // If element is already scrolled into viewport or above fold, reveal immediately
-          const rect = el.getBoundingClientRect();
-          if (rect.top < window.innerHeight && rect.bottom > 0) {
-            revealElement(el);
-          } else {
-            observedSet.add(el);
-            observer.observe(el);
-          }
+          observedSet.add(el);
+          observer.observe(el);
         }
       });
     };

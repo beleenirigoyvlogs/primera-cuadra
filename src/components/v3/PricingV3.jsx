@@ -1,5 +1,7 @@
 import React from 'react';
 import { useTheme } from '../../hooks/useTheme';
+import SectionCornerStamp from './SectionCornerStamp';
+import MaskRevealH2 from './MaskRevealH2';
 
 export default function PricingV3() {
   const { isDark } = useTheme();
@@ -91,24 +93,27 @@ export default function PricingV3() {
             fontSize: '15px', 
             letterSpacing: '.14em', 
             textTransform: 'uppercase', 
-            color: muted 
+            color: muted,
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px'
           }}
         >
-          Precios
+          <SectionCornerStamp stroke={isDark ? '#A48BFF' : '#673DE6'} size={16} />
+          <span>Precios</span>
         </p>
-        <h2 
-          className="pc-reveal-u"
+        <MaskRevealH2 
+          text="Planes de diseño web"
           style={{ 
             margin: '10px 0 0', 
             fontFamily: "'Oswald', sans-serif", 
             fontWeight: 600, 
             fontSize: 'clamp(34px, 4vw, 54px)', 
             lineHeight: 1.05, 
-            textTransform: 'uppercase' 
+            textTransform: 'uppercase',
+            color: ink
           }}
-        >
-          Planes de diseño web
-        </h2>
+        />
         <p 
           className="pc-reveal-u"
           style={{ 
@@ -131,34 +136,38 @@ export default function PricingV3() {
             alignItems: 'stretch' 
           }}
         >
-          {plans.map((pl, idx) => (
-            <article 
-              key={pl.name}
-              className="pc-reveal-u pc-card-hover" 
-              style={{ 
-                display: 'flex', 
-                flexDirection: 'column', 
-                background: pl.bg, 
-                color: pl.fg, 
-                borderRadius: '8px', 
-                padding: '34px 28px', 
-                boxShadow: `0 12px 30px ${shadow}`, 
-                borderTop: '6px solid #673DE6',
-                '--pc-delay': `${idx * 0.12}s`,
-                transitionDelay: `${idx * 0.12}s`
-              }}
-            >
-              {/* Header with Title and Recommended Badge */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px', minHeight: '30px' }}>
-                <h3 style={{ margin: 0, fontFamily: "'Oswald', sans-serif", fontSize: '28px', fontWeight: 600, textTransform: 'uppercase' }}>
-                  {pl.name}
-                </h3>
-                {pl.rec && (
-                  <span style={{ fontSize: '12px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', background: '#673DE6', color: '#FFFFFF', borderRadius: '4px', padding: '4px 10px' }}>
-                    Recomendado
-                  </span>
-                )}
-              </div>
+          {plans.map((pl, idx) => {
+            const isCompleto = pl.name === 'Completo';
+            const cardContent = (
+              <article 
+                key={pl.name}
+                className={`pc-reveal-u pc-card-hover ${isCompleto ? 'pc-plan-completo-card' : ''}`}
+                style={{ 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  background: pl.bg, 
+                  color: pl.fg, 
+                  borderRadius: '8px', 
+                  padding: '34px 28px', 
+                  boxShadow: `0 12px 30px ${shadow}`, 
+                  borderTop: isCompleto ? 'none' : '6px solid #673DE6',
+                  '--pc-delay': `${idx * 0.12}s`,
+                  transitionDelay: `${idx * 0.12}s`,
+                  boxSizing: 'border-box',
+                  height: '100%'
+                }}
+              >
+                {/* Header with Title and Recommended Badge */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px', minHeight: '30px' }}>
+                  <h3 style={{ margin: 0, fontFamily: "'Oswald', sans-serif", fontSize: '28px', fontWeight: 600, textTransform: 'uppercase' }}>
+                    {pl.name}
+                  </h3>
+                  {pl.rec && (
+                    <span style={{ fontSize: '12px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', background: '#673DE6', color: '#FFFFFF', borderRadius: '4px', padding: '4px 10px' }}>
+                      Recomendado
+                    </span>
+                  )}
+                </div>
 
               {/* Description */}
               <p style={{ margin: '10px 0 0', fontSize: '15px', opacity: .85, minHeight: '48px', lineHeight: 1.5 }}>
@@ -211,7 +220,17 @@ export default function PricingV3() {
                 Elegir {pl.name}
               </a>
             </article>
-          ))}
+          );
+
+          if (isCompleto) {
+            return (
+              <div key={pl.name} className="pc-plan-completo-wrap">
+                {cardContent}
+              </div>
+            );
+          }
+          return cardContent;
+        })}
         </div>
 
         {/* Link to Free Audit */}

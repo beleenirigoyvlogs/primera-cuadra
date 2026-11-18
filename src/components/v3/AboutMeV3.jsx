@@ -1,4 +1,6 @@
 import React from 'react';
+import SectionCornerStamp from './SectionCornerStamp';
+import MaskRevealH2 from './MaskRevealH2';
 
 export default function AboutMeV3() {
   return (
@@ -111,23 +113,27 @@ export default function AboutMeV3() {
               fontSize: '15px', 
               letterSpacing: '.14em', 
               textTransform: 'uppercase', 
-              color: '#A48BFF' 
+              color: '#A48BFF',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px'
             }}
           >
-            Quién está detrás
+            <SectionCornerStamp stroke="#A48BFF" size={16} />
+            <span>Quién está detrás</span>
           </p>
-          <h2 
+          <MaskRevealH2 
+            text="Hola, soy Belén Irigoy"
             style={{ 
               margin: '10px 0 0', 
               fontFamily: "'Oswald', sans-serif", 
               fontWeight: 600, 
               fontSize: 'clamp(34px, 4vw, 54px)', 
               lineHeight: 1.05, 
-              textTransform: 'uppercase' 
+              textTransform: 'uppercase',
+              color: '#F4F2EC'
             }}
-          >
-            Hola, soy Belén Irigoy
-          </h2>
+          />
           <p 
             style={{ 
               margin: '22px 0 0', 

@@ -1,5 +1,7 @@
 import React from 'react';
 import { useTheme } from '../../hooks/useTheme';
+import SectionCornerStamp from './SectionCornerStamp';
+import MaskRevealH2 from './MaskRevealH2';
 
 export default function PortfolioV3() {
   const { isDark } = useTheme();
@@ -17,6 +19,8 @@ export default function PortfolioV3() {
       name: 'El Fogón de Tigre', 
       href: '/ejemplos/parrilla',
       image: '/demos/parrilla/cover.webp',
+      fullImage: '/demos/parrilla/full.webp',
+      scrollY: '-76.1%',
       rubroHref: '/pagina-web-para-restaurantes',
       rubroLinkText: 'Página web para restaurantes →'
     },
@@ -26,6 +30,8 @@ export default function PortfolioV3() {
       name: 'Barber Studio 96', 
       href: '/ejemplos/barberia',
       image: '/demos/barberia/cover.webp',
+      fullImage: '/demos/barberia/full.webp',
+      scrollY: '-71.6%',
       rubroHref: '/pagina-web-para-peluquerias',
       rubroLinkText: 'Página web para peluquerías →'
     },
@@ -35,6 +41,8 @@ export default function PortfolioV3() {
       name: 'Mecánica Álvarez', 
       href: '/ejemplos/taller',
       image: '/demos/taller/cover.webp',
+      fullImage: '/demos/taller/full.webp',
+      scrollY: '-72.1%',
       rubroHref: '/pagina-web-para-talleres-mecanicos',
       rubroLinkText: 'Página web para talleres mecánicos →'
     },
@@ -44,6 +52,8 @@ export default function PortfolioV3() {
       name: 'Centro Delta', 
       href: '/ejemplos/dental',
       image: '/demos/dental/cover.webp',
+      fullImage: '/demos/dental/full.webp',
+      scrollY: '-72.1%',
       rubroHref: '/pagina-web-para-consultorios',
       rubroLinkText: 'Página web para consultorios →'
     }
@@ -76,13 +86,15 @@ export default function PortfolioV3() {
                 fontSize: '15px', 
                 letterSpacing: '.14em', 
                 textTransform: 'uppercase', 
-                color: muted 
+                color: muted,
+                display: 'flex',
+                alignItems: 'center'
               }}
             >
+              <SectionCornerStamp color="#673DE6" size={15} />
               Portfolio
             </p>
-            <h2 
-              className="pc-reveal-u"
+            <MaskRevealH2 
               style={{ 
                 margin: '10px 0 0', 
                 fontFamily: "'Oswald', sans-serif", 
@@ -93,7 +105,7 @@ export default function PortfolioV3() {
               }}
             >
               Ejemplos de páginas web
-            </h2>
+            </MaskRevealH2>
           </div>
           <p 
             className="pc-reveal-u"
@@ -145,6 +157,7 @@ export default function PortfolioV3() {
                 }}
               >
                 <div 
+                  className="pc-portfolio-thumb-frame"
                   style={{ 
                     aspectRatio: '4 / 3', 
                     width: '100%', 
@@ -154,17 +167,17 @@ export default function PortfolioV3() {
                   }}
                 >
                   <img 
-                    src={e.image} 
+                    src={e.fullImage || e.image} 
                     alt={`Captura real de la página web de ejemplo: ${e.name} (${e.rubro})`} 
-                    width="800" 
-                    height="600" 
+                    width="1200" 
+                    height="3200" 
                     loading="lazy" 
                     decoding="async" 
+                    className="pc-portfolio-scroll-img"
                     style={{ 
                       width: '100%', 
-                      height: '100%', 
-                      objectFit: 'cover', 
-                      display: 'block' 
+                      height: 'auto',
+                      '--scroll-y': e.scrollY || '-72%'
                     }} 
                   />
                 </div>

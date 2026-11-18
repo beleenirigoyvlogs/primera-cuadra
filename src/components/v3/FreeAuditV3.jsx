@@ -1,7 +1,11 @@
 import React from 'react';
 import { Check, MessageSquare } from 'lucide-react';
+import SectionCornerStamp from './SectionCornerStamp';
+import MaskRevealH2 from './MaskRevealH2';
+import { useMagneticButton } from '../../hooks/useMagneticButton';
 
 export default function FreeAuditV3() {
+  const auditBtnRef = useMagneticButton(6);
   const auditWaMsg = encodeURIComponent('¡Hola Belén! Quiero la revisión gratis. Mi negocio es: (nombre) y está en: (zona)');
 
   const items = [
@@ -49,14 +53,18 @@ export default function FreeAuditV3() {
                 letterSpacing: '.14em', 
                 textTransform: 'uppercase', 
                 color: '#FFFFFF',
-                opacity: 0.9
+                opacity: 0.9,
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px'
               }}
             >
-              REVISIÓN GRATIS
+              <SectionCornerStamp stroke="#FFFFFF" size={16} />
+              <span>REVISIÓN GRATIS</span>
             </p>
 
-            <h2 
-              className="pc-reveal-u"
+            <MaskRevealH2 
+              text="¿CÓMO TE ENCUENTRAN HOY EN GOOGLE?"
               style={{ 
                 margin: '10px 0 0', 
                 fontFamily: "'Oswald', sans-serif", 
@@ -66,9 +74,7 @@ export default function FreeAuditV3() {
                 textTransform: 'uppercase', 
                 color: '#FFFFFF' 
               }}
-            >
-              ¿CÓMO TE ENCUENTRAN HOY EN GOOGLE?
-            </h2>
+            />
 
             <p 
               className="pc-reveal-u"
@@ -140,10 +146,12 @@ export default function FreeAuditV3() {
             }}
           >
             <a 
+              ref={auditBtnRef}
               href={`https://wa.me/5491128779641?text=${auditWaMsg}`}
               target="_blank" 
               rel="noopener noreferrer" 
               data-wa="revision-gratis"
+              className="pc-btn-sheen pc-btn-magnetic"
               style={{ 
                 textDecoration: 'none', 
                 background: '#FFFFFF', 
