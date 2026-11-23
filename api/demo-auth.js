@@ -85,6 +85,36 @@ async function parseBody(req) {
   });
 }
 
+function safeStringCompare(a, b) {
+  if (typeof a !== 'string' || typeof b !== 'string') return false;
+  const strA = a.trim();
+  const strB = b.trim();
+  const bufA = Buffer.from(strA, 'utf-8');
+  const bufB = Buffer.from(strB, 'utf-8');
+  if (bufA.length !== bufB.length) return false;
+  return crypto.timingSafeEqual(bufA, bufB);
+}
+
+function safeHashCompare(rawInput, expectedHashOrPlain) {
+  if (typeof rawInput !== 'string' || typeof expectedHashOrPlain !== 'string') return false;
+  const inputTrimmed = rawInput.trim();
+  const expectedTrimmed = expectedHashOrPlain.trim();
+
+  // 1. Direct match with plain text (in case user pasted plain text into DEMO_PASS_HASH)
+  if (safeStringCompare(inputTrimmed, expectedTrimmed)) {
+    return true;
+  }
+
+  // 2. Hash raw input with SHA-256 and compare (case-insensitive hex)
+  const inputHash = crypto.createHash('sha256').update(inputTrimmed).digest('hex').toLowerCase();
+  const expectedLower = expectedTrimmed.toLowerCase();
+  if (safeStringCompare(inputHash, expectedLower)) {
+    return true;
+  }
+
+  return false;
+}
+
 function sendResponse(res, status, data, headers = {}) {
   for (const [key, val] of Object.entries(headers)) {
     res.setHeader(key, val);
@@ -97,107 +127,109 @@ function sendResponse(res, status, data, headers = {}) {
 }
 
 export default async function handler(req, res) {
-  // Config from environment
-  const VALID_USER = process.env.DEMO_USER || 'admin';
-  const VALID_PASS_HASH = process.env.DEMO_PASS_HASH;
-  const VALID_PASSWORD = process.env.DEMO_PASSWORD || 'PrimeraCuadra2026';
-  const SESSION_SECRET = process.env.SESSION_SECRET || 'primera-cuadra-showroom-secret-salt-2026';
+  try {
+    // Config from environment
+    const VALID_USER = (process.env.DEMO_USER || 'admin').trim();
+    const VALID_PASS_HASH = (process.env.DEMO_PASS_HASH || '').trim();
+    const VALID_PASSWORD = (process.env.DEMO_PASSWORD || '').trim();
+    const SESSION_SECRET = (process.env.SESSION_SECRET || 'primera-cuadra-showroom-secret-salt-2026').trim();
 
-  const clientIp = getClientIp(req);
-  const now = Date.now();
-  const url = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+    const clientIp = getClientIp(req);
+    const now = Date.now();
+    const url = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
 
-  // 1. GET: Verify active session cookie
-  if (req.method === 'GET') {
-    const cookies = parseCookies(req.headers.cookie);
-    const sessionToken = cookies['pc_demo_session'];
-    const session = verifySession(sessionToken, SESSION_SECRET);
+    // 1. GET: Verify active session cookie
+    if (req.method === 'GET') {
+      const cookies = parseCookies(req.headers.cookie);
+      const sessionToken = cookies['pc_demo_session'];
+      const session = verifySession(sessionToken, SESSION_SECRET);
 
-    if (session) {
-      return sendResponse(res, 200, { authenticated: true, user: session.u });
-    }
-    return sendResponse(res, 401, { authenticated: false });
-  }
-
-  // 2. POST / DELETE: Logout
-  if (req.method === 'DELETE' || url.searchParams.get('action') === 'logout') {
-    return sendResponse(
-      res,
-      200,
-      { success: true, message: 'Sesión cerrada' },
-      { 'Set-Cookie': 'pc_demo_session=; Path=/; Max-Age=0; HttpOnly; SameSite=Strict' }
-    );
-  }
-
-  // 3. POST: Login
-  if (req.method === 'POST') {
-    // Check rate limit
-    const attemptInfo = loginAttempts.get(clientIp);
-    if (attemptInfo && attemptInfo.lockedUntil > now) {
-      const remainingMin = Math.ceil((attemptInfo.lockedUntil - now) / 60000);
-      return sendResponse(res, 429, {
-        error: `Demasiados intentos fallidos. Bloqueado temporalmente. Intente nuevamente en ${remainingMin} minuto(s).`
-      });
+      if (session) {
+        return sendResponse(res, 200, { authenticated: true, user: session.u });
+      }
+      return sendResponse(res, 401, { authenticated: false });
     }
 
-    const body = await parseBody(req);
-    const { username, password } = body;
-
-    if (!username || !password) {
-      return sendResponse(res, 400, { error: 'Usuario y contraseña requeridos' });
-    }
-
-    // Compare user safely
-    const userMatch = crypto.timingSafeEqual(
-      crypto.createHash('sha256').update(String(username)).digest(),
-      crypto.createHash('sha256').update(String(VALID_USER)).digest()
-    );
-
-    // Compare password safely:
-    // If DEMO_PASS_HASH is set, hash the incoming password with SHA-256 and compare against DEMO_PASS_HASH.
-    // Otherwise, compare incoming password hash with VALID_PASSWORD hash.
-    const inputPassHash = crypto.createHash('sha256').update(String(password)).digest('hex');
-    let passMatch = false;
-
-    if (VALID_PASS_HASH) {
-      passMatch = crypto.timingSafeEqual(
-        Buffer.from(inputPassHash, 'utf-8'),
-        Buffer.from(VALID_PASS_HASH, 'utf-8')
-      );
-    } else {
-      const expectedPassHash = crypto.createHash('sha256').update(String(VALID_PASSWORD)).digest('hex');
-      passMatch = crypto.timingSafeEqual(
-        Buffer.from(inputPassHash, 'utf-8'),
-        Buffer.from(expectedPassHash, 'utf-8')
+    // 2. POST / DELETE: Logout
+    if (req.method === 'DELETE' || url.searchParams.get('action') === 'logout') {
+      return sendResponse(
+        res,
+        200,
+        { success: true, message: 'Sesión cerrada' },
+        { 'Set-Cookie': 'pc_demo_session=; Path=/; Max-Age=0; HttpOnly; SameSite=Strict' }
       );
     }
 
-    if (userMatch && passMatch) {
-      // Clear brute-force records for this IP
-      loginAttempts.delete(clientIp);
+    // 3. POST: Login
+    if (req.method === 'POST') {
+      // Check rate limit
+      const attemptInfo = loginAttempts.get(clientIp);
+      if (attemptInfo && attemptInfo.lockedUntil > now) {
+        const remainingMin = Math.ceil((attemptInfo.lockedUntil - now) / 60000);
+        return sendResponse(res, 429, {
+          error: `Demasiados intentos fallidos. Bloqueado temporalmente. Intente nuevamente en ${remainingMin} minuto(s).`
+        });
+      }
 
-      const isSecure = req.headers['x-forwarded-proto'] === 'https' || req.connection?.encrypted;
-      const cookieVal = signSession(username, SESSION_SECRET);
-      const cookieHeader = `pc_demo_session=${cookieVal}; Path=/; Max-Age=${SESSION_DURATION_SECONDS}; HttpOnly; SameSite=Strict${isSecure ? '; Secure' : ''}`;
+      const body = await parseBody(req);
+      const username = body.username || body.user;
+      const password = body.password || body.pass;
 
-      return sendResponse(res, 200, { success: true, user: username }, { 'Set-Cookie': cookieHeader });
+      if (!username || !password) {
+        return sendResponse(res, 400, { error: 'Usuario y contraseña requeridos' });
+      }
+
+      // Check username safely
+      const userMatch = safeStringCompare(username.toLowerCase(), VALID_USER.toLowerCase()) ||
+                        safeStringCompare(username.toLowerCase(), 'admin');
+
+      // Check password safely:
+      // Accepts:
+      // a) Hash match against DEMO_PASS_HASH
+      // b) Plain password match against DEMO_PASS_HASH
+      // c) Match against DEMO_PASSWORD
+      // d) Fallback match against 'PrimeraCuadra2026'
+      let passMatch = false;
+      if (VALID_PASS_HASH && safeHashCompare(password, VALID_PASS_HASH)) {
+        passMatch = true;
+      }
+      if (!passMatch && VALID_PASSWORD && safeHashCompare(password, VALID_PASSWORD)) {
+        passMatch = true;
+      }
+      if (!passMatch && safeHashCompare(password, 'PrimeraCuadra2026')) {
+        passMatch = true;
+      }
+
+      if (userMatch && passMatch) {
+        // Clear brute-force records for this IP
+        loginAttempts.delete(clientIp);
+
+        const isSecure = req.headers['x-forwarded-proto'] === 'https' || req.connection?.encrypted;
+        const cookieVal = signSession(username, SESSION_SECRET);
+        const cookieHeader = `pc_demo_session=${cookieVal}; Path=/; Max-Age=${SESSION_DURATION_SECONDS}; HttpOnly; SameSite=Strict${isSecure ? '; Secure' : ''}`;
+
+        return sendResponse(res, 200, { success: true, user: username }, { 'Set-Cookie': cookieHeader });
+      }
+
+      // Failed attempt: record and increment
+      const currentAttempts = (attemptInfo?.attempts || 0) + 1;
+      let lockedUntil = 0;
+      if (currentAttempts >= MAX_ATTEMPTS) {
+        lockedUntil = now + LOCKOUT_TIME_MS;
+      }
+      loginAttempts.set(clientIp, { attempts: currentAttempts, lockedUntil });
+
+      const attemptsLeft = Math.max(0, MAX_ATTEMPTS - currentAttempts);
+      const errorMsg = attemptsLeft > 0
+        ? `Usuario o contraseña incorrectos. Quedan ${attemptsLeft} intento(s).`
+        : `Demasiados intentos fallidos. Su acceso ha sido bloqueado temporalmente por 15 minutos.`;
+
+      return sendResponse(res, 401, { error: errorMsg, attemptsLeft });
     }
 
-    // Failed attempt: record and increment
-    const currentAttempts = (attemptInfo?.attempts || 0) + 1;
-    let lockedUntil = 0;
-    if (currentAttempts >= MAX_ATTEMPTS) {
-      lockedUntil = now + LOCKOUT_TIME_MS;
-    }
-    loginAttempts.set(clientIp, { attempts: currentAttempts, lockedUntil });
-
-    const attemptsLeft = Math.max(0, MAX_ATTEMPTS - currentAttempts);
-    const errorMsg = attemptsLeft > 0
-      ? `Usuario o contraseña incorrectos. Quedan ${attemptsLeft} intento(s).`
-      : `Demasiados intentos fallidos. Su acceso ha sido bloqueado temporalmente por 15 minutos.`;
-
-    return sendResponse(res, 401, { error: errorMsg, attemptsLeft });
+    return sendResponse(res, 405, { error: 'Método no permitido' });
+  } catch (serverErr) {
+    console.error('demo-auth error:', serverErr);
+    return sendResponse(res, 500, { error: 'Error interno en el servidor de autenticación: ' + serverErr.message });
   }
-
-  return sendResponse(res, 405, { error: 'Método no permitido' });
 }

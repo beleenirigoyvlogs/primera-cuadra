@@ -222,7 +222,12 @@ export default function ShowroomPage() {
         })
       });
 
-      const data = await res.json();
+      let data = {};
+      try {
+        data = await res.json();
+      } catch (jsonErr) {
+        data = { error: `Error del servidor (código ${res.status}).` };
+      }
 
       if (res.ok && data.success) {
         setActiveUser(data.user || usernameInput.trim());
@@ -232,7 +237,7 @@ export default function ShowroomPage() {
         setAuthError(data.error || 'Usuario o contraseña incorrectos.');
       }
     } catch (err) {
-      setAuthError('Error de conexión con el servidor de autenticación.');
+      setAuthError('Error de red o conexión con el servidor.');
     } finally {
       setIsLoggingIn(false);
     }
@@ -557,8 +562,8 @@ export default function ShowroomPage() {
               boxShadow: isDark ? '0 20px 40px rgba(0,0,0,0.6)' : '0 12px 32px rgba(109,40,217,0.07)'
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
-              <BrandLogo variant={isDark ? 'claro' : 'oscuro'} height={24} />
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '22px' }}>
+              <BrandLogo variant="auto" height={28} />
               <button 
                 onClick={toggleTheme} 
                 className="showroom-btn secondary" 
@@ -659,7 +664,7 @@ export default function ShowroomPage() {
           {/* Top Navigation Bar */}
           <header className="showroom-topbar">
             <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-              <BrandLogo variant={isDark ? 'claro' : 'oscuro'} height={24} />
+              <BrandLogo variant="auto" height={28} />
               <div style={{ height: '18px', width: '1px', background: themeBorder }} />
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <Sparkles size={15} style={{ color: themeAccent }} />
