@@ -116,16 +116,16 @@ export default function SimulatorPage() {
   const { isDark, toggleTheme } = useTheme();
   const whatsappNumber = '5491128779641';
 
-  // Business Data State (matching the exact schema)
+  // Business Data State (empty by default, placeholders guide the user)
   const [businessData, setBusinessData] = useState({
-    nm: 'Panadería La Esquina',
-    rb: 'Panadería Artesanal & Confitería',
-    zn: 'Tigre Centro, Buenos Aires',
-    wa: '11 2345 6789',
-    tg: 'Pan hecho todos los días, como en casa',
-    ds: 'Hace más de 20 años horneando recetas tradicionales con masa madre e ingredientes de primera calidad para todo el barrio.',
-    it: 'Pan artesanal de masa madre | Horneado fresco cada mañana\nFacturas de manteca | Docena y media docena surtida\nTortas artesanales por encargue | Con 48 hs de anticipación\nSandwiches de miga triples | Jamón cocido natural y queso',
-    hr: 'Lunes a sábados de 7:30 a 20:30 h · Domingos de 8 a 13:30 h',
+    nm: '',
+    rb: '',
+    zn: '',
+    wa: '',
+    tg: '',
+    ds: '',
+    it: '',
+    hr: '',
     vu: ''
   });
 
@@ -941,6 +941,14 @@ export default function SimulatorPage() {
           outline: none;
           border-color: #7C3AED;
           box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+        }
+        .sim-input::placeholder, .sim-textarea::placeholder {
+          color: rgba(107, 114, 128, 0.7);
+          opacity: 1;
+        }
+        .dark-mode .sim-input::placeholder, .dark-mode .sim-textarea::placeholder {
+          color: rgba(244, 242, 236, 0.35);
+          opacity: 1;
         }
 
         .sim-video-uploader {

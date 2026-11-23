@@ -149,7 +149,7 @@ export default function ShowroomPage() {
     wa: '',
     tg: '',
     ds: '',
-    it: 'Pan artesanal | Masa madre, horneado a la mañana\nFacturas | Docena y media docena\nTortas por encargue | Con 48 hs de anticipación',
+    it: '',
     hr: '',
     vid: '',
     vidFileName: ''
@@ -352,6 +352,10 @@ export default function ShowroomPage() {
           margin-bottom: 12px;
           outline: none;
           transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .showroom-input::placeholder, .showroom-textarea::placeholder {
+          color: ${isDark ? 'rgba(244, 242, 236, 0.38)' : 'rgba(27, 27, 27, 0.42)'};
+          opacity: 1;
         }
         .showroom-input:focus, .showroom-select:focus, .showroom-textarea:focus {
           border-color: ${themeAccent};
