@@ -100,6 +100,11 @@ export function render(url) {
     meta.title = 'Simulador de Diseño Web | Primera Cuadra';
     meta.description = 'Probá en tiempo real cómo se vería tu negocio en una página web mobile-first, ficha de Google Maps y WhatsApp Business.';
     meta.canonical = 'https://primeracuadra.com.ar/simulador';
+  } else if (cleanUrl === '/admin' || cleanUrl === '/admin/') {
+    appHtml = renderToString(<App />);
+    meta.title = 'Panel de Administración | Primera Cuadra';
+    meta.description = 'Acceso administrativo a consultas y estadísticas.';
+    meta.noIndex = true;
   } else if (cleanUrl === '/showroom-privado' || cleanUrl === '/showroom-privado/' || cleanUrl === '/panel-demos' || cleanUrl === '/panel-demos/') {
     appHtml = renderToString(<ShowroomPage />);
     meta.title = 'Showroom Privado | Primera Cuadra';

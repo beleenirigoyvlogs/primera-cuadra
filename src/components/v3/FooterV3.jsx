@@ -38,7 +38,7 @@ export const MapPinIcon = ({ size = 18 }) => (
   </svg>
 );
 
-export default function FooterV3() {
+export default function FooterV3({ onOpenAdmin }) {
   const socialItems = [
     {
       name: 'Instagram',
@@ -255,7 +255,51 @@ export default function FooterV3() {
             <span>Primera Cuadra · Diseño web en Tigre, Zona Norte y CABA</span>
           </div>
           <span>11 2877-9641 · {CONTACT_EMAIL}</span>
-          <span>Esta web la diseñé y programé yo.</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flexWrap: 'wrap' }}>
+            <span>Esta web la diseñé y programé yo.</span>
+            <button 
+              type="button" 
+              onClick={() => {
+                if (typeof onOpenAdmin === 'function') {
+                  onOpenAdmin();
+                } else if (typeof window !== 'undefined') {
+                  window.location.href = '/#admin';
+                  window.dispatchEvent(new Event('pc-open-admin'));
+                }
+              }} 
+              style={{
+                background: 'transparent',
+                border: '1px solid rgba(255,255,255,0.12)',
+                color: '#8E8B99',
+                fontSize: '11px',
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '5px',
+                padding: '4px 10px',
+                borderRadius: '5px',
+                transition: 'color 0.2s ease, border-color 0.2s ease, background 0.2s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = '#A48BFF';
+                e.currentTarget.style.borderColor = '#673DE6';
+                e.currentTarget.style.background = 'rgba(103,61,230,0.14)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = '#8E8B99';
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)';
+                e.currentTarget.style.background = 'transparent';
+              }}
+              title="Acceso restringido para el equipo de Primera Cuadra"
+              aria-label="Panel de gestión de consultas"
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              <span>Gestión</span>
+            </button>
+          </div>
         </div>
       </div>
     </footer>

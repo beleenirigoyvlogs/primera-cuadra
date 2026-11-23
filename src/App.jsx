@@ -108,9 +108,13 @@ export default function App({ initialPath = null }) {
 
   useEffect(() => {
     const updateRoute = () => {
-      setCurrentPath(window.location.pathname.toLowerCase());
+      const path = window.location.pathname.toLowerCase();
+      setCurrentPath(path);
       setExampleSlug(getExampleSlug());
       setProposalSlug(getProposalSlug());
+      if (path === '/admin' || path === '/admin/' || window.location.hash === '#admin') {
+        setIsAdminOpen(true);
+      }
     };
 
     const handleRouteChange = () => {
@@ -225,12 +229,15 @@ export default function App({ initialPath = null }) {
       }
     };
 
+    const handleOpenAdminEvent = () => setIsAdminOpen(true);
+
     document.addEventListener('click', handleLinkClick);
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('hashchange', handleHash);
     window.addEventListener('popstate', handleRouteChange);
+    window.addEventListener('pc-open-admin', handleOpenAdminEvent);
 
-    if (window.location.hash === '#admin') {
+    if (window.location.hash === '#admin' || window.location.pathname.toLowerCase() === '/admin') {
       setIsAdminOpen(true);
     }
 
@@ -239,6 +246,7 @@ export default function App({ initialPath = null }) {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('hashchange', handleHash);
       window.removeEventListener('popstate', handleRouteChange);
+      window.removeEventListener('pc-open-admin', handleOpenAdminEvent);
     };
   }, []);
 
@@ -312,10 +320,22 @@ export default function App({ initialPath = null }) {
   }
 
   // 10. Unknown Route: Not Found (404)
-  const isHome = currentPath === '/' || currentPath === '/index.html' || currentPath === '' || currentPath.startsWith('/#');
+  const isHome = currentPath === '/' || currentPath === '/index.html' || currentPath === '' || currentPath.startsWith('/#') || currentPath === '/admin' || currentPath === '/admin/';
   if (!isHome) {
     return <NotFoundPage />;
   }
+
+  const handleCloseAdmin = () => {
+    setIsAdminOpen(false);
+    if (typeof window !== 'undefined') {
+      if (window.location.pathname.toLowerCase() === '/admin' || window.location.pathname.toLowerCase() === '/admin/') {
+        window.history.pushState({}, '', '/');
+        setCurrentPath('/');
+      } else if (window.location.hash === '#admin') {
+        window.history.pushState({}, '', window.location.pathname);
+      }
+    }
+  };
 
   return (
     <div 
@@ -344,12 +364,12 @@ export default function App({ initialPath = null }) {
         <AboutMeV3 />
         <FAQV3 />
       </main>
-      <FooterV3 />
+      <FooterV3 onOpenAdmin={() => setIsAdminOpen(true)} />
 
-      {/* Hidden Admin Modal accessible via Ctrl+Shift+A or #admin */}
+      {/* Hidden Admin Modal accessible via Ctrl+Shift+A, #admin, /admin or footer button */}
       <AdminLeadsModal 
         isOpen={isAdminOpen} 
-        onClose={() => setIsAdminOpen(false)} 
+        onClose={handleCloseAdmin} 
       />
     </div>
   );

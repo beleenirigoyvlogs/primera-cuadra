@@ -439,6 +439,18 @@ export default function AdminLeadsModal({ isOpen, onClose }) {
                   <span>Exportar CSV</span>
                 </button>
 
+                <a 
+                  href="/showroom-privado" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="btn-admin-header-action"
+                  title="Abrir Showroom Privado de Modelos y Demos para Clientes"
+                  style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+                >
+                  <ExternalLink size={14} />
+                  <span>Showroom Privado</span>
+                </a>
+
                 <button 
                   type="button" 
                   onClick={handleLogout} 
