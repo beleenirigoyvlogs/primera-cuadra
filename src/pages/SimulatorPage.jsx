@@ -901,9 +901,10 @@ export default function SimulatorPage() {
 
         .sim-f2-grid {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
           gap: 16px;
           box-sizing: border-box;
+          width: 100%;
         }
         @media (max-width: 640px) {
           .sim-f2-grid { grid-template-columns: 1fr; }
@@ -911,6 +912,8 @@ export default function SimulatorPage() {
         .sim-field {
           display: flex;
           flex-direction: column;
+          min-width: 0;
+          max-width: 100%;
         }
         .sim-field.full {
           grid-column: 1 / -1;
@@ -1504,11 +1507,219 @@ export default function SimulatorPage() {
           border: none;
         }
 
+        /* ---------------- Mobile Responsive Optimization ---------------- */
         @media (max-width: 768px) {
-          .hide-mobile { display: none; }
-          .sim-stage-bottom-bar { flex-direction: column; align-items: stretch; }
-          .sim-cta-whatsapp-btn { justify-content: center; }
-          .sim-card-box { padding: 20px 16px; }
+          .hide-mobile { display: none !important; }
+          .sim-tool-tag { display: none !important; }
+          .sim-brand-separator { display: none !important; }
+          .sim-btn-back-home span { display: none !important; }
+          .btn-sim-navbar-wa span { display: none !important; }
+          .btn-sim-navbar-cta { display: none !important; }
+          .sim-brand-text { display: none !important; }
+
+          .sim-standalone-navbar {
+            width: 100%;
+            overflow-x: hidden;
+          }
+          .sim-navbar-inner {
+            padding: 8px 12px;
+            gap: 6px;
+            justify-content: space-between;
+          }
+          .sim-navbar-brand-group {
+            gap: 6px;
+            flex-shrink: 1;
+            min-width: 0;
+          }
+          .sim-btn-back-home {
+            padding: 7px 10px;
+            border-radius: 8px;
+            flex-shrink: 0;
+          }
+          .sim-brand-logo-link {
+            gap: 4px;
+            flex-shrink: 1;
+            min-width: 0;
+            overflow: hidden;
+          }
+          .sim-brand-logo-link .pc-brand-logo {
+            height: 22px !important;
+            width: auto !important;
+            max-width: 145px;
+          }
+
+          .sim-navbar-actions {
+            gap: 6px;
+            flex-shrink: 0;
+          }
+          .sim-nav-btn-models {
+            padding: 6px 10px;
+            font-size: 0.8rem;
+          }
+          .btn-sim-navbar-wa {
+            padding: 7px 10px;
+            flex-shrink: 0;
+          }
+
+          /* Form View Mobile */
+          .sim-standalone-hero {
+            padding: 24px 14px 16px;
+          }
+          .sim-hero-title {
+            font-size: clamp(1.75rem, 6vw, 2.2rem);
+          }
+          .sim-hero-subtitle {
+            font-size: 0.92rem;
+            line-height: 1.5;
+            margin-bottom: 18px;
+          }
+          .sim-hero-trust-bar {
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+          }
+          .sim-trust-item {
+            width: 100%;
+            max-width: 320px;
+            justify-content: center;
+            font-size: 0.76rem;
+            padding: 6px 12px;
+          }
+          .sim-form-section {
+            padding: 8px 12px 36px;
+          }
+          .sim-card-box {
+            padding: 20px 14px;
+          }
+          .sim-card-title {
+            font-size: 1.25rem;
+          }
+          .sim-card-desc {
+            font-size: 0.82rem;
+          }
+          .sim-f2-grid {
+            grid-template-columns: minmax(0, 1fr) !important;
+            gap: 12px;
+            width: 100%;
+          }
+          .sim-field {
+            min-width: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+          }
+          .sim-input, .sim-textarea {
+            padding: 10px 12px;
+            font-size: 0.88rem;
+          }
+          .sim-btn-primary-models {
+            width: 100%;
+            justify-content: center;
+            padding: 14px 20px;
+            font-size: 1.05rem;
+          }
+
+          /* Models View Mobile */
+          .sim-models-fullscreen-section {
+            padding: 12px 10px 40px;
+          }
+          .sim-section-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+          }
+          .sim-section-title {
+            font-size: 1.2rem;
+          }
+          .sim-section-subtitle {
+            font-size: 0.8rem;
+          }
+          .sim-carousel-card {
+            flex: 0 0 205px;
+            width: 205px;
+          }
+          .sim-thumb-window {
+            height: 125px;
+          }
+          .sim-thumb-meta {
+            padding: 8px 10px;
+          }
+          .sim-thumb-title {
+            font-size: 0.82rem;
+          }
+
+          /* Live Stage Window */
+          .sim-stage-window {
+            margin-top: 14px;
+            border-radius: 12px;
+          }
+          .sim-stage-topbar {
+            padding: 8px 10px;
+            gap: 8px;
+            flex-wrap: wrap;
+          }
+          .sim-stage-url {
+            order: 3;
+            width: 100%;
+            max-width: 100%;
+            font-size: 0.72rem;
+            padding: 4px 8px;
+          }
+          .sim-stage-viewport-wrap {
+            min-height: 480px;
+            padding: 8px 6px;
+          }
+          .sim-stage-viewport.desktop,
+          .sim-stage-viewport.mobile {
+            width: 100% !important;
+            max-width: 100% !important;
+            height: 520px !important;
+            border: 2px solid rgba(0, 0, 0, 0.15) !important;
+            border-radius: 12px !important;
+          }
+          .dark-mode .sim-stage-viewport.desktop,
+          .dark-mode .sim-stage-viewport.mobile {
+            border-color: rgba(255, 255, 255, 0.12) !important;
+          }
+          .sim-stage-bottom-bar {
+            flex-direction: column;
+            align-items: stretch;
+            padding: 14px 16px;
+            gap: 12px;
+          }
+          .sim-cta-whatsapp-btn {
+            justify-content: center;
+            width: 100%;
+          }
+
+          /* Footer on Mobile */
+          .sim-footer-inner {
+            flex-direction: column !important;
+            text-align: center !important;
+            gap: 12px !important;
+            padding: 24px 16px !important;
+          }
+          .sim-footer-links {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+            gap: 10px 14px !important;
+            max-width: 100% !important;
+          }
+          .sim-footer-links a {
+            font-size: 0.82rem !important;
+          }
+
+          /* Fullscreen Modal on Mobile */
+          .sim-fullscreen-body {
+            padding: 4px;
+          }
+          .sim-fullscreen-viewport.mobile,
+          .sim-fullscreen-viewport.desktop {
+            width: 100% !important;
+            height: 100% !important;
+            border: none !important;
+            border-radius: 0 !important;
+          }
         }
       `}</style>
     </div>
