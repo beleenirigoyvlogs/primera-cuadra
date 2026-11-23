@@ -1,6 +1,7 @@
 import React from 'react';
 import SectionCornerStamp from './SectionCornerStamp';
 import MaskRevealH2 from './MaskRevealH2';
+import { InstagramIcon, TikTokIcon } from './FooterV3';
 
 export default function AboutMeV3() {
   return (
@@ -154,25 +155,78 @@ export default function AboutMeV3() {
           >
             Muchos negocios trabajan muy bien, pero cuando alguien los busca en Google no los encuentra y termina eligiendo a otro. Mi trabajo es que eso no te pase. Cada proyecto lo atiendo yo, sin intermediarios.
           </p>
-          <a 
-            href="https://wa.me/5491128779641?text=%C2%A1Hola%20Bel%C3%A9n!%20Le%C3%AD%20tu%20presentaci%C3%B3n%20en%20Primera%20Cuadra%20y%20quer%C3%ADa%20hacerte%20una%20consulta." 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            data-wa="sobre-mi"
-            style={{ 
-              display: 'inline-block', 
-              marginTop: '30px', 
-              textDecoration: 'none', 
-              background: '#673DE6', 
-              color: '#FFFFFF', 
-              padding: '15px 26px', 
-              borderRadius: '6px', 
-              fontWeight: 600,
-              fontSize: '15px'
-            }}
-          >
-            Hablar con Belén
-          </a>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', alignItems: 'center', marginTop: '30px' }}>
+            <a 
+              href="https://wa.me/5491128779641?text=%C2%A1Hola%20Bel%C3%A9n!%20Le%C3%AD%20tu%20presentaci%C3%B3n%20en%20Primera%20Cuadra%20y%20quer%C3%ADa%20hacerte%20una%20consulta." 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              data-wa="sobre-mi"
+              style={{ 
+                textDecoration: 'none', 
+                background: '#673DE6', 
+                color: '#FFFFFF', 
+                padding: '14px 24px', 
+                borderRadius: '6px', 
+                fontWeight: 600,
+                fontSize: '15px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px'
+              }}
+            >
+              Hablar con Belén
+            </a>
+            <a
+              href="https://www.instagram.com/primeracuadraweb/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram de Primera Cuadra"
+              style={{
+                textDecoration: 'none',
+                background: '#26232E',
+                color: '#F4F2EC',
+                border: '1px solid #3E3A48',
+                padding: '13px 18px',
+                borderRadius: '6px',
+                fontWeight: 500,
+                fontSize: '14px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                transition: 'border-color 0.2s, color 0.2s'
+              }}
+            >
+              <span style={{ color: '#A48BFF', display: 'flex', alignItems: 'center' }}>
+                <InstagramIcon size={17} />
+              </span>
+              <span>Instagram</span>
+            </a>
+            <a
+              href="https://www.tiktok.com/@primeracuadraweb"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="TikTok de Primera Cuadra"
+              style={{
+                textDecoration: 'none',
+                background: '#26232E',
+                color: '#F4F2EC',
+                border: '1px solid #3E3A48',
+                padding: '13px 18px',
+                borderRadius: '6px',
+                fontWeight: 500,
+                fontSize: '14px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                transition: 'border-color 0.2s, color 0.2s'
+              }}
+            >
+              <span style={{ color: '#A48BFF', display: 'flex', alignItems: 'center' }}>
+                <TikTokIcon size={17} />
+              </span>
+              <span>TikTok</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>

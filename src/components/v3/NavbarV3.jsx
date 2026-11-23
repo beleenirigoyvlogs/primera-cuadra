@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '../../hooks/useTheme';
 import BrandLogo from '../BrandLogo';
+import { InstagramIcon, TikTokIcon } from './FooterV3';
 
 export default function NavbarV3() {
   const { isDark, toggleTheme } = useTheme();
@@ -315,6 +316,26 @@ export default function NavbarV3() {
           >
             Sobre mí
           </a>
+          <div style={{ display: 'flex', gap: '16px', paddingTop: '12px', marginTop: '6px', borderTop: `1px solid ${navLine}` }}>
+            <a 
+              href="https://www.instagram.com/primeracuadraweb/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              aria-label="Instagram @primeracuadraweb"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: brandAccent, textDecoration: 'none', fontSize: '14px', textTransform: 'none', fontWeight: 600 }}
+            >
+              <InstagramIcon size={17} /> Instagram
+            </a>
+            <a 
+              href="https://www.tiktok.com/@primeracuadraweb" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              aria-label="TikTok @primeracuadraweb"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: brandAccent, textDecoration: 'none', fontSize: '14px', textTransform: 'none', fontWeight: 600 }}
+            >
+              <TikTokIcon size={17} /> TikTok
+            </a>
+          </div>
         </div>
       )}
 

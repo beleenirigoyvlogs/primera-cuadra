@@ -826,6 +826,8 @@ export default function SimulatorPage() {
             <a href="/#servicios">Servicios</a>
             <a href="/#desarrollo-a-medida">Desarrollo a Medida</a>
             <a href="/#precios">Precios</a>
+            <a href="https://www.instagram.com/primeracuadraweb/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.tiktok.com/@primeracuadraweb" target="_blank" rel="noopener noreferrer">TikTok</a>
             <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer">WhatsApp</a>
           </div>
         </div>

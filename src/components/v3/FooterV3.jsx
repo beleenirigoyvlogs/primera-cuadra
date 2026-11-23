@@ -3,14 +3,15 @@ import BrandLogo from '../BrandLogo';
 
 // Constante de configuración de redes sociales
 export const SOCIAL_LINKS = {
-  instagram: '',
+  instagram: 'https://www.instagram.com/primeracuadraweb/',
+  tiktok: 'https://www.tiktok.com/@primeracuadraweb',
   facebook: 'https://www.facebook.com/profile.php?id=61594410424409',
   googleMaps: ''
 };
 
 export const CONTACT_EMAIL = 'primeracuadraweb@gmail.com';
 
-const InstagramIcon = ({ size = 18 }) => (
+export const InstagramIcon = ({ size = 18 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
@@ -18,13 +19,19 @@ const InstagramIcon = ({ size = 18 }) => (
   </svg>
 );
 
-const FacebookIcon = ({ size = 18 }) => (
+export const TikTokIcon = ({ size = 18 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.86.11V9.33a6.33 6.33 0 0 0-.86-.06 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.75a8.16 8.16 0 0 0 4.77 1.52v-3.48a4.85 4.85 0 0 1-1-.1z"/>
+  </svg>
+);
+
+export const FacebookIcon = ({ size = 18 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
   </svg>
 );
 
-const MapPinIcon = ({ size = 18 }) => (
+export const MapPinIcon = ({ size = 18 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/>
     <circle cx="12" cy="10" r="3"/>
@@ -37,7 +44,13 @@ export default function FooterV3() {
       name: 'Instagram',
       url: SOCIAL_LINKS.instagram,
       icon: InstagramIcon,
-      label: 'Seguinos en Instagram'
+      label: 'Seguinos en Instagram (@primeracuadraweb)'
+    },
+    {
+      name: 'TikTok',
+      url: SOCIAL_LINKS.tiktok,
+      icon: TikTokIcon,
+      label: 'Seguinos en TikTok (@primeracuadraweb)'
     },
     {
       name: 'Facebook',
@@ -168,13 +181,14 @@ export default function FooterV3() {
         {socialItems.length > 0 && (
           <div 
             style={{ 
-              paddingTop: '20px', 
+              paddingTop: '24px', 
               display: 'flex', 
+              flexWrap: 'wrap',
               alignItems: 'center', 
-              gap: '14px' 
+              gap: '12px' 
             }}
           >
-            <span style={{ fontSize: '13px', color: '#8E8B99', marginRight: '4px' }}>Redes:</span>
+            <span style={{ fontSize: '13px', color: '#8E8B99', marginRight: '4px' }}>Redes oficiales:</span>
             {socialItems.map(item => {
               const IconComponent = item.icon;
               return (
@@ -185,28 +199,36 @@ export default function FooterV3() {
                   rel="noopener noreferrer"
                   aria-label={item.label}
                   style={{
-                    width: '36px',
-                    height: '36px',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    padding: '8px 14px',
                     borderRadius: '6px',
                     border: '1px solid #34313C',
                     background: '#18161E',
-                    color: '#A48BFF',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
+                    color: '#F4F2EC',
+                    fontSize: '13px',
+                    fontWeight: 500,
                     textDecoration: 'none',
-                    transition: 'border-color 0.2s ease, color 0.2s ease, transform 0.2s ease'
+                    transition: 'border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, background 0.2s ease'
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.borderColor = '#673DE6';
+                    e.currentTarget.style.background = '#221F2B';
+                    e.currentTarget.style.color = '#A48BFF';
                     e.currentTarget.style.transform = 'translateY(-2px)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.borderColor = '#34313C';
+                    e.currentTarget.style.background = '#18161E';
+                    e.currentTarget.style.color = '#F4F2EC';
                     e.currentTarget.style.transform = 'translateY(0)';
                   }}
                 >
-                  <IconComponent size={18} />
+                  <span style={{ color: '#A48BFF', display: 'flex', alignItems: 'center' }}>
+                    <IconComponent size={17} />
+                  </span>
+                  <span>{item.name}</span>
                 </a>
               );
             })}
