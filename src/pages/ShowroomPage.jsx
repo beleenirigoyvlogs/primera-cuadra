@@ -578,10 +578,10 @@ export default function ShowroomPage() {
             <div style={{ marginBottom: '22px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
                 <Lock size={18} style={{ color: themeAccent }} />
-                <h1 style={{ fontSize: '1.2rem', margin: 0, fontWeight: 700 }}>Showroom Privado</h1>
+                <h1 style={{ fontSize: '1.25rem', margin: 0, fontWeight: 700 }}>Primera Cuadra</h1>
               </div>
-              <p style={{ color: themeMuted, fontSize: '0.85rem', margin: 0 }}>
-                Simulador de plantillas & demostraciones · Acceso protegido
+              <p style={{ color: themeMuted, fontSize: '0.88rem', margin: 0 }}>
+                Simulador de plantillas · administrador
               </p>
             </div>
 
@@ -668,7 +668,7 @@ export default function ShowroomPage() {
               <div style={{ height: '18px', width: '1px', background: themeBorder }} />
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <Sparkles size={15} style={{ color: themeAccent }} />
-                <span style={{ fontWeight: 700, fontSize: '0.95rem' }}>Showroom de Soluciones</span>
+                <span style={{ fontWeight: 700, fontSize: '0.95rem' }}>Simulador de plantillas · administrador</span>
               </div>
             </div>
 
