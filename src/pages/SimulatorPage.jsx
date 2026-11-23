@@ -139,9 +139,20 @@ export default function SimulatorPage() {
 
   const [videoFileName, setVideoFileName] = useState('');
   const [selectedTemplateIndex, setSelectedTemplateIndex] = useState(0);
-  const [previewDevice, setPreviewDevice] = useState('desktop'); // 'desktop' | 'mobile'
+
+  // Helper to detect if viewing on mobile
+  const isMobileScreen = () => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth < 768 || /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  };
+
+  const [previewDevice, setPreviewDevice] = useState(() => {
+    return isMobileScreen() ? 'mobile' : 'desktop';
+  });
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [fullScreenDevice, setFullScreenDevice] = useState('desktop');
+  const [fullScreenDevice, setFullScreenDevice] = useState(() => {
+    return isMobileScreen() ? 'mobile' : 'desktop';
+  });
   const [filterStyle, setFilterStyle] = useState('all');
 
   const carouselRef = useRef(null);
@@ -149,13 +160,17 @@ export default function SimulatorPage() {
   const modalIframeRef = useRef(null);
   const fileInputRef = useRef(null);
 
-  // Sync route and title
+  // Sync route and title & ensure mobile default
   useEffect(() => {
     window.scrollTo(0, 0);
     if (view === 'models') {
       document.title = 'Modelos de Plantillas Web | Primera Cuadra';
     } else {
       document.title = 'Simulador de Diseño Web | Primera Cuadra';
+    }
+    if (typeof window !== 'undefined' && isMobileScreen()) {
+      setPreviewDevice('mobile');
+      setFullScreenDevice('mobile');
     }
   }, [view]);
 
@@ -173,6 +188,10 @@ export default function SimulatorPage() {
   const goToModels = () => {
     if (typeof window !== 'undefined') {
       window.history.pushState({}, '', '/simulador/modelos');
+      if (isMobileScreen()) {
+        setPreviewDevice('mobile');
+        setFullScreenDevice('mobile');
+      }
     }
     setView('models');
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -625,21 +644,21 @@ export default function SimulatorPage() {
                   <div className="sim-device-switcher">
                     <button
                       type="button"
-                      onClick={() => setPreviewDevice('desktop')}
-                      className={`sim-device-btn ${previewDevice === 'desktop' ? 'active' : ''}`}
-                      title="Vista Escritorio"
+                      onClick={() => setPreviewDevice('mobile')}
+                      className={`sim-device-btn ${previewDevice === 'mobile' ? 'active' : ''}`}
+                      title="Vista Móvil (formato celular)"
                     >
-                      <Monitor size={15} />
-                      <span className="hide-mobile">Escritorio</span>
+                      <Smartphone size={14} />
+                      <span>Móvil</span>
                     </button>
                     <button
                       type="button"
-                      onClick={() => setPreviewDevice('mobile')}
-                      className={`sim-device-btn ${previewDevice === 'mobile' ? 'active' : ''}`}
-                      title="Vista Móvil (390 px)"
+                      onClick={() => setPreviewDevice('desktop')}
+                      className={`sim-device-btn ${previewDevice === 'desktop' ? 'active' : ''}`}
+                      title="Vista Web (diseño de escritorio con zoom out)"
                     >
-                      <Smartphone size={15} />
-                      <span className="hide-mobile">Móvil</span>
+                      <Monitor size={14} />
+                      <span>Web</span>
                     </button>
                   </div>
 
@@ -656,7 +675,12 @@ export default function SimulatorPage() {
               </div>
 
               {/* Iframe Viewport */}
-              <div className="sim-stage-viewport-wrap">
+              <div className={`sim-stage-viewport-wrap ${previewDevice}`}>
+                {previewDevice === 'desktop' && (
+                  <div className="sim-desktop-hint-badge hide-desktop">
+                    <span>🖥️ Vista web a escala · Fondo oscuro</span>
+                  </div>
+                )}
                 <div className={`sim-stage-viewport ${previewDevice}`}>
                   <iframe 
                     ref={mainIframeRef}
@@ -709,19 +733,19 @@ export default function SimulatorPage() {
               <div className="sim-device-switcher">
                 <button
                   type="button"
-                  onClick={() => setFullScreenDevice('desktop')}
-                  className={`sim-device-btn ${fullScreenDevice === 'desktop' ? 'active' : ''}`}
-                >
-                  <Monitor size={15} />
-                  <span>Escritorio</span>
-                </button>
-                <button
-                  type="button"
                   onClick={() => setFullScreenDevice('mobile')}
                   className={`sim-device-btn ${fullScreenDevice === 'mobile' ? 'active' : ''}`}
                 >
-                  <Smartphone size={15} />
-                  <span>Móvil (390 px)</span>
+                  <Smartphone size={14} />
+                  <span>Móvil</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setFullScreenDevice('desktop')}
+                  className={`sim-device-btn ${fullScreenDevice === 'desktop' ? 'active' : ''}`}
+                >
+                  <Monitor size={14} />
+                  <span>Web</span>
                 </button>
               </div>
 
@@ -822,6 +846,10 @@ export default function SimulatorPage() {
           color: #F4F2EC;
         }
 
+        .hide-desktop { display: none; }
+        @media (max-width: 768px) {
+          .hide-desktop { display: block !important; }
+        }
         .sim-nav-btn-models {
           display: inline-flex;
           align-items: center;
@@ -1668,17 +1696,84 @@ export default function SimulatorPage() {
             min-height: 480px;
             padding: 8px 6px;
           }
-          .sim-stage-viewport.desktop,
+          .sim-device-switcher {
+            display: flex;
+            gap: 2px;
+          }
+          .sim-device-btn span {
+            display: inline-block !important;
+            font-size: 0.76rem;
+          }
+
+          /* STAGE VIEWPORT IN MOBILE MODE (1:1 Native Phone Format) */
+          .sim-stage-viewport-wrap {
+            padding: 10px 8px !important;
+            min-height: 540px !important;
+            background: #0E0D13 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            position: relative !important;
+          }
           .sim-stage-viewport.mobile {
             width: 100% !important;
-            max-width: 100% !important;
-            height: 520px !important;
-            border: 2px solid rgba(0, 0, 0, 0.15) !important;
-            border-radius: 12px !important;
+            max-width: 390px !important;
+            height: 540px !important;
+            border: 2px solid rgba(164, 139, 255, 0.35) !important;
+            border-radius: 16px !important;
+            background: #FFFFFF !important;
+            overflow: hidden !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
           }
-          .dark-mode .sim-stage-viewport.desktop,
-          .dark-mode .sim-stage-viewport.mobile {
-            border-color: rgba(255, 255, 255, 0.12) !important;
+          .sim-stage-viewport.mobile .sim-main-iframe {
+            width: 100% !important;
+            height: 100% !important;
+            transform: none !important;
+            display: block;
+          }
+
+          /* STAGE VIEWPORT IN DESKTOP MODE ON MOBILE:
+             "Si lo quieren ver en diseño web, que se muestre con menos zoom fondo negro en formato vertical no agrandado" */
+          .sim-stage-viewport-wrap.desktop {
+            background: #000000 !important;
+            padding: 12px 6px !important;
+          }
+          .sim-desktop-hint-badge {
+            margin-bottom: 8px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.12);
+            color: #E2E8F0;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+          }
+          .sim-stage-viewport.desktop {
+            width: 100% !important;
+            max-width: 390px !important;
+            height: 520px !important;
+            background: #000000 !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            border-radius: 14px !important;
+            overflow: hidden !important;
+            position: relative !important;
+            display: flex !important;
+            align-items: flex-start !important;
+            justify-content: center !important;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.85) !important;
+          }
+          .sim-stage-viewport.desktop .sim-main-iframe {
+            position: absolute !important;
+            top: 0 !important;
+            left: 50% !important;
+            width: 1050px !important;
+            height: 1750px !important;
+            transform-origin: top center !important;
+            transform: translateX(-50%) scale(0.31) !important;
+            border: none !important;
+            background: #FFFFFF !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
           }
           .sim-stage-bottom-bar {
             flex-direction: column;
@@ -1711,14 +1806,45 @@ export default function SimulatorPage() {
 
           /* Fullscreen Modal on Mobile */
           .sim-fullscreen-body {
-            padding: 4px;
+            padding: 0 !important;
+            background: #000000 !important;
           }
-          .sim-fullscreen-viewport.mobile,
-          .sim-fullscreen-viewport.desktop {
+          .sim-fullscreen-viewport.mobile {
             width: 100% !important;
             height: 100% !important;
             border: none !important;
             border-radius: 0 !important;
+            background: #FFFFFF !important;
+          }
+          .sim-fullscreen-viewport.mobile .sim-fullscreen-iframe {
+            width: 100% !important;
+            height: 100% !important;
+            transform: none !important;
+          }
+
+          .sim-fullscreen-viewport.desktop {
+            width: 100% !important;
+            height: 100% !important;
+            background: #000000 !important;
+            border: none !important;
+            border-radius: 0 !important;
+            display: flex !important;
+            align-items: flex-start !important;
+            justify-content: center !important;
+            overflow: hidden !important;
+            position: relative !important;
+          }
+          .sim-fullscreen-viewport.desktop .sim-fullscreen-iframe {
+            position: absolute !important;
+            top: 10px !important;
+            left: 50% !important;
+            width: 1050px !important;
+            height: 2400px !important;
+            transform-origin: top center !important;
+            transform: translateX(-50%) scale(0.33) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            border-radius: 8px !important;
+            background: #FFFFFF !important;
           }
         }
       `}</style>
