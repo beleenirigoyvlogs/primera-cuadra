@@ -17,9 +17,9 @@ import {
   Video,
   Sun,
   Moon,
-  ExternalLink,
+  Check,
   Layers,
-  Palette
+  ArrowDown
 } from 'lucide-react';
 import BrandLogo from '../components/BrandLogo';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -28,7 +28,6 @@ import {
   TEMPLATES, 
   LN, 
   SN, 
-  LD, 
   generateSiteHtml 
 } from '../utils/templateEngine';
 
@@ -59,7 +58,7 @@ const PRESETS = [
       zn: 'Palermo Soho, CABA',
       wa: '11 4567 8901',
       tg: 'Estilismo personalizado y color de vanguardia',
-      ds: 'Espacio dedicado al cuidado capilar, cortes modernos y tratamientos de nutrición profunda con primeras marcas internacionales.',
+      ds: 'Espacio dedicado al cuidado capilar, cortes modernos y tratamientos de nutrición profunda con primeras marcas.',
       it: 'Corte de diseño femenino y masculino | Incluye lavado y peinado\nColorimetría avanzada y balayage | Matiz y nutrición profunda\nTratamiento botox capilar reconstituyente | Brillo y antifrizz por 60 días\nPeinados y maquillaje para eventos | Asesoramiento previo',
       hr: 'Martes a sábados de 10:00 a 20:00 h'
     }
@@ -89,7 +88,7 @@ const PRESETS = [
       zn: 'Vicente López, Buenos Aires',
       wa: '11 6789 0123',
       tg: 'Diagnóstico computarizado y mecánica de precisión',
-      ds: 'Servicio técnico automotor multimarca con instrumental de escaneo oficial, repuestos originales y garantía escrita en cada trabajo.',
+      ds: 'Servicio técnico automotor multimarca con instrumental de escaneo oficial, repuestos originales y garantía escrita.',
       it: 'Service de aceite, filtros y chequeo de 25 puntos | Repuestos originales\nDiagnóstico computarizado con scanner | Informe técnico detallado\nFrenos, tren delantero y suspensión | Repuestos homologados\nDistribución y mecánica general de motor | Presupuesto en el día sin cargo',
       hr: 'Lunes a viernes de 8:00 a 18:30 h'
     }
@@ -111,12 +110,85 @@ const PRESETS = [
   }
 ];
 
+// Carousel Thumbnail Card with scaled live iframe
+function CarouselCard({ template, businessData, isSelected, onSelect }) {
+  const cardRef = useRef(null);
+  const iframeRef = useRef(null);
+  const [isRendered, setIsRendered] = useState(false);
+
+  useEffect(() => {
+    const cardEl = cardRef.current;
+    if (!cardEl) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsRendered(true);
+            observer.unobserve(cardEl);
+          }
+        });
+      },
+      { rootMargin: '300px' }
+    );
+
+    observer.observe(cardEl);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (isRendered && iframeRef.current) {
+      iframeRef.current.srcdoc = generateSiteHtml(template, businessData);
+    }
+  }, [isRendered, template, businessData]);
+
+  return (
+    <div
+      ref={cardRef}
+      onClick={() => onSelect(template.k)}
+      className={`sim-carousel-card ${isSelected ? 'selected' : ''}`}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onSelect(template.k); }}
+    >
+      <div className="sim-thumb-window">
+        {isRendered ? (
+          <iframe 
+            ref={iframeRef} 
+            tabIndex={-1} 
+            title={template.n} 
+            className="sim-thumb-iframe"
+          />
+        ) : (
+          <div className="sim-thumb-placeholder">
+            <span>#{template.k + 1}</span>
+          </div>
+        )}
+        {isSelected && (
+          <div className="sim-active-overlay">
+            <Check size={14} />
+            <span>Seleccionada</span>
+          </div>
+        )}
+      </div>
+
+      <div className="sim-thumb-meta">
+        <div className="sim-thumb-title">{template.n}</div>
+        <div className="sim-thumb-tags">
+          <span>{LN[template.li]}</span>
+          <span>{SN[template.si]}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function SimulatorPage() {
   useScrollReveal();
   const { isDark, toggleTheme } = useTheme();
   const whatsappNumber = '5491128779641';
 
-  // Business Data State (empty by default, placeholders guide the user)
+  // Empty business data by default (placeholders show examples)
   const [businessData, setBusinessData] = useState({
     nm: '',
     rb: '',
@@ -137,7 +209,8 @@ export default function SimulatorPage() {
   const [filterStyle, setFilterStyle] = useState('all');
 
   const carouselRef = useRef(null);
-  const iframeRef = useRef(null);
+  const previewSectionRef = useRef(null);
+  const mainIframeRef = useRef(null);
   const modalIframeRef = useRef(null);
   const fileInputRef = useRef(null);
 
@@ -149,7 +222,7 @@ export default function SimulatorPage() {
   // Filter templates
   const filteredTemplates = useMemo(() => {
     if (filterStyle === 'all') return TEMPLATES;
-    return TEMPLATES.filter((t) => t.s === parseInt(filterStyle, 10));
+    return TEMPLATES.filter((t) => t.si === parseInt(filterStyle, 10));
   }, [filterStyle]);
 
   const activeTemplate = TEMPLATES[selectedTemplateIndex] || TEMPLATES[0];
@@ -177,20 +250,20 @@ export default function SimulatorPage() {
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
-  // Update iframe contents whenever template or business data changes
+  // Update live iframe content
   useEffect(() => {
-    if (iframeRef.current && activeTemplate) {
-      iframeRef.current.srcdoc = generateSiteHtml(activeTemplate, businessData);
+    if (mainIframeRef.current && activeTemplate) {
+      mainIframeRef.current.srcdoc = generateSiteHtml(activeTemplate, businessData);
     }
     if (modalIframeRef.current && activeTemplate && isFullScreen) {
       modalIframeRef.current.srcdoc = generateSiteHtml(activeTemplate, businessData);
     }
   }, [activeTemplate, businessData, isFullScreen]);
 
-  // Carousel scrolling helpers
+  // Carousel scrolling
   const scrollCarousel = (direction) => {
     if (carouselRef.current) {
-      const scrollAmount = 320;
+      const scrollAmount = 300;
       carouselRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'
@@ -198,10 +271,16 @@ export default function SimulatorPage() {
     }
   };
 
+  const scrollToPreview = () => {
+    previewSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   // WhatsApp conversion message
   const whatsappCtaUrl = useMemo(() => {
+    const bizName = businessData.nm || 'mi comercio';
+    const bizRubro = businessData.rb ? ` (${businessData.rb})` : '';
     const text = encodeURIComponent(
-      `¡Hola Primera Cuadra! Estuve probando el simulador en su web con mi negocio "${businessData.nm}" (${businessData.rb}) y me gustó la plantilla "${activeTemplate?.n}". ¿Podemos coordinar para hacerla?`
+      `¡Hola Primera Cuadra! Estuve probando el simulador en su web con mi negocio "${bizName}"${bizRubro} y me gustó la plantilla "${activeTemplate?.n}". ¿Podemos coordinar para hacerla?`
     );
     return `https://wa.me/${whatsappNumber}?text=${text}`;
   }, [businessData.nm, businessData.rb, activeTemplate?.n, whatsappNumber]);
@@ -270,7 +349,7 @@ export default function SimulatorPage() {
               Simulador de <span className="highlight-purple">Diseño Web</span>
             </h1>
             <p className="sim-hero-subtitle">
-              Completá los datos de tu comercio y navegá nuestro carrusel de plantillas interactivas para elegir y visualizar tu página web en tiempo real antes de contratar.
+              Completá los datos de tu comercio y navegá nuestro carrusel de 50 plantillas reales para ver cómo queda tu web en tiempo real antes de contratar.
             </p>
 
             <div className="sim-hero-trust-bar">
@@ -292,21 +371,24 @@ export default function SimulatorPage() {
       </section>
 
       {/* ---------------------------------------------------- */}
-      {/* 3. MAIN UNIFIED SIMULATOR CORE */}
+      {/* 3. FORM SECTION: DATOS DEL COMERCIO */}
       {/* ---------------------------------------------------- */}
-      <main className="sim-interactive-section">
-        <div className="container">
-
-          {/* Quick Preset Selector */}
-          <div className="sim-presets-bar">
-            <span className="sim-presets-title">Ejemplos rápidos con 1 clic:</span>
+      <section className="sim-form-section">
+        <div className="container" style={{ maxWidth: '920px' }}>
+          
+          {/* Preset Buttons */}
+          <div className="sim-presets-box">
+            <div className="sim-presets-header">
+              <Sparkles size={14} className="text-purple-icon" />
+              <span>O si preferís probar rápido, cargá un ejemplo con 1 clic:</span>
+            </div>
             <div className="sim-presets-scroll">
               {PRESETS.map((p) => (
                 <button
                   key={p.id}
                   type="button"
                   onClick={() => setBusinessData({ ...p.data, vu: businessData.vu })}
-                  className="sim-preset-pill"
+                  className="sim-preset-btn"
                 >
                   <span>{p.icon}</span>
                   <span>{p.label}</span>
@@ -315,337 +397,325 @@ export default function SimulatorPage() {
             </div>
           </div>
 
-          <div className="sim-main-grid">
+          {/* Form Card */}
+          <div className="sim-card-box">
+            <div className="sim-card-header">
+              <h2 className="sim-card-title">Datos del comercio</h2>
+              <p className="sim-card-desc">
+                Escribí los datos de tu negocio a continuación. Todos los campos son opcionales para probar.
+              </p>
+            </div>
 
-            {/* Left Column: Business Data Form */}
-            <div className="sim-form-column">
-              <div className="sim-card-box">
-                <div className="sim-card-header">
-                  <div className="sim-card-header-badge">
-                    <Sparkles size={14} />
-                    <span>Configuración en vivo</span>
-                  </div>
-                  <h2 className="sim-card-title">Datos del comercio</h2>
-                  <p className="sim-card-desc">
-                    Modificá cualquier campo y mirá cómo la plantilla se actualiza al instante.
-                  </p>
-                </div>
+            <div className="sim-f2-grid">
+              <div className="sim-field">
+                <label className="sim-label">Nombre del comercio</label>
+                <input 
+                  type="text"
+                  className="sim-input"
+                  placeholder="Ej: Panadería La Esquina"
+                  value={businessData.nm}
+                  onChange={(e) => setBusinessData({ ...businessData, nm: e.target.value })}
+                />
+              </div>
 
-                <div className="sim-form-grid">
-                  <div>
-                    <label className="sim-label">Nombre del comercio</label>
-                    <input 
-                      type="text"
-                      className="sim-input"
-                      placeholder="Ej: Panadería La Esquina"
-                      value={businessData.nm}
-                      onChange={(e) => setBusinessData({ ...businessData, nm: e.target.value })}
-                    />
-                  </div>
+              <div className="sim-field">
+                <label className="sim-label">Rubro</label>
+                <input 
+                  type="text"
+                  className="sim-input"
+                  placeholder="Ej: Panadería, Peluquería, Ferretería"
+                  value={businessData.rb}
+                  onChange={(e) => setBusinessData({ ...businessData, rb: e.target.value })}
+                />
+              </div>
 
-                  <div>
-                    <label className="sim-label">Rubro</label>
-                    <input 
-                      type="text"
-                      className="sim-input"
-                      placeholder="Ej: Panadería, Peluquería, Ferretería"
-                      value={businessData.rb}
-                      onChange={(e) => setBusinessData({ ...businessData, rb: e.target.value })}
-                    />
-                  </div>
+              <div className="sim-field">
+                <label className="sim-label">Zona / ciudad</label>
+                <input 
+                  type="text"
+                  className="sim-input"
+                  placeholder="Ej: Tigre, Buenos Aires"
+                  value={businessData.zn}
+                  onChange={(e) => setBusinessData({ ...businessData, zn: e.target.value })}
+                />
+              </div>
 
-                  <div>
-                    <label className="sim-label">Zona / ciudad</label>
-                    <input 
-                      type="text"
-                      className="sim-input"
-                      placeholder="Ej: Tigre, Buenos Aires"
-                      value={businessData.zn}
-                      onChange={(e) => setBusinessData({ ...businessData, zn: e.target.value })}
-                    />
-                  </div>
+              <div className="sim-field">
+                <label className="sim-label">WhatsApp</label>
+                <input 
+                  type="text"
+                  className="sim-input"
+                  placeholder="Ej: 11 2345 6789"
+                  value={businessData.wa}
+                  onChange={(e) => setBusinessData({ ...businessData, wa: e.target.value })}
+                />
+              </div>
 
-                  <div>
-                    <label className="sim-label">WhatsApp</label>
-                    <input 
-                      type="text"
-                      className="sim-input"
-                      placeholder="Ej: 11 2345 6789"
-                      value={businessData.wa}
-                      onChange={(e) => setBusinessData({ ...businessData, wa: e.target.value })}
-                    />
-                  </div>
+              <div className="sim-field full">
+                <label className="sim-label">Frase principal (opcional)</label>
+                <input 
+                  type="text"
+                  className="sim-input"
+                  placeholder="Ej: Pan hecho todos los días, como en casa"
+                  value={businessData.tg}
+                  onChange={(e) => setBusinessData({ ...businessData, tg: e.target.value })}
+                />
+              </div>
 
-                  <div className="full-col">
-                    <label className="sim-label">Frase principal (opcional)</label>
-                    <input 
-                      type="text"
-                      className="sim-input"
-                      placeholder="Ej: Pan hecho todos los días, como en casa"
-                      value={businessData.tg}
-                      onChange={(e) => setBusinessData({ ...businessData, tg: e.target.value })}
-                    />
-                  </div>
+              <div className="sim-field full">
+                <label className="sim-label">Descripción corta (opcional)</label>
+                <textarea 
+                  className="sim-textarea"
+                  rows={2}
+                  placeholder="Ej: Hace 20 años horneando para el barrio."
+                  value={businessData.ds}
+                  onChange={(e) => setBusinessData({ ...businessData, ds: e.target.value })}
+                />
+              </div>
 
-                  <div className="full-col">
-                    <label className="sim-label">Descripción corta (opcional)</label>
-                    <textarea 
-                      className="sim-textarea"
-                      rows={2}
-                      placeholder="Ej: Hace más de 20 años horneando recetas tradicionales para el barrio."
-                      value={businessData.ds}
-                      onChange={(e) => setBusinessData({ ...businessData, ds: e.target.value })}
-                    />
-                  </div>
+              <div className="sim-field full">
+                <label className="sim-label">
+                  Qué ofrecen — uno por línea, con detalle opcional después de “|”
+                </label>
+                <textarea 
+                  className="sim-textarea"
+                  rows={4}
+                  placeholder="Pan artesanal | Masa madre, horneado a la mañana&#10;Facturas | Docena y media docena&#10;Tortas por encargue | Con 48 hs de anticipación"
+                  value={businessData.it}
+                  onChange={(e) => setBusinessData({ ...businessData, it: e.target.value })}
+                />
+              </div>
 
-                  <div className="full-col">
-                    <label className="sim-label">
-                      Qué ofrecen — uno por línea, con detalle opcional después de “|”
-                    </label>
-                    <textarea 
-                      className="sim-textarea"
-                      rows={4}
-                      placeholder="Pan artesanal | Masa madre, horneado fresco&#10;Facturas de manteca | Docena surtida&#10;Tortas por encargo | Con 48 hs de anticipación"
-                      value={businessData.it}
-                      onChange={(e) => setBusinessData({ ...businessData, it: e.target.value })}
-                    />
-                  </div>
+              <div className="sim-field full">
+                <label className="sim-label">Horario</label>
+                <input 
+                  type="text"
+                  className="sim-input"
+                  placeholder="Ej: Lunes a sábados de 8 a 20 h"
+                  value={businessData.hr}
+                  onChange={(e) => setBusinessData({ ...businessData, hr: e.target.value })}
+                />
+              </div>
 
-                  <div className="full-col">
-                    <label className="sim-label">Horario</label>
-                    <input 
-                      type="text"
-                      className="sim-input"
-                      placeholder="Ej: Lunes a sábados de 8 a 20 h"
-                      value={businessData.hr}
-                      onChange={(e) => setBusinessData({ ...businessData, hr: e.target.value })}
-                    />
-                  </div>
-
-                  <div className="full-col">
-                    <label className="sim-label">Video del comercio (opcional, para las webs animadas)</label>
-                    <div className="sim-video-uploader" onClick={() => fileInputRef.current?.click()}>
-                      <input 
-                        ref={fileInputRef}
-                        type="file" 
-                        accept="video/*" 
-                        style={{ display: 'none' }}
-                        onChange={handleVideoUpload}
-                      />
-                      <div className="sim-video-uploader-left">
-                        <Video size={20} className="text-purple-icon" />
-                        <div>
-                          <div className="sim-video-name">
-                            {videoFileName ? videoFileName : 'Subir un video desde tu dispositivo'}
-                          </div>
-                          <div className="sim-video-hint">
-                            {videoFileName ? 'Video en memoria listo para la plantilla' : 'MP4, WebM o MOV (vive sólo en tu navegador)'}
-                          </div>
-                        </div>
+              <div className="sim-field full">
+                <label className="sim-label">Video del comercio (opcional, para las webs animadas)</label>
+                <div className="sim-video-uploader" onClick={() => fileInputRef.current?.click()}>
+                  <input 
+                    ref={fileInputRef}
+                    type="file" 
+                    accept="video/*" 
+                    style={{ display: 'none' }}
+                    onChange={handleVideoUpload}
+                  />
+                  <div className="sim-video-uploader-left">
+                    <Video size={18} className="text-purple-icon" />
+                    <div>
+                      <div className="sim-video-name">
+                        {videoFileName ? videoFileName : 'Subir un video desde tu dispositivo'}
                       </div>
-                      {videoFileName ? (
-                        <button type="button" onClick={handleRemoveVideo} className="sim-btn-remove-video">
-                          Quitar
-                        </button>
-                      ) : (
-                        <span className="sim-btn-upload-badge">
-                          <Upload size={14} />
-                          <span>Seleccionar</span>
-                        </span>
-                      )}
+                      <div className="sim-video-hint">
+                        {videoFileName ? 'Video en memoria listo' : 'MP4, WebM o MOV (vive solo en tu navegador)'}
+                      </div>
                     </div>
                   </div>
+                  {videoFileName ? (
+                    <button type="button" onClick={handleRemoveVideo} className="sim-btn-remove-video">
+                      Quitar
+                    </button>
+                  ) : (
+                    <span className="sim-btn-upload-badge">
+                      <Upload size={13} />
+                      <span>Seleccionar</span>
+                    </span>
+                  )}
                 </div>
               </div>
             </div>
 
-            {/* Right Column: Carousel + Interactive Live Preview */}
-            <div className="sim-preview-column">
-
-              {/* Template Carousel Container */}
-              <div className="sim-carousel-wrapper">
-                <div className="sim-carousel-top">
-                  <div className="sim-carousel-info">
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <Layers size={16} className="text-purple-icon" />
-                      <span className="sim-carousel-heading">Catálogo de 50 Plantillas Web</span>
-                    </div>
-                    <span className="sim-carousel-count">
-                      Plantilla <strong>{selectedTemplateIndex + 1}</strong> de {TEMPLATES.length}
-                    </span>
-                  </div>
-
-                  <div className="sim-carousel-arrows">
-                    <button 
-                      type="button" 
-                      onClick={() => scrollCarousel('left')} 
-                      className="sim-arrow-btn"
-                      aria-label="Plantilla anterior"
-                    >
-                      <ChevronLeft size={18} />
-                    </button>
-                    <button 
-                      type="button" 
-                      onClick={() => scrollCarousel('right')} 
-                      className="sim-arrow-btn"
-                      aria-label="Siguiente plantilla"
-                    >
-                      <ChevronRight size={18} />
-                    </button>
-                  </div>
-                </div>
-
-                {/* Filter pills */}
-                <div className="sim-filters-strip">
-                  {[
-                    { id: 'all', label: 'Todas las 50' },
-                    { id: '1', label: 'Clásico' },
-                    { id: '2', label: 'Moderno Oscuro' },
-                    { id: '3', label: 'Cálido' },
-                    { id: '4', label: 'Vibrante' },
-                    { id: '5', label: 'Lujo' },
-                    { id: '7', label: 'Tecnológico' },
-                    { id: '9', label: 'Minimalista' },
-                    { id: '10', label: 'Fresco' }
-                  ].map((f) => (
-                    <button
-                      key={f.id}
-                      type="button"
-                      onClick={() => setFilterStyle(f.id)}
-                      className={`sim-filter-btn ${filterStyle === f.id ? 'active' : ''}`}
-                    >
-                      {f.label}
-                    </button>
-                  ))}
-                </div>
-
-                {/* Horizontal Sliding Carousel Track */}
-                <div ref={carouselRef} className="sim-carousel-track">
-                  {filteredTemplates.map((tpl) => {
-                    const globalIdx = TEMPLATES.findIndex((item) => item.k === tpl.k);
-                    const isSelected = globalIdx === selectedTemplateIndex;
-
-                    return (
-                      <div
-                        key={tpl.k}
-                        onClick={() => setSelectedTemplateIndex(globalIdx)}
-                        className={`sim-carousel-card ${isSelected ? 'selected' : ''}`}
-                        role="button"
-                        tabIndex={0}
-                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setSelectedTemplateIndex(globalIdx); }}
-                      >
-                        <div className="sim-carousel-card-inner">
-                          <div className="sim-card-num-badge">#{tpl.k}</div>
-                          <div className="sim-card-title-text">{tpl.n}</div>
-                          <div className="sim-card-tags">
-                            <span className="sim-tag-structure">{LN[tpl.l - 1]}</span>
-                            <span className="sim-tag-style">{SN[tpl.s - 1]}</span>
-                          </div>
-                        </div>
-                        {isSelected && (
-                          <div className="sim-selected-badge">
-                            <CheckCircle2 size={13} />
-                            <span>Viendo en vivo</span>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Live Preview Window Frame */}
-              <div className="sim-browser-frame">
-                {/* Browser Topbar Header */}
-                <div className="sim-browser-topbar">
-                  <div className="sim-browser-dots">
-                    <span className="dot red" />
-                    <span className="dot yellow" />
-                    <span className="dot green" />
-                  </div>
-
-                  <div className="sim-browser-url-pill">
-                    <span className="sim-browser-lock">🔒</span>
-                    <span className="sim-browser-url-text">
-                      https://{businessData.nm ? businessData.nm.toLowerCase().replace(/[^a-z0-9]/g, '') : 'tunegocio'}.primeracuadra.com.ar
-                    </span>
-                  </div>
-
-                  <div className="sim-browser-controls">
-                    <div className="sim-device-toggle">
-                      <button
-                        type="button"
-                        onClick={() => setPreviewDevice('desktop')}
-                        className={`sim-dev-btn ${previewDevice === 'desktop' ? 'active' : ''}`}
-                        title="Ver versión Escritorio"
-                      >
-                        <Monitor size={15} />
-                        <span className="hide-mobile">Escritorio</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setPreviewDevice('mobile')}
-                        className={`sim-dev-btn ${previewDevice === 'mobile' ? 'active' : ''}`}
-                        title="Ver versión Móvil (390 px)"
-                      >
-                        <Smartphone size={15} />
-                        <span className="hide-mobile">Móvil</span>
-                      </button>
-                    </div>
-
-                    <button
-                      type="button"
-                      onClick={() => setIsFullScreen(true)}
-                      className="sim-fullscreen-btn"
-                      title="Abrir a pantalla completa"
-                    >
-                      <Maximize2 size={15} />
-                      <span className="hide-mobile">Pantalla completa</span>
-                    </button>
-                  </div>
-                </div>
-
-                {/* Browser Stage Content */}
-                <div className="sim-browser-stage">
-                  <div className={`sim-browser-viewport ${previewDevice}`}>
-                    <iframe 
-                      ref={iframeRef}
-                      title={`Previsualización plantilla ${activeTemplate?.n}`}
-                      className="sim-iframe"
-                    />
-                  </div>
-                </div>
-
-                {/* Bottom Conversion Action Bar */}
-                <div className="sim-browser-actionbar">
-                  <div className="sim-actionbar-info">
-                    <div className="sim-actionbar-name">{activeTemplate?.n}</div>
-                    <div className="sim-actionbar-meta">
-                      Estructura: <strong>{LN[activeTemplate?.l - 1]}</strong> · Estilo: <strong>{SN[activeTemplate?.s - 1]}</strong>
-                    </div>
-                  </div>
-
-                  <a 
-                    href={whatsappCtaUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="sim-btn-hire-whatsapp"
-                  >
-                    <MessageSquare size={16} />
-                    <span>Quiero esta web para mi negocio</span>
-                    <ArrowRight size={16} />
-                  </a>
-                </div>
-              </div>
-
+            <div style={{ marginTop: '20px', textAlign: 'center' }}>
+              <button 
+                type="button" 
+                onClick={scrollToPreview} 
+                className="sim-btn-scroll-preview"
+              >
+                <span>Ver cómo queda en las 50 plantillas</span>
+                <ArrowDown size={16} />
+              </button>
             </div>
           </div>
 
         </div>
-      </main>
+      </section>
 
       {/* ---------------------------------------------------- */}
-      {/* 4. FULLSCREEN PREVIEW MODAL */}
+      {/* 4. TEMPLATE CAROUSEL & LIVE SHOWCASE SECTION */}
+      {/* ---------------------------------------------------- */}
+      <section ref={previewSectionRef} className="sim-showcase-section">
+        <div className="container">
+
+          {/* Carousel Section Header */}
+          <div className="sim-section-header">
+            <div className="sim-header-left">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Layers size={18} className="text-purple-icon" />
+                <h3 className="sim-section-title">Elegí tu plantilla en el carrusel</h3>
+              </div>
+              <span className="sim-section-subtitle">
+                Mostrando plantilla <strong>#{activeTemplate.k + 1}: {activeTemplate.n}</strong>
+              </span>
+            </div>
+
+            {/* Carousel navigation arrows */}
+            <div className="sim-carousel-nav-arrows">
+              <button 
+                type="button" 
+                onClick={() => scrollCarousel('left')} 
+                className="sim-nav-arrow"
+                aria-label="Plantilla anterior"
+              >
+                <ChevronLeft size={20} />
+              </button>
+              <button 
+                type="button" 
+                onClick={() => scrollCarousel('right')} 
+                className="sim-nav-arrow"
+                aria-label="Siguiente plantilla"
+              >
+                <ChevronRight size={20} />
+              </button>
+            </div>
+          </div>
+
+          {/* Style Filters */}
+          <div className="sim-filters-bar">
+            {[
+              { id: 'all', label: 'Todas las 50' },
+              { id: '0', label: 'Papel' },
+              { id: '1', label: 'Tinta' },
+              { id: '2', label: 'Noche' },
+              { id: '3', label: 'Amarillo' },
+              { id: '4', label: 'Tierra' },
+              { id: '5', label: 'Bosque' },
+              { id: '6', label: 'Mono' },
+              { id: '7', label: 'Marino' },
+              { id: '8', label: 'Azulejo' },
+              { id: '9', label: 'Concreto' },
+              { id: '10', label: 'Vino' },
+              { id: '11', label: 'Menta' }
+            ].map((f) => (
+              <button
+                key={f.id}
+                type="button"
+                onClick={() => setFilterStyle(f.id)}
+                className={`sim-filter-chip ${filterStyle === f.id ? 'active' : ''}`}
+              >
+                {f.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Visual Carousel Track with live thumbnails */}
+          <div ref={carouselRef} className="sim-carousel-container">
+            {filteredTemplates.map((tpl) => (
+              <CarouselCard
+                key={tpl.k}
+                template={tpl}
+                businessData={businessData}
+                isSelected={tpl.k === activeTemplate.k}
+                onSelect={(k) => setSelectedTemplateIndex(k)}
+              />
+            ))}
+          </div>
+
+          {/* Main Large Stage Viewer */}
+          <div className="sim-stage-window">
+            {/* Window Browser Header */}
+            <div className="sim-stage-topbar">
+              <div className="sim-stage-dots">
+                <span className="dot red" />
+                <span className="dot yellow" />
+                <span className="dot green" />
+              </div>
+
+              <div className="sim-stage-url">
+                <span style={{ fontSize: '12px' }}>🔒</span>
+                <span>
+                  https://{businessData.nm ? businessData.nm.toLowerCase().replace(/[^a-z0-9]/g, '') : 'tunegocio'}.primeracuadra.com.ar
+                </span>
+              </div>
+
+              <div className="sim-stage-controls">
+                <div className="sim-device-switcher">
+                  <button
+                    type="button"
+                    onClick={() => setPreviewDevice('desktop')}
+                    className={`sim-device-btn ${previewDevice === 'desktop' ? 'active' : ''}`}
+                    title="Vista Escritorio"
+                  >
+                    <Monitor size={15} />
+                    <span className="hide-mobile">Escritorio</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setPreviewDevice('mobile')}
+                    className={`sim-device-btn ${previewDevice === 'mobile' ? 'active' : ''}`}
+                    title="Vista Móvil (390 px)"
+                  >
+                    <Smartphone size={15} />
+                    <span className="hide-mobile">Móvil</span>
+                  </button>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setIsFullScreen(true)}
+                  className="sim-btn-expand"
+                  title="Pantalla completa"
+                >
+                  <Maximize2 size={15} />
+                  <span className="hide-mobile">Pantalla completa</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Iframe Viewport */}
+            <div className="sim-stage-viewport-wrap">
+              <div className={`sim-stage-viewport ${previewDevice}`}>
+                <iframe 
+                  ref={mainIframeRef}
+                  title={`Previsualización en vivo ${activeTemplate.n}`}
+                  className="sim-main-iframe"
+                />
+              </div>
+            </div>
+
+            {/* Bottom Conversion Action Bar */}
+            <div className="sim-stage-bottom-bar">
+              <div className="sim-stage-bottom-info">
+                <span className="sim-stage-current-name">{activeTemplate.n}</span>
+                <span className="sim-stage-current-meta">
+                  Estructura: <strong>{LN[activeTemplate.li]}</strong> · Estilo: <strong>{SN[activeTemplate.si]}</strong>
+                </span>
+              </div>
+
+              <a 
+                href={whatsappCtaUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="sim-cta-whatsapp-btn"
+              >
+                <MessageSquare size={17} />
+                <span>Quiero esta plantilla para mi negocio</span>
+                <ArrowRight size={17} />
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ---------------------------------------------------- */}
+      {/* 5. FULLSCREEN MODAL */}
       {/* ---------------------------------------------------- */}
       {isFullScreen && (
         <div className="sim-fullscreen-overlay">
@@ -653,16 +723,16 @@ export default function SimulatorPage() {
             <div className="sim-fullscreen-title-group">
               <BrandLogo variant="auto" height={22} />
               <div className="sim-fs-divider" />
-              <span className="sim-fs-name">{activeTemplate?.n}</span>
-              <span className="sim-fs-tag">{businessData.nm}</span>
+              <span className="sim-fs-name">{activeTemplate.n}</span>
+              {businessData.nm && <span className="sim-fs-tag">{businessData.nm}</span>}
             </div>
 
             <div className="sim-fullscreen-actions">
-              <div className="sim-device-toggle">
+              <div className="sim-device-switcher">
                 <button
                   type="button"
                   onClick={() => setFullScreenDevice('desktop')}
-                  className={`sim-dev-btn ${fullScreenDevice === 'desktop' ? 'active' : ''}`}
+                  className={`sim-device-btn ${fullScreenDevice === 'desktop' ? 'active' : ''}`}
                 >
                   <Monitor size={15} />
                   <span>Escritorio</span>
@@ -670,7 +740,7 @@ export default function SimulatorPage() {
                 <button
                   type="button"
                   onClick={() => setFullScreenDevice('mobile')}
-                  className={`sim-dev-btn ${fullScreenDevice === 'mobile' ? 'active' : ''}`}
+                  className={`sim-device-btn ${fullScreenDevice === 'mobile' ? 'active' : ''}`}
                 >
                   <Smartphone size={15} />
                   <span>Móvil (390 px)</span>
@@ -681,9 +751,9 @@ export default function SimulatorPage() {
                 href={whatsappCtaUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="sim-btn-hire-whatsapp mini"
+                className="sim-cta-whatsapp-btn mini"
               >
-                <MessageSquare size={14} />
+                <MessageSquare size={15} />
                 <span>Pedir esta web</span>
               </a>
 
@@ -702,7 +772,7 @@ export default function SimulatorPage() {
             <div className={`sim-fullscreen-viewport ${fullScreenDevice}`}>
               <iframe 
                 ref={modalIframeRef}
-                title={`Pantalla completa ${activeTemplate?.n}`}
+                title={`Pantalla completa ${activeTemplate.n}`}
                 className="sim-fullscreen-iframe"
               />
             </div>
@@ -711,7 +781,7 @@ export default function SimulatorPage() {
       )}
 
       {/* ---------------------------------------------------- */}
-      {/* 5. BOTTOM CONVERSION BANNER */}
+      {/* 6. BOTTOM CONVERSION BANNER */}
       {/* ---------------------------------------------------- */}
       <section className="sim-standalone-bottom-cta">
         <div className="container">
@@ -744,7 +814,7 @@ export default function SimulatorPage() {
       </section>
 
       {/* ---------------------------------------------------- */}
-      {/* 6. FOOTER */}
+      {/* 7. FOOTER */}
       {/* ---------------------------------------------------- */}
       <footer className="sim-standalone-footer">
         <div className="container sim-footer-inner">
@@ -759,19 +829,19 @@ export default function SimulatorPage() {
         </div>
       </footer>
 
-      {/* Embedded Component Styles */}
+      {/* Scoped CSS Styles */}
       <style>{`
         .simulator-standalone-page {
           min-height: 100vh;
           display: flex;
           flex-direction: column;
-          background: #F9FAFB;
+          background: #F8F9FA;
           color: #111827;
           transition: background 0.3s ease, color 0.3s ease;
         }
         .simulator-standalone-page.dark-mode {
-          background: #0D0C11;
-          color: #F3F4F6;
+          background: #0E0D13;
+          color: #F4F2EC;
         }
 
         .sim-theme-toggle-btn {
@@ -793,31 +863,31 @@ export default function SimulatorPage() {
           background: rgba(124, 58, 237, 0.1);
         }
 
-        .sim-interactive-section {
-          padding: 10px 0 40px;
-          flex: 1;
+        /* Form Section */
+        .sim-form-section {
+          padding: 10px 20px 40px;
         }
 
-        .sim-presets-bar {
-          display: flex;
-          align-items: center;
-          gap: 12px;
+        .sim-presets-box {
           margin-bottom: 16px;
-          padding: 10px 14px;
-          background: rgba(255, 255, 255, 0.8);
+          padding: 12px 16px;
+          background: rgba(255, 255, 255, 0.7);
           border: 1px solid rgba(164, 139, 255, 0.2);
           border-radius: 12px;
           backdrop-filter: blur(8px);
         }
-        .dark-mode .sim-presets-bar {
-          background: rgba(21, 19, 30, 0.7);
+        .dark-mode .sim-presets-box {
+          background: rgba(21, 19, 28, 0.6);
           border-color: rgba(164, 139, 255, 0.15);
         }
-        .sim-presets-title {
-          font-size: 0.85rem;
+        .sim-presets-header {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 0.82rem;
           font-weight: 700;
           color: #7C3AED;
-          white-space: nowrap;
+          margin-bottom: 8px;
         }
         .sim-presets-scroll {
           display: flex;
@@ -827,11 +897,11 @@ export default function SimulatorPage() {
           scrollbar-width: none;
         }
         .sim-presets-scroll::-webkit-scrollbar { display: none; }
-        .sim-preset-pill {
+        .sim-preset-btn {
           display: inline-flex;
           align-items: center;
           gap: 6px;
-          padding: 6px 12px;
+          padding: 6px 14px;
           border-radius: 50px;
           border: 1px solid rgba(164, 139, 255, 0.25);
           background: rgba(124, 58, 237, 0.06);
@@ -842,93 +912,74 @@ export default function SimulatorPage() {
           white-space: nowrap;
           transition: all 0.2s ease;
         }
-        .sim-preset-pill:hover {
+        .sim-preset-btn:hover {
           background: #7C3AED;
           color: #FFFFFF;
           border-color: #7C3AED;
           transform: translateY(-1px);
         }
 
-        .sim-main-grid {
-          display: grid;
-          grid-template-columns: 380px 1fr;
-          gap: 24px;
-          align-items: start;
-        }
-        @media (max-width: 1024px) {
-          .sim-main-grid {
-            grid-template-columns: 1fr;
-          }
-        }
-
         .sim-card-box {
           background: #FFFFFF;
-          border: 1px solid rgba(164, 139, 255, 0.2);
+          border: 1px solid rgba(164, 139, 255, 0.22);
           border-radius: 16px;
-          padding: 24px;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+          padding: 28px;
+          box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
         }
         .dark-mode .sim-card-box {
           background: #14131A;
-          border-color: rgba(164, 139, 255, 0.15);
-          box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+          border-color: rgba(164, 139, 255, 0.18);
+          box-shadow: 0 4px 28px rgba(0, 0, 0, 0.4);
         }
         .sim-card-header {
-          margin-bottom: 20px;
-        }
-        .sim-card-header-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          padding: 3px 8px;
-          border-radius: 6px;
-          background: rgba(124, 58, 237, 0.1);
-          color: #7C3AED;
-          font-size: 0.75rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          margin-bottom: 8px;
+          margin-bottom: 22px;
+          text-align: left;
         }
         .sim-card-title {
-          font-size: 1.3rem;
+          font-size: 1.4rem;
           font-weight: 800;
           margin: 0 0 6px;
         }
         .sim-card-desc {
-          font-size: 0.85rem;
+          font-size: 0.88rem;
           color: #6B7280;
           margin: 0;
         }
-        .dark-mode .sim-card-desc {
-          color: #9CA3AF;
-        }
+        .dark-mode .sim-card-desc { color: #9CA3AF; }
 
-        .sim-form-grid {
+        .sim-f2-grid {
           display: grid;
-          grid-template-columns: 1fr;
-          gap: 14px;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+          box-sizing: border-box;
         }
-        .sim-form-grid .full-col {
+        @media (max-width: 640px) {
+          .sim-f2-grid { grid-template-columns: 1fr; }
+        }
+        .sim-field {
+          display: flex;
+          flex-direction: column;
+        }
+        .sim-field.full {
           grid-column: 1 / -1;
         }
         .sim-label {
-          display: block;
           font-size: 0.82rem;
           font-weight: 700;
-          margin-bottom: 5px;
+          margin-bottom: 6px;
           color: #374151;
         }
-        .dark-mode .sim-label {
-          color: #D1D5DB;
-        }
+        .dark-mode .sim-label { color: #D1D5DB; }
+
         .sim-input, .sim-textarea {
           width: 100%;
-          padding: 9px 12px;
+          max-width: 100%;
+          padding: 10px 14px;
           border-radius: 8px;
           border: 1px solid rgba(164, 139, 255, 0.25);
           background: #F9FAFB;
           color: inherit;
-          font-size: 0.88rem;
+          font-size: 0.9rem;
           font-family: inherit;
           box-sizing: border-box;
           transition: all 0.2s ease;
@@ -943,7 +994,7 @@ export default function SimulatorPage() {
           box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
         }
         .sim-input::placeholder, .sim-textarea::placeholder {
-          color: rgba(107, 114, 128, 0.7);
+          color: rgba(107, 114, 128, 0.65);
           opacity: 1;
         }
         .dark-mode .sim-input::placeholder, .dark-mode .sim-textarea::placeholder {
@@ -954,13 +1005,13 @@ export default function SimulatorPage() {
         .sim-video-uploader {
           border: 2px dashed rgba(164, 139, 255, 0.3);
           border-radius: 10px;
-          padding: 12px 14px;
+          padding: 12px 16px;
           background: rgba(124, 58, 237, 0.03);
           cursor: pointer;
           display: flex;
           align-items: center;
           justify-content: space-between;
-          gap: 10px;
+          gap: 12px;
           transition: all 0.2s ease;
         }
         .sim-video-uploader:hover {
@@ -988,254 +1039,301 @@ export default function SimulatorPage() {
         .sim-btn-upload-badge {
           display: inline-flex;
           align-items: center;
-          gap: 4px;
-          padding: 5px 10px;
+          gap: 5px;
+          padding: 6px 12px;
           border-radius: 6px;
           background: #7C3AED;
           color: #FFFFFF;
-          font-size: 0.75rem;
+          font-size: 0.78rem;
           font-weight: 700;
           white-space: nowrap;
         }
         .sim-btn-remove-video {
-          padding: 4px 8px;
+          padding: 5px 10px;
           border-radius: 4px;
           background: #EF4444;
           color: #FFFFFF;
           border: none;
-          font-size: 0.72rem;
+          font-size: 0.75rem;
           font-weight: 700;
           cursor: pointer;
         }
 
-        /* Carousel Styles */
-        .sim-carousel-wrapper {
-          background: #FFFFFF;
-          border: 1px solid rgba(164, 139, 255, 0.2);
-          border-radius: 16px;
-          padding: 18px 20px;
-          margin-bottom: 20px;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        .sim-btn-scroll-preview {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 12px 24px;
+          border-radius: 50px;
+          background: #673DE6;
+          color: #FFFFFF;
+          font-size: 0.95rem;
+          font-weight: 700;
+          border: none;
+          cursor: pointer;
+          box-shadow: 0 4px 16px rgba(103, 61, 230, 0.35);
+          transition: all 0.2s ease;
         }
-        .dark-mode .sim-carousel-wrapper {
-          background: #14131A;
-          border-color: rgba(164, 139, 255, 0.15);
+        .sim-btn-scroll-preview:hover {
+          background: #5428D8;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 22px rgba(103, 61, 230, 0.45);
         }
-        .sim-carousel-top {
+
+        /* Showcase & Carousel Section */
+        .sim-showcase-section {
+          padding: 20px 20px 60px;
+        }
+        .sim-section-header {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin-bottom: 12px;
+          margin-bottom: 14px;
+          flex-wrap: wrap;
+          gap: 12px;
         }
-        .sim-carousel-heading {
-          font-size: 1.05rem;
+        .sim-section-title {
+          font-size: 1.25rem;
           font-weight: 800;
+          margin: 0;
         }
-        .sim-carousel-count {
-          font-size: 0.85rem;
+        .sim-section-subtitle {
+          font-size: 0.88rem;
           color: #6B7280;
+          margin-top: 2px;
+          display: block;
         }
-        .dark-mode .sim-carousel-count { color: #9CA3AF; }
-        .sim-carousel-arrows {
+        .dark-mode .sim-section-subtitle { color: #9CA3AF; }
+
+        .sim-carousel-nav-arrows {
           display: flex;
           gap: 8px;
         }
-        .sim-arrow-btn {
+        .sim-nav-arrow {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 32px;
-          height: 32px;
+          width: 38px;
+          height: 38px;
           border-radius: 8px;
           border: 1px solid rgba(164, 139, 255, 0.25);
-          background: rgba(124, 58, 237, 0.06);
+          background: rgba(124, 58, 237, 0.08);
           color: inherit;
           cursor: pointer;
           transition: all 0.2s ease;
         }
-        .sim-arrow-btn:hover {
+        .sim-nav-arrow:hover {
           background: #7C3AED;
           color: #FFFFFF;
           border-color: #7C3AED;
         }
 
-        .sim-filters-strip {
+        .sim-filters-bar {
           display: flex;
           gap: 6px;
           overflow-x: auto;
           scrollbar-width: none;
-          margin-bottom: 14px;
-          padding-bottom: 2px;
+          margin-bottom: 16px;
+          padding-bottom: 4px;
         }
-        .sim-filters-strip::-webkit-scrollbar { display: none; }
-        .sim-filter-btn {
-          padding: 5px 12px;
+        .sim-filters-bar::-webkit-scrollbar { display: none; }
+        .sim-filter-chip {
+          padding: 6px 14px;
           border-radius: 50px;
           border: 1px solid rgba(164, 139, 255, 0.2);
           background: transparent;
           color: inherit;
-          font-size: 0.78rem;
+          font-size: 0.82rem;
           font-weight: 600;
           cursor: pointer;
           white-space: nowrap;
           transition: all 0.2s ease;
         }
-        .sim-filter-btn.active, .sim-filter-btn:hover {
+        .sim-filter-chip.active, .sim-filter-chip:hover {
           background: #7C3AED;
           color: #FFFFFF;
           border-color: #7C3AED;
         }
 
-        .sim-carousel-track {
+        /* Carousel Track */
+        .sim-carousel-container {
           display: flex;
-          gap: 12px;
+          gap: 14px;
           overflow-x: auto;
           scroll-behavior: smooth;
-          padding: 4px 2px 10px;
+          padding: 6px 2px 18px;
           scrollbar-width: thin;
         }
         .sim-carousel-card {
-          flex: 0 0 220px;
-          background: #F9FAFB;
+          flex: 0 0 250px;
+          width: 250px;
+          background: #FFFFFF;
           border: 2px solid rgba(164, 139, 255, 0.2);
           border-radius: 12px;
-          padding: 14px;
+          overflow: hidden;
           cursor: pointer;
           display: flex;
           flex-direction: column;
-          justify-content: space-between;
-          position: relative;
-          transition: all 0.2s ease;
-          user-select: none;
+          transition: all 0.25s ease;
+          box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
         }
         .dark-mode .sim-carousel-card {
-          background: #1C1A24;
+          background: #15131E;
           border-color: rgba(255, 255, 255, 0.08);
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
         }
         .sim-carousel-card:hover {
           border-color: #7C3AED;
-          transform: translateY(-2px);
-          box-shadow: 0 8px 16px rgba(124, 58, 237, 0.12);
+          transform: translateY(-3px);
+          box-shadow: 0 8px 24px rgba(124, 58, 237, 0.16);
         }
         .sim-carousel-card.selected {
           border-color: #7C3AED;
-          background: rgba(124, 58, 237, 0.08);
-          box-shadow: 0 0 0 2px #7C3AED, 0 8px 20px rgba(124, 58, 237, 0.2);
+          box-shadow: 0 0 0 2px #7C3AED, 0 10px 28px rgba(124, 58, 237, 0.28);
         }
-        .sim-card-num-badge {
-          font-size: 0.75rem;
-          font-weight: 800;
-          color: #7C3AED;
-          margin-bottom: 4px;
+
+        .sim-thumb-window {
+          height: 155px;
+          width: 100%;
+          position: relative;
+          overflow: hidden;
+          background: #FFFFFF;
+          border-bottom: 1px solid rgba(164, 139, 255, 0.15);
         }
-        .sim-card-title-text {
-          font-size: 0.95rem;
-          font-weight: 800;
-          margin-bottom: 8px;
-          line-height: 1.25;
+        .sim-thumb-iframe {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 1250px;
+          height: 775px;
+          border: 0;
+          transform: scale(0.2);
+          transform-origin: 0 0;
+          pointer-events: none;
+          background: #FFFFFF;
         }
-        .sim-card-tags {
+        .sim-thumb-placeholder {
+          height: 100%;
           display: flex;
-          flex-wrap: wrap;
-          gap: 4px;
+          align-items: center;
+          justify-content: center;
+          font-weight: 800;
+          color: #9CA3AF;
+          background: #F3F4F6;
         }
-        .sim-tag-structure, .sim-tag-style {
-          font-size: 0.7rem;
-          font-weight: 600;
-          padding: 2px 6px;
-          border-radius: 4px;
-          background: rgba(124, 58, 237, 0.1);
-          color: #7C3AED;
-        }
-        .sim-selected-badge {
+        .dark-mode .sim-thumb-placeholder { background: #1F1C28; color: #6B7280; }
+        .sim-active-overlay {
+          position: absolute;
+          top: 8px;
+          right: 8px;
           display: inline-flex;
           align-items: center;
           gap: 4px;
+          padding: 3px 8px;
+          border-radius: 4px;
+          background: #10B981;
+          color: #FFFFFF;
           font-size: 0.72rem;
           font-weight: 700;
-          color: #10B981;
-          margin-top: 10px;
+          box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
         }
 
-        /* Browser Window Frame */
-        .sim-browser-frame {
+        .sim-thumb-meta {
+          padding: 10px 12px;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+        .sim-thumb-title {
+          font-size: 0.88rem;
+          font-weight: 800;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .sim-thumb-tags {
+          display: flex;
+          gap: 6px;
+          font-size: 0.72rem;
+          color: #7C3AED;
+          font-weight: 600;
+        }
+
+        /* Large Showcase Stage */
+        .sim-stage-window {
+          margin-top: 24px;
           background: #FFFFFF;
           border: 1px solid rgba(164, 139, 255, 0.25);
           border-radius: 16px;
           overflow: hidden;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+          box-shadow: 0 10px 32px rgba(0, 0, 0, 0.07);
         }
-        .dark-mode .sim-browser-frame {
+        .dark-mode .sim-stage-window {
           background: #14131A;
           border-color: rgba(164, 139, 255, 0.2);
-          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 12px 42px rgba(0, 0, 0, 0.5);
         }
-        .sim-browser-topbar {
+        .sim-stage-topbar {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 10px 16px;
+          padding: 12px 18px;
           background: #F3F4F6;
           border-bottom: 1px solid rgba(164, 139, 255, 0.15);
           gap: 12px;
         }
-        .dark-mode .sim-browser-topbar {
+        .dark-mode .sim-stage-topbar {
           background: #1C1A24;
           border-bottom-color: rgba(255, 255, 255, 0.08);
         }
-        .sim-browser-dots {
+        .sim-stage-dots {
           display: flex;
           gap: 6px;
         }
-        .sim-browser-dots .dot {
-          width: 10px;
-          height: 10px;
+        .sim-stage-dots .dot {
+          width: 11px;
+          height: 11px;
           border-radius: 50%;
         }
-        .sim-browser-dots .dot.red { background: #EF4444; }
-        .sim-browser-dots .dot.yellow { background: #F59E0B; }
-        .sim-browser-dots .dot.green { background: #10B981; }
+        .sim-stage-dots .dot.red { background: #EF4444; }
+        .sim-stage-dots .dot.yellow { background: #F59E0B; }
+        .sim-stage-dots .dot.green { background: #10B981; }
 
-        .sim-browser-url-pill {
+        .sim-stage-url {
           flex: 1;
           max-width: 440px;
           display: flex;
           align-items: center;
           gap: 6px;
-          padding: 4px 12px;
+          padding: 5px 14px;
           border-radius: 6px;
           background: #FFFFFF;
           border: 1px solid rgba(0, 0, 0, 0.08);
-          font-size: 0.78rem;
+          font-size: 0.8rem;
           color: #4B5563;
           overflow: hidden;
         }
-        .dark-mode .sim-browser-url-pill {
+        .dark-mode .sim-stage-url {
           background: #14131A;
           border-color: rgba(255, 255, 255, 0.08);
           color: #9CA3AF;
         }
-        .sim-browser-url-text {
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
 
-        .sim-browser-controls {
+        .sim-stage-controls {
           display: flex;
           align-items: center;
           gap: 8px;
         }
-        .sim-device-toggle {
+        .sim-device-switcher {
           display: flex;
           border-radius: 8px;
           background: rgba(0, 0, 0, 0.05);
           padding: 2px;
         }
-        .dark-mode .sim-device-toggle {
+        .dark-mode .sim-device-switcher {
           background: rgba(255, 255, 255, 0.06);
         }
-        .sim-dev-btn {
+        .sim-device-btn {
           display: inline-flex;
           align-items: center;
           gap: 5px;
@@ -1249,12 +1347,12 @@ export default function SimulatorPage() {
           cursor: pointer;
           transition: all 0.15s ease;
         }
-        .sim-dev-btn.active {
+        .sim-device-btn.active {
           background: #7C3AED;
           color: #FFFFFF;
           box-shadow: 0 1px 4px rgba(124, 58, 237, 0.3);
         }
-        .sim-fullscreen-btn {
+        .sim-btn-expand {
           display: inline-flex;
           align-items: center;
           gap: 5px;
@@ -1268,90 +1366,96 @@ export default function SimulatorPage() {
           cursor: pointer;
           transition: all 0.15s ease;
         }
-        .sim-fullscreen-btn:hover {
+        .sim-btn-expand:hover {
           background: #7C3AED;
           color: #FFFFFF;
           border-color: #7C3AED;
         }
 
-        .sim-browser-stage {
+        .sim-stage-viewport-wrap {
           background: #E5E7EB;
-          min-height: 620px;
+          min-height: 680px;
           display: flex;
           align-items: center;
           justify-content: center;
           padding: 16px;
           overflow: hidden;
         }
-        .dark-mode .sim-browser-stage {
+        .dark-mode .sim-stage-viewport-wrap {
           background: #0B0A0E;
         }
-        .sim-browser-viewport {
+        .sim-stage-viewport {
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          height: 620px;
+          height: 680px;
           background: #FFFFFF;
           border-radius: 8px;
           overflow: hidden;
           box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
         }
-        .sim-browser-viewport.desktop {
+        .sim-stage-viewport.desktop {
           width: 100%;
         }
-        .sim-browser-viewport.mobile {
+        .sim-stage-viewport.mobile {
           width: 390px;
-          height: 640px;
+          height: 690px;
           border: 8px solid #1F2937;
           border-radius: 36px;
           box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
         }
-        .sim-iframe {
+        .sim-main-iframe {
           width: 100%;
           height: 100%;
           border: none;
           display: block;
         }
 
-        .sim-browser-actionbar {
+        .sim-stage-bottom-bar {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 14px 20px;
+          padding: 16px 22px;
           background: #FFFFFF;
           border-top: 1px solid rgba(164, 139, 255, 0.15);
           gap: 16px;
           flex-wrap: wrap;
         }
-        .dark-mode .sim-browser-actionbar {
+        .dark-mode .sim-stage-bottom-bar {
           background: #14131A;
           border-top-color: rgba(255, 255, 255, 0.08);
         }
-        .sim-actionbar-name {
-          font-size: 1.05rem;
+        .sim-stage-current-name {
+          font-size: 1.1rem;
           font-weight: 800;
+          display: block;
         }
-        .sim-actionbar-meta {
-          font-size: 0.82rem;
+        .sim-stage-current-meta {
+          font-size: 0.85rem;
           color: #6B7280;
         }
-        .dark-mode .sim-actionbar-meta { color: #9CA3AF; }
-        .sim-btn-hire-whatsapp {
+        .dark-mode .sim-stage-current-meta { color: #9CA3AF; }
+
+        .sim-cta-whatsapp-btn {
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          padding: 10px 18px;
+          padding: 11px 22px;
           border-radius: 50px;
           background: #25D366;
           color: #FFFFFF;
-          font-size: 0.88rem;
+          font-size: 0.92rem;
           font-weight: 800;
           text-decoration: none;
           box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
           transition: all 0.2s ease;
         }
-        .sim-btn-hire-whatsapp:hover {
+        .sim-cta-whatsapp-btn:hover {
           background: #1EBE5D;
           transform: translateY(-1px);
-          box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+          box-shadow: 0 6px 22px rgba(37, 211, 102, 0.45);
+        }
+        .sim-cta-whatsapp-btn.mini {
+          padding: 7px 14px;
+          font-size: 0.82rem;
         }
 
         /* Fullscreen Modal */
@@ -1447,9 +1551,9 @@ export default function SimulatorPage() {
 
         @media (max-width: 768px) {
           .hide-mobile { display: none; }
-          .sim-presets-bar { flex-direction: column; align-items: flex-start; }
-          .sim-browser-actionbar { flex-direction: column; align-items: stretch; }
-          .sim-btn-hire-whatsapp { justify-content: center; }
+          .sim-stage-bottom-bar { flex-direction: column; align-items: stretch; }
+          .sim-cta-whatsapp-btn { justify-content: center; }
+          .sim-card-box { padding: 20px 16px; }
         }
       `}</style>
     </div>
