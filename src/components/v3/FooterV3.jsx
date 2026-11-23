@@ -59,7 +59,7 @@ export default function FooterV3() {
         style={{ 
           maxWidth: '1240px', 
           margin: '0 auto', 
-          padding: 'clamp(56px, 7vw, 88px) 24px 48px',
+          padding: 'clamp(36px, 4.5vw, 56px) 24px 36px',
           boxSizing: 'border-box'
         }}
       >

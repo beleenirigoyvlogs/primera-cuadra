@@ -794,7 +794,7 @@ export default function SimulatorPage() {
         }
 
         .sim-interactive-section {
-          padding: 20px 0 60px;
+          padding: 10px 0 40px;
           flex: 1;
         }
 
@@ -802,8 +802,8 @@ export default function SimulatorPage() {
           display: flex;
           align-items: center;
           gap: 12px;
-          margin-bottom: 24px;
-          padding: 12px 16px;
+          margin-bottom: 16px;
+          padding: 10px 14px;
           background: rgba(255, 255, 255, 0.8);
           border: 1px solid rgba(164, 139, 255, 0.2);
           border-radius: 12px;

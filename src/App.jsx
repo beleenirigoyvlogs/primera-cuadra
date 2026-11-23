@@ -79,6 +79,20 @@ export default function App({ initialPath = null }) {
     recordPageView();
   }, []);
 
+  // Scroll to hash target on route change or initial load
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const hash = window.location.hash.replace('#', '');
+    if (hash && hash !== 'admin') {
+      setTimeout(() => {
+        const el = document.getElementById(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 150);
+    }
+  }, [currentPath]);
+
   // Ensure FAQPage JSON-LD is only active on the home page ('/')
   useEffect(() => {
     if (typeof document === 'undefined') return;
@@ -127,7 +141,7 @@ export default function App({ initialPath = null }) {
       handleRouteChange();
     };
 
-    // View Transitions for internal page navigation (250ms crossfade)
+    // Handle routing and anchor scrolling
     const handleLinkClick = (e) => {
       if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       const anchor = e.target.closest('a');
@@ -142,7 +156,54 @@ export default function App({ initialPath = null }) {
         anchor.hasAttribute('download') || 
         anchor.getAttribute('target') === '_blank'
       ) return;
-      if (href.startsWith('#')) return;
+
+      // Check if it's a hash anchor link (e.g. /#servicios, #servicios, /blog#algo)
+      if (href.includes('#')) {
+        const [targetPath, hashId] = href.split('#');
+        const cleanTargetPath = (targetPath || '/').toLowerCase();
+        const currentPathname = (window.location.pathname || '/').toLowerCase();
+
+        // If we are already on the target path (e.g. '/' or '')
+        if (cleanTargetPath === currentPathname || (cleanTargetPath === '/' && (currentPathname === '' || currentPathname === '/'))) {
+          e.preventDefault();
+          if (hashId) {
+            const targetEl = document.getElementById(hashId);
+            if (targetEl) {
+              targetEl.scrollIntoView({ behavior: 'smooth' });
+              window.history.pushState({}, '', href);
+              return;
+            }
+          }
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+
+        // If navigating from another page (e.g. /simulador -> /#servicios)
+        e.preventDefault();
+        window.history.pushState({}, '', href);
+        updateRoute();
+        setTimeout(() => {
+          if (hashId) {
+            const targetEl = document.getElementById(hashId);
+            if (targetEl) {
+              targetEl.scrollIntoView({ behavior: 'smooth' });
+              return;
+            }
+          }
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 120);
+        return;
+      }
+
+      if (href.startsWith('#')) {
+        e.preventDefault();
+        const targetId = href.slice(1);
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: 'smooth' });
+        }
+        return;
+      }
 
       if (href.startsWith('/')) {
         e.preventDefault();

@@ -72,7 +72,7 @@ export default function PortfolioV3() {
         style={{ 
           maxWidth: '1240px', 
           margin: '0 auto', 
-          padding: 'clamp(64px, 7vw, 96px) 24px',
+          padding: 'clamp(36px, 4vw, 56px) 24px',
           boxSizing: 'border-box'
         }}
       >

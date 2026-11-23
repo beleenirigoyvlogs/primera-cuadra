@@ -29,7 +29,7 @@ export default function FreeAuditV3() {
         style={{ 
           maxWidth: '1240px', 
           margin: '0 auto', 
-          padding: 'clamp(56px, 7vw, 84px) 24px',
+          padding: 'clamp(32px, 4vw, 48px) 24px',
           boxSizing: 'border-box'
         }}
       >

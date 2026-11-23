@@ -198,7 +198,7 @@ export default function HeroV3({
           position: 'relative', 
           maxWidth: '1240px', 
           margin: '0 auto', 
-          padding: 'clamp(64px, 8vw, 112px) 24px clamp(56px, 7vw, 104px)', 
+          padding: 'clamp(40px, 5vw, 68px) 24px clamp(32px, 4vw, 52px)', 
           display: 'flex', 
           flexWrap: 'wrap', 
           gap: '48px', 
@@ -250,20 +250,12 @@ export default function HeroV3({
                 </span>
                 <span aria-hidden="true">
                   <span style={{ display: 'block' }}>Diseño de páginas web</span>
-                  <span style={{ display: 'inline-flex', alignItems: 'baseline', minHeight: '1.15em' }}>
-                    <span style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0, color: '#A9A6B4', marginRight: '0.35ch' }}>
+                  <span className="pc-hero-dynamic-row">
+                    <span className="pc-hero-dynamic-lead">
                       para
                     </span>
-                    <span 
-                      style={{ 
-                        display: 'inline-block', 
-                        minWidth: '15ch', 
-                        textAlign: 'left', 
-                        verticalAlign: 'baseline',
-                        whiteSpace: 'nowrap'
-                      }}
-                    >
-                      <span style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0, color: '#FFFFFF' }}>
+                    <span className="pc-hero-dynamic-word-wrap">
+                      <span className="pc-hero-dynamic-word">
                         {typed}
                       </span>
                       <span className="pc-caret" style={{ color: '#A48BFF' }} />

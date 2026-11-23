@@ -38,6 +38,19 @@ export default function NavbarV3() {
   const navLine = isDark ? '#2E2B36' : '#DAD6CD';
   const brandAccent = isDark ? '#A48BFF' : '#5B33D6';
 
+  const handleNavClick = (e, sectionId) => {
+    if (typeof window === 'undefined') return;
+    const isHome = window.location.pathname === '/' || window.location.pathname === '';
+    if (isHome) {
+      e.preventDefault();
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+        window.history.pushState({}, '', `/#${sectionId}`);
+      }
+    }
+  };
+
   return (
     <header 
       style={{ 
@@ -89,11 +102,11 @@ export default function NavbarV3() {
             color: navInk 
           }}
         >
-          <a href="/#servicios" style={{ textDecoration: 'none', color: navInk }}>Diseño web</a>
-          <a href="/#ejemplos" style={{ textDecoration: 'none', color: navInk }}>Portfolio</a>
-          <a href="/#precios" style={{ textDecoration: 'none', color: navInk }}>Precios</a>
+          <a href="/#servicios" onClick={(e) => handleNavClick(e, 'servicios')} style={{ textDecoration: 'none', color: navInk }}>Diseño web</a>
+          <a href="/#ejemplos" onClick={(e) => handleNavClick(e, 'ejemplos')} style={{ textDecoration: 'none', color: navInk }}>Portfolio</a>
+          <a href="/#precios" onClick={(e) => handleNavClick(e, 'precios')} style={{ textDecoration: 'none', color: navInk }}>Precios</a>
           <a href="/blog" style={{ textDecoration: 'none', color: navInk }}>Blog</a>
-          <a href="/#sobre-mi" style={{ textDecoration: 'none', color: navInk }}>Sobre mí</a>
+          <a href="/#sobre-mi" onClick={(e) => handleNavClick(e, 'sobre-mi')} style={{ textDecoration: 'none', color: navInk }}>Sobre mí</a>
           
           {/* Theme Switcher Button */}
           <button 
@@ -269,21 +282,21 @@ export default function NavbarV3() {
         >
           <a 
             href="/#servicios" 
-            onClick={() => setMobileMenuOpen(false)} 
+            onClick={(e) => { setMobileMenuOpen(false); handleNavClick(e, 'servicios'); }} 
             style={{ textDecoration: 'none', color: navInk, padding: '6px 0' }}
           >
             Diseño web
           </a>
           <a 
             href="/#ejemplos" 
-            onClick={() => setMobileMenuOpen(false)} 
+            onClick={(e) => { setMobileMenuOpen(false); handleNavClick(e, 'ejemplos'); }} 
             style={{ textDecoration: 'none', color: navInk, padding: '6px 0' }}
           >
             Portfolio
           </a>
           <a 
             href="/#precios" 
-            onClick={() => setMobileMenuOpen(false)} 
+            onClick={(e) => { setMobileMenuOpen(false); handleNavClick(e, 'precios'); }} 
             style={{ textDecoration: 'none', color: navInk, padding: '6px 0' }}
           >
             Precios
@@ -297,7 +310,7 @@ export default function NavbarV3() {
           </a>
           <a 
             href="/#sobre-mi" 
-            onClick={() => setMobileMenuOpen(false)} 
+            onClick={(e) => { setMobileMenuOpen(false); handleNavClick(e, 'sobre-mi'); }} 
             style={{ textDecoration: 'none', color: navInk, padding: '6px 0' }}
           >
             Sobre mí

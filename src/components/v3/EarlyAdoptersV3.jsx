@@ -7,7 +7,7 @@ export default function EarlyAdoptersV3() {
         style={{ 
           maxWidth: '1240px', 
           margin: '0 auto', 
-          padding: 'clamp(56px, 6vw, 72px) 24px', 
+          padding: 'clamp(32px, 4vw, 48px) 24px', 
           display: 'flex', 
           flexWrap: 'wrap', 
           gap: '32px 56px', 
