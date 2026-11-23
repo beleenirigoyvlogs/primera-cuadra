@@ -205,6 +205,64 @@ html.dark {
   animation: pcCaret 1s steps(1) infinite;
 }
 
+/* Hero H1 dynamic rotating word */
+.pc-hero-dynamic-row {
+  display: inline-flex;
+  align-items: baseline;
+  min-height: 1.15em;
+}
+
+.pc-hero-dynamic-lead {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: #A9A6B4;
+  margin-right: 0.35ch;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.pc-hero-dynamic-word-wrap {
+  display: inline-block;
+  min-width: 15ch;
+  text-align: left;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+.pc-hero-dynamic-word {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: #FFFFFF;
+}
+
+@media (max-width: 639px) {
+  .pc-hero-dynamic-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    min-height: auto;
+  }
+
+  .pc-hero-dynamic-lead {
+    white-space: nowrap;
+    margin-right: 0;
+    margin-bottom: 2px;
+  }
+
+  .pc-hero-dynamic-word-wrap {
+    display: inline-flex;
+    align-items: baseline;
+    min-width: 0;
+    min-height: 1.15em;
+    font-size: clamp(26px, 7.5vw, 32px);
+  }
+}
+
 .pc-in-right {
   animation: pcInRight 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }

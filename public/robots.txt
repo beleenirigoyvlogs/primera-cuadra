@@ -3,6 +3,11 @@ Allow: /
 Disallow: /propuesta/
 Disallow: /#propuesta/
 Disallow: /#admin
+Disallow: /showroom-privado
+Disallow: /showroom-privado/
+Disallow: /panel-demos
+Disallow: /panel-demos/
+Disallow: /demos/the-point-kiosco/
 
 Sitemap: https://primeracuadra.com.ar/sitemap.xml
 

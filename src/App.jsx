@@ -15,6 +15,7 @@ import FAQV3 from './components/v3/FAQV3';
 import FooterV3 from './components/v3/FooterV3';
 
 import SimulatorPage from './pages/SimulatorPage';
+import ShowroomPage from './pages/ShowroomPage';
 import CustomDevelopmentPage from './pages/CustomDevelopmentPage';
 import BusinessDemoSitePage from './pages/BusinessDemoSitePage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -239,7 +240,17 @@ export default function App({ initialPath = null }) {
     return <CustomDevelopmentPage />;
   }
 
-  // 9. Unknown Route: Not Found (404)
+  // 9. Hidden Route: Private Template Showroom / Panel Demos
+  if (
+    currentPath === '/showroom-privado' || 
+    currentPath === '/showroom-privado/' || 
+    currentPath === '/panel-demos' || 
+    currentPath === '/panel-demos/'
+  ) {
+    return <ShowroomPage />;
+  }
+
+  // 10. Unknown Route: Not Found (404)
   const isHome = currentPath === '/' || currentPath === '/index.html' || currentPath === '' || currentPath.startsWith('/#');
   if (!isHome) {
     return <NotFoundPage />;

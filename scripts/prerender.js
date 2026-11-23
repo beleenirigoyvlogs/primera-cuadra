@@ -40,6 +40,8 @@ async function prerender() {
     { url: '/privacidad', file: 'dist/privacidad/index.html' },
     { url: '/desarrollo-a-medida', file: 'dist/desarrollo-a-medida/index.html' },
     { url: '/simulador', file: 'dist/simulador/index.html' },
+    { url: '/showroom-privado', file: 'dist/showroom-privado/index.html' },
+    { url: '/panel-demos', file: 'dist/panel-demos/index.html' },
     { url: '/ejemplos/parrilla', file: 'dist/ejemplos/parrilla/index.html' },
     { url: '/ejemplos/barberia', file: 'dist/ejemplos/barberia/index.html' },
     { url: '/ejemplos/taller', file: 'dist/ejemplos/taller/index.html' },
@@ -82,7 +84,12 @@ async function prerender() {
         pageHtml = pageHtml.replace(/<meta name="twitter:image" content="[\s\S]*?" \/>/, `<meta name="twitter:image" content="${meta.ogImage}" />`);
       }
 
-      // FAQPage schema must ONLY exist on the home page ('/')
+      if (meta.noIndex) {
+        pageHtml = pageHtml.replace(
+          /<meta name="viewport" content="[\s\S]*?" \/>/,
+          '$&\n    <meta name="robots" content="noindex, nofollow" />'
+        );
+      }
       if (url !== '/') {
         pageHtml = pageHtml.replace(/<!-- FAQ JSON-LD Structured Data \(Only for Home Page\) -->\s*<script id="schema-faq"[\s\S]*?<\/script>\s*/, '');
       }

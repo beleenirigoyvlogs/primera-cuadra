@@ -33,3 +33,5 @@ __pycache__/
 *.pyc
 
 .vercel
+.env
+.env*.local

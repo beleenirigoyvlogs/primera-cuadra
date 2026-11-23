@@ -4,6 +4,7 @@ import App from './App';
 import NotFoundPage from './pages/NotFoundPage';
 import CustomDevelopmentPage from './pages/CustomDevelopmentPage';
 import SimulatorPage from './pages/SimulatorPage';
+import ShowroomPage from './pages/ShowroomPage';
 import BusinessDemoSitePage from './pages/BusinessDemoSitePage';
 import LocalLandingPage, { LOCAL_ZONES } from './pages/LocalLandingPage';
 import NicheLandingPage from './pages/NicheLandingPage';
@@ -99,6 +100,12 @@ export function render(url) {
     meta.title = 'Simulador de Diseño Web | Primera Cuadra';
     meta.description = 'Probá en tiempo real cómo se vería tu negocio en una página web mobile-first, ficha de Google Maps y WhatsApp Business.';
     meta.canonical = 'https://primeracuadra.com.ar/simulador';
+  } else if (cleanUrl === '/showroom-privado' || cleanUrl === '/showroom-privado/' || cleanUrl === '/panel-demos' || cleanUrl === '/panel-demos/') {
+    appHtml = renderToString(<ShowroomPage />);
+    meta.title = 'Showroom Privado | Primera Cuadra';
+    meta.description = 'Catálogo interactivo de demostración de plantillas web.';
+    meta.canonical = 'https://primeracuadra.com.ar/showroom-privado';
+    meta.noIndex = true;
   } else if (cleanUrl.startsWith('/ejemplos/parrilla')) {
     appHtml = renderToString(<BusinessDemoSitePage slug="parrilla" isProposal={false} />);
     meta.title = 'El Fogón de Tigre • Cortes a las brasas y pastas caseras';
