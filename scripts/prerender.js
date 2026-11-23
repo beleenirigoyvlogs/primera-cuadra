@@ -40,6 +40,7 @@ async function prerender() {
     { url: '/privacidad', file: 'dist/privacidad/index.html' },
     { url: '/desarrollo-a-medida', file: 'dist/desarrollo-a-medida/index.html' },
     { url: '/simulador', file: 'dist/simulador/index.html' },
+    { url: '/simulador/modelos', file: 'dist/simulador/modelos/index.html' },
     { url: '/showroom-privado', file: 'dist/showroom-privado/index.html' },
     { url: '/panel-demos', file: 'dist/panel-demos/index.html' },
     { url: '/ejemplos/parrilla', file: 'dist/ejemplos/parrilla/index.html' },
